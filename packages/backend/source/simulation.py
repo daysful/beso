@@ -4,15 +4,30 @@ import uuid
 
 
 class SimulationOptionsModel(BaseModel):
-    name: str | None
+    name: str | None = None
+    betse: bool | None = None
+
+
+class BetseSimulation:
+    def __init__(self):
+        # from betse.science.parameters import Parameters
+        # from betse.science.simrunner import SimRunner
+
+        # p = Parameters.make(conf_filename=self._args.conf_filename)
+        # simRunner = SimRunner(p=p)
+        pass
 
 
 class Simulation:
-    def __init__(self, options: SimulationOptionsModel | None):
+    def __init__(self, options: SimulationOptionsModel | None) -> None:
         self.id = str(uuid.uuid4())
         self.name = self.id if options is None \
             else options.name if options.name \
             else self.id
 
-    def stop(self):
+        if options and options.betse:
+            self.betse = BetseSimulation()
+            pass
+
+    def stop(self) -> None:
         pass
