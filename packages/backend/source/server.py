@@ -1,6 +1,7 @@
 from fastapi import FastAPI
+from typing import Optional
 
-from source.simulation import Simulation
+from source.simulation import Simulation, SimulationOptionsModel
 
 
 
@@ -17,8 +18,8 @@ def generate_server():
         }
 
     @app.post("/start")
-    async def __start__():
-        simulation = Simulation()
+    async def __start__(options: SimulationOptionsModel = None):
+        simulation = Simulation(options)
         simulations[simulation.id] = simulation
 
         return {
@@ -29,6 +30,10 @@ def generate_server():
     @app.get("/status")
     async def __status__(simulationID: str):
         simulation = simulations.get(simulationID)
+        if not simulation:
+            return {
+                "status": False,
+            }
 
         return {
             "status": True,
