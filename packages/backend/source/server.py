@@ -1,5 +1,4 @@
 from fastapi import FastAPI
-from typing import Optional
 
 from source.simulation import Simulation, SimulationOptionsModel
 
