@@ -3,11 +3,20 @@
     import React from 'react';
 
     import {
-        PluridLink,
-        PluridRouterLink,
         PluridReactComponent,
     } from '@plurid/plurid-react';
     // #endregion libraries
+
+
+    // #region external
+    import {
+        PluridPureButton,
+    } from '~kernel-services/styled';
+
+    import {
+        newSimulation,
+    } from '~kernel-services/logic/requests';
+    // #endregion external
 
 
     // #region internal
@@ -33,6 +42,13 @@ const Page: PluridReactComponent<{}> = (
     return (
         <StyledPage>
             beteks
+
+            <PluridPureButton
+                text="New Simulation"
+                atClick={async () => {
+                    const id = await newSimulation();
+                }}
+            />
         </StyledPage>
     );
 }
