@@ -11,14 +11,14 @@ class SimulationOptionsModel(BaseModel):
 
 class BetseSimulation:
     def __init__(self, id: str):
-        base_data = './source/data/yaml'
-        new_simulation = f'./simulation_data/{id}/'
-        shutil.copytree(base_data, new_simulation)
+        base_data_path = './source/data/yaml'
+        new_simulation_path = f'./simulation_data/{id}'
+        shutil.copytree(base_data_path, new_simulation_path)
 
         from betse.science.parameters import Parameters
         from betse.science.simrunner import SimRunner
 
-        conf_filename = f'./simulation_data/{id}/sim_config.yaml'
+        conf_filename = f'{new_simulation_path}/sim_config.yaml'
         p = Parameters.make(conf_filename=conf_filename)
         self.simRunner = SimRunner(p=p)
         print(self.simRunner)
