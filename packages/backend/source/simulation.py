@@ -15,6 +15,14 @@ class BetseSimulation:
 
         p = Parameters.make(conf_filename='./source/data/yaml/sim_config.yaml')
         self.simRunner = SimRunner(p=p)
+        print(self.simRunner)
+
+    def start(self):
+        self.simRunner.seed()
+        self.simRunner.init()
+        self.simRunner.sim()
+        self.simRunner.plot_seed()
+        self.simRunner.plot_init()
 
 
 class Simulation:
@@ -27,6 +35,10 @@ class Simulation:
         if options and options.betse:
             self.betse = BetseSimulation()
             pass
+
+    def start(self) -> None:
+        if (self.betse):
+            self.betse.start()
 
     def stop(self) -> None:
         pass

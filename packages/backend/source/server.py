@@ -16,8 +16,8 @@ def generate_server():
             "simulations": simulations,
         }
 
-    @app.post("/start")
-    async def __start__(options: SimulationOptionsModel = None):
+    @app.post("/new")
+    async def __new__(options: SimulationOptionsModel = None):
         simulation = Simulation(options)
         simulations[simulation.id] = simulation
 
@@ -37,6 +37,19 @@ def generate_server():
         return {
             "status": True,
             "simulation": simulation,
+        }
+
+    @app.post("/start")
+    async def __start__(simulationID: str):
+        simulation = simulations.get(simulationID)
+        if not simulation:
+            return {
+                "status": False,
+            }
+
+        simulation.start()
+        return {
+            "status": True,
         }
 
     @app.post("/stop")
