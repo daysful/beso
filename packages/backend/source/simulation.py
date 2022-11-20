@@ -10,12 +10,11 @@ class SimulationOptionsModel(BaseModel):
 
 class BetseSimulation:
     def __init__(self):
-        # from betse.science.parameters import Parameters
-        # from betse.science.simrunner import SimRunner
+        from betse.science.parameters import Parameters
+        from betse.science.simrunner import SimRunner
 
-        # p = Parameters.make(conf_filename=self._args.conf_filename)
-        # simRunner = SimRunner(p=p)
-        pass
+        p = Parameters.make(conf_filename='./source/data/yaml/sim_config.yaml')
+        self.simRunner = SimRunner(p=p)
 
 
 class Simulation:
