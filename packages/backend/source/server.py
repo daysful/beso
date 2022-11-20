@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 from source.simulation import Simulation, SimulationOptionsModel
 
@@ -6,6 +7,14 @@ from source.simulation import Simulation, SimulationOptionsModel
 
 def generate_server():
     app = FastAPI()
+
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=['*'],
+        allow_credentials=True,
+        allow_methods=['*'],
+        allow_headers=['*'],
+    )
 
     simulations: dict[str, Simulation] = {}
 
