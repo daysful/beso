@@ -13,6 +13,12 @@ const externals = [
 ];
 
 
+const environment = {
+    'process.env.BETEKS_BACKEND': JSON.stringify(process.env.BETEKS_BACKEND || ''),
+};
+
+
 
 exports.esModules = esModules;
 exports.externals = externals;
+exports.environment = environment;
