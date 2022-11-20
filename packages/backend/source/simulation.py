@@ -2,6 +2,8 @@ from pydantic import BaseModel
 import uuid
 import shutil
 
+from betse.science.parameters import Parameters
+from betse.science.simrunner import SimRunner
 
 
 class SimulationOptionsModel(BaseModel):
@@ -15,13 +17,9 @@ class BetseSimulation:
         new_simulation_path = f'./simulation_data/{id}'
         shutil.copytree(base_data_path, new_simulation_path)
 
-        from betse.science.parameters import Parameters
-        from betse.science.simrunner import SimRunner
-
         conf_filename = f'{new_simulation_path}/sim_config.yaml'
         p = Parameters.make(conf_filename=conf_filename)
         self.simRunner = SimRunner(p=p)
-        print(self.simRunner)
 
     def start(self):
         self.simRunner.seed()
