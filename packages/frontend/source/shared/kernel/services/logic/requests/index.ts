@@ -14,7 +14,10 @@
 
 
 // #region module
-export const newSimulation = async () => {
+export const newSimulation = async (
+    name?: string,
+    betse?: boolean,
+) => {
     try {
         const {
             simulationID,
@@ -23,8 +26,8 @@ export const newSimulation = async () => {
             {
                 method: 'POST',
                 body: JSON.stringify({
-                    name: 'new_sim',
-                    betse: true,
+                    name,
+                    betse,
                 }),
                 headers: {
                     'Content-Type': 'application/json',

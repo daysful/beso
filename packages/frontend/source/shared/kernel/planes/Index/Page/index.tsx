@@ -1,6 +1,8 @@
 // #region imports
     // #region libraries
-    import React from 'react';
+    import React, {
+        useState,
+    } from 'react';
 
     import {
         PluridReactComponent,
@@ -11,6 +13,8 @@
     // #region external
     import {
         PluridPureButton,
+        PluridInputLine,
+        PluridInputSwitch,
     } from '~kernel-services/styled';
 
     import {
@@ -32,25 +36,58 @@
 const Page: PluridReactComponent<{}> = (
     properties,
 ) => {
-    /** properties */
+    // #region properties
     // const {
     //     plurid,
     // } = properties;
+    // #endregion properties
 
 
-    /** render */
+    // #region state
+    const [
+        name,
+        setName,
+    ] = useState('');
+
+    const [
+        betse,
+        setBetse,
+    ] = useState(true);
+    // #endregion state
+
+
+    // #region render
     return (
         <StyledPage>
             beteks
 
+            <PluridInputLine
+                name="name"
+                text={name}
+                atChange={(event) => setName(event.target.value)}
+            />
+
+            <PluridInputSwitch
+                name="betse"
+                checked={betse}
+                atChange={() => setBetse(value => !value)}
+            />
+
             <PluridPureButton
                 text="New Simulation"
                 atClick={async () => {
-                    const id = await newSimulation();
+                    const id = await newSimulation(
+                        name,
+                        betse,
+                    );
+                }}
+                style={{
+                    marginTop: '2rem',
                 }}
             />
         </StyledPage>
     );
+    // #endregion render
 }
 // #endregion module
 
