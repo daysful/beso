@@ -1,5 +1,6 @@
 from pydantic import BaseModel
 import uuid
+import shutil
 
 
 
@@ -9,11 +10,16 @@ class SimulationOptionsModel(BaseModel):
 
 
 class BetseSimulation:
-    def __init__(self):
+    def __init__(self, id: str):
+        base_data = './source/data/yaml'
+        new_simulation = f'./simulation_data/{id}/'
+        shutil.copytree(base_data, new_simulation)
+
         from betse.science.parameters import Parameters
         from betse.science.simrunner import SimRunner
 
-        p = Parameters.make(conf_filename='./source/data/yaml/sim_config.yaml')
+        conf_filename = f'./simulation_data/{id}/sim_config.yaml'
+        p = Parameters.make(conf_filename=conf_filename)
         self.simRunner = SimRunner(p=p)
         print(self.simRunner)
 
@@ -33,7 +39,7 @@ class Simulation:
             else self.id
 
         if options and options.betse:
-            self.betse = BetseSimulation()
+            self.betse = BetseSimulation(self.id)
             pass
 
     def start(self) -> None:
