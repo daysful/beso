@@ -98,7 +98,7 @@ const Page: PluridReactComponent<{}> = (
             />
 
             <PluridInputSwitch
-                name="use betse"
+                name="use BETSE"
                 checked={betse}
                 atChange={() => setBetse(value => !value)}
             />
