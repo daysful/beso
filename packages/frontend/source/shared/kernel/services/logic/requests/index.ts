@@ -40,4 +40,22 @@ export const newSimulation = async (
         return;
     }
 }
+
+
+export const startSimulation = async (
+    id: string,
+) => {
+    try {
+        await fetch(
+            BETEKS_BACKEND + `/start?simulationID=${id}`,
+            {
+                method: 'POST',
+            },
+        );
+
+        return true;
+    } catch (error) {
+        return;
+    }
+}
 // #endregion module

@@ -19,6 +19,7 @@
 
     import {
         newSimulation,
+        startSimulation,
     } from '~kernel-services/logic/requests';
     // #endregion external
 
@@ -45,6 +46,11 @@ const Page: PluridReactComponent<{}> = (
 
     // #region state
     const [
+        loading,
+        setLoading,
+    ] = useState(false);
+
+    const [
         name,
         setName,
     ] = useState('');
@@ -53,22 +59,46 @@ const Page: PluridReactComponent<{}> = (
         betse,
         setBetse,
     ] = useState(true);
+
+    const [
+        simulationID,
+        setSimulationID,
+    ] = useState('');
     // #endregion state
 
 
     // #region render
+    if (simulationID) {
+        return (
+            <StyledPage>
+                <PluridPureButton
+                    text={`Start Simulation '${name}'`}
+                    atClick={async () => {
+                        await startSimulation(simulationID);
+                    }}
+                />
+            </StyledPage>
+        );
+    }
+
     return (
         <StyledPage>
-            beteks
+            <h1>
+                beteks
+            </h1>
+
+            <h2>
+                BioElectrical Tissue Simulator
+            </h2>
 
             <PluridInputLine
-                name="name"
+                name="new simulation name"
                 text={name}
                 atChange={(event) => setName(event.target.value)}
             />
 
             <PluridInputSwitch
-                name="betse"
+                name="use betse"
                 checked={betse}
                 atChange={() => setBetse(value => !value)}
             />
@@ -80,6 +110,13 @@ const Page: PluridReactComponent<{}> = (
                         name,
                         betse,
                     );
+                    if (id) {
+                        setSimulationID(id);
+
+                        if (!name) {
+                            setName(id);
+                        }
+                    }
                 }}
                 style={{
                     marginTop: '2rem',
