@@ -20,9 +20,15 @@ def generate_server():
 
     @app.get("/")
     async def __root__():
+        simulations_data = {}
+        for key, val in simulations.items():
+            simulations_data[key] = {
+                "name": val.name
+            }
+
         return {
             "status": True,
-            "simulations": simulations,
+            "simulations": simulations_data,
         }
 
     @app.post("/new")
