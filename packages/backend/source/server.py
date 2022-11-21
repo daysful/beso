@@ -23,7 +23,8 @@ def generate_server():
         simulations_data = {}
         for key, val in simulations.items():
             simulations_data[key] = {
-                "name": val.name
+                "name": val.name,
+                "generated_at": val.generated_at,
             }
 
         return {
