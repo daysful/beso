@@ -26,10 +26,10 @@ def generate_server():
     @app.get("/")
     async def __root__():
         simulations_data = {}
-        for key, val in simulations.items():
-            simulations_data[key] = {
-                "name": val.name,
-                "generated_at": val.generated_at,
+        for simulation_id, simulation in simulations.items():
+            simulations_data[simulation_id] = {
+                "name": simulation.name,
+                "generated_at": simulation.generated_at,
             }
 
         return {
