@@ -37,21 +37,34 @@ class BetseSimulation:
         self.simRunner.plot_init()
 
 
+def new_simulation_id():
+    return str(uuid.uuid4())
+
+def new_simulation_generated_at():
+    return int(time.time())
+
+
 class Simulation:
     def __init__(self, options: SimulationOptionsModel | None) -> None:
-        self.id = str(uuid.uuid4())
-        self.generated_at = int(time.time())
+        self.id = new_simulation_id()
+        self.generated_at = new_simulation_generated_at()
         self.name = self.id if options is None \
             else options.name if options.name \
             else self.id
 
         if options and options.betse:
             self.betse = BetseSimulation(self.id)
-            pass
+        else:
+            self.betse = None
 
     def start(self) -> None:
-        if (self.betse):
+        if self.betse:
             self.betse.start()
 
     def stop(self) -> None:
         pass
+
+
+def clean_simulation_data(simulation: Simulation):
+    if simulation.betse and simulation.betse.simulation_path:
+        shutil.rmtree(simulation.betse.simulation_path)

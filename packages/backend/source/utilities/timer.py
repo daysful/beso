@@ -16,13 +16,11 @@ class RepeatedTimer(object):
         self.start()
 
         atexit.register(self.stop)
-        pass
 
     def _run(self):
         self.is_running = False
         self.start()
         self.function(*self.args, **self.kwargs)
-        pass
 
     def start(self):
         if self.is_running:
@@ -36,10 +34,8 @@ class RepeatedTimer(object):
         self._timer.daemon = True
         self._timer.start()
         self.is_running = True
-        pass
 
     def stop(self):
         self._timer.cancel()
         self._timer = None
         self.is_running = False
-        pass
