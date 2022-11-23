@@ -1,10 +1,14 @@
-from pydantic import BaseModel
+import os
 import time
 import uuid
 import shutil
 
+from pydantic import BaseModel
+
 from betse.science.parameters import Parameters
 from betse.science.simrunner import SimRunner
+
+from source.constants import betse_data_path, simulation_directory
 
 
 
@@ -14,9 +18,11 @@ class SimulationOptionsModel(BaseModel):
 
 
 def betse_copy_data(id: str):
-    base_data_path = './source/data/yaml'
-    new_simulation_path = f'./simulation_data/{id}'
-    shutil.copytree(base_data_path, new_simulation_path)
+    new_simulation_path = os.path.join(
+        simulation_directory,
+        id,
+    )
+    shutil.copytree(betse_data_path, new_simulation_path)
 
     return new_simulation_path
 
