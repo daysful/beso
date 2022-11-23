@@ -23,9 +23,9 @@ def betse_copy_data(id: str):
 
 class BetseSimulation:
     def __init__(self, id: str):
-        new_simulation_path = betse_copy_data(id)
+        self.simulation_path = betse_copy_data(id)
 
-        conf_filename = f'{new_simulation_path}/sim_config.yaml'
+        conf_filename = f'{self.simulation_path}/sim_config.yaml'
         p = Parameters.make(conf_filename=conf_filename)
         self.simRunner = SimRunner(p=p)
 

@@ -2,6 +2,8 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from source.simulation import Simulation, SimulationOptionsModel
+from source.utilities.timer import RepeatedTimer
+from source.utilities.self_clean import self_clean, cleaning_time
 
 
 
@@ -17,6 +19,9 @@ def generate_server():
     )
 
     simulations: dict[str, Simulation] = {}
+
+    RepeatedTimer(cleaning_time, self_clean, simulations)
+
 
     @app.get("/")
     async def __root__():
