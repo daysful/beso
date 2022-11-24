@@ -17,6 +17,7 @@
 export const newSimulation = async (
     name?: string,
     betse?: boolean,
+    username?: string,
 ) => {
     try {
         const {
@@ -31,6 +32,7 @@ export const newSimulation = async (
                 }),
                 headers: {
                     'Content-Type': 'application/json',
+                    'Betesk-Username': username || '',
                 },
             },
         )).json();

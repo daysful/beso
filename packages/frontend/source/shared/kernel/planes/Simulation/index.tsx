@@ -5,8 +5,14 @@
     } from 'react';
 
     import {
-        PluridReactComponent,
-    } from '@plurid/plurid-react';
+        AnyAction,
+        ThunkDispatch,
+    } from '@reduxjs/toolkit';
+    import { connect } from 'react-redux';
+
+    import {
+        Theme,
+    } from '@plurid/plurid-themes';
     // #endregion libraries
 
 
@@ -21,6 +27,11 @@
         newSimulation,
         startSimulation,
     } from '~kernel-services/logic/requests';
+
+    import { AppState } from '~kernel-services/state/store';
+    import StateContext from '~kernel-services/state/context';
+    import selectors from '~kernel-services/state/selectors';
+    // import actions from '~kernel-services/state/actions';
     // #endregion external
 
 
@@ -34,13 +45,35 @@
 
 
 // #region module
-const Simulation: PluridReactComponent<{}> = (
+export interface SimulationOwnProperties {
+}
+
+export interface SimulationStateProperties {
+    stateGeneralTheme: Theme;
+    stateInteractionTheme: Theme;
+    stateUsername: string;
+}
+
+export interface SimulationDispatchProperties {
+}
+
+export type SimulationProperties =
+    & SimulationOwnProperties
+    & SimulationStateProperties
+    & SimulationDispatchProperties;
+
+
+const Simulation: React.FC<SimulationProperties> = (
     properties,
 ) => {
     // #region properties
-    // const {
-    //     plurid,
-    // } = properties;
+    const {
+        // #region state
+        stateGeneralTheme,
+        // stateInteractionTheme,
+        stateUsername,
+        // #endregion state
+    } = properties;
     // #endregion properties
 
 
@@ -109,6 +142,7 @@ const Simulation: PluridReactComponent<{}> = (
                     const id = await newSimulation(
                         name,
                         betse,
+                        stateUsername,
                     );
                     if (id) {
                         setSimulationID(id);
@@ -126,10 +160,35 @@ const Simulation: PluridReactComponent<{}> = (
     );
     // #endregion render
 }
+
+
+const mapStateToProperties = (
+    state: AppState,
+): SimulationStateProperties => ({
+    stateGeneralTheme: selectors.themes.getGeneralTheme(state),
+    stateInteractionTheme: selectors.themes.getInteractionTheme(state),
+    stateUsername: selectors.general.getGeneral(state).username,
+});
+
+
+const mapDispatchToProperties = (
+    dispatch: ThunkDispatch<{}, {}, AnyAction>,
+): SimulationDispatchProperties => ({
+});
+
+
+const ConnectedSimulation = connect(
+    mapStateToProperties,
+    mapDispatchToProperties,
+    null,
+    {
+        context: StateContext,
+    },
+)(Simulation);
 // #endregion module
 
 
 
 // #region exports
-export default Simulation;
+export default ConnectedSimulation;
 // #endregion exports
