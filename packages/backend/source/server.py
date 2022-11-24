@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Header
 from fastapi.middleware.cors import CORSMiddleware
 
 from source.simulation import Simulation, SimulationOptionsModel
@@ -28,14 +28,20 @@ def generate_server():
 
 
     @app.get("/")
-    async def __root__():
+    async def __root__(
+        betesk_username: str | None = Header(default=None),
+    ):
         return {
             "status": True,
             "simulations": serialize_simulations(simulations),
         }
 
     @app.post("/new")
-    async def __new__(options: SimulationOptionsModel = None):
+    async def __new__(
+        options: SimulationOptionsModel = None,
+        betesk_username: str | None = Header(default=None),
+    ):
+        options.generated_by = betesk_username
         simulation = Simulation(options)
         simulations[simulation.id] = simulation
         write_simulations(simulations)
@@ -46,7 +52,10 @@ def generate_server():
         }
 
     @app.get("/status")
-    async def __status__(simulationID: str):
+    async def __status__(
+        simulationID: str,
+        betesk_username: str | None = Header(default=None),
+    ):
         simulation = simulations.get(simulationID)
         if not simulation:
             return {
@@ -59,7 +68,10 @@ def generate_server():
         }
 
     @app.post("/start")
-    async def __start__(simulationID: str):
+    async def __start__(
+        simulationID: str,
+        betesk_username: str | None = Header(default=None),
+    ):
         simulation = simulations.get(simulationID)
         if not simulation:
             return {
@@ -72,7 +84,10 @@ def generate_server():
         }
 
     @app.post("/stop")
-    async def __stop__(simulationID: str):
+    async def __stop__(
+        simulationID: str,
+        betesk_username: str | None = Header(default=None),
+    ):
         simulation = simulations.get(simulationID)
         if not simulation:
             return {
