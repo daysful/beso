@@ -1,13 +1,21 @@
 // #region imports
     // #region libraries
     import styled from 'styled-components';
-    // #endregion libraries
-// #endregion imports
+
+    import {
+        Theme,
+    } from '@plurid/plurid-themes';
+    // #region libraries
+// #region imports
 
 
 
 // #region module
-export const StyledPage = styled.div`
+export interface IStyledIndex {
+    theme: Theme;
+}
+
+export const StyledIndex = styled.div<IStyledIndex>`
     font-family: 'Ubuntu', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Open Sans', 'Helvetica Neue', sans-serif;
     min-height: 400px;
     margin: 2rem auto;
@@ -20,4 +28,4 @@ export const StyledPage = styled.div`
         margin: 1.5rem;
     }
 `;
-// #endregion module
+// #region module

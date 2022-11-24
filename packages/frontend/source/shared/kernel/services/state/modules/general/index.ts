@@ -23,11 +23,13 @@
 // #region module
 export interface GeneralState {
     notFoundFace: string;
+    username: string;
 }
 
 
 const initialState: GeneralState = {
     notFoundFace: getRandomFace(),
+    username: '',
 };
 
 

@@ -26,7 +26,7 @@
 
     // #region internal
     import {
-        StyledPage,
+        StyledSimulation,
     } from './styled';
     // #endregion internal
 // #endregion imports
@@ -34,7 +34,7 @@
 
 
 // #region module
-const Page: PluridReactComponent<{}> = (
+const Simulation: PluridReactComponent<{}> = (
     properties,
 ) => {
     // #region properties
@@ -70,19 +70,19 @@ const Page: PluridReactComponent<{}> = (
     // #region render
     if (simulationID) {
         return (
-            <StyledPage>
+            <StyledSimulation>
                 <PluridPureButton
                     text={`Start Simulation '${name}'`}
                     atClick={async () => {
                         await startSimulation(simulationID);
                     }}
                 />
-            </StyledPage>
+            </StyledSimulation>
         );
     }
 
     return (
-        <StyledPage>
+        <StyledSimulation>
             <h1>
                 beteks
             </h1>
@@ -122,7 +122,7 @@ const Page: PluridReactComponent<{}> = (
                     marginTop: '2rem',
                 }}
             />
-        </StyledPage>
+        </StyledSimulation>
     );
     // #endregion render
 }
@@ -131,5 +131,5 @@ const Page: PluridReactComponent<{}> = (
 
 
 // #region exports
-export default Page;
+export default Simulation;
 // #endregion exports
