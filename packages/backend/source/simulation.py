@@ -16,12 +16,19 @@ class SimulationOptionsModel(BaseModel):
     name: str | None = None
     betse: bool | None = None
 
+    id: str | None = None
+    generated_at: int | None = None
+    generated_by: str | None = None
+
 
 def betse_copy_data(id: str):
     new_simulation_path = os.path.join(
         simulation_directory,
         id,
     )
+    if os.path.exists(new_simulation_path):
+        return new_simulation_path
+
     shutil.copytree(betse_data_path, new_simulation_path)
 
     return new_simulation_path
@@ -49,11 +56,18 @@ def new_simulation_id():
 def new_simulation_generated_at():
     return int(time.time())
 
+def new_simulation_generated_by():
+    return str(uuid.uuid4())
+
 
 class Simulation:
     def __init__(self, options: SimulationOptionsModel | None) -> None:
-        self.id = new_simulation_id()
-        self.generated_at = new_simulation_generated_at()
+        self.id = options.id if options and options.id \
+            else new_simulation_id()
+        self.generated_at = options.generated_at if options and options.generated_at \
+            else new_simulation_generated_at()
+        self.generated_by = options.generated_by if options and options.generated_by \
+            else new_simulation_generated_by()
         self.name = self.id if options is None \
             else options.name if options.name \
             else self.id

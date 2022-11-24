@@ -4,6 +4,10 @@ from fastapi.middleware.cors import CORSMiddleware
 from source.simulation import Simulation, SimulationOptionsModel
 from source.utilities.timer import RepeatedTimer
 from source.utilities.self_clean import self_clean, cleaning_time
+from source.datastore import \
+    serialize_simulations, \
+    load_simulations, \
+    write_simulations
 
 
 
@@ -18,29 +22,23 @@ def generate_server():
         allow_headers=['*'],
     )
 
-    simulations: dict[str, Simulation] = {}
+    simulations: dict[str, Simulation] = load_simulations()
 
     RepeatedTimer(cleaning_time, self_clean, simulations)
 
 
     @app.get("/")
     async def __root__():
-        simulations_data = {}
-        for simulation_id, simulation in simulations.items():
-            simulations_data[simulation_id] = {
-                "name": simulation.name,
-                "generated_at": simulation.generated_at,
-            }
-
         return {
             "status": True,
-            "simulations": simulations_data,
+            "simulations": serialize_simulations(simulations),
         }
 
     @app.post("/new")
     async def __new__(options: SimulationOptionsModel = None):
         simulation = Simulation(options)
         simulations[simulation.id] = simulation
+        write_simulations(simulations)
 
         return {
             "status": True,
