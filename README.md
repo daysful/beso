@@ -19,7 +19,7 @@
 </h3>
 
 
-`BESO` is based on [`BETSE`](https://github.com/betsee/betse) to provide a bioelectric simulation management environment.
+`BESO` is based on [`BETSE`](https://github.com/betsee/betse) to provide a bioelectric tissue simulation management environment.
 
 
 
