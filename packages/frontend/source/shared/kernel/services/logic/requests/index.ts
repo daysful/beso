@@ -6,7 +6,7 @@
 
     // #region external
     import {
-        BETEKS_BACKEND,
+        BESO_BACKEND,
     } from '~kernel-data/constants';
     // #endregion external
 // #endregion imports
@@ -23,7 +23,7 @@ export const newSimulation = async (
         const {
             simulationID,
         } = await (await fetch(
-            BETEKS_BACKEND + '/new',
+            BESO_BACKEND + '/new',
             {
                 method: 'POST',
                 body: JSON.stringify({
@@ -49,7 +49,7 @@ export const startSimulation = async (
 ) => {
     try {
         await fetch(
-            BETEKS_BACKEND + `/start?simulationID=${id}`,
+            BESO_BACKEND + `/start?simulationID=${id}`,
             {
                 method: 'POST',
             },

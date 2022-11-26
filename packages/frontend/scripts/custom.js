@@ -16,7 +16,7 @@ const externals = [
 const environment = {
     // add environment variables replacements for frontend, e.g.
     // 'process.env.ENV_NAME': JSON.stringify(process.env.ENV_NAME || ''),
-    'process.env.BETEKS_BACKEND': JSON.stringify(process.env.BETEKS_BACKEND || ''),
+    'process.env.BESO_BACKEND': JSON.stringify(process.env.BESO_BACKEND || ''),
 };
 
 

@@ -114,7 +114,7 @@ const options: PluridServerPartialOptions = {
     open: openAtStart,
     quiet,
     debug,
-    serverName: 'Beteks Frontend Server',
+    serverName: 'BESO Frontend Server',
     hostname: 'localhost:' + port,
 };
 
