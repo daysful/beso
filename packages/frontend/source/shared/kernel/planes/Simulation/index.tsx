@@ -117,11 +117,11 @@ const Simulation: React.FC<SimulationProperties> = (
     return (
         <StyledSimulation>
             <h1>
-                beteks
+                beso
             </h1>
 
             <h2>
-                BioElectrical Tissue Simulator
+                BioElectric Simulation Orchestrator
             </h2>
 
             <PluridInputLine

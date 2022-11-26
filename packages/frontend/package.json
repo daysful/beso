@@ -1,7 +1,7 @@
 {
-    "name": "@daysful/beteks-frontend",
+    "name": "@daysful/beso-frontend",
     "version": "0.0.0",
-    "description": "beteks frontend",
+    "description": "beso frontend",
     "author": "ly3xqhl8g9 <ly3xqhl8g9@plurid.com> (https://plurid.com)",
     "private": true,
     "main": "build/index.js",

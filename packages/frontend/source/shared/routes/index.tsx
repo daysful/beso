@@ -46,7 +46,7 @@ const notFoundRoute: PluridReactRoute = {
     value: '/not-found',
     exterior: () => (
         <Head
-            title="not found · beteks"
+            title="not found · beso"
         />
     ),
     planes: [

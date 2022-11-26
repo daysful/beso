@@ -35,10 +35,10 @@ const Head: React.FC<HeadProperties> = (
         canonicalURL,
     } = properties;
 
-    const titleValue = title || `beteks`;
-    const descriptionValue = description || 'BioElectric Tissue Simulator';
-    const ogTitleValue = ogTitle || title || `beteks`;
-    const ogDescriptionValue = ogDescription || description || 'BioElectric Tissue Simulator';
+    const titleValue = title || `beso`;
+    const descriptionValue = description || 'BioElectric Simulation Orchestrator';
+    const ogTitleValue = ogTitle || title || `beso`;
+    const ogDescriptionValue = ogDescription || description || 'BioElectric Simulation Orchestrator';
     const ogImageValue = ogImage || '/icon-192x192.png';
     const ogURLValue = ogURL || '';
 

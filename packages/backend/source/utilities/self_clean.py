@@ -11,7 +11,7 @@ cleaning_time = 60 * 60 * 24 # one day
 
 
 def self_clean(simulations: dict[str, Simulation]):
-    print('beteks :: self-cleaning simulation data')
+    print('beso :: self-cleaning simulation data')
 
     updates_simulations = simulations.copy()
 

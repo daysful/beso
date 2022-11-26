@@ -94,11 +94,11 @@ const Index: React.FC<IndexProperties> = (
             theme={stateGeneralTheme}
         >
             <h1>
-                beteks
+                beso
             </h1>
 
             <h2>
-                BioElectrical Tissue Simulator
+                BioElectric Simulation Orchestrator
             </h2>
 
             <PluridInputLine
