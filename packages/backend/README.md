@@ -23,6 +23,22 @@
 
 
 
+### Setup
+
+In order to run `BESO` a `backend` and a `frontend` server must set up.
+
+Provided [`docker`](https://docs.docker.com/get-docker/) is installed, run
+
+```
+docker pull daysful/beso-backend
+docker pull daysful/beso-frontend
+
+docker run --name beso-backend -p 54567:54567 -d daysful/beso-backend
+docker run --name beso-frontend -p 54568:54568 -d daysful/beso-frontend
+```
+
+
+
 ### Development
 
 #### Backend
