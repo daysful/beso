@@ -23,9 +23,9 @@
 
 
 
-### Setup
+## Setup
 
-In order to run `BESO` a `backend` and a `frontend` server must set up.
+In order to run `BESO` a `backend` and a `frontend` server must be set up.
 
 Provided [`docker`](https://docs.docker.com/get-docker/) is installed, run
 
@@ -39,9 +39,9 @@ docker run --name beso-frontend -p 54568:54568 -d daysful/beso-frontend
 
 
 
-### Development
+## Development
 
-#### Backend
+### Backend
 
 Provided [`python3`](https://www.python.org/downloads/) is installed, run in the `backend` directory
 
@@ -56,7 +56,7 @@ pip install -r requirements.txt
 ```
 
 
-#### Frontend
+### Frontend
 
 Provided [`Node.js`](https://nodejs.org/en/) is installed, run in the `frontend` directory
 
