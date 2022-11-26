@@ -2,11 +2,23 @@
 
 ## BioElectric Simulation Orchestrator
 
-`BESO` is based on [`BETSE`](https://github.com/betsee/betse) to provide bioelectric simulation management.
+`BESO` is based on [`BETSE`](https://github.com/betsee/betse) to a provide bioelectric simulation management environment.
 
 
-### Backend
+
+### Development
+
+#### Backend
 
 ```
 ./scripts/start.sh
+```
+
+
+#### Frontend
+
+```
+npm install
+
+npm run live
 ```
