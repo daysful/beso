@@ -32,7 +32,7 @@ export const newSimulation = async (
                 }),
                 headers: {
                     'Content-Type': 'application/json',
-                    'Betesk-Username': username || '',
+                    'Beso-Username': username || '',
                 },
             },
         )).json();
