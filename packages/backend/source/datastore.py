@@ -7,7 +7,7 @@ from source.simulation import Simulation, SimulationOptionsModel
 
 
 def serialize_simulations(
-    simulations,
+    simulations: dict[str, Simulation],
 ):
     simulations_data = {}
     for simulation_id, simulation in simulations.items():
@@ -42,7 +42,7 @@ def load_simulations():
 
 
 def write_simulations(
-    simulations,
+    simulations: dict[str, Simulation],
 ):
     try:
         text = json.dumps(serialize_simulations(simulations), indent=4)
@@ -51,3 +51,6 @@ def write_simulations(
         file.close()
     except:
         pass
+
+
+simulations: dict[str, Simulation] = load_simulations()

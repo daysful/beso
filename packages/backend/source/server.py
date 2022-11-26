@@ -6,8 +6,8 @@ from source.utilities.timer import RepeatedTimer
 from source.utilities.self_clean import self_clean, cleaning_time
 from source.datastore import \
     serialize_simulations, \
-    load_simulations, \
-    write_simulations
+    write_simulations, \
+    simulations
 
 
 
@@ -21,8 +21,6 @@ def generate_server():
         allow_methods=['*'],
         allow_headers=['*'],
     )
-
-    simulations: dict[str, Simulation] = load_simulations()
 
     RepeatedTimer(cleaning_time, self_clean, simulations)
 
