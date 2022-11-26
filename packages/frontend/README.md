@@ -27,7 +27,7 @@
 
 #### Backend
 
-Provided `python3` is installed, run in the `backend` directory
+Provided [`python3`](https://www.python.org/downloads/) is installed, run in the `backend` directory
 
 ```
 python3 -m venv ./venv
@@ -42,7 +42,7 @@ pip install -r requirements.txt
 
 #### Frontend
 
-Provided `NodeJS` is installed, run in the `frontend` directory
+Provided [`Node.js`](https://nodejs.org/en/) is installed, run in the `frontend` directory
 
 ```
 npm install
