@@ -1,4 +1,5 @@
 from fastapi import FastAPI, Header
+from fastapi.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
 
 from source.simulation import Simulation, SimulationOptionsModel
@@ -8,6 +9,8 @@ from source.datastore import \
     serialize_simulations, \
     write_simulations, \
     simulations
+from source.constants import \
+    favicon_path
 
 
 
@@ -27,19 +30,23 @@ def generate_server():
 
     @app.get("/")
     async def __root__(
-        betesk_username: str | None = Header(default=None),
+        beso_username: str | None = Header(default=None),
     ):
         return {
             "status": True,
             "simulations": serialize_simulations(simulations),
         }
 
+    @app.get('/favicon.ico', include_in_schema=False)
+    async def __favicon__():
+        return FileResponse(favicon_path)
+
     @app.post("/new")
     async def __new__(
         options: SimulationOptionsModel = None,
-        betesk_username: str | None = Header(default=None),
+        beso_username: str | None = Header(default=None),
     ):
-        options.generated_by = betesk_username
+        options.generated_by = beso_username
         simulation = Simulation(options)
         simulations[simulation.id] = simulation
         write_simulations(simulations)
@@ -52,7 +59,7 @@ def generate_server():
     @app.get("/status")
     async def __status__(
         simulationID: str,
-        betesk_username: str | None = Header(default=None),
+        beso_username: str | None = Header(default=None),
     ):
         simulation = simulations.get(simulationID)
         if not simulation:
@@ -68,7 +75,7 @@ def generate_server():
     @app.post("/start")
     async def __start__(
         simulationID: str,
-        betesk_username: str | None = Header(default=None),
+        beso_username: str | None = Header(default=None),
     ):
         simulation = simulations.get(simulationID)
         if not simulation:
@@ -84,7 +91,7 @@ def generate_server():
     @app.post("/stop")
     async def __stop__(
         simulationID: str,
-        betesk_username: str | None = Header(default=None),
+        beso_username: str | None = Header(default=None),
     ):
         simulation = simulations.get(simulationID)
         if not simulation:

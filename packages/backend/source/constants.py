@@ -15,3 +15,6 @@ betse_data_path = os.path.join(
 
 simulation_directory = os.environ.get('BESO_SIMULATION_DATA_DIR', './simulation_data')
 simulation_datastore = os.path.join(simulation_directory, 'simulations.json')
+
+
+favicon_path = './assets/favicon.ico'
