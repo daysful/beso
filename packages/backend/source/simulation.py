@@ -2,6 +2,7 @@ import os
 import time
 import uuid
 import shutil
+import threading
 
 from pydantic import BaseModel
 
@@ -34,8 +35,10 @@ def betse_copy_data(id: str):
     return new_simulation_path
 
 
-class BetseSimulation:
-    def __init__(self, id: str):
+class BetseSimulation():
+    def __init__(self, id: str, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
         self.simulation_path = betse_copy_data(id)
 
         conf_filename = f'{self.simulation_path}/sim_config.yaml'
@@ -43,6 +46,11 @@ class BetseSimulation:
         self.simRunner = SimRunner(p=p)
 
     def start(self):
+        thread = threading.Thread(target=self.start_simRunner)
+        thread.daemon = True
+        thread.start()
+
+    def start_simRunner(self):
         self.simRunner.seed()
         self.simRunner.init()
         self.simRunner.sim()
