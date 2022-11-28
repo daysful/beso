@@ -8,7 +8,9 @@ WORKDIR /app
 
 COPY ./requirements.txt /app/requirements.txt
 
-RUN pip install --root-user-action=ignore \
+RUN pip install \
+    --root-user-action=ignore \
+    --disable-pip-version-check \
     --no-cache-dir \
     --upgrade \
     -r /app/requirements.txt
