@@ -9,7 +9,7 @@ from pydantic import BaseModel
 from betse.science.parameters import Parameters
 from betse.science.simrunner import SimRunner
 
-from source.constants import betse_data_path, simulation_directory
+from source.constants import betse_data_path, simulations_directory
 
 
 
@@ -24,7 +24,7 @@ class SimulationOptionsModel(BaseModel):
 
 def betse_copy_data(id: str):
     new_simulation_path = os.path.join(
-        simulation_directory,
+        simulations_directory,
         id,
     )
     if os.path.exists(new_simulation_path):

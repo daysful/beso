@@ -12,6 +12,8 @@ from source.datastore import \
 from source.constants import \
     favicon_path
 
+from source.database.main import get_database_connection
+
 
 
 def generate_server():
@@ -26,6 +28,8 @@ def generate_server():
     )
 
     RepeatedTimer(cleaning_time, self_clean, simulations)
+
+    database = get_database_connection()
 
 
     @app.get("/")
