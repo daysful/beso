@@ -33,10 +33,18 @@ Provided [`docker`](https://docs.docker.com/get-docker/) is installed, run
 docker pull daysful/beso-backend
 docker pull daysful/beso-frontend
 
-docker run --name beso-backend -p 54567:54567 -d daysful/beso-backend
-docker run --name beso-frontend -p 54568:54568 -d daysful/beso-frontend
+mkdir ./beso_data
+
+docker run --name beso-backend \
+    -p 54567:54567 \
+    --mount type=bind,source="$(pwd)"/beso_data,target=/code/beso_data \
+    -d daysful/beso-backend
+docker run --name beso-frontend \
+    -p 54568:54568 \
+    -d daysful/beso-frontend
 ```
 
+for a default setup, storing the data in a local `beso_data` directory.
 
 
 ## Development
