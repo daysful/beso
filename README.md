@@ -46,14 +46,14 @@ docker run --name beso-frontend \
 
 for a default setup, storing the data in a local `beso_data` directory.
 
-Instead of the default `sqlite` database, `mongo` can be used
+Instead of the default `sqlite` database, `mongo` can be used by providing the adequate connection string
 
 ```
 docker run --name beso-backend \
     -p 54567:54567 \
     --mount type=bind,source="$(pwd)"/beso_data,target=/app/beso_data \
     --env BESO_DATABASE="mongo" \
-    --env BESO_MONGO_CONNECTION_STRING="" \
+    --env BESO_MONGO_CONNECTION_STRING="mongodb://[username:password@]host[:port]" \
     -d daysful/beso-backend
 ```
 
