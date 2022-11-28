@@ -37,7 +37,7 @@ mkdir ./beso_data
 
 docker run --name beso-backend \
     -p 54567:54567 \
-    --mount type=bind,source="$(pwd)"/beso_data,target=/code/beso_data \
+    --mount type=bind,source="$(pwd)"/beso_data,target=/app/beso_data \
     -d daysful/beso-backend
 docker run --name beso-frontend \
     -p 54568:54568 \
