@@ -2,8 +2,9 @@ import os
 
 
 
-# 'sqlite' or 'mongo'
-database_type = os.environ.get('BESO_DATABASE', 'sqlite')
+# 'sqlite' or 'mongo' database
+database_type = 'mongo' if os.environ.get('BESO_MONGO_CONNECTION_STRING', '') \
+    else os.environ.get('BESO_DATABASE', 'sqlite')
 
 
 directory_path = os.path.dirname(
@@ -21,15 +22,15 @@ def mkdir(dir: str):
     if not os.path.exists(dir):
         os.mkdir(dir)
 
-beso_data_directory = os.environ.get('BESO_SIMULATION_DATA_DIR', './beso_data')
-mkdir(beso_data_directory)
+data_directory = os.environ.get('BESO_DATA_DIRECTORY', './data')
+mkdir(data_directory)
 
-simulations_directory = os.path.join(beso_data_directory, 'simulations')
+simulations_directory = os.path.join(data_directory, 'simulations')
 mkdir(simulations_directory)
 
-simulation_datastore = os.path.join(beso_data_directory, 'simulations.json')
+simulation_datastore = os.path.join(data_directory, 'simulations.json')
 
-sqlite_database_path = os.path.join(beso_data_directory, 'beso.db')
+sqlite_database_path = os.path.join(data_directory, 'beso.db')
 
 
 favicon_path = './assets/favicon.ico'
