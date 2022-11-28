@@ -25,7 +25,7 @@
 
 ## Setup
 
-In order to run `BESO`, a `backend` and a `frontend` server must be set up.
+In order to run `BESO`, a `backend` and a `frontend` server must be set up, given a `*NIX` environment.
 
 Provided [`docker`](https://docs.docker.com/get-docker/) is installed, run
 
