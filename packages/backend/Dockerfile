@@ -10,7 +10,10 @@ WORKDIR /app
 
 COPY ./requirements.txt /app/requirements.txt
 
-RUN pip install --no-cache-dir --upgrade -r /app/requirements.txt
+RUN pip install --root-user-action=ignore \
+    --no-cache-dir \
+    --upgrade \
+    -r /app/requirements.txt
 
 COPY assets /app/assets
 COPY main.py /app/main.py
