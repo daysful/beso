@@ -37,7 +37,7 @@ mkdir ./beso_data
 
 docker run --name beso-backend \
     -p 54567:54567 \
-    --mount type=bind,source="$(pwd)"/beso_data,target=/app/beso_data \
+    --mount type=bind,source="$(pwd)"/beso_data,target=/app/data \
     -d daysful/beso-backend
 docker run --name beso-frontend \
     -p 54568:54568 \
@@ -51,8 +51,7 @@ Instead of the default `sqlite` database, `mongo` can be used by providing the a
 ``` bash
 docker run --name beso-backend \
     -p 54567:54567 \
-    --mount type=bind,source="$(pwd)"/beso_data,target=/app/beso_data \
-    --env BESO_DATABASE="mongo" \
+    --mount type=bind,source="$(pwd)"/beso_data,target=/app/data \
     --env BESO_MONGO_CONNECTION_STRING="mongodb://[username:password@]host[:port]" \
     -d daysful/beso-backend
 ```
