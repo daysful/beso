@@ -1,11 +1,5 @@
 import strawberry
-from strawberry.asgi import GraphQL
 
-
-
-@strawberry.type
-class User:
-    name: str
 
 
 @strawberry.type
@@ -60,35 +54,3 @@ default_betse_world = BetseWorld(
     alpha_shape=0.01,
     use_centers=False,
 )
-
-
-@strawberry.type
-class Query:
-    @strawberry.field
-    def user(self) -> User:
-        return User(
-            name='user',
-        )
-
-    @strawberry.field
-    def betse_world(self, id: str) -> BetseWorld:
-        return default_betse_world
-
-
-@strawberry.type
-class Mutation:
-    @strawberry.mutation
-    def add_betse_world(self, name: str) -> BetseWorld:
-        betse_world = default_betse_world.__dict__
-        betse_world['name'] = name
-
-        return BetseWorld(**betse_world)
-
-
-schema = strawberry.Schema(
-    query=Query,
-    mutation=Mutation,
-)
-
-
-graphql_app = GraphQL(schema)

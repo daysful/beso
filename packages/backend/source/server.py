@@ -14,7 +14,7 @@ from source.constants import \
 
 from source.database.main import get_database_connection
 
-from source.graphql import graphql_app
+from source.graphql.main import graphql_app
 
 
 
@@ -33,24 +33,24 @@ def generate_server():
 
     database = get_database_connection()
 
-    app.add_route("/graphql", graphql_app)
-    app.add_websocket_route("/graphql", graphql_app)
+    app.add_route('/graphql', graphql_app)
+    app.add_websocket_route('/graphql', graphql_app)
 
 
-    @app.get("/")
+    @app.get('/')
     async def __root__(
         beso_username: str | None = Header(default=None),
     ):
         return {
-            "status": True,
-            "simulations": serialize_simulations(simulations),
+            'status': True,
+            'simulations': serialize_simulations(simulations),
         }
 
     @app.get('/favicon.ico', include_in_schema=False)
     async def __favicon__():
         return FileResponse(favicon_path)
 
-    @app.post("/new")
+    @app.post('/new')
     async def __new__(
         options: SimulationOptionsModel = None,
         beso_username: str | None = Header(default=None),
@@ -61,11 +61,11 @@ def generate_server():
         write_simulations(simulations)
 
         return {
-            "status": True,
-            "simulationID": simulation.id,
+            'status': True,
+            'simulationID': simulation.id,
         }
 
-    @app.get("/status")
+    @app.get('/status')
     async def __status__(
         simulationID: str,
         beso_username: str | None = Header(default=None),
@@ -73,15 +73,15 @@ def generate_server():
         simulation = simulations.get(simulationID)
         if not simulation:
             return {
-                "status": False,
+                'status': False,
             }
 
         return {
-            "status": True,
-            "simulation": simulation,
+            'status': True,
+            'simulation': simulation,
         }
 
-    @app.post("/start")
+    @app.post('/start')
     async def __start__(
         simulationID: str,
         beso_username: str | None = Header(default=None),
@@ -89,15 +89,15 @@ def generate_server():
         simulation = simulations.get(simulationID)
         if not simulation:
             return {
-                "status": False,
+                'status': False,
             }
 
         simulation.start()
         return {
-            "status": True,
+            'status': True,
         }
 
-    @app.post("/stop")
+    @app.post('/stop')
     async def __stop__(
         simulationID: str,
         beso_username: str | None = Header(default=None),
@@ -105,12 +105,12 @@ def generate_server():
         simulation = simulations.get(simulationID)
         if not simulation:
             return {
-                "status": False,
+                'status': False,
             }
 
         simulation.stop()
         return {
-            "status": True,
+            'status': True,
         }
 
     return app
