@@ -12,8 +12,6 @@ from source.datastore import \
 from source.constants import \
     favicon_path
 
-from source.database.main import get_database_connection
-
 from source.graphql.main import graphql_app
 
 
@@ -31,7 +29,7 @@ def generate_server():
 
     RepeatedTimer(cleaning_time, self_clean, simulations)
 
-    database = get_database_connection()
+    # database = get_database_connection()
 
     app.add_route('/graphql', graphql_app)
     app.add_websocket_route('/graphql', graphql_app)
