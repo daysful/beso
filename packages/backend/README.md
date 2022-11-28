@@ -29,7 +29,7 @@ In order to run `BESO`, a `backend` and a `frontend` server must be set up.
 
 Provided [`docker`](https://docs.docker.com/get-docker/) is installed, run
 
-```
+``` bash
 docker pull daysful/beso-backend
 docker pull daysful/beso-frontend
 
@@ -48,7 +48,7 @@ for a default setup, storing the data in a local `beso_data` directory.
 
 Instead of the default `sqlite` database, `mongo` can be used by providing the adequate connection string
 
-```
+``` bash
 docker run --name beso-backend \
     -p 54567:54567 \
     --mount type=bind,source="$(pwd)"/beso_data,target=/app/beso_data \
@@ -62,7 +62,7 @@ docker run --name beso-backend \
 
 Clone the repository
 
-```
+``` bash
 git clone https://github.com/daysful/beso.git
 ```
 
@@ -70,7 +70,7 @@ git clone https://github.com/daysful/beso.git
 
 Provided [`python3`](https://www.python.org/downloads/) is installed, run in the `backend` directory
 
-```
+``` bash
 python3 -m venv ./venv
 
 source ./venv/bin/activate
@@ -82,7 +82,7 @@ pip install -r requirements.txt
 
 To package the `docker` image, run in the `backend` directory
 
-```
+``` bash
 ./scripts/containerize.sh
 ```
 
@@ -91,7 +91,7 @@ To package the `docker` image, run in the `backend` directory
 
 Provided [`Node.js`](https://nodejs.org/en/) is installed, run in the `frontend` directory
 
-```
+``` bash
 npm install
 
 npm run live
