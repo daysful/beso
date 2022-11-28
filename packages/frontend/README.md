@@ -66,7 +66,7 @@ source ./venv/bin/activate
 
 pip install -r requirements.txt
 
-./scripts/start.sh
+./scripts/live.sh
 ```
 
 
