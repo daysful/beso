@@ -2,7 +2,9 @@ from source.constants import database_type
 
 from source.database.sqlite import generate_sqlite_connection
 from source.database.mongo import generate_mongo_connection
-from source.constants import database_name
+
+from .mongo import mongo_add
+from .sqlite import sqlite_add
 
 
 
@@ -11,7 +13,6 @@ def get_database_connection():
         return generate_mongo_connection()
     else:
         return generate_sqlite_connection()
-
 
 database = get_database_connection()
 
@@ -30,21 +31,14 @@ def add(
         )
     """
     if database_type == 'mongo':
-        collection = database[database_name][name]
-        collection.insert_one(value)
+        mongo_add(
+            database,
+            name,
+            value,
+        )
     else:
-        fields = ','.join(
-            [ key.upper() for key in list(value.keys()) ],
+        sqlite_add(
+            database,
+            name,
+            value,
         )
-        questions_marks = ','.join(
-            ['?'] * len(value.keys()),
-        )
-        sql = f'''
-            INSERT INTO {name}({fields})
-            VALUES({questions_marks})
-            '''
-
-        cursor = database.cursor()
-        cursor.execute(sql, tuple(value.values()))
-
-        database.commit()

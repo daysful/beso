@@ -19,3 +19,25 @@ def generate_sqlite_connection():
     connection.execute(sql_create_betseWorlds_table)
 
     return connection
+
+
+def sqlite_add(
+    database,
+    name: str,
+    value: dict[str, any],
+):
+    fields = ','.join(
+        [ key.upper() for key in list(value.keys()) ],
+    )
+    questions_marks = ','.join(
+        ['?'] * len(value.keys()),
+    )
+    sql = f'''
+        INSERT INTO {name}({fields})
+        VALUES({questions_marks})
+        '''
+
+    cursor = database.cursor()
+    cursor.execute(sql, tuple(value.values()))
+
+    database.commit()
