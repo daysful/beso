@@ -1,5 +1,3 @@
-# docker build -t beso-backend .
-
 FROM python:3.11-slim-buster
 
 RUN apt-get update \
