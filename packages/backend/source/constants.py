@@ -6,6 +6,8 @@ import os
 database_type = 'mongo' if os.environ.get('BESO_MONGO_CONNECTION_STRING', '') \
     else os.environ.get('BESO_DATABASE', 'sqlite')
 
+database_name = os.environ.get('BESO_MONGO_DATABASE_NAME', 'BesoDB')
+
 
 directory_path = os.path.dirname(
     os.path.realpath(__file__),
