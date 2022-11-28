@@ -2,6 +2,9 @@ import os
 
 
 
+database_type = os.environ.get('BESO_DATABASE', 'sqlite')
+
+
 directory_path = os.path.dirname(
     os.path.realpath(__file__),
 )
