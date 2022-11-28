@@ -80,6 +80,12 @@ pip install -r requirements.txt
 ./scripts/live.sh
 ```
 
+To package the `docker` image, run in the `backend` directory
+
+```
+./scripts/containerize.sh
+```
+
 
 ### Frontend
 
