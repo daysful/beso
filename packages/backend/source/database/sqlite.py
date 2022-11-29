@@ -56,7 +56,7 @@ def generate_sqlite_connection():
 
 
 def sqlite_insert(
-    database,
+    database: sqlite3.Connection,
     name: str,
     value: dict[str, any],
 ):
@@ -101,3 +101,18 @@ def sqlite_insert(
         cursor.execute(sql, tuple(value.values()))
 
         database.commit()
+
+
+def sqlite_get(
+    database: sqlite3.Connection,
+    name: str,
+    id: str,
+):
+    sql = f'''
+        SELECT * FROM {name} WHERE ID={id}
+        '''
+
+    cursor = database.cursor()
+    cursor.execute(sql)
+
+    return cursor.fetchone()[0]

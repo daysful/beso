@@ -2,10 +2,12 @@ from source.constants import database_type
 
 from .mongo import \
     generate_mongo_connection, \
-    mongo_insert
+    mongo_insert, \
+    mongo_get
 from .sqlite import \
     generate_sqlite_connection, \
-    sqlite_insert
+    sqlite_insert, \
+    sqlite_get
 
 
 
@@ -42,4 +44,22 @@ def insert(
             database,
             name,
             value,
+        )
+
+
+def get(
+    name: str,
+    id: str,
+):
+    if database_type == 'mongo':
+        return mongo_get(
+            database,
+            name,
+            id,
+        )
+    else:
+        return sqlite_get(
+            database,
+            name,
+            id,
         )

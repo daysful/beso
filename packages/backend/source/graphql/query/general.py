@@ -9,7 +9,7 @@ from source.graphql.context import Info
 @strawberry.type
 class QueryUser:
     @strawberry.field
-    def allowUserRegistration(self, info: Info) -> bool:
+    def allowUserRegistration(self) -> bool:
         return allow_user_registration
 
     @strawberry.field

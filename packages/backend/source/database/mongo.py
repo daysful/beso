@@ -13,9 +13,22 @@ def generate_mongo_connection():
 
 
 def mongo_insert(
-    database,
+    database: MongoClient,
     name: str,
     value: dict[str, any],
 ):
     collection = database[database_name][name]
     collection.insert_one(value)
+
+
+def mongo_get(
+    database: MongoClient,
+    name: str,
+    id: str,
+):
+    collection = database[database_name][name]
+    item = collection.find_one({
+        "id": id,
+    })
+
+    return item
