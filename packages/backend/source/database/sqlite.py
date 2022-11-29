@@ -55,8 +55,15 @@ def generate_sqlite_connection():
     return connection
 
 
+def dict_factory(cursor, row):
+    d = {}
+    for idx, col in enumerate(cursor.description):
+        d[col[0].lower()] = row[idx]
+    return d
+
+
 def sqlite_insert(
-    database: sqlite3.Connection,
+    connection: sqlite3.Connection,
     name: str,
     value: dict[str, any],
 ):
@@ -72,7 +79,7 @@ def sqlite_insert(
         del data['generated_at']
         del data['is_json']
 
-        cursor = database.cursor()
+        cursor = connection.cursor()
         cursor.execute(
             sql,
             (
@@ -83,7 +90,7 @@ def sqlite_insert(
             ),
         )
 
-        database.commit()
+        connection.commit()
     else:
         fields = ','.join(
             [ key.upper() for key in list(value.keys()) ],
@@ -97,22 +104,25 @@ def sqlite_insert(
             VALUES({questions_marks})
             '''
 
-        cursor = database.cursor()
+        cursor = connection.cursor()
         cursor.execute(sql, tuple(value.values()))
 
-        database.commit()
+        connection.commit()
 
 
 def sqlite_get(
-    database: sqlite3.Connection,
+    connection: sqlite3.Connection,
     name: str,
     id: str,
 ):
     sql = f'''
-        SELECT * FROM {name} WHERE ID={id}
+        SELECT * FROM {name} WHERE ID="{id}"
         '''
 
-    cursor = database.cursor()
+    connection.row_factory = dict_factory
+
+    cursor = connection.cursor()
     cursor.execute(sql)
 
-    return cursor.fetchone()[0]
+    item = cursor.fetchone()
+    return item

@@ -1,3 +1,4 @@
+import json
 import strawberry
 
 from source.graphql.types.betse import BetseWorld
@@ -14,4 +15,9 @@ class QueryBetseWorld:
         if not betse_world:
             return
 
-        return BetseWorld(**betse_world['data'])
+        data = json.loads(betse_world['data'])
+
+        return BetseWorld(
+            id=betse_world['id'],
+            **data,
+        )
