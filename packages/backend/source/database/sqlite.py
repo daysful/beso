@@ -52,6 +52,12 @@ def sqlite_insert(
             VALUES(?, ?, ?, ?)
             '''
 
+        data = value.copy()
+        del data['id']
+        del data['generated_by']
+        del data['generated_at']
+        del data['is_json']
+
         cursor = database.cursor()
         cursor.execute(
             sql,
@@ -59,7 +65,7 @@ def sqlite_insert(
                 value['id'],
                 value['generated_by'],
                 value['generated_at'],
-                json.dumps(value),
+                json.dumps(data),
             ),
         )
 
