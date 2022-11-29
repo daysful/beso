@@ -27,7 +27,7 @@ def generate_sqlite_connection():
     return connection
 
 
-def sqlite_add(
+def sqlite_insert(
     database,
     name: str,
     value: dict[str, any],

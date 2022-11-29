@@ -1,10 +1,7 @@
 from source.constants import database_type
 
-from source.database.sqlite import generate_sqlite_connection
-from source.database.mongo import generate_mongo_connection
-
-from .mongo import mongo_add
-from .sqlite import sqlite_add
+from .mongo import generate_sqlite_connection, mongo_insert
+from .sqlite import generate_mongo_connection, sqlite_insert
 
 
 
@@ -17,7 +14,7 @@ def get_database_connection():
 database = get_database_connection()
 
 
-def add(
+def insert(
     name: str,
     value: dict[str, any],
 ):
@@ -31,13 +28,13 @@ def add(
         )
     """
     if database_type == 'mongo':
-        mongo_add(
+        mongo_insert(
             database,
             name,
             value,
         )
     else:
-        sqlite_add(
+        sqlite_insert(
             database,
             name,
             value,

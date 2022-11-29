@@ -12,7 +12,7 @@ def generate_mongo_connection():
     return connection
 
 
-def mongo_add(
+def mongo_insert(
     database,
     name: str,
     value: dict[str, any],
