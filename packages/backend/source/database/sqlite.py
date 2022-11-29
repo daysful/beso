@@ -13,8 +13,8 @@ def generate_tables(
         f'''
         CREATE TABLE IF NOT EXISTS users
         (
-            ID INT PRIMARY KEY     NOT NULL,
-            NAME           TEXT    NOT NULL
+            ID      VARCHAR(255) PRIMARY KEY     NOT NULL,
+            NAME    TEXT                         NOT NULL
         );
         '''
     connection.execute(sql_create_table_users)
@@ -24,10 +24,10 @@ def generate_tables(
             f'''
             CREATE TABLE IF NOT EXISTS {table}
             (
-                ID INT PRIMARY KEY     NOT NULL,
-                GENERATED_BY   TEXT    NOT NULL,
-                GENERATED_AT   INT     NOT NULL,
-                DATA           JSON    NOT NULL
+                ID              VARCHAR(255) PRIMARY KEY     NOT NULL,
+                GENERATED_BY    TEXT                         NOT NULL,
+                GENERATED_AT    INT                          NOT NULL,
+                DATA            JSON                         NOT NULL
             );
             '''
         connection.execute(sql_create_table)

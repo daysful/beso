@@ -21,7 +21,7 @@ def add_betse_world(info, name: str) -> BetseWorld:
     data['generated_at'] = int(time.time())
     data['is_json'] = True
 
-    insert(Collections.betseWorlds, betse_world)
+    insert(Collections.betseWorlds, data)
 
     return BetseWorld(**betse_world)
 
