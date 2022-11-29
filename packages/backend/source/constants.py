@@ -14,8 +14,8 @@ database_name = os.environ.get('BESO_MONGO_DATABASE_NAME', 'BesoDB')
 
 def parse_users():
     """
-    parse user tuples (id,name,key) separated by semicolon from environment variable
-    e.g. BESO_USERS="123,user1,key1;124,user2,key2"
+    parse user tuples (`id,name,key`) separated by semicolon from environment variable
+    e.g. `BESO_USERS="123,user1,key1;124,user2,key2"`
     """
     users_string = os.environ.get('BESO_USERS', '')
     if not users_string:
