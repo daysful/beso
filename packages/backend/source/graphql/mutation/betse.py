@@ -6,11 +6,12 @@ from strawberry.tools import create_type
 
 from source.database.main import insert
 from source.database.collections import Collections
+from source.graphql.context import Info
 from source.graphql.types.betse import default_betse_world, BetseWorld
 
 
 
-def add_betse_world(info, name: str) -> BetseWorld:
+def add_betse_world(name: str, info: Info) -> BetseWorld:
     betse_world = default_betse_world.__dict__
     betse_world['id'] = str(uuid.uuid4())
     betse_world['mesh_refinement'] = betse_world['mesh_refinement'].__dict__
@@ -27,7 +28,7 @@ def add_betse_world(info, name: str) -> BetseWorld:
     return BetseWorld(**betse_world)
 
 
-def remove_betse_world(info, id: str) -> bool:
+def remove_betse_world(id: str, info: Info) -> bool:
     return True
 
 

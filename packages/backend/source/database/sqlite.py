@@ -114,9 +114,10 @@ def sqlite_get(
     connection: sqlite3.Connection,
     name: str,
     id: str,
+    key = 'id',
 ):
     sql = f'''
-        SELECT * FROM {name} WHERE ID="{id}"
+        SELECT * FROM {name} WHERE {key.upper()}="{id}"
         '''
 
     connection.row_factory = dict_factory

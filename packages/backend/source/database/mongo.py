@@ -25,10 +25,11 @@ def mongo_get(
     database: MongoClient,
     name: str,
     id: str,
+    key = 'id',
 ):
     collection = database[database_name][name]
-    item = collection.find_one({
-        "id": id,
-    })
+    filter = {}
+    filter[key] = id
+    item = collection.find_one(filter)
 
     return item

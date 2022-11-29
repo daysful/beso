@@ -50,16 +50,19 @@ def insert(
 def get(
     name: str,
     id: str,
+    by: str | None,
 ):
     if database_type == 'mongo':
         return mongo_get(
             database,
             name,
             id,
+            by,
         )
     else:
         return sqlite_get(
             database,
             name,
             id,
+            by,
         )
