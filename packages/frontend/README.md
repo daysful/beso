@@ -46,6 +46,8 @@ docker run --name beso-frontend \
 
 for a default setup, storing the data in a local `beso_data` directory.
 
+### Backend
+
 Instead of the default `sqlite` database, `beso.db`, `mongo` can be used by providing the adequate connection string
 
 ``` bash
@@ -59,6 +61,19 @@ docker run --name beso-backend \
 Users can be specified through the `BESO_USERS` environment variable as user tuples (`id,name,key`) separated by semicolon, e.g. `BESO_USERS="123,user1,key1;124,user2,key2"`.
 
 User registration can be controlled through the `BESO_ALLOW_USER_REGISTRATION` environment variable, `true` or `false`, default `true`.
+
+
+### Frontend
+
+The `beso-frontend` might require the environment variable `BESO_BACKEND` to discover the `beso-backend`.
+
+``` bash
+docker run --name beso-frontend \
+    -p 54568:54568 \
+    --env BESO_BACKEND="http://host[:port]" \
+    -d daysful/beso-frontend
+```
+
 
 
 ## Development
