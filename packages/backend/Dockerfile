@@ -18,7 +18,7 @@ RUN pip install \
     -r /app/requirements.txt
 
 COPY assets /app/assets
-COPY main.py /app/main.py
 COPY source /app/source
+COPY main.py /app/main.py
 
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "54567"]
