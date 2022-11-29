@@ -1,3 +1,4 @@
+import os
 import strawberry
 from strawberry.asgi import GraphQL
 
@@ -12,4 +13,7 @@ schema = strawberry.Schema(
 )
 
 
-graphql_app = GraphQL(schema)
+graphql_app = GraphQL(
+    schema,
+    graphiql=os.environ.get('BESO_PRODUCTION', 'false').lower() == 'false',
+)
