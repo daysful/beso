@@ -22,6 +22,7 @@ database = get_database_connection()
 
 class Collections(StrEnum):
     users = 'users',
+    betseSimulations = 'betseSimulations',
     betseWorlds = 'betseWorlds',
     betseTissues = 'betseTissues',
     betseInterventions = 'betseInterventions',
