@@ -16,15 +16,19 @@ def get_database_connection():
 database = get_database_connection()
 
 
+class BetseCollections(StrEnum):
+    worlds = 'betseWorlds',
+    tissues = 'betseTissues',
+    interventions = 'betseInterventions',
+    modulators = 'betseModulators',
+    networks = 'betseNetworks',
+    biomolecules = 'betseBiomolecules',
+    reactions = 'betseReactions',
+    channels = 'betseChannels'
+
 class Collections(StrEnum):
-    betseWorlds = 'betseWorlds',
-    betseTissues = 'betseTissues',
-    betseInterventions = 'betseInterventions',
-    betseModulators = 'betseModulators',
-    betseNetworks = 'betseNetworks',
-    betseBiomolecules = 'betseBiomolecules',
-    betseReactions = 'betseReactions',
-    betseChannels = 'betseChannels'
+    users = 'users',
+    betse = BetseCollections()
 
 
 def insert(

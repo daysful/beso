@@ -11,7 +11,7 @@ def add_betse_world(info, name: str) -> BetseWorld:
     betse_world = default_betse_world.__dict__
     betse_world['name'] = name
 
-    insert(Collections.betseWorlds, betse_world)
+    insert(Collections.betse.worlds, betse_world)
 
     return BetseWorld(**betse_world)
 
