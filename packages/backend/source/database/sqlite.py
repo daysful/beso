@@ -1,4 +1,5 @@
 import sqlite3
+import json
 
 from source.constants import sqlite_database_path
 
@@ -12,7 +13,7 @@ def generate_tables(
         CREATE TABLE IF NOT EXISTS betseWorlds
         (
             ID INT PRIMARY KEY     NOT NULL,
-            NAME           TEXT    NOT NULL
+            DATA           JSON    NOT NULL
         );
         '''
 
@@ -32,18 +33,12 @@ def sqlite_insert(
     name: str,
     value: dict[str, any],
 ):
-    fields = ','.join(
-        [ key.upper() for key in list(value.keys()) ],
-    )
-    questions_marks = ','.join(
-        ['?'] * len(value.keys()),
-    )
     sql = f'''
-        INSERT INTO {name}({fields})
-        VALUES({questions_marks})
+        INSERT INTO {name}(ID, DATA)
+        VALUES(?, ?)
         '''
 
     cursor = database.cursor()
-    cursor.execute(sql, tuple(value.values()))
+    cursor.execute(sql, (value['id'], json.dumps(value)))
 
     database.commit()
