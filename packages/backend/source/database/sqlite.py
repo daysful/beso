@@ -4,9 +4,9 @@ from source.constants import sqlite_database_path
 
 
 
-def generate_sqlite_connection():
-    connection = sqlite3.connect(sqlite_database_path)
-
+def generate_tables(
+    connection: sqlite3.Connection,
+):
     sql_create_betseWorlds_table = \
         '''
         CREATE TABLE IF NOT EXISTS betseWorlds
@@ -17,6 +17,12 @@ def generate_sqlite_connection():
         '''
 
     connection.execute(sql_create_betseWorlds_table)
+
+
+def generate_sqlite_connection():
+    connection = sqlite3.connect(sqlite_database_path)
+
+    generate_tables(connection)
 
     return connection
 
