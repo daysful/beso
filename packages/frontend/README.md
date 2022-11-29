@@ -56,9 +56,9 @@ docker run --name beso-backend \
     -d daysful/beso-backend
 ```
 
-Users can be specified through the `BESO_USERS` environment variable as user tuples (`id,name,key`) separated by semicolon from environment variable, e.g. `BESO_USERS="123,user1,key1;124,user2,key2"`.
+Users can be specified through the `BESO_USERS` environment variable as user tuples (`id,name,key`) separated by semicolon, e.g. `BESO_USERS="123,user1,key1;124,user2,key2"`.
 
-User registration can be controlled through the `BESO_ALLOW_USER_REGISTRATION` environment variable.
+User registration can be controlled through the `BESO_ALLOW_USER_REGISTRATION` environment variable, `true` or `false`, default `true`.
 
 
 ## Development
