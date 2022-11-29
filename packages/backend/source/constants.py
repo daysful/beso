@@ -47,4 +47,4 @@ simulation_datastore = os.path.join(data_directory, 'simulations.json')
 sqlite_database_path = os.path.join(data_directory, 'beso.db')
 
 
-favicon_path = './assets/favicon.ico'
+favicon_path = os.environ.get('BESO_FAVICON_PATH', './assets/favicon.ico')
