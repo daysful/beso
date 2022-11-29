@@ -6,6 +6,8 @@ RUN apt-get update \
 
 WORKDIR /app
 
+ENV BESO_PRODUCTION="true"
+
 COPY ./requirements.txt /app/requirements.txt
 
 RUN pip install \
