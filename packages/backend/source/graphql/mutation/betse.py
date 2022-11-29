@@ -1,4 +1,5 @@
 import time
+import uuid
 
 import strawberry
 from strawberry.tools import create_type
@@ -12,6 +13,7 @@ from source.database.collections import Collections
 
 def add_betse_world(info, name: str) -> BetseWorld:
     betse_world = default_betse_world.__dict__
+    betse_world['id'] = str(uuid.uuid4())
     betse_world['mesh_refinement'] = betse_world['mesh_refinement'].__dict__
     betse_world['import_from_svg'] = betse_world['import_from_svg'].__dict__
     betse_world['name'] = name
