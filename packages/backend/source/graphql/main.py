@@ -1,9 +1,9 @@
-import os
 import strawberry
 from strawberry.asgi import GraphQL
 
 from source.graphql.query.main import Query
 from source.graphql.mutation.main import Mutation
+from source.constants import production
 
 
 
@@ -15,5 +15,5 @@ schema = strawberry.Schema(
 
 graphql_app = GraphQL(
     schema,
-    graphiql=os.environ.get('BESO_PRODUCTION', 'false').lower() == 'false',
+    graphiql=not production,
 )

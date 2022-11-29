@@ -2,6 +2,9 @@ import os
 
 
 
+production = not (os.environ.get('BESO_PRODUCTION', 'false').lower() == 'false')
+
+
 # 'sqlite' or 'mongo' database
 database_type = 'mongo' if os.environ.get('BESO_MONGO_CONNECTION_STRING', '') \
     else os.environ.get('BESO_DATABASE', 'sqlite')
