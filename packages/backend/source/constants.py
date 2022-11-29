@@ -2,7 +2,8 @@ import os
 
 from source.utilities.general import \
     mkdir, \
-    parse_users
+    parse_users, \
+    generate_id
 
 
 
@@ -19,6 +20,9 @@ database_name = os.environ.get('BESO_MONGO_DATABASE_NAME', 'BesoDB')
 users = parse_users()
 
 allow_user_registration = os.environ.get('BESO_ALLOW_USER_REGISTRATION', 'true').lower() == 'true'
+
+
+jwt_secret = os.environ.get('BESO_JWT_SECRET', generate_id())
 
 
 directory_path = os.path.dirname(

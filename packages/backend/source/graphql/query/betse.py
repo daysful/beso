@@ -5,13 +5,14 @@ from source.database.main import get
 from source.database.collections import Collections
 from source.graphql.types.betse import \
     BetseWorld, BetseWorldMeshRefinement, BetseWorldImportFromSVG
+from source.graphql.context import Info
 
 
 
 @strawberry.type
 class QueryBetseWorld:
     @strawberry.field
-    def betse_world(self, id: str) -> BetseWorld | None:
+    def betse_world(self, id: str, info: Info) -> BetseWorld | None:
         betse_world = get(Collections.betseWorlds, id)
         if not betse_world:
             return

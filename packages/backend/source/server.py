@@ -29,11 +29,7 @@ def generate_server():
 
     RepeatedTimer(cleaning_time, self_clean, simulations)
 
-    # database = get_database_connection()
-
     app.include_router(graphql_app, prefix="/graphql")
-    # app.add_route('/graphql', graphql_app)
-    # app.add_websocket_route('/graphql', graphql_app)
 
 
     @app.get('/')

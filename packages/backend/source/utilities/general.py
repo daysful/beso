@@ -1,4 +1,5 @@
 import os
+import uuid
 
 
 
@@ -32,3 +33,14 @@ def parse_users():
             pass
 
     return users
+
+
+def generate_id(
+    length = 3
+):
+    value = ''
+
+    for _ in range(length):
+        value += uuid.uuid4().hex
+
+    return value

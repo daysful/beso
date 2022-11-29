@@ -1,9 +1,12 @@
+import jwt
+
 from functools import cached_property
 
 from strawberry.fastapi import BaseContext
 from strawberry.types import Info as _Info
 from strawberry.types.info import RootValueType
 
+from source.constants import jwt_secret
 from source.graphql.types.general import User
 
 
@@ -14,12 +17,17 @@ class Context(BaseContext):
         if not self.request:
             return None
 
-        # authorization = self.request.headers.get('Authorization', None)
-        beso_username = self.request.headers.get('Beso-Username', None)
-        if not beso_username:
+        authorization = self.request.headers.get('Authorization', None)
+        if not authorization:
             return
 
-        return User(name=beso_username)
+        try:
+            token = authorization.replace('Bearer ', '')
+            payload = jwt.decode(token, jwt_secret, algorithms=['HS256'])
+
+            return User(name=payload.username)
+        except:
+            return
 
 
 Info = _Info[Context, RootValueType]
