@@ -2,8 +2,12 @@ from enum import StrEnum
 
 from source.constants import database_type
 
-from .mongo import generate_sqlite_connection, mongo_insert
-from .sqlite import generate_mongo_connection, sqlite_insert
+from .mongo import \
+    generate_mongo_connection, \
+    mongo_insert
+from .sqlite import \
+    generate_sqlite_connection, \
+    sqlite_insert
 
 
 
