@@ -3,11 +3,15 @@ from strawberry.tools import create_type
 
 from source.graphql.types.betse import default_betse_world, BetseWorld
 
+from source.database.main import insert, Collections
+
 
 
 def add_betse_world(info, name: str) -> BetseWorld:
     betse_world = default_betse_world.__dict__
     betse_world['name'] = name
+
+    insert(Collections.betseWorlds, betse_world)
 
     return BetseWorld(**betse_world)
 

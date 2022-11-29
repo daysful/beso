@@ -1,3 +1,5 @@
+from enum import StrEnum
+
 from source.constants import database_type
 
 from .mongo import generate_sqlite_connection, mongo_insert
@@ -12,6 +14,17 @@ def get_database_connection():
         return generate_sqlite_connection()
 
 database = get_database_connection()
+
+
+class Collections(StrEnum):
+    betseWorlds = 'betseWorlds',
+    betseTissues = 'betseTissues',
+    betseInterventions = 'betseInterventions',
+    betseModulators = 'betseModulators',
+    betseNetworks = 'betseNetworks',
+    betseBiomolecules = 'betseBiomolecules',
+    betseReactions = 'betseReactions',
+    betseChannels = 'betseChannels'
 
 
 def insert(
