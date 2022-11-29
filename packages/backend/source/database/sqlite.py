@@ -1,8 +1,8 @@
 import sqlite3
 import json
 
-from source.constants import sqlite_database_path
-from .collections import tables
+from source.constants import sqlite_database_path, users
+from .collections import Collections, tables
 
 
 
@@ -14,7 +14,8 @@ def generate_tables(
         CREATE TABLE IF NOT EXISTS users
         (
             ID      VARCHAR(255) PRIMARY KEY     NOT NULL,
-            NAME    TEXT                         NOT NULL
+            NAME    VARCHAR(255)                 NOT NULL,
+            KEY     VARCHAR(255)                 NOT NULL
         );
         '''
     connection.execute(sql_create_table_users)
@@ -33,10 +34,23 @@ def generate_tables(
         connection.execute(sql_create_table)
 
 
+def generate_users(
+    connection: sqlite3.Connection,
+):
+    for user in users:
+        sqlite_insert(
+            connection,
+            Collections.users,
+            user,
+        )
+        pass
+
+
 def generate_sqlite_connection():
     connection = sqlite3.connect(sqlite_database_path)
 
     generate_tables(connection)
+    generate_users(connection)
 
     return connection
 
@@ -46,7 +60,7 @@ def sqlite_insert(
     name: str,
     value: dict[str, any],
 ):
-    if value['is_json']:
+    if value.get('is_json'):
         sql = f'''
             INSERT INTO {name}(ID, GENERATED_BY, GENERATED_AT, DATA)
             VALUES(?, ?, ?, ?)
@@ -71,4 +85,19 @@ def sqlite_insert(
 
         database.commit()
     else:
-        pass
+        fields = ','.join(
+            [ key.upper() for key in list(value.keys()) ],
+        )
+        questions_marks = ','.join(
+            ['?'] * len(value.keys()),
+        )
+
+        sql = f'''
+            INSERT INTO {name}({fields})
+            VALUES({questions_marks})
+            '''
+
+        cursor = database.cursor()
+        cursor.execute(sql, tuple(value.values()))
+
+        database.commit()
