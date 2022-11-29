@@ -4,10 +4,9 @@ import uuid
 import strawberry
 from strawberry.tools import create_type
 
-from source.graphql.types.betse import default_betse_world, BetseWorld
-
 from source.database.main import insert
 from source.database.collections import Collections
+from source.graphql.types.betse import default_betse_world, BetseWorld
 
 
 

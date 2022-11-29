@@ -1,9 +1,10 @@
 import json
 import strawberry
 
-from source.graphql.types.betse import BetseWorld
 from source.database.main import get
 from source.database.collections import Collections
+from source.graphql.types.betse import \
+    BetseWorld, BetseWorldMeshRefinement, BetseWorldImportFromSVG
 
 
 
@@ -16,8 +17,8 @@ class QueryBetseWorld:
             return
 
         data = json.loads(betse_world['data'])
+        data['id'] = betse_world['id']
+        data['mesh_refinement'] = BetseWorldMeshRefinement(**data['mesh_refinement'])
+        data['import_from_svg'] = BetseWorldImportFromSVG(**data['import_from_svg'])
 
-        return BetseWorld(
-            id=betse_world['id'],
-            **data,
-        )
+        return BetseWorld(**data)
