@@ -6,6 +6,9 @@ RUN apt-get update \
 
 WORKDIR /app
 
+ARG PORT=54567
+ENV PORT=${PORT}
+
 ENV BESO_PRODUCTION="true"
 
 COPY ./requirements.txt /app/requirements.txt
@@ -18,7 +21,8 @@ RUN pip install \
     -r /app/requirements.txt
 
 COPY assets /app/assets
+COPY scripts /app/scripts
 COPY source /app/source
 COPY main.py /app/main.py
 
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "54567"]
+CMD ./scripts/start.sh
