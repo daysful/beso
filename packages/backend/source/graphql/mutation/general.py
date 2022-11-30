@@ -11,18 +11,43 @@ from source.graphql.context import Info
 
 
 
-def register_user(name: str, key: str) -> bool:
+def logic_login(
+    user,
+    info: Info,
+):
+    encoded_jwt = jwt.encode(
+        {
+            'username': user['name'],
+        },
+        jwt_secret,
+        algorithm='HS256',
+    )
+
+    info.context.response.set_cookie(
+        key='Authorization',
+        value=f'Bearer {encoded_jwt}',
+        httponly=True,
+    )
+
+    return encoded_jwt
+
+
+def register_user(name: str, key: str, info: Info) -> bool:
     if not allow_user_registration:
         return False
 
+    user =  {
+        'id': generate_id(),
+        'name': name,
+        'key': key,
+    }
+
     insert(
         Collections.users,
-        {
-            'id': generate_id(),
-            'name': name,
-            'key': key,
-        },
+        user,
     )
+
+    logic_login(user, info)
 
     return True
 
@@ -42,20 +67,7 @@ def login_user(username: str, key: str, info: Info) -> str | None:
     if user.get('key') != key:
         return
 
-    encoded_jwt = jwt.encode(
-        {
-            'username': user['name'],
-        },
-        jwt_secret,
-        algorithm='HS256',
-    )
-
-    info.context.response.set_cookie(
-        key='Authorization',
-        value=f'Bearer {encoded_jwt}',
-        httponly=True,
-    )
-
+    encoded_jwt = logic_login(user, info)
     return encoded_jwt
 
 
