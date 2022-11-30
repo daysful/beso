@@ -1,8 +1,7 @@
+from source.utilities.general import now
 from source.simulation import \
     Simulation, \
-    clean_simulation_data, \
-    new_simulation_generated_at
-
+    clean_simulation_data
 from source.datastore import write_simulations
 
 
@@ -16,7 +15,7 @@ def self_clean(simulations: dict[str, Simulation]):
     updates_simulations = simulations.copy()
 
     for id, simulation in simulations.items():
-        if simulation.generated_at + cleaning_time < new_simulation_generated_at():
+        if simulation.generated_at + cleaning_time < now():
             clean_simulation_data(simulation)
             del updates_simulations[id]
 
