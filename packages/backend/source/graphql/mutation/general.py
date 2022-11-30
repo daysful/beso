@@ -18,9 +18,9 @@ def register_user(name: str, key: str) -> bool:
     insert(
         Collections.users,
         {
-            "id": generate_id(),
-            "name": name,
-            "key": key,
+            'id': generate_id(),
+            'name': name,
+            'key': key,
         },
     )
 

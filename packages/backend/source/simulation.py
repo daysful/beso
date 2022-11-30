@@ -1,5 +1,4 @@
 import os
-import time
 import uuid
 import shutil
 import threading
@@ -10,6 +9,7 @@ from betse.science.parameters import Parameters
 from betse.science.simrunner import SimRunner
 
 from source.constants import betse_data_path, simulations_directory
+from source.utilities.general import now, generate_id
 
 
 
@@ -58,24 +58,14 @@ class BetseSimulation():
         self.simRunner.plot_init()
 
 
-def new_simulation_id():
-    return str(uuid.uuid4())
-
-def new_simulation_generated_at():
-    return int(time.time())
-
-def new_simulation_generated_by():
-    return str(uuid.uuid4())
-
-
 class Simulation:
     def __init__(self, options: SimulationOptionsModel | None) -> None:
         self.id = options.id if options and options.id \
-            else new_simulation_id()
+            else generate_id()
         self.generated_at = options.generated_at if options and options.generated_at \
-            else new_simulation_generated_at()
+            else now()
         self.generated_by = options.generated_by if options and options.generated_by \
-            else new_simulation_generated_by()
+            else generate_id()
         self.name = self.id if options is None \
             else options.name if options.name \
             else self.id

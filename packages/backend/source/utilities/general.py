@@ -1,4 +1,5 @@
 import os
+import time
 import uuid
 
 
@@ -44,3 +45,7 @@ def generate_id(
         value += uuid.uuid4().hex
 
     return value
+
+
+def now():
+    return int(time.time())
