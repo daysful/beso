@@ -62,6 +62,13 @@ Users can be specified through the `BESO_USERS` environment variable as user tup
 
 User registration can be controlled through the `BESO_ALLOW_USER_REGISTRATION` environment variable, `true` or `false`, default `true`.
 
+Other environment variables
+
+``` bash
+BESO_JWT_SECRET # secret used for JWT encode/decode
+BESO_FAVICON_PATH # path to favicon
+```
+
 
 ### Frontend
 
