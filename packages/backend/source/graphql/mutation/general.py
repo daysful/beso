@@ -44,7 +44,7 @@ def login_user(username: str, key: str, info: Info) -> str | None:
 
     encoded_jwt = jwt.encode(
         {
-            'username': 'payload',
+            'username': user['name'],
         },
         jwt_secret,
         algorithm='HS256',
