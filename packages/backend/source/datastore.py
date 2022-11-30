@@ -1,7 +1,6 @@
 import json
 
 from source.constants import simulation_datastore
-
 from source.simulation import Simulation, SimulationOptionsModel
 
 

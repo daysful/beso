@@ -1,3 +1,4 @@
+import json
 import os
 import time
 import uuid
@@ -49,3 +50,25 @@ def generate_id(
 
 def now():
     return int(time.time())
+
+
+def load_jwt_secret(
+    secrets_datastore: str,
+):
+    if os.path.exists(secrets_datastore):
+        file = open(secrets_datastore, 'r')
+        data = json.load(file)
+        file.close()
+
+        return data['jwt_secret']
+
+    jwt_secret = generate_id()
+    data = {
+        "jwt_secret": jwt_secret,
+    }
+    text = json.dumps(data, indent=4)
+    file = open(secrets_datastore, 'w')
+    file.write(text)
+    file.close()
+
+    return jwt_secret
