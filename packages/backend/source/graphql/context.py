@@ -8,6 +8,8 @@ from strawberry.types.info import RootValueType
 
 from source.constants import jwt_secret
 from source.graphql.types.general import User
+from source.database.collections import Collections
+from source.database.main import get
 
 
 
@@ -17,7 +19,9 @@ class Context(BaseContext):
         if not self.request:
             return None
 
-        authorization = self.request.headers.get('Authorization', None)
+        cookie = self.request.cookies.get('Authorization', None)
+        header = self.request.headers.get('Authorization', None)
+        authorization = cookie or header
         if not authorization:
             return
 
@@ -25,8 +29,13 @@ class Context(BaseContext):
             token = authorization.replace('Bearer ', '')
             payload = jwt.decode(token, jwt_secret, algorithms=['HS256'])
 
-            return User(name=payload.username)
-        except:
+            user = get(Collections.users, payload['username'], 'name')
+            if not user:
+                return
+
+            return User(id=user['id'], name=user['name'])
+        except Exception as e:
+            print(e)
             return
 
 
