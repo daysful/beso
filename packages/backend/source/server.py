@@ -16,12 +16,16 @@ from source.graphql.main import graphql_app
 
 
 
+class DynamicCORSMiddleware(CORSMiddleware):
+    def is_allowed_origin(self, origin: str) -> bool:
+        return True
+
+
 def generate_server():
     app = FastAPI()
 
     app.add_middleware(
-        CORSMiddleware,
-        allow_origins=['*'],
+        DynamicCORSMiddleware,
         allow_credentials=True,
         allow_methods=['*'],
         allow_headers=['*'],

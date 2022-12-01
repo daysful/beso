@@ -21,6 +21,7 @@ class Context(BaseContext):
 
         cookie = self.request.cookies.get('Authorization', None)
         header = self.request.headers.get('Authorization', None)
+        print('header', header)
         authorization = cookie or header
         if not authorization:
             return
