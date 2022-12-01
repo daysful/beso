@@ -24,12 +24,14 @@
 export interface GeneralState {
     notFoundFace: string;
     username: string;
+    allowUserRegistration: boolean;
 }
 
 
 const initialState: GeneralState = {
     notFoundFace: getRandomFace(),
     username: '',
+    allowUserRegistration: true,
 };
 
 

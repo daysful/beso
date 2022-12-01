@@ -11,6 +11,7 @@
     // #region external
     import Head from '~kernel-components/Head';
 
+    import LoginPlane from '~kernel-planes/Login';
     import IndexPlane from '~kernel-planes/Index';
     import SimulationPlane from '~kernel-planes/Simulation';
     import NotFoundPlane from '~kernel-planes/NotFound';
@@ -27,6 +28,10 @@ const indexRoute: PluridReactRoute = {
     exterior: Home,
     planes: [
         [
+            '/login',
+            LoginPlane,
+        ],
+        [
             '/',
             IndexPlane,
         ],
@@ -36,8 +41,9 @@ const indexRoute: PluridReactRoute = {
         ],
     ],
     view: [
-        '/',
-        '/simulation',
+        '/login',
+        // '/',
+        // '/simulation',
     ],
 };
 

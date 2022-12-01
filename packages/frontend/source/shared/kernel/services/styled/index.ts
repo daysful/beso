@@ -12,6 +12,7 @@
 const {
     buttons: {
         PureButton: PluridPureButton,
+        LinkButton: PluridLinkButton,
     },
     inputs: {
         InputLine: PluridInputLine,
@@ -25,6 +26,7 @@ const {
 // #region exports
 export {
     PluridPureButton,
+    PluridLinkButton,
     PluridInputLine,
     PluridInputSwitch,
 };

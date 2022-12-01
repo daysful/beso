@@ -22,4 +22,18 @@ export const UPDATE_USER = gql`
         }
     }
 `;
+
+
+export const LOGIN_USER = gql`
+    mutation LoginUser($identonym: String!, $key: String!) {
+        loginUser(identonym: $identonym, key: $key)
+    }
+`;
+
+
+export const REGISTER_USER = gql`
+    mutation RegisterUser($identonym: String!, $key: String!) {
+        registerUser(identonym: $identonym, key: $key)
+    }
+`;
 // #endregion module
