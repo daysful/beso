@@ -127,3 +127,19 @@ def sqlite_get(
 
     item = cursor.fetchone()
     return item
+
+
+def sqlite_remove(
+    connection: sqlite3.Connection,
+    name: str,
+    id: str,
+):
+    sql = f'''
+        DELETE FROM {name} WHERE ID="{id}"
+        '''
+
+    cursor = connection.cursor()
+    cursor.execute(sql, (id,))
+    connection.commit()
+
+    return True

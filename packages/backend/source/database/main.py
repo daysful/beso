@@ -3,11 +3,13 @@ from source.constants import database_type
 from .mongo import \
     generate_mongo_connection, \
     mongo_insert, \
-    mongo_get
+    mongo_get, \
+    mongo_remove
 from .sqlite import \
     generate_sqlite_connection, \
     sqlite_insert, \
-    sqlite_get
+    sqlite_get, \
+    sqlite_remove
 
 
 
@@ -65,4 +67,22 @@ def get(
             name,
             id,
             by,
+        )
+
+
+def remove(
+    name: str,
+    id: str,
+):
+    if database_type == 'mongo':
+        return mongo_remove(
+            database,
+            name,
+            id,
+        )
+    else:
+        return sqlite_remove(
+            database,
+            name,
+            id,
         )

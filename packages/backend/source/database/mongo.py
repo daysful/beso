@@ -33,3 +33,17 @@ def mongo_get(
     item = collection.find_one(filter)
 
     return item
+
+
+def mongo_remove(
+    database: MongoClient,
+    name: str,
+    id: str,
+):
+    collection = database[database_name][name]
+    filter = {
+        'id': id,
+    }
+    collection.delete_one(filter)
+
+    return True
