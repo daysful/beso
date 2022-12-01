@@ -19,6 +19,7 @@ def mongo_insert(
 ):
     collection = database[database_name][name]
     collection.insert_one(value)
+    return True
 
 
 def mongo_get(

@@ -36,13 +36,13 @@ def insert(
         )
     """
     if database_type == 'mongo':
-        mongo_insert(
+        return mongo_insert(
             database,
             name,
             value,
         )
     else:
-        sqlite_insert(
+        return sqlite_insert(
             database,
             name,
             value,
@@ -53,7 +53,7 @@ def get(
     name: str,
     id: str,
     by: str | None,
-):
+) -> dict[str, any] | None:
     if database_type == 'mongo':
         return mongo_get(
             database,

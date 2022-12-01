@@ -91,6 +91,8 @@ def sqlite_insert(
         )
 
         connection.commit()
+
+        return True
     else:
         fields = ','.join(
             [ key.upper() for key in list(value.keys()) ],
@@ -108,6 +110,8 @@ def sqlite_insert(
         cursor.execute(sql, tuple(value.values()))
 
         connection.commit()
+
+        return True
 
 
 def sqlite_get(
