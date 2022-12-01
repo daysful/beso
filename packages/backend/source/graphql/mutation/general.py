@@ -32,13 +32,13 @@ def logic_login(
     return encoded_jwt
 
 
-def register_user(name: str, key: str, info: Info) -> bool:
+def register_user(identonym: str, key: str, info: Info) -> bool:
     if not allow_user_registration:
         return False
 
     user =  {
         'id': generate_id(),
-        'name': name,
+        'name': identonym,
         'key': key,
     }
 
@@ -59,8 +59,8 @@ def delete_user(info: Info) -> bool:
     return True
 
 
-def login_user(username: str, key: str, info: Info) -> str | None:
-    user = get(Collections.users, username, 'name')
+def login_user(identonym: str, key: str, info: Info) -> str | None:
+    user = get(Collections.users, identonym, 'name')
     if not user:
         return
 
