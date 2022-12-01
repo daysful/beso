@@ -29,6 +29,7 @@ export const LOGIN_USER = gql`
         loginUser(identonym: $identonym, key: $key) {
             id
             name
+            token
         }
     }
 `;
@@ -39,6 +40,7 @@ export const REGISTER_USER = gql`
         registerUser(identonym: $identonym, key: $key) {
             id
             name
+            token
         }
     }
 `;

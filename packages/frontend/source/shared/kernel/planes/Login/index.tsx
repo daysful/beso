@@ -131,16 +131,15 @@ const Login: React.FC<LoginProperties> = (
                 variables,
             });
 
-            // const responseType = loggingIn ? 'loginUser' : 'registerUser';
-            // const response = mutation.data[responseType];
-            // if (!response.status) {
-            //     setError('something is wrong. try again.');
-            //     return;
-            // }
+            const responseType = loggingIn ? 'loginUser' : 'registerUser';
+            const response = mutation.data[responseType];
+            if (!response) {
+                setError('something is wrong. try again.');
+                return;
+            }
 
             setIdentonym('');
             setKey('');
-            setError('');
 
             // await getCurrentOwner(dispatch);
 
