@@ -21,7 +21,6 @@ class Context(BaseContext):
 
         cookie = self.request.cookies.get('Authorization', None)
         header = self.request.headers.get('Authorization', None)
-        print('header', header)
         authorization = cookie or header
         if not authorization:
             return
@@ -30,7 +29,7 @@ class Context(BaseContext):
             token = authorization.replace('Bearer ', '')
             payload = jwt.decode(token, jwt_secret, algorithms=['HS256'])
 
-            user = get(Collections.users, payload['username'], 'name')
+            user = get(Collections.users, payload['identonym'], 'name')
             if not user:
                 return
 

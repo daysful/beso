@@ -18,7 +18,7 @@ def logic_login(
 ):
     encoded_jwt = jwt.encode(
         {
-            'username': user['name'],
+            'identonym': user['name'],
         },
         jwt_secret,
         algorithm='HS256',
