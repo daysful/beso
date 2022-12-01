@@ -57,6 +57,7 @@
 const watchMode = process.env.PLURID_WATCH_MODE === 'true';
 const isProduction = process.env.ENV_MODE === 'production';
 const buildDirectory = process.env.PLURID_BUILD_DIRECTORY || 'build';
+const address = process.env.ADDRESS || '127.0.0.1';
 const port = process.env.PORT || 63000;
 
 
@@ -117,7 +118,7 @@ const options: PluridServerPartialOptions = {
     quiet,
     debug,
     serverName: 'BESO Frontend Server',
-    hostname: 'localhost:' + port,
+    hostname: address + ':' + port,
 };
 
 const template: PluridServerTemplateConfiguration = {
