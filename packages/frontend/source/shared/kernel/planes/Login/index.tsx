@@ -2,6 +2,7 @@
     // #region libraries
     import React, {
         useState,
+        useEffect,
     } from 'react';
 
     import {
@@ -31,6 +32,10 @@
         LOGIN_USER,
         REGISTER_USER,
     } from '~kernel-services/graphql/mutate';
+
+    import {
+        USER,
+    } from '~kernel-services/graphql/query';
 
     import { AppState } from '~kernel-services/state/store';
     import StateContext from '~kernel-services/state/context';
@@ -156,6 +161,20 @@ const Login: React.FC<LoginProperties> = (
         }
     }
     // #endregion handlers
+
+
+
+    // #region effects
+    useEffect(() => {
+        const load = async () => {
+            client.query({
+                query: USER,
+            });
+        }
+
+        load();
+    }, []);
+    // #endregion effects
 
 
     // #region render

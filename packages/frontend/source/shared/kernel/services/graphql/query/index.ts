@@ -7,18 +7,11 @@
 
 
 // #region module
-export const CURRENT_USER = gql`
-    query CurrentUser {
-        currentUser {
-            status
-            errors {
-                type
-                path
-                message
-            }
-            data {
-                username
-            }
+export const USER = gql`
+    query User {
+        user {
+            id
+            name
         }
     }
 `;
