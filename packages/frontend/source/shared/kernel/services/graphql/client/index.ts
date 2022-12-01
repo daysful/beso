@@ -28,6 +28,20 @@ const client = new ApolloClient({
     }),
     cache: new InMemoryCache(),
 });
+
+
+export const serverClient = (
+    authorization: string,
+) => new ApolloClient({
+    link: createHttpLink({
+        uri: GRAPHQL_API,
+        fetch,
+        headers: {
+            'Authorization': authorization,
+        },
+    }),
+    cache: new InMemoryCache(),
+});
 // #endregion module
 
 

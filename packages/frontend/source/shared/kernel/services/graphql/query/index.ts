@@ -15,4 +15,15 @@ export const USER = gql`
         }
     }
 `;
+
+
+export const SERVER_USER = gql`
+    query User {
+        user {
+            id
+            name
+        }
+        allowUserRegistration
+    }
+`;
 // #endregion module

@@ -1,11 +1,6 @@
 // #region imports
     // #region libraries
-    import PluridServer, {
-        PluridServerMiddleware,
-        PluridServerService,
-        PluridServerPartialOptions,
-        PluridServerTemplateConfiguration,
-    } from '@plurid/plurid-react-server';
+    import cookies from 'cookie-parser';
 
     import {
         ApolloProvider,
@@ -14,6 +9,13 @@
     import {
         Provider as ReduxProvider,
     } from 'react-redux';
+
+    import PluridServer, {
+        PluridServerMiddleware,
+        PluridServerService,
+        PluridServerPartialOptions,
+        PluridServerTemplateConfiguration,
+    } from '@plurid/plurid-react-server';
     // #endregion libraries
 
 
@@ -84,7 +86,7 @@ const styles: string[] = [
 
 /** Express-like middleware. */
 const middleware: PluridServerMiddleware[] = [
-    //
+    cookies(),
 ];
 
 

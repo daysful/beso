@@ -15,6 +15,14 @@
     } from '~kernel-planes/NotFound/logic';
 
     import reduxStore from '~kernel-services/state/store';
+
+    import {
+        serverClient,
+    } from '~kernel-services/graphql/client';
+
+    import {
+        SERVER_USER,
+    } from '~kernel-services/graphql/query';
     // #endregion external
 // #endregion imports
 
@@ -27,20 +35,32 @@ const preserves: PluridPreserve<
     express.Response
 >[] = [
     {
-        serve: '/',
+        serve: '*',
         onServe: async (
             transmission,
         ) => {
-            // preserve /
-            return undefined;
-        },
-    },
-    {
-        serve: '/not-found',
-        onServe: async () => {
+            const {
+                cookies,
+            } = transmission.request;
+
+            const getUserData = async () => {
+                const graphqlClient = serverClient(
+                    cookies ? (cookies['Authorization'] || '') : '',
+                );
+                const request = await graphqlClient.query({
+                    query: SERVER_USER,
+                });
+
+                return request.data;
+            }
+            const data = await getUserData();
+
+
             const store = reduxStore({
                 general: {
                     notFoundFace: getRandomFace(),
+                    username: data?.user ? data.user.name : '',
+                    allowUserRegistration: data?.allowUserRegistration,
                 },
             });
 
