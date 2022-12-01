@@ -8,6 +8,7 @@ from source.utilities.general import generate_id
 from source.database.collections import Collections
 from source.database.main import get, insert
 from source.graphql.context import Info
+from source.graphql.types.general import UserWithToken
 
 
 
@@ -32,9 +33,9 @@ def logic_login(
     return encoded_jwt
 
 
-def register_user(identonym: str, key: str, info: Info) -> bool:
+def register_user(identonym: str, key: str, info: Info) -> UserWithToken | None:
     if not allow_user_registration:
-        return False
+        return
 
     user =  {
         'id': generate_id(),
@@ -47,9 +48,13 @@ def register_user(identonym: str, key: str, info: Info) -> bool:
         user,
     )
 
-    logic_login(user, info)
+    token = logic_login(user, info)
 
-    return True
+    return UserWithToken(
+        id=user['id'],
+        name=user['name'],
+        token=token,
+    )
 
 
 def delete_user(info: Info) -> bool:
@@ -59,7 +64,7 @@ def delete_user(info: Info) -> bool:
     return True
 
 
-def login_user(identonym: str, key: str, info: Info) -> str | None:
+def login_user(identonym: str, key: str, info: Info) -> UserWithToken | None:
     user = get(Collections.users, identonym, 'name')
     if not user:
         return
@@ -67,8 +72,13 @@ def login_user(identonym: str, key: str, info: Info) -> str | None:
     if user.get('key') != key:
         return
 
-    encoded_jwt = logic_login(user, info)
-    return encoded_jwt
+    token = logic_login(user, info)
+
+    return UserWithToken(
+        id=user['id'],
+        name=user['name'],
+        token=token,
+    )
 
 
 def logout_user(info: Info) -> bool:
