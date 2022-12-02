@@ -11,9 +11,14 @@
     } from '@reduxjs/toolkit';
     import { connect } from 'react-redux';
 
+
     import {
         Theme,
     } from '@plurid/plurid-themes';
+
+    import {
+        DispatchAction,
+    } from '@plurid/plurid-ui-state-react';
     // #endregion libraries
 
 
@@ -40,7 +45,7 @@
     import { AppState } from '~kernel-services/state/store';
     import StateContext from '~kernel-services/state/context';
     import selectors from '~kernel-services/state/selectors';
-    // import actions from '~kernel-services/state/actions';
+    import actions from '~kernel-services/state/actions';
     // #endregion external
 
 
@@ -62,10 +67,12 @@ export interface LoginOwnProperties {
 export interface LoginStateProperties {
     stateGeneralTheme: Theme;
     stateInteractionTheme: Theme;
+    stateUsername: string;
     stateAllowUserRegistration: boolean;
 }
 
 export interface LoginDispatchProperties {
+    dispatchSetGeneralField: DispatchAction<typeof actions.general.setGeneralField>;
 }
 
 export type LoginProperties =
@@ -82,8 +89,13 @@ const Login: React.FC<LoginProperties> = (
         // #region state
         stateGeneralTheme,
         stateInteractionTheme,
+        stateUsername,
         stateAllowUserRegistration,
         // #endregion state
+
+        // #region dispatch
+        dispatchSetGeneralField,
+        // #endregion dispatch
     } = properties;
     // #endregion properties
 
@@ -140,6 +152,11 @@ const Login: React.FC<LoginProperties> = (
 
             setIdentonym('');
             setKey('');
+
+            dispatchSetGeneralField({
+                field: 'username',
+                value: response.name,
+            });
 
             // await getCurrentOwner(dispatch);
 
@@ -256,6 +273,7 @@ const mapStateToProperties = (
 ): LoginStateProperties => ({
     stateGeneralTheme: selectors.themes.getGeneralTheme(state),
     stateInteractionTheme: selectors.themes.getInteractionTheme(state),
+    stateUsername: selectors.general.getGeneral(state).username,
     stateAllowUserRegistration: selectors.general.getGeneral(state).allowUserRegistration,
 });
 
@@ -263,6 +281,11 @@ const mapStateToProperties = (
 const mapDispatchToProperties = (
     dispatch: ThunkDispatch<{}, {}, AnyAction>,
 ): LoginDispatchProperties => ({
+    dispatchSetGeneralField: (
+        payload,
+    ) => dispatch(
+        actions.general.setGeneralField(payload),
+    ),
 });
 
 
