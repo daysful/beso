@@ -17,6 +17,10 @@ const {
     inputs: {
         InputLine: PluridInputLine,
         InputSwitch: PluridInputSwitch,
+        Textline: PluridTextline,
+    },
+    markers: {
+        Spinner: PluridSpinner,
     },
 } = universal;
 // #endregion module
@@ -29,5 +33,7 @@ export {
     PluridLinkButton,
     PluridInputLine,
     PluridInputSwitch,
+    PluridTextline,
+    PluridSpinner,
 };
 // #endregion exports
