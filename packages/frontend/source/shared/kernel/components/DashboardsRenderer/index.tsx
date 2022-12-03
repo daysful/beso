@@ -42,6 +42,8 @@ export interface DashboardsRendererProperties {
 
     // #region optional
         // #region values
+        identonym?: string;
+        usageType?: string;
         brandingName?: string;
         brandingNameStyle?: React.CSSProperties;
         brandingLogo?: string;
@@ -72,6 +74,8 @@ const DashboardsRenderer: React.FC<DashboardsRendererProperties> = (
 
         // #region optional
             // #region values
+            identonym,
+            usageType,
             brandingName,
             brandingNameStyle,
             brandingLogo,
@@ -133,8 +137,6 @@ const DashboardsRenderer: React.FC<DashboardsRendererProperties> = (
     // #region render
     const openManual = () => {}
     const logout = () => {}
-    const identonym = '';
-    const usageType = '';
 
     return (
         <StyledDashboardsRenderer

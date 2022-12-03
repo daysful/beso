@@ -92,6 +92,8 @@ const Index: React.FC<IndexProperties> = (
                 theme={stateGeneralTheme}
 
                 activeRender="simulations"
+                identonym={stateIdentonym}
+                // usageType="PRIVATE_USAGE"
                 brandingName="beso"
                 brandingNameStyle={{
                     textTransform: 'uppercase',

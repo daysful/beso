@@ -23,7 +23,7 @@ export const StyledSidebar = styled.div<IStyledSidebar>`
 export interface IStyledSelectors {
     theme: Theme;
     compactSelectors: boolean;
-    viewUsageType: string;
+    viewUsageType?: string;
 }
 
 export const StyledSelectors = styled.div<IStyledSelectors>`
@@ -36,10 +36,10 @@ export const StyledSelectors = styled.div<IStyledSelectors>`
             viewUsageType,
         }: IStyledSelectors) => {
             if (viewUsageType) {
-                return '100px auto 80px';
+                return '100px auto 90px';
             }
 
-            return '100px auto 40px';
+            return '100px auto 50px';
         }
     };
 

@@ -51,9 +51,6 @@ export interface SidebarProperties {
         setCompactSelectors: React.Dispatch<boolean>;
         renderView: string;
         setRenderView: React.Dispatch<string>;
-
-        identonym: string;
-        usageType: string;
         // #endregion values
 
         // #region methods
@@ -64,6 +61,8 @@ export interface SidebarProperties {
 
     // #region optional
         // #region values
+        identonym?: string;
+        usageType?: string;
         brandingName?: string;
         brandingNameStyle?: React.CSSProperties;
         brandingLogo?: string;
