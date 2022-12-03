@@ -108,7 +108,7 @@ pip install -r requirements.txt
 ./scripts/live.sh
 ```
 
-To package the `docker` image, run in the `backend` directory
+To package the backend `docker` image, run in the `backend` directory
 
 ``` bash
 ./scripts/containerize.sh
@@ -123,4 +123,10 @@ Provided [`Node.js`](https://nodejs.org/en/) is installed, run in the `frontend`
 npm install
 
 npm run live
+```
+
+To package the frontend `docker` image, run in the `frontend` directory
+
+``` bash
+npm run containerize.production
 ```
