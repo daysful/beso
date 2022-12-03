@@ -64,21 +64,29 @@ export const simulationRowRenderer = (
 }
 
 
-export const createSearchTerms = (
-    simulations: any[],
+export const createSearchTermsGeneric = (
+    data: any[],
+    fields: string[],
 ) => {
-    const searchTerms = simulations.map(
-        simulation => {
+    const searchTerms = data.map(
+        entity => {
             const {
                 id,
-                name,
-            } = simulation;
+            } = entity;
+
+            const termData: string[] = [];
+
+            for (const field of fields) {
+                const term = entity[field];
+
+                if (term && typeof term === 'string') {
+                    termData.push(term.toLowerCase());
+                }
+            }
 
             const searchTerm = {
                 id,
-                data: [
-                    name.toLowerCase(),
-                ],
+                data: termData,
             };
 
             return searchTerm;
@@ -87,4 +95,9 @@ export const createSearchTerms = (
 
     return searchTerms;
 }
+
+
+export const createSearchTerms = (
+    simulations: any[],
+) => createSearchTermsGeneric(simulations, ['name']);
 // #endregion module
