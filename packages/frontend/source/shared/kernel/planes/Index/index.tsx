@@ -93,6 +93,10 @@ const Index: React.FC<IndexProperties> = (
 
                 activeRender="simulations"
                 brandingName="beso"
+                brandingNameStyle={{
+                    textTransform: 'uppercase',
+                    fontWeight: 'bolder',
+                }}
                 brandingLogo={besoLogo}
                 noDashboardRender={<>select a dashboard</>}
 

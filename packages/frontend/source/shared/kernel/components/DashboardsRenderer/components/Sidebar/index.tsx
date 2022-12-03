@@ -65,6 +65,7 @@ export interface SidebarProperties {
     // #region optional
         // #region values
         brandingName?: string;
+        brandingNameStyle?: React.CSSProperties;
         brandingLogo?: string;
         // #endregion values
 
@@ -101,6 +102,7 @@ const Sidebar: React.FC<SidebarProperties> = (
         // #region optional
             // #region values
             brandingName,
+            brandingNameStyle,
             brandingLogo,
             // #endregion values
 
@@ -147,9 +149,13 @@ const Sidebar: React.FC<SidebarProperties> = (
                                 )}
                             </div>
 
-                            <div>
-                                {brandingName || ''}
-                            </div>
+                            {brandingName && (
+                                <div
+                                    style={brandingNameStyle}
+                                >
+                                    {brandingName}
+                                </div>
+                            )}
                         </>
                     )}
 

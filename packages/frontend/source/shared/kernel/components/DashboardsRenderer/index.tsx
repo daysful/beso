@@ -43,6 +43,7 @@ export interface DashboardsRendererProperties {
     // #region optional
         // #region values
         brandingName?: string;
+        brandingNameStyle?: React.CSSProperties;
         brandingLogo?: string;
         activeRender?: string;
         noDashboardRender?: JSX.Element;
@@ -72,6 +73,7 @@ const DashboardsRenderer: React.FC<DashboardsRendererProperties> = (
         // #region optional
             // #region values
             brandingName,
+            brandingNameStyle,
             brandingLogo,
             activeRender,
             noDashboardRender,
@@ -156,6 +158,7 @@ const DashboardsRenderer: React.FC<DashboardsRendererProperties> = (
                     logout={logout}
 
                     brandingName={brandingName}
+                    brandingNameStyle={brandingNameStyle}
                     brandingLogo={brandingLogo}
                 />
             )}
