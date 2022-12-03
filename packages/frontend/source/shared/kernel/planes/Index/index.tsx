@@ -103,6 +103,9 @@ const Index: React.FC<IndexProperties> = (
                 noDashboardRender={<>select a dashboard</>}
 
                 atDashboardChange={(newDashboard: string) => {}}
+                openManual={() => {
+                    window.open('https://github.com/daysful/beso', '_blank');
+                }}
             />
         </StyledIndex>
     );

@@ -54,7 +54,6 @@ export interface SidebarProperties {
         // #endregion values
 
         // #region methods
-        openManual: () => void;
         logout: () => void;
         // #endregion methods
     // #endregion required
@@ -69,6 +68,7 @@ export interface SidebarProperties {
         // #endregion values
 
         // #region methods
+        openManual?: () => void;
         // #endregion methods
     // #endregion optional
 }
@@ -208,22 +208,24 @@ const Sidebar: React.FC<SidebarProperties> = (
                 <StyledHelp>
                     {mouseOverSelectors && (
                         <ul>
-                            <StyledHelpItem
-                                onClick={() => openManual()}
-                                compactSelectors={compactSelectors}
-                            >
-                                <PluridIconDocuments />
+                            {openManual && (
+                                <StyledHelpItem
+                                    onClick={() => openManual()}
+                                    compactSelectors={compactSelectors}
+                                >
+                                    <PluridIconDocuments />
 
-                                {!compactSelectors && (
-                                    <>
-                                        <div>
-                                            manual
-                                        </div>
+                                    {!compactSelectors && (
+                                        <>
+                                            <div>
+                                                manual
+                                            </div>
 
-                                        <PluridIconExternalLink />
-                                    </>
-                                )}
-                            </StyledHelpItem>
+                                            <PluridIconExternalLink />
+                                        </>
+                                    )}
+                                </StyledHelpItem>
+                            )}
 
                             {usageType === 'PRIVATE_USAGE' && (
                                 <StyledHelpItem
