@@ -23,7 +23,7 @@ export const StyledSidebar = styled.div<IStyledSidebar>`
 export interface IStyledSelectors {
     theme: Theme;
     compactSelectors: boolean;
-    viewUsageType?: string;
+    helpItemsCount: number;
 }
 
 export const StyledSelectors = styled.div<IStyledSelectors>`
@@ -33,14 +33,8 @@ export const StyledSelectors = styled.div<IStyledSelectors>`
     grid-template-columns: 1fr;
     grid-template-rows: ${
         ({
-            viewUsageType,
-        }: IStyledSelectors) => {
-            if (viewUsageType) {
-                return '100px auto 90px';
-            }
-
-            return '100px auto 50px';
-        }
+            helpItemsCount,
+        }: IStyledSelectors) => `120px auto ${45 * helpItemsCount}px`
     };
 
     background-color: ${

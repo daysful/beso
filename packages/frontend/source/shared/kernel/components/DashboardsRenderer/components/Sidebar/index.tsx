@@ -109,6 +109,10 @@ const Sidebar: React.FC<SidebarProperties> = (
             // #endregion methods
         // #endregion optional
     } = properties;
+
+    const openManualCount = openManual ? 1 : 0;
+    const usageTypeCount = usageType === 'PRIVATE_USAGE' ? 1 : 0;
+    const helpItemsCount = openManualCount + usageTypeCount;
     // #endregion properties
 
 
@@ -253,7 +257,7 @@ const Sidebar: React.FC<SidebarProperties> = (
                 onMouseLeave={() => setMouseOverSelectors(false)}
                 theme={theme}
                 compactSelectors={compactSelectors}
-                viewUsageType={usageType}
+                helpItemsCount={helpItemsCount}
             >
                 {branding}
                 {selectors}
