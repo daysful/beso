@@ -79,26 +79,17 @@ const Home: React.FC<HomeProperties> = (
     // #region effects
     useEffect(() => {
         setTimeout(() => {
-            if (stateUsername) {
-                pubsub.publish({
-                    topic: PLURID_PUBSUB_TOPIC.VIEW_SET_PLANES,
-                    data: {
-                        view: [
-                            '/',
-                        ],
-                    },
-                });
-            } else {
-                pubsub.publish({
-                    topic: PLURID_PUBSUB_TOPIC.VIEW_SET_PLANES,
-                    data: {
-                        view: [
-                            '/login',
-                        ],
-                    },
-                });
-            }
-        }, 10);
+            const view = stateUsername
+                ? [ '/' ]
+                : [ '/login' ];
+
+            pubsub.publish({
+                topic: PLURID_PUBSUB_TOPIC.VIEW_SET_PLANES,
+                data: {
+                    view,
+                },
+            });
+        }, 50);
     }, [
         stateUsername,
     ]);
