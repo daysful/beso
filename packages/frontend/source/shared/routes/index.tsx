@@ -40,11 +40,7 @@ const indexRoute: PluridReactRoute = {
             SimulationPlane,
         ],
     ],
-    view: [
-        '/login',
-        // '/',
-        // '/simulation',
-    ],
+    view: [],
 };
 
 

@@ -1,10 +1,13 @@
 // #region imports
     // #region libraries
-    import React from 'react';
+    import React, {
+        useEffect,
+    } from 'react';
 
     import { AnyAction } from 'redux';
     import { connect } from 'react-redux';
     import { ThunkDispatch } from 'redux-thunk';
+
 
     import {
         Theme,
@@ -13,6 +16,7 @@
     import {
         PluridRouteComponentProperty,
         PluridPubSub,
+        PLURID_PUBSUB_TOPIC,
     } from '@plurid/plurid-react';
     // #endregion libraries
 
@@ -45,6 +49,7 @@ export interface HomeOwnProperties {
 export interface HomeStateProperties {
     stateGeneralTheme: Theme;
     stateInteractionTheme: Theme;
+    stateUsername: string;
 }
 
 export interface HomeDispatchProperties {
@@ -59,18 +64,45 @@ const Home: React.FC<HomeProperties> = (
     properties,
 ) => {
     // #region properties
-    // const {
-    //     // #region own
-    //     plurid,
-    //     pubsub,
-    //     // #endregion own
+    const {
+        // #region own
+        pubsub,
+        // #endregion own
 
-    //     // #region state
-    //     stateGeneralTheme,
-    //     stateInteractionTheme,
-    //     // #endregion state
-    // } = properties;
+        // #region state
+        stateUsername,
+        // #endregion state
+    } = properties;
     // #endregion properties
+
+
+    // #region effects
+    useEffect(() => {
+        setTimeout(() => {
+            if (stateUsername) {
+                pubsub.publish({
+                    topic: PLURID_PUBSUB_TOPIC.VIEW_SET_PLANES,
+                    data: {
+                        view: [
+                            '/',
+                        ],
+                    },
+                });
+            } else {
+                pubsub.publish({
+                    topic: PLURID_PUBSUB_TOPIC.VIEW_SET_PLANES,
+                    data: {
+                        view: [
+                            '/login',
+                        ],
+                    },
+                });
+            }
+        }, 10);
+    }, [
+        stateUsername,
+    ]);
+    // #endregion effects
 
 
     // #region render
@@ -88,6 +120,7 @@ const mapStateToProperties = (
 ): HomeStateProperties => ({
     stateGeneralTheme: selectors.themes.getGeneralTheme(state),
     stateInteractionTheme: selectors.themes.getInteractionTheme(state),
+    stateUsername: selectors.general.getGeneral(state).username,
 });
 
 
