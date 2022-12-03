@@ -121,6 +121,129 @@ const Sidebar: React.FC<SidebarProperties> = (
 
 
     // #region render
+    const branding = (
+        <StyledBranding
+            compactSelectors={compactSelectors}
+        >
+            {!compactSelectors && (
+                <>
+                    <div>
+                        {brandingLogo && (
+                            <img
+                                src={brandingLogo}
+                                alt="icon"
+                                height={40}
+                                onClick={() => setCompactSelectors(true)}
+                            />
+                        )}
+                    </div>
+
+                    {brandingName && (
+                        <div
+                            style={brandingNameStyle}
+                        >
+                            {brandingName}
+                        </div>
+                    )}
+                </>
+            )}
+
+            {compactSelectors
+            && mouseOverSelectors
+            && (
+                <PluridIconArrowRight
+                    atClick={() => setCompactSelectors(false)}
+                />
+            )}
+        </StyledBranding>
+    );
+
+    const selectors = (
+        <ul>
+            {dashboards.map(dashboard => {
+                const {
+                    id,
+                    icon,
+                    label,
+                } = dashboard;
+
+                // FORCE uppercase for React
+                const Icon: any = icon;
+
+                const selectorIcon = !icon
+                    ? (<PluridIconSpace theme={theme} />)
+                    : typeof icon === 'function'
+                        ? (<Icon theme={theme} />)
+                        : (<>{icon}</>);
+
+                return (
+                    <StyledSelector
+                        key={Math.random() + id}
+
+                        onClick={() => setRenderView(id)}
+                        theme={theme}
+                        selected={id === renderView}
+                        compactSelectors={compactSelectors}
+                    >
+                        {selectorIcon}
+
+                        {!compactSelectors && (
+                            <div>
+                                {label}
+                            </div>
+                        )}
+                    </StyledSelector>
+                );
+            })}
+        </ul>
+    );
+
+    const help = (
+        <StyledHelp>
+            {mouseOverSelectors && (
+                <ul>
+                    {openManual && (
+                        <StyledHelpItem
+                            onClick={() => openManual()}
+                            compactSelectors={compactSelectors}
+                        >
+                            <PluridIconDocuments />
+
+                            {!compactSelectors && (
+                                <>
+                                    <div>
+                                        manual
+                                    </div>
+
+                                    <PluridIconExternalLink />
+                                </>
+                            )}
+                        </StyledHelpItem>
+                    )}
+
+                    {usageType === 'PRIVATE_USAGE' && (
+                        <StyledHelpItem
+                            onClick={() => logout()}
+                            compactSelectors={compactSelectors}
+                        >
+                            <PluridIconExit />
+
+                            {!compactSelectors && (
+                                <>
+                                    <div>
+                                        logout ({identonym})
+                                    </div>
+
+                                    <div />
+                                </>
+                            )}
+                        </StyledHelpItem>
+                    )}
+                </ul>
+            )}
+        </StyledHelp>
+    );
+
     return (
         <StyledSidebar
             theme={theme}
@@ -132,122 +255,9 @@ const Sidebar: React.FC<SidebarProperties> = (
                 compactSelectors={compactSelectors}
                 viewUsageType={usageType}
             >
-                <StyledBranding
-                    compactSelectors={compactSelectors}
-                >
-                    {!compactSelectors && (
-                        <>
-                            <div>
-                                {brandingLogo && (
-                                    <img
-                                        src={brandingLogo}
-                                        alt="icon"
-                                        height={30}
-                                        onClick={() => setCompactSelectors(true)}
-                                    />
-                                )}
-                            </div>
-
-                            {brandingName && (
-                                <div
-                                    style={brandingNameStyle}
-                                >
-                                    {brandingName}
-                                </div>
-                            )}
-                        </>
-                    )}
-
-                    {compactSelectors
-                    && mouseOverSelectors
-                    && (
-                        <PluridIconArrowRight
-                            atClick={() => setCompactSelectors(false)}
-                        />
-                    )}
-                </StyledBranding>
-
-                <ul>
-                    {dashboards.map(dashboard => {
-                        const {
-                            id,
-                            icon,
-                            label,
-                        } = dashboard;
-
-                        // FORCE uppercase for React
-                        const Icon: any = icon;
-
-                        const selectorIcon = !icon
-                            ? (<PluridIconSpace theme={theme} />)
-                            : typeof icon === 'function'
-                                ? (<Icon theme={theme} />)
-                                : (<>{icon}</>);
-
-                        return (
-                            <StyledSelector
-                                key={Math.random() + id}
-
-                                onClick={() => setRenderView(id)}
-                                theme={theme}
-                                selected={id === renderView}
-                                compactSelectors={compactSelectors}
-                            >
-                                {selectorIcon}
-
-                                {!compactSelectors && (
-                                    <div>
-                                        {label}
-                                    </div>
-                                )}
-                            </StyledSelector>
-                        );
-                    })}
-                </ul>
-
-                <StyledHelp>
-                    {mouseOverSelectors && (
-                        <ul>
-                            {openManual && (
-                                <StyledHelpItem
-                                    onClick={() => openManual()}
-                                    compactSelectors={compactSelectors}
-                                >
-                                    <PluridIconDocuments />
-
-                                    {!compactSelectors && (
-                                        <>
-                                            <div>
-                                                manual
-                                            </div>
-
-                                            <PluridIconExternalLink />
-                                        </>
-                                    )}
-                                </StyledHelpItem>
-                            )}
-
-                            {usageType === 'PRIVATE_USAGE' && (
-                                <StyledHelpItem
-                                    onClick={() => logout()}
-                                    compactSelectors={compactSelectors}
-                                >
-                                    <PluridIconExit />
-
-                                    {!compactSelectors && (
-                                        <>
-                                            <div>
-                                                logout ({identonym})
-                                            </div>
-
-                                            <div />
-                                        </>
-                                    )}
-                                </StyledHelpItem>
-                            )}
-                        </ul>
-                    )}
-                </StyledHelp>
+                {branding}
+                {selectors}
+                {help}
             </StyledSelectors>
         </StyledSidebar>
     );
