@@ -2,7 +2,6 @@
     // #region libraries
     import React, {
         useState,
-        useEffect,
     } from 'react';
 
     import {
@@ -38,10 +37,6 @@
         REGISTER_USER,
     } from '~kernel-services/graphql/mutate';
 
-    import {
-        USER,
-    } from '~kernel-services/graphql/query';
-
     import { AppState } from '~kernel-services/state/store';
     import StateContext from '~kernel-services/state/context';
     import selectors from '~kernel-services/state/selectors';
@@ -67,7 +62,6 @@ export interface LoginOwnProperties {
 export interface LoginStateProperties {
     stateGeneralTheme: Theme;
     stateInteractionTheme: Theme;
-    stateUsername: string;
     stateAllowUserRegistration: boolean;
 }
 
@@ -89,7 +83,6 @@ const Login: React.FC<LoginProperties> = (
         // #region state
         stateGeneralTheme,
         stateInteractionTheme,
-        stateUsername,
         stateAllowUserRegistration,
         // #endregion state
 
@@ -154,16 +147,9 @@ const Login: React.FC<LoginProperties> = (
             setKey('');
 
             dispatchSetGeneralField({
-                field: 'username',
+                field: 'identonym',
                 value: response.name,
             });
-
-            // await getCurrentOwner(dispatch);
-
-            // dispatchSetViewType({
-            //     type: 'indexView',
-            //     value: 'general',
-            // });
         } catch (error) {
             return;
         }
@@ -177,20 +163,6 @@ const Login: React.FC<LoginProperties> = (
         }
     }
     // #endregion handlers
-
-
-
-    // #region effects
-    useEffect(() => {
-        const load = async () => {
-            client.query({
-                query: USER,
-            });
-        }
-
-        load();
-    }, []);
-    // #endregion effects
 
 
     // #region render
@@ -273,7 +245,6 @@ const mapStateToProperties = (
 ): LoginStateProperties => ({
     stateGeneralTheme: selectors.themes.getGeneralTheme(state),
     stateInteractionTheme: selectors.themes.getInteractionTheme(state),
-    stateUsername: selectors.general.getGeneral(state).username,
     stateAllowUserRegistration: selectors.general.getGeneral(state).allowUserRegistration,
 });
 

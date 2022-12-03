@@ -51,7 +51,7 @@ export interface SimulationOwnProperties {
 export interface SimulationStateProperties {
     stateGeneralTheme: Theme;
     stateInteractionTheme: Theme;
-    stateUsername: string;
+    stateIdentonym: string;
 }
 
 export interface SimulationDispatchProperties {
@@ -71,7 +71,7 @@ const Simulation: React.FC<SimulationProperties> = (
         // #region state
         stateGeneralTheme,
         // stateInteractionTheme,
-        stateUsername,
+        stateIdentonym,
         // #endregion state
     } = properties;
     // #endregion properties
@@ -142,7 +142,7 @@ const Simulation: React.FC<SimulationProperties> = (
                     const id = await newSimulation(
                         name,
                         betse,
-                        stateUsername,
+                        stateIdentonym,
                     );
                     if (id) {
                         setSimulationID(id);
@@ -167,7 +167,7 @@ const mapStateToProperties = (
 ): SimulationStateProperties => ({
     stateGeneralTheme: selectors.themes.getGeneralTheme(state),
     stateInteractionTheme: selectors.themes.getInteractionTheme(state),
-    stateUsername: selectors.general.getGeneral(state).username,
+    stateIdentonym: selectors.general.getGeneral(state).identonym,
 });
 
 

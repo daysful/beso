@@ -59,7 +59,7 @@ const preserves: PluridPreserve<
             const store = reduxStore({
                 general: {
                     notFoundFace: getRandomFace(),
-                    username: data?.user ? data.user.name : '',
+                    identonym: data?.user ? data.user.name : '',
                     allowUserRegistration: data?.allowUserRegistration,
                 },
             });

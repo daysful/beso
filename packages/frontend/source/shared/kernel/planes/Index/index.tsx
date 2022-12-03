@@ -49,7 +49,7 @@ export interface IndexOwnProperties {
 export interface IndexStateProperties {
     stateGeneralTheme: Theme;
     stateInteractionTheme: Theme;
-    stateUsername: string;
+    stateIdentonym: string;
 }
 
 export interface IndexDispatchProperties {
@@ -70,7 +70,7 @@ const Index: React.FC<IndexProperties> = (
         // #region state
         stateGeneralTheme,
         // stateInteractionTheme,
-        stateUsername,
+        stateIdentonym,
         // #endregion state
 
         // #region dispatch
@@ -78,14 +78,6 @@ const Index: React.FC<IndexProperties> = (
         // #endregion dispatch
     } = properties;
     // #endregion properties
-
-
-    // #region state
-    const [
-        username,
-        setUsername,
-    ] = useState(stateUsername);
-    // #endregion state
 
 
     // #region render
@@ -100,22 +92,6 @@ const Index: React.FC<IndexProperties> = (
             <h2>
                 BioElectric Simulation Orchestrator
             </h2>
-
-            <PluridInputLine
-                name="username"
-                atChange={(event) => {
-                    setUsername(event.target.value);
-                }}
-                text={username}
-                textline={{
-                    enterAtClick: () => {
-                        dispatchSetGeneralField({
-                            field: 'username',
-                            value: username,
-                        });
-                    }
-                }}
-            />
         </StyledIndex>
     );
     // #endregion render
@@ -127,7 +103,7 @@ const mapStateToProperties = (
 ): IndexStateProperties => ({
     stateGeneralTheme: selectors.themes.getGeneralTheme(state),
     stateInteractionTheme: selectors.themes.getInteractionTheme(state),
-    stateUsername: selectors.general.getGeneral(state).username,
+    stateIdentonym: selectors.general.getGeneral(state).identonym,
 });
 
 

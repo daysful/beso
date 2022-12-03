@@ -23,14 +23,14 @@
 // #region module
 export interface GeneralState {
     notFoundFace: string;
-    username: string;
+    identonym: string;
     allowUserRegistration: boolean;
 }
 
 
 const initialState: GeneralState = {
     notFoundFace: getRandomFace(),
-    username: '',
+    identonym: '',
     allowUserRegistration: true,
 };
 

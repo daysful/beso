@@ -49,7 +49,7 @@ export interface HomeOwnProperties {
 export interface HomeStateProperties {
     stateGeneralTheme: Theme;
     stateInteractionTheme: Theme;
-    stateUsername: string;
+    stateIdentonym: string;
 }
 
 export interface HomeDispatchProperties {
@@ -70,7 +70,7 @@ const Home: React.FC<HomeProperties> = (
         // #endregion own
 
         // #region state
-        stateUsername,
+        stateIdentonym,
         // #endregion state
     } = properties;
     // #endregion properties
@@ -79,7 +79,7 @@ const Home: React.FC<HomeProperties> = (
     // #region effects
     useEffect(() => {
         setTimeout(() => {
-            const view = stateUsername
+            const view = stateIdentonym
                 ? [ '/' ]
                 : [ '/login' ];
 
@@ -91,7 +91,7 @@ const Home: React.FC<HomeProperties> = (
             });
         }, 50);
     }, [
-        stateUsername,
+        stateIdentonym,
     ]);
     // #endregion effects
 
@@ -111,7 +111,7 @@ const mapStateToProperties = (
 ): HomeStateProperties => ({
     stateGeneralTheme: selectors.themes.getGeneralTheme(state),
     stateInteractionTheme: selectors.themes.getInteractionTheme(state),
-    stateUsername: selectors.general.getGeneral(state).username,
+    stateIdentonym: selectors.general.getGeneral(state).identonym,
 });
 
 
