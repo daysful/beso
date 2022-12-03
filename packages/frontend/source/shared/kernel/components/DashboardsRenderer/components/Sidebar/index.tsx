@@ -137,7 +137,10 @@ const Sidebar: React.FC<SidebarProperties> = (
                                 src={brandingLogo}
                                 alt="icon"
                                 height={40}
-                                onClick={() => setCompactSelectors(true)}
+                                onClick={() => {
+                                    setCompactSelectors(true);
+                                    setMouseOverSelectors(false);
+                                }}
                             />
                         )}
                     </div>
