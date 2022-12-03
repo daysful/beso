@@ -15,6 +15,14 @@
 
 
     // #region external
+    import {
+        DashboardRenderProperties,
+    } from '~kernel-components/DashboardsRenderer/data';
+
+    import EntityView, {
+        EntityViewRefAttributes,
+    } from '~kernel-components/EntityView';
+
     import { AppState } from '~kernel-services/state/store';
     import StateContext from '~kernel-services/state/context';
     import selectors from '~kernel-services/state/selectors';
@@ -44,7 +52,7 @@ export interface InterventionsTargetedDispatchProperties {
 }
 
 export type InterventionsTargetedProperties =
-    & InterventionsTargetedOwnProperties
+    & InterventionsTargetedOwnProperties & DashboardRenderProperties
     & InterventionsTargetedStateProperties
     & InterventionsTargetedDispatchProperties;
 
@@ -54,6 +62,11 @@ const InterventionsTargeted: React.FC<InterventionsTargetedProperties> = (
 ) => {
     // #region properties
     const {
+        // #region own
+        renderView,
+        setRenderView,
+        // #endregion own
+
         // #region state
         stateGeneralTheme,
         // stateInteractionTheme,
@@ -62,12 +75,35 @@ const InterventionsTargeted: React.FC<InterventionsTargetedProperties> = (
     // #endregion properties
 
 
+    // #region handlers
+    const toggleInterventions = () => {
+        if (renderView === 'interventionsTargeted') {
+            setRenderView('interventionsGlobal');
+        } else {
+            setRenderView('interventionsTargeted');
+        }
+    }
+    // #endregion handlers
+
+
     // #region render
     return (
         <StyledInterventionsTargeted
             theme={stateGeneralTheme}
         >
-            InterventionsTargeted
+            <div>
+                <div
+                    onClick={() => toggleInterventions()}
+                >
+                    global interventions
+                </div>
+
+                <div
+                    onClick={() => toggleInterventions()}
+                >
+                    targeted interventions
+                </div>
+            </div>
         </StyledInterventionsTargeted>
     );
     // #endregion render

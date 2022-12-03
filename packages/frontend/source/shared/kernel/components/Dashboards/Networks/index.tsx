@@ -15,6 +15,14 @@
 
 
     // #region external
+    import {
+        DashboardRenderProperties,
+    } from '~kernel-components/DashboardsRenderer/data';
+
+    import EntityView, {
+        EntityViewRefAttributes,
+    } from '~kernel-components/EntityView';
+
     import { AppState } from '~kernel-services/state/store';
     import StateContext from '~kernel-services/state/context';
     import selectors from '~kernel-services/state/selectors';
