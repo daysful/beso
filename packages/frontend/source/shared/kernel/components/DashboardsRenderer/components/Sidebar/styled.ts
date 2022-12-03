@@ -101,7 +101,7 @@ export const StyledSelector = styled.li<IStyledSelector>`
             : '16px auto'
     };
     grid-gap: 0.7rem;
-    height: 42px;
+    min-height: 45px;
     align-items: center;
 `;
 

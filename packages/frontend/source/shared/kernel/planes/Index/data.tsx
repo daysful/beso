@@ -1,7 +1,15 @@
 // #region imports
     // #region libraries
     import {
-        PluridIconInfo,
+        PluridIconPlay,
+        PluridIconGlobal,
+        PluridIconPalette,
+        PluridIconAdminSpace,
+        PluridIconApps,
+        PluridIconShare,
+        PluridIconBlocks,
+        PluridIconLoop,
+        PluridIconWebhook,
     } from '@plurid/plurid-icons-react';
     // #endregion libraries
 
@@ -23,10 +31,23 @@
 
 
 // #region module
+export const icons = {
+    simulations: PluridIconPlay,
+    worlds: PluridIconGlobal,
+    tissues: PluridIconPalette,
+    interventions: PluridIconAdminSpace,
+    modulators: PluridIconApps,
+    networks: PluridIconShare,
+    biomolecules: PluridIconBlocks,
+    reactions: PluridIconLoop,
+    channels: PluridIconWebhook,
+};
+
+
 export const dashboards = [
     {
         id: 'simulations',
-        icon: PluridIconInfo,
+        icon: icons.simulations,
         label: 'simulations',
         renderers: {
             'simulations': Simulations,
@@ -34,7 +55,7 @@ export const dashboards = [
     },
     {
         id: 'worlds',
-        icon: PluridIconInfo,
+        icon: icons.worlds,
         label: 'worlds',
         renderers: {
             'worlds': Worlds,
@@ -42,7 +63,7 @@ export const dashboards = [
     },
     {
         id: 'tissues',
-        icon: PluridIconInfo,
+        icon: icons.tissues,
         label: 'tissues',
         renderers: {
             'tissues': Tissues,
@@ -50,7 +71,7 @@ export const dashboards = [
     },
     {
         id: 'interventions',
-        icon: PluridIconInfo,
+        icon: icons.interventions,
         label: 'interventions',
         defaultRender: 'interventionsTargeted',
         renderers: {
@@ -60,7 +81,7 @@ export const dashboards = [
     },
     {
         id: 'modulators',
-        icon: PluridIconInfo,
+        icon: icons.modulators,
         label: 'modulators',
         renderers: {
             'modulators': Modulators,
@@ -68,7 +89,7 @@ export const dashboards = [
     },
     {
         id: 'networks',
-        icon: PluridIconInfo,
+        icon: icons.networks,
         label: 'networks',
         renderers: {
             'networks': Networks,
@@ -76,7 +97,7 @@ export const dashboards = [
     },
     {
         id: 'biomolecules',
-        icon: PluridIconInfo,
+        icon: icons.biomolecules,
         label: 'biomolecules',
         renderers: {
             'biomolecules': Biomolecules,
@@ -84,7 +105,7 @@ export const dashboards = [
     },
     {
         id: 'reactions',
-        icon: PluridIconInfo,
+        icon: icons.reactions,
         label: 'reactions',
         renderers: {
             'reactions': Reactions,
@@ -92,7 +113,7 @@ export const dashboards = [
     },
     {
         id: 'channels',
-        icon: PluridIconInfo,
+        icon: icons.channels,
         label: 'channels',
         renderers: {
             'channels': Channels,

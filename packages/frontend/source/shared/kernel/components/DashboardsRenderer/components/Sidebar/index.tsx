@@ -13,7 +13,7 @@
         PluridIconArrowRight,
         PluridIconDocuments,
         PluridIconExternalLink,
-        PluridIconApps,
+        PluridIconSpace,
         PluridIconExit,
     } from '@plurid/plurid-icons-react';
     // #endregion libraries
@@ -179,7 +179,7 @@ const Sidebar: React.FC<SidebarProperties> = (
                         const Icon: any = icon;
 
                         const selectorIcon = !icon
-                            ? (<PluridIconApps theme={theme} />)
+                            ? (<PluridIconSpace theme={theme} />)
                             : typeof icon === 'function'
                                 ? (<Icon theme={theme} />)
                                 : (<>{icon}</>);
