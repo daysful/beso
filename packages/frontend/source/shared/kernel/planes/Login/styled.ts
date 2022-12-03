@@ -22,13 +22,13 @@ export const StyledLogin = styled.div<IStyledLogin>`
     text-align: center;
 
     h1 {
-        font-size: 1.3rem;
-        margin: 1rem;
+        font-size: 1.5rem;
+        text-transform: uppercase;
+        margin-bottom: 0;
     }
 
     h2 {
         font-size: 1.1rem;
-        margin: 1rem;
     }
 `;
 
