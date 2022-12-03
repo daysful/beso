@@ -41,6 +41,15 @@ const indexRoute: PluridReactRoute = {
         ],
     ],
     view: [],
+    defaultConfiguration: {
+        elements: {
+            plane: {
+                controls: {
+                    title: false,
+                },
+            },
+        },
+    },
 };
 
 
