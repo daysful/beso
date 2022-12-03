@@ -218,8 +218,9 @@ const Login: React.FC<LoginProperties> = (
                 <PluridPureButton
                     text={loggingIn ? 'Login' : 'Register'}
                     atClick={() => login()}
-                    level={2}
                     theme={stateInteractionTheme}
+                    level={2}
+                    disabled={!identonym || !key}
                 />
             </StyledLoginButton>
 
