@@ -35,9 +35,9 @@ const Head: React.FC<HeadProperties> = (
         canonicalURL,
     } = properties;
 
-    const titleValue = title || `beso`;
+    const titleValue = title || `BESO`;
     const descriptionValue = description || 'BioElectric Simulation Orchestrator';
-    const ogTitleValue = ogTitle || title || `beso`;
+    const ogTitleValue = ogTitle || title || `BESO`;
     const ogDescriptionValue = ogDescription || description || 'BioElectric Simulation Orchestrator';
     const ogImageValue = ogImage || '/icon-192x192.png';
     const ogURLValue = ogURL || '';
