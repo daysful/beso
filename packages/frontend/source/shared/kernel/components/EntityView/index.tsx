@@ -130,6 +130,8 @@ const EntityView: React.ForwardRefExoticComponent<EntityViewType> = forwardRef((
             // #endregion methods
         // #endregion optional
     } = properties;
+
+    const placeholder = 'search';
     // #endregion properties
 
 
@@ -259,7 +261,7 @@ const EntityView: React.ForwardRefExoticComponent<EntityViewType> = forwardRef((
                 <StyledEntityFilterLine>
                     <PluridTextline
                         text={searchValue}
-                        placeholder="filter"
+                        placeholder={placeholder}
                         atChange={(event) => {
                             const {
                                 value,
