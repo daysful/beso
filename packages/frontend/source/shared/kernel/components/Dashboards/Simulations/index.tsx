@@ -39,7 +39,6 @@
     } from './styled';
 
     import {
-        createSearchTerms,
         simulationRowRenderer,
     } from './logic';
     // #endregion internal
@@ -94,7 +93,7 @@ const Simulations: React.FC<SimulationsProperties> = (
 
 
     // #region handlers
-    const handleRecordObliterate = async (
+    const handleObliterate = async (
         id: string,
     ) => {
         try {
@@ -108,20 +107,13 @@ const Simulations: React.FC<SimulationsProperties> = (
 
     // #region state
     const [
-        searchTerms,
-        setSearchTerms,
-    ] = useState(
-        createSearchTerms(stateSimulations),
-    );
-
-    const [
         filteredRows,
         setFilteredRows,
     ] = useState(
         stateSimulations.map(
             simulation => simulationRowRenderer(
                 simulation,
-                handleRecordObliterate,
+                handleObliterate,
             ),
         ),
     );
@@ -168,6 +160,9 @@ const Simulations: React.FC<SimulationsProperties> = (
         >
             <EntityView
                 ref={entityView}
+
+                data={stateSimulations}
+                searchFields={['name']}
 
                 generalTheme={stateGeneralTheme}
                 interactionTheme={stateInteractionTheme}

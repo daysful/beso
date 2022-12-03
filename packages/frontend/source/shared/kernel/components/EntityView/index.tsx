@@ -45,6 +45,10 @@
         StyledActionButton,
         StyledNoRows,
     } from './styled';
+
+    import {
+        createSearchTerms,
+    } from './logic';
     // #endregion internal
 // #endregion imports
 
@@ -54,6 +58,9 @@
 export interface EntityViewProperties {
     // #region required
         // #region values
+        data: any[];
+        searchFields: string[];
+
         generalTheme: Theme;
         interactionTheme: Theme;
 
@@ -102,6 +109,8 @@ const EntityView: React.ForwardRefExoticComponent<EntityViewType> = forwardRef((
     const {
         // #region required
             // #region values
+            data,
+
             generalTheme,
             interactionTheme,
 
@@ -142,6 +151,13 @@ const EntityView: React.ForwardRefExoticComponent<EntityViewType> = forwardRef((
 
 
     // #region state
+    const [
+        searchTerms,
+        setSearchTerms,
+    ] = useState(
+        createSearchTerms(data, []),
+    );
+
     const [
         searchValue,
         setSearchValue,

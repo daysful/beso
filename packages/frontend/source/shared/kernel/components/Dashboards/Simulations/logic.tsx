@@ -18,7 +18,7 @@
 // #region module
 export const simulationRowRenderer = (
     simulation: any,
-    handleRecordObliterate: (
+    handleObliterate: (
         id: string,
     ) => void,
 ) => {
@@ -57,47 +57,9 @@ export const simulationRowRenderer = (
             </PluridLink>
 
             <PluridIconDelete
-                atClick={() => handleRecordObliterate(id)}
+                atClick={() => handleObliterate(id)}
             />
         </>
     );
 }
-
-
-export const createSearchTermsGeneric = (
-    data: any[],
-    fields: string[],
-) => {
-    const searchTerms = data.map(
-        entity => {
-            const {
-                id,
-            } = entity;
-
-            const termData: string[] = [];
-
-            for (const field of fields) {
-                const term = entity[field];
-
-                if (term && typeof term === 'string') {
-                    termData.push(term.toLowerCase());
-                }
-            }
-
-            const searchTerm = {
-                id,
-                data: termData,
-            };
-
-            return searchTerm;
-        },
-    );
-
-    return searchTerms;
-}
-
-
-export const createSearchTerms = (
-    simulations: any[],
-) => createSearchTermsGeneric(simulations, ['name']);
 // #endregion module
