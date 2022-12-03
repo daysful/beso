@@ -16,6 +16,10 @@
     import {
         DispatchAction,
     } from '@plurid/plurid-ui-state-react';
+
+    import {
+        PluridPlaneComponentProperty,
+    } from '@plurid/plurid-react';
     // #endregion libraries
 
 
@@ -46,6 +50,7 @@
 
 // #region module
 export interface IndexOwnProperties {
+    plurid: PluridPlaneComponentProperty;
 }
 
 export interface IndexStateProperties {
@@ -69,15 +74,15 @@ const Index: React.FC<IndexProperties> = (
 ) => {
     // #region properties
     const {
+        // #region own
+        plurid,
+        // #endregion own
+
         // #region state
         stateGeneralTheme,
         // stateInteractionTheme,
         stateIdentonym,
         // #endregion state
-
-        // #region dispatch
-        dispatchSetGeneralField,
-        // #endregion dispatch
     } = properties;
     // #endregion properties
 
@@ -92,6 +97,7 @@ const Index: React.FC<IndexProperties> = (
                 theme={stateGeneralTheme}
 
                 activeRender="simulations"
+                rendererID={plurid.plane.planeID}
                 identonym={stateIdentonym}
                 // usageType="PRIVATE_USAGE"
                 brandingName="beso"

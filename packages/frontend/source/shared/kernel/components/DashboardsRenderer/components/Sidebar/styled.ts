@@ -62,44 +62,6 @@ export const StyledSelectors = styled.div<IStyledSelectors>`
 `;
 
 
-export interface IStyledSelector {
-    theme: Theme;
-    selected: boolean;
-    compactSelectors: boolean;
-}
-
-export const StyledSelector = styled.li<IStyledSelector>`
-    background-color: ${
-        ({
-            theme,
-            selected,
-        }: IStyledSelector) => selected
-            ? theme.backgroundColorPrimary
-            : 'initial'
-    };
-
-    :hover {
-        background-color: ${
-            ({
-                theme,
-            }: IStyledSelector) => theme.backgroundColorPrimary
-        };
-    }
-
-    display: grid;
-    grid-template-columns: ${
-        ({
-            compactSelectors,
-        }: IStyledSelector) => compactSelectors
-            ? '16px'
-            : '16px auto'
-    };
-    grid-gap: 0.7rem;
-    min-height: 45px;
-    align-items: center;
-`;
-
-
 export interface IStyledBranding {
     compactSelectors: boolean;
 }

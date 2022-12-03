@@ -13,7 +13,6 @@
         PluridIconArrowRight,
         PluridIconDocuments,
         PluridIconExternalLink,
-        PluridIconSpace,
         PluridIconExit,
     } from '@plurid/plurid-icons-react';
     // #endregion libraries
@@ -31,10 +30,11 @@
         StyledSidebar,
         StyledSelectors,
         StyledBranding,
-        StyledSelector,
         StyledHelp,
         StyledHelpItem,
     } from './styled';
+
+    import Selector from './components/Selector';
     // #endregion internal
 // #region imports
 
@@ -60,6 +60,7 @@ export interface SidebarProperties {
 
     // #region optional
         // #region values
+        rendererID?: string;
         identonym?: string;
         usageType?: string;
         brandingName?: string;
@@ -100,6 +101,7 @@ const Sidebar: React.FC<SidebarProperties> = (
 
         // #region optional
             // #region values
+            rendererID,
             brandingName,
             brandingNameStyle,
             brandingLogo,
@@ -158,50 +160,33 @@ const Sidebar: React.FC<SidebarProperties> = (
             {compactSelectors
             && mouseOverSelectors
             && (
-                <PluridIconArrowRight
-                    atClick={() => setCompactSelectors(false)}
-                />
+                <>
+                    <PluridIconArrowRight
+                        atClick={() => setCompactSelectors(false)}
+                    />
+
+                    <div>
+                        {/* Empty space for alignment purposes. */}
+                        &#12644;
+                    </div>
+                </>
             )}
         </StyledBranding>
     );
 
     const selectors = (
         <ul>
-            {dashboards.map(dashboard => {
-                const {
-                    id,
-                    icon,
-                    label,
-                } = dashboard;
-
-                // FORCE uppercase for React
-                const Icon: any = icon;
-
-                const selectorIcon = !icon
-                    ? (<PluridIconSpace theme={theme} />)
-                    : typeof icon === 'function'
-                        ? (<Icon theme={theme} />)
-                        : (<>{icon}</>);
-
-                return (
-                    <StyledSelector
-                        key={Math.random() + id}
-
-                        onClick={() => setRenderView(id)}
-                        theme={theme}
-                        selected={id === renderView}
-                        compactSelectors={compactSelectors}
-                    >
-                        {selectorIcon}
-
-                        {!compactSelectors && (
-                            <div>
-                                {label}
-                            </div>
-                        )}
-                    </StyledSelector>
-                );
-            })}
+            {dashboards.map(dashboard => (
+                <Selector
+                    key={dashboard.id}
+                    data={dashboard}
+                    compactSelectors={compactSelectors}
+                    theme={theme}
+                    renderView={renderView}
+                    setRenderView={setRenderView}
+                    rendererID={rendererID}
+                />
+            ))}
         </ul>
     );
 

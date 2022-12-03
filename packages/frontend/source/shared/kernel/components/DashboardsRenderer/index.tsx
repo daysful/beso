@@ -42,6 +42,7 @@ export interface DashboardsRendererProperties {
 
     // #region optional
         // #region values
+        rendererID?: string;
         identonym?: string;
         usageType?: string;
         brandingName?: string;
@@ -75,6 +76,7 @@ const DashboardsRenderer: React.FC<DashboardsRendererProperties> = (
 
         // #region optional
             // #region values
+            rendererID,
             identonym,
             usageType,
             brandingName,
@@ -160,6 +162,7 @@ const DashboardsRenderer: React.FC<DashboardsRendererProperties> = (
                     openManual={openManual}
                     logout={logout}
 
+                    rendererID={rendererID}
                     brandingName={brandingName}
                     brandingNameStyle={brandingNameStyle}
                     brandingLogo={brandingLogo}
