@@ -11,10 +11,10 @@
 
 
 // #region module
-export interface IStyledIndex {
+export interface IStyledInterventionsTargeted {
     theme: Theme;
 }
 
-export const StyledIndex = styled.div<IStyledIndex>`
+export const StyledInterventionsTargeted = styled.div<IStyledInterventionsTargeted>`
 `;
 // #region module

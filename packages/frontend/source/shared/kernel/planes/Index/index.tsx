@@ -1,8 +1,6 @@
 // #region imports
     // #region libraries
-    import React, {
-        useState,
-    } from 'react';
+    import React from 'react';
 
     import {
         AnyAction,
@@ -22,9 +20,9 @@
 
 
     // #region external
-    import {
-        PluridInputLine,
-    } from '~kernel-services/styled';
+    import besoLogo from '../../assets/beso-logo.png';
+
+    import DashboardsRenderer from '~kernel-components/DashboardsRenderer';
 
     import { AppState } from '~kernel-services/state/store';
     import StateContext from '~kernel-services/state/context';
@@ -34,6 +32,10 @@
 
 
     // #region internal
+    import {
+        dashboards,
+    } from './data';
+
     import {
         StyledIndex,
     } from './styled';
@@ -85,13 +87,17 @@ const Index: React.FC<IndexProperties> = (
         <StyledIndex
             theme={stateGeneralTheme}
         >
-            <h1>
-                beso
-            </h1>
+            <DashboardsRenderer
+                dashboards={dashboards}
+                theme={stateGeneralTheme}
 
-            <h2>
-                BioElectric Simulation Orchestrator
-            </h2>
+                activeRender="simulations"
+                brandingName="beso"
+                brandingLogo={besoLogo}
+                noDashboardRender={<>select a dashboard</>}
+
+                atDashboardChange={(newDashboard: string) => {}}
+            />
         </StyledIndex>
     );
     // #endregion render

@@ -11,10 +11,10 @@
 
 
 // #region module
-export interface IStyledIndex {
+export interface IStyledWorlds {
     theme: Theme;
 }
 
-export const StyledIndex = styled.div<IStyledIndex>`
+export const StyledWorlds = styled.div<IStyledWorlds>`
 `;
 // #region module
