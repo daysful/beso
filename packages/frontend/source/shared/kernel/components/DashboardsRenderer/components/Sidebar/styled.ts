@@ -140,5 +140,6 @@ export const StyledHelpItem = styled.li<IStyledHelpItem>`
             ? '16px'
             : '16px auto 16px'
     };
+    min-height: 45px;
 `;
 // #region module
