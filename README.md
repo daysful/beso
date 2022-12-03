@@ -36,10 +36,12 @@ docker pull daysful/beso-frontend
 mkdir ./beso_data
 
 docker run --name beso-backend \
-    -p 54567:54567 \
+    --network="host"
     --mount type=bind,source="$(pwd)"/beso_data,target=/app/data \
+    -p 54567:54567 \
     -d daysful/beso-backend
 docker run --name beso-frontend \
+    --network="host" \
     -p 54568:54568 \
     -d daysful/beso-frontend
 ```
@@ -52,9 +54,10 @@ Instead of the default `sqlite` database, `beso.db`, `mongo` can be used by prov
 
 ``` bash
 docker run --name beso-backend \
-    -p 54567:54567 \
+    --network="host" \
     --mount type=bind,source="$(pwd)"/beso_data,target=/app/data \
     --env BESO_MONGO_CONNECTION_STRING="mongodb://[username:password@]host[:port]" \
+    -p 54567:54567 \
     -d daysful/beso-backend
 ```
 
@@ -72,12 +75,12 @@ BESO_FAVICON_PATH # path to favicon
 
 ### Frontend
 
-The `beso-frontend` might require the environment variable `BESO_BACKEND` to discover the `beso-backend`.
+The `beso-frontend` requires the environment variable `BESO_BACKEND` to discover the `beso-backend` if running without `--network="host"`.
 
 ``` bash
 docker run --name beso-frontend \
-    -p 54568:54568 \
     --env BESO_BACKEND="http://host[:port]" \
+    -p 54568:54568 \
     -d daysful/beso-frontend
 ```
 
