@@ -19,6 +19,10 @@
 
     // #region external
     import {
+        Network,
+    } from '~kernel-data/interfaces';
+
+    import {
         DashboardRenderProperties,
     } from '~kernel-components/DashboardsRenderer/data';
 
@@ -50,6 +54,7 @@ export interface NetworksOwnProperties {
 export interface NetworksStateProperties {
     stateGeneralTheme: Theme;
     stateInteractionTheme: Theme;
+    stateNetworks: Network[];
 }
 
 export interface NetworksDispatchProperties {
@@ -66,13 +71,16 @@ const Networks: React.FC<NetworksProperties> = (
 ) => {
     // #region properties
     const {
+        // #region own
+        setRenderView,
+        // #endregion own
+
         // #region state
         stateGeneralTheme,
         stateInteractionTheme,
+        stateNetworks,
         // #endregion state
     } = properties;
-
-    const stateNetworks: any[] = [];
     // #endregion properties
 
 
@@ -186,6 +194,7 @@ const mapStateToProperties = (
 ): NetworksStateProperties => ({
     stateGeneralTheme: selectors.themes.getGeneralTheme(state),
     stateInteractionTheme: selectors.themes.getInteractionTheme(state),
+    stateNetworks: selectors.data.getData(state).networks,
 });
 
 

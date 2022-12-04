@@ -19,6 +19,10 @@
 
     // #region external
     import {
+        Reaction,
+    } from '~kernel-data/interfaces';
+
+    import {
         DashboardRenderProperties,
     } from '~kernel-components/DashboardsRenderer/data';
 
@@ -50,6 +54,7 @@ export interface ReactionsOwnProperties {
 export interface ReactionsStateProperties {
     stateGeneralTheme: Theme;
     stateInteractionTheme: Theme;
+    stateReactions: Reaction[];
 }
 
 export interface ReactionsDispatchProperties {
@@ -66,13 +71,16 @@ const Reactions: React.FC<ReactionsProperties> = (
 ) => {
     // #region properties
     const {
+        // #region own
+        setRenderView,
+        // #endregion own
+
         // #region state
         stateGeneralTheme,
         stateInteractionTheme,
+        stateReactions,
         // #endregion state
     } = properties;
-
-    const stateReactions: any[] = [];
     // #endregion properties
 
 
@@ -186,6 +194,7 @@ const mapStateToProperties = (
 ): ReactionsStateProperties => ({
     stateGeneralTheme: selectors.themes.getGeneralTheme(state),
     stateInteractionTheme: selectors.themes.getInteractionTheme(state),
+    stateReactions: selectors.data.getData(state).reactions,
 });
 
 

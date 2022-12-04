@@ -19,6 +19,10 @@
 
     // #region external
     import {
+        Tissue,
+    } from '~kernel-data/interfaces';
+
+    import {
         DashboardRenderProperties,
     } from '~kernel-components/DashboardsRenderer/data';
 
@@ -50,6 +54,7 @@ export interface TissuesOwnProperties {
 export interface TissuesStateProperties {
     stateGeneralTheme: Theme;
     stateInteractionTheme: Theme;
+    stateTissues: Tissue[];
 }
 
 export interface TissuesDispatchProperties {
@@ -66,13 +71,16 @@ const Tissues: React.FC<TissuesProperties> = (
 ) => {
     // #region properties
     const {
+        // #region own
+        setRenderView,
+        // #endregion own
+
         // #region state
         stateGeneralTheme,
         stateInteractionTheme,
+        stateTissues,
         // #endregion state
     } = properties;
-
-    const stateTissues: any[] = [];
     // #endregion properties
 
 
@@ -186,6 +194,7 @@ const mapStateToProperties = (
 ): TissuesStateProperties => ({
     stateGeneralTheme: selectors.themes.getGeneralTheme(state),
     stateInteractionTheme: selectors.themes.getInteractionTheme(state),
+    stateTissues: selectors.data.getData(state).tissues,
 });
 
 

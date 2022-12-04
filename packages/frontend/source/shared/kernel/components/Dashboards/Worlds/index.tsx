@@ -19,6 +19,10 @@
 
     // #region external
     import {
+        World,
+    } from '~kernel-data/interfaces';
+
+    import {
         DashboardRenderProperties,
     } from '~kernel-components/DashboardsRenderer/data';
 
@@ -50,6 +54,7 @@ export interface WorldsOwnProperties {
 export interface WorldsStateProperties {
     stateGeneralTheme: Theme;
     stateInteractionTheme: Theme;
+    stateWorlds: World[];
 }
 
 export interface WorldsDispatchProperties {
@@ -73,10 +78,9 @@ const Worlds: React.FC<WorldsProperties> = (
         // #region state
         stateGeneralTheme,
         stateInteractionTheme,
+        stateWorlds,
         // #endregion state
     } = properties;
-
-    const stateWorlds: any[] = [];
     // #endregion properties
 
 
@@ -190,6 +194,7 @@ const mapStateToProperties = (
 ): WorldsStateProperties => ({
     stateGeneralTheme: selectors.themes.getGeneralTheme(state),
     stateInteractionTheme: selectors.themes.getInteractionTheme(state),
+    stateWorlds: selectors.data.getData(state).worlds,
 });
 
 

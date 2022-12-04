@@ -19,6 +19,10 @@
 
     // #region external
     import {
+        Channel,
+    } from '~kernel-data/interfaces';
+
+    import {
         DashboardRenderProperties,
     } from '~kernel-components/DashboardsRenderer/data';
 
@@ -50,6 +54,7 @@ export interface ChannelsOwnProperties {
 export interface ChannelsStateProperties {
     stateGeneralTheme: Theme;
     stateInteractionTheme: Theme;
+    stateChannels: Channel[];
 }
 
 export interface ChannelsDispatchProperties {
@@ -66,13 +71,16 @@ const Channels: React.FC<ChannelsProperties> = (
 ) => {
     // #region properties
     const {
+        // #region own
+        setRenderView,
+        // #endregion own
+
         // #region state
         stateGeneralTheme,
         stateInteractionTheme,
+        stateChannels,
         // #endregion state
     } = properties;
-
-    const stateChannels: any[] = [];
     // #endregion properties
 
 
@@ -186,6 +194,7 @@ const mapStateToProperties = (
 ): ChannelsStateProperties => ({
     stateGeneralTheme: selectors.themes.getGeneralTheme(state),
     stateInteractionTheme: selectors.themes.getInteractionTheme(state),
+    stateChannels: selectors.data.getData(state).channels,
 });
 
 

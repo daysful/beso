@@ -19,6 +19,10 @@
 
     // #region external
     import {
+        Biomolecule,
+    } from '~kernel-data/interfaces';
+
+    import {
         DashboardRenderProperties,
     } from '~kernel-components/DashboardsRenderer/data';
 
@@ -50,6 +54,7 @@ export interface BiomoleculesOwnProperties {
 export interface BiomoleculesStateProperties {
     stateGeneralTheme: Theme;
     stateInteractionTheme: Theme;
+    stateBiomolecules: Biomolecule[];
 }
 
 export interface BiomoleculesDispatchProperties {
@@ -66,13 +71,16 @@ const Biomolecules: React.FC<BiomoleculesProperties> = (
 ) => {
     // #region properties
     const {
+        // #region own
+        setRenderView,
+        // #endregion own
+
         // #region state
         stateGeneralTheme,
         stateInteractionTheme,
+        stateBiomolecules,
         // #endregion state
     } = properties;
-
-    const stateBiomolecules: any[] = [];
     // #endregion properties
 
 
@@ -186,6 +194,7 @@ const mapStateToProperties = (
 ): BiomoleculesStateProperties => ({
     stateGeneralTheme: selectors.themes.getGeneralTheme(state),
     stateInteractionTheme: selectors.themes.getInteractionTheme(state),
+    stateBiomolecules: selectors.data.getData(state).biomolecules,
 });
 
 

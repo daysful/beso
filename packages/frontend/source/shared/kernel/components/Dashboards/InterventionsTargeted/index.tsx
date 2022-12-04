@@ -19,6 +19,10 @@
 
     // #region external
     import {
+        TargetedIntervention,
+    } from '~kernel-data/interfaces';
+
+    import {
         DashboardRenderProperties,
     } from '~kernel-components/DashboardsRenderer/data';
 
@@ -51,6 +55,7 @@ export interface InterventionsTargetedOwnProperties {
 export interface InterventionsTargetedStateProperties {
     stateGeneralTheme: Theme;
     stateInteractionTheme: Theme;
+    stateTargetedInterventions: TargetedIntervention[];
 }
 
 export interface InterventionsTargetedDispatchProperties {
@@ -75,10 +80,9 @@ const InterventionsTargeted: React.FC<InterventionsTargetedProperties> = (
         // #region state
         stateGeneralTheme,
         stateInteractionTheme,
+        stateTargetedInterventions,
         // #endregion state
     } = properties;
-
-    const stateTargetedInterventions: any[] = [];
     // #endregion properties
 
 
@@ -217,6 +221,7 @@ const mapStateToProperties = (
 ): InterventionsTargetedStateProperties => ({
     stateGeneralTheme: selectors.themes.getGeneralTheme(state),
     stateInteractionTheme: selectors.themes.getInteractionTheme(state),
+    stateTargetedInterventions: selectors.data.getData(state).targetedInterventions,
 });
 
 

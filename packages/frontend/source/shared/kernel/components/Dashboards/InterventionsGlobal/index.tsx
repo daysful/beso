@@ -19,6 +19,10 @@
 
     // #region external
     import {
+        GlobalIntervention,
+    } from '~kernel-data/interfaces';
+
+    import {
         DashboardRenderProperties,
     } from '~kernel-components/DashboardsRenderer/data';
 
@@ -50,6 +54,7 @@ export interface InterventionsGlobalOwnProperties {
 export interface InterventionsGlobalStateProperties {
     stateGeneralTheme: Theme;
     stateInteractionTheme: Theme;
+    stateGlobalInterventions: GlobalIntervention[];
 }
 
 export interface InterventionsGlobalDispatchProperties {
@@ -66,13 +71,16 @@ const InterventionsGlobal: React.FC<InterventionsGlobalProperties> = (
 ) => {
     // #region properties
     const {
+        // #region own
+        setRenderView,
+        // #endregion own
+
         // #region state
         stateGeneralTheme,
         stateInteractionTheme,
+        stateGlobalInterventions,
         // #endregion state
     } = properties;
-
-    const stateGlobalInterventions: any[] = [];
     // #endregion properties
 
 
@@ -186,6 +194,7 @@ const mapStateToProperties = (
 ): InterventionsGlobalStateProperties => ({
     stateGeneralTheme: selectors.themes.getGeneralTheme(state),
     stateInteractionTheme: selectors.themes.getInteractionTheme(state),
+    stateGlobalInterventions: selectors.data.getData(state).globalInterventions,
 });
 
 

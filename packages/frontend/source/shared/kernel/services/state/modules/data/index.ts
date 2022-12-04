@@ -10,6 +10,15 @@
     // #region external
     import {
         Simulation,
+        World,
+        Tissue,
+        GlobalIntervention,
+        TargetedIntervention,
+        Modulator,
+        Network,
+        Biomolecule,
+        Reaction,
+        Channel,
     } from '~kernel-data/interfaces';
 
     import type {
@@ -23,15 +32,15 @@
 // #region module
 export interface DataState {
     simulations: Simulation[];
-    worlds: any[];
-    tissues: any[];
-    globalInterventions: any[];
-    targetedInterventions: any[];
-    modulators: any[];
-    networks: any[];
-    biomolecules: any[];
-    reactions: any[];
-    channels: any[];
+    worlds: World[];
+    tissues: Tissue[];
+    globalInterventions: GlobalIntervention[];
+    targetedInterventions: TargetedIntervention[];
+    modulators: Modulator[];
+    networks: Network[];
+    biomolecules: Biomolecule[];
+    reactions: Reaction[];
+    channels: Channel[];
 }
 
 

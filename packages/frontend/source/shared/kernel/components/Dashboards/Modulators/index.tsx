@@ -19,6 +19,10 @@
 
     // #region external
     import {
+        Modulator,
+    } from '~kernel-data/interfaces';
+
+    import {
         DashboardRenderProperties,
     } from '~kernel-components/DashboardsRenderer/data';
 
@@ -50,6 +54,7 @@ export interface ModulatorsOwnProperties {
 export interface ModulatorsStateProperties {
     stateGeneralTheme: Theme;
     stateInteractionTheme: Theme;
+    stateModulators: Modulator[];
 }
 
 export interface ModulatorsDispatchProperties {
@@ -66,13 +71,16 @@ const Modulators: React.FC<ModulatorsProperties> = (
 ) => {
     // #region properties
     const {
+        // #region own
+        setRenderView,
+        // #endregion own
+
         // #region state
         stateGeneralTheme,
         stateInteractionTheme,
+        stateModulators,
         // #endregion state
     } = properties;
-
-    const stateModulators: any[] = [];
     // #endregion properties
 
 
@@ -186,6 +194,7 @@ const mapStateToProperties = (
 ): ModulatorsStateProperties => ({
     stateGeneralTheme: selectors.themes.getGeneralTheme(state),
     stateInteractionTheme: selectors.themes.getInteractionTheme(state),
+    stateModulators: selectors.data.getData(state).modulators,
 });
 
 
