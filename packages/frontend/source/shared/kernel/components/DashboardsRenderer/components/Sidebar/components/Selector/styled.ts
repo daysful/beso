@@ -50,8 +50,22 @@ export const StyledSelector = styled.li<IStyledSelector>`
 `;
 
 
-export const StyledSelectorRelativeLabel = styled.div`
+export interface IStyledSelectorRelativeLabel {
+    theme: Theme;
+}
+
+export const StyledSelectorRelativeLabel = styled.div<IStyledSelectorRelativeLabel>`
     position: absolute;
     left: 50px;
+    z-index: 9999;
+    min-height: 45px;
+    display: grid;
+    align-items: center;
+    padding-right: 0.5rem;
+    background-color: ${
+        ({
+            theme,
+        }: IStyledSelectorRelativeLabel) => theme.backgroundColorPrimaryAlpha
+    };
 `;
 // #region module

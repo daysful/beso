@@ -161,7 +161,9 @@ const Selector: React.FC<SelectorProperties> = (
             {compactSelectors
             && mouseOver
             && (
-                <StyledSelectorRelativeLabel>
+                <StyledSelectorRelativeLabel
+                    theme={theme}
+                >
                     {label}
                 </StyledSelectorRelativeLabel>
             )}
