@@ -19,6 +19,7 @@
 
     import {
         PluridPlaneComponentProperty,
+        PLURID_PUBSUB_TOPIC,
     } from '@plurid/plurid-react';
     // #endregion libraries
 
@@ -27,6 +28,10 @@
     import besoLogo from '../../assets/beso-logo.png';
 
     import DashboardsRenderer from '~kernel-components/DashboardsRenderer';
+
+    import {
+        logout as logoutLogic,
+    } from '~kernel-services/logic/general';
 
     import { AppState } from '~kernel-services/state/store';
     import StateContext from '~kernel-services/state/context';
@@ -87,6 +92,20 @@ const Index: React.FC<IndexProperties> = (
     // #endregion properties
 
 
+    // #region handlers
+    const logout = () => {
+        plurid.pubSub.publish({
+            topic: PLURID_PUBSUB_TOPIC.VIEW_SET_PLANES,
+            data: {
+                view: [ '/login' ],
+            },
+        });
+
+        logoutLogic();
+    }
+    // #endregion handlers
+
+
     // #region render
     return (
         <StyledIndex
@@ -99,7 +118,7 @@ const Index: React.FC<IndexProperties> = (
                 activeRender="simulations"
                 rendererID={plurid.plane.planeID}
                 identonym={stateIdentonym}
-                // usageType="PRIVATE_USAGE"
+                usageType="PRIVATE_USAGE"
                 brandingName="beso"
                 brandingNameStyle={{
                     textTransform: 'uppercase',
@@ -112,6 +131,8 @@ const Index: React.FC<IndexProperties> = (
                 openManual={() => {
                     window.open('https://github.com/daysful/beso', '_blank');
                 }}
+
+                logout={logout}
             />
         </StyledIndex>
     );

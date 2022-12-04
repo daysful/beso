@@ -54,7 +54,6 @@ export interface SidebarProperties {
         // #endregion values
 
         // #region methods
-        logout: () => void;
         // #endregion methods
     // #endregion required
 
@@ -70,6 +69,7 @@ export interface SidebarProperties {
 
         // #region methods
         openManual?: () => void;
+        logout?: () => void;
         // #endregion methods
     // #endregion optional
 }
@@ -194,7 +194,8 @@ const Sidebar: React.FC<SidebarProperties> = (
         <StyledHelp>
             {mouseOverSelectors && (
                 <ul>
-                    {openManual && (
+                    {openManual
+                    && (
                         <StyledHelpItem
                             onClick={() => openManual()}
                             compactSelectors={compactSelectors}
@@ -213,7 +214,9 @@ const Sidebar: React.FC<SidebarProperties> = (
                         </StyledHelpItem>
                     )}
 
-                    {usageType === 'PRIVATE_USAGE' && (
+                    {usageType === 'PRIVATE_USAGE'
+                    && logout
+                    && (
                         <StyledHelpItem
                             onClick={() => logout()}
                             compactSelectors={compactSelectors}
@@ -226,6 +229,7 @@ const Sidebar: React.FC<SidebarProperties> = (
                                         logout ({identonym})
                                     </div>
 
+                                    {/* FORCED layouting. */}
                                     <div />
                                 </>
                             )}

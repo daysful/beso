@@ -15,6 +15,11 @@
 
 
     // #region external
+    import client from '~kernel-services/graphql/client';
+    import {
+        LOGOUT_USER,
+    } from '~kernel-services/graphql/mutate';
+
     import actions from '~kernel-services/state/actions';
     // #endregion external
 // #endregion imports
@@ -22,6 +27,13 @@
 
 
 // #region module
+export const logout = () => {
+    client.mutate({
+        mutation: LOGOUT_USER,
+    });
+}
+
+
 export const addNewPlane = (
     dispatch: ThunkDispatch<{}, {}, AnyAction>,
 ) => {

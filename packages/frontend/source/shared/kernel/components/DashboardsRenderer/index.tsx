@@ -55,6 +55,8 @@ export interface DashboardsRendererProperties {
         // #region methods
         openManual?: () => void;
         atDashboardChange?: (newDashboard: string) => void;
+
+        logout?: () => void;
         // #endregion methods
     // #endregion optional
 }
@@ -89,6 +91,8 @@ const DashboardsRenderer: React.FC<DashboardsRendererProperties> = (
             // #region methods
             atDashboardChange,
             openManual,
+
+            logout,
             // #endregion methods
         // #endregion optional
     } = properties;
@@ -139,8 +143,6 @@ const DashboardsRenderer: React.FC<DashboardsRendererProperties> = (
 
 
     // #region render
-    const logout = () => {}
-
     return (
         <StyledDashboardsRenderer
             theme={theme}

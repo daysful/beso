@@ -35,6 +35,13 @@ export const LOGIN_USER = gql`
 `;
 
 
+export const LOGOUT_USER = gql`
+    mutation LogoutUser {
+        logoutUser
+    }
+`;
+
+
 export const REGISTER_USER = gql`
     mutation RegisterUser($identonym: String!, $key: String!) {
         registerUser(identonym: $identonym, key: $key) {
