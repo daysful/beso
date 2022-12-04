@@ -26,6 +26,10 @@ const {
         InputSwitch: PluridInputSwitch,
         Textline: PluridTextline,
         Dropdown: PluridDropdown,
+        EntityPillGroup: PluridEntityPillGroup,
+    },
+    form: {
+        FormLeftRight: PluridFormLeftRight,
     },
     markers: {
         Spinner: PluridSpinner,
@@ -60,6 +64,8 @@ export {
     PluridInputSwitch,
     PluridTextline,
     PluridDropdown,
+    PluridEntityPillGroup,
+    PluridFormLeftRight,
     PluridSpinner,
 
     ToolbarSpecific,
