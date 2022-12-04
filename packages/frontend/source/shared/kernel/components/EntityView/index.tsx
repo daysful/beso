@@ -58,7 +58,7 @@
 export interface EntityViewProperties {
     // #region required
         // #region values
-        data: any[];
+        entities: any[];
         searchFields: string[];
 
         generalTheme: Theme;
@@ -76,7 +76,6 @@ export interface EntityViewProperties {
 
     // #region optional
         // #region values
-        entities?: any[];
         actionButtonText?: string;
         loading?: number;
         // #endregion values
@@ -109,7 +108,8 @@ const EntityView: React.ForwardRefExoticComponent<EntityViewType> = forwardRef((
     const {
         // #region required
             // #region values
-            data,
+            entities,
+            searchFields,
 
             generalTheme,
             interactionTheme,
@@ -126,7 +126,6 @@ const EntityView: React.ForwardRefExoticComponent<EntityViewType> = forwardRef((
 
         // #region optional
             // #region values.
-            entities,
             actionButtonText,
             loading,
             // #endregion values
@@ -141,6 +140,7 @@ const EntityView: React.ForwardRefExoticComponent<EntityViewType> = forwardRef((
     } = properties;
 
     const placeholder = 'search';
+    const scrollThrottleTime = 1_000;
     // #endregion properties
 
 
@@ -155,7 +155,7 @@ const EntityView: React.ForwardRefExoticComponent<EntityViewType> = forwardRef((
         searchTerms,
         setSearchTerms,
     ] = useState(
-        createSearchTerms(data, []),
+        createSearchTerms(entities, searchFields),
     );
 
     const [
@@ -176,7 +176,6 @@ const EntityView: React.ForwardRefExoticComponent<EntityViewType> = forwardRef((
     // #region handlers
     const handleScroll = useThrottledCallback(() => {
         const element = entityList.current;
-
         if (!element) {
             return;
         }
@@ -187,7 +186,7 @@ const EntityView: React.ForwardRefExoticComponent<EntityViewType> = forwardRef((
         if (bottomReached && actionScrollBottom && entities) {
             actionScrollBottom(entities);
         }
-    }, 1000);
+    }, scrollThrottleTime);
 
     const clearFilterValue = () => {
         setSearchValue('');
@@ -257,7 +256,7 @@ const EntityView: React.ForwardRefExoticComponent<EntityViewType> = forwardRef((
                 clearFilterValue();
             }
         }),
-    )
+    );
     // #endregion effects
 
 
@@ -360,16 +359,14 @@ const EntityView: React.ForwardRefExoticComponent<EntityViewType> = forwardRef((
                         ref={entityList}
                         loading={loading}
                     >
-                        {rows.map(row => {
-                            return (
-                                <StyledEntityListItem
-                                    key={Math.random() + ''}
-                                    rowTemplate={rowTemplate}
-                                >
-                                    {row}
-                                </StyledEntityListItem>
-                            );
-                        })}
+                        {rows.map(row => (
+                            <StyledEntityListItem
+                                key={Math.random() + ''}
+                                rowTemplate={rowTemplate}
+                            >
+                                {row}
+                            </StyledEntityListItem>
+                        ))}
                     </StyledEntityList>
                 </StyledEntityListContainer>
             )}
@@ -379,7 +376,8 @@ const EntityView: React.ForwardRefExoticComponent<EntityViewType> = forwardRef((
                     <PluridPureButton
                         text={actionButtonText}
                         atClick={() => actionButtonClick
-                            ? actionButtonClick() : undefined
+                            ? actionButtonClick()
+                            : undefined
                         }
                         theme={interactionTheme}
                         level={2}

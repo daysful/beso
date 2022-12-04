@@ -76,6 +76,10 @@ const Simulations: React.FC<SimulationsProperties> = (
 ) => {
     // #region properties
     const {
+        // #region own
+        setRenderView,
+        // #endregion own
+
         // #region state
         stateGeneralTheme,
         stateInteractionTheme,
@@ -101,6 +105,16 @@ const Simulations: React.FC<SimulationsProperties> = (
         } catch (error) {
             return;
         }
+    }
+
+    const filterUpdate = (
+        rawValue: string,
+    ) => {
+    }
+
+    const actionScrollBottom = async (
+        simulations: any[],
+    ) => {
     }
     // #endregion handlers
 
@@ -161,7 +175,7 @@ const Simulations: React.FC<SimulationsProperties> = (
             <EntityView
                 ref={entityView}
 
-                data={stateSimulations}
+                entities={stateSimulations}
                 searchFields={['name']}
 
                 generalTheme={stateGeneralTheme}
@@ -172,14 +186,18 @@ const Simulations: React.FC<SimulationsProperties> = (
                 rows={filteredRows}
                 noRows="no simulations"
 
-                entities={[]}
-                // loading={loading ? 1 : 0}
+                loading={loading ? 1 : 0}
 
-                // filterUpdate={filterUpdate}
-                // refresh={() => {
-                // }}
+                filterUpdate={filterUpdate}
+                refresh={() => {
+                }}
 
-                // actionScrollBottom={actionScrollBottom}
+                actionButtonText="New Simulation"
+                actionButtonClick={() => {
+                    setRenderView('new-simulation');
+                }}
+
+                actionScrollBottom={actionScrollBottom}
             />
         </StyledSimulations>
     );

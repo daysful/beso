@@ -17,5 +17,6 @@ export interface IStyledSimulations {
 
 export const StyledSimulations = styled.div<IStyledSimulations>`
     padding: 2rem;
+    height: 100%;
 `;
 // #region module

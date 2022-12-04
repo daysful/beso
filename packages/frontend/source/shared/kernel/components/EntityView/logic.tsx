@@ -1,33 +1,29 @@
 // #region module
 export const createSearchTerms = (
-    data: any[],
+    rows: any[],
     fields: string[],
-) => {
-    const searchTerms = data.map(
-        entity => {
-            const {
-                id,
-            } = entity;
+) => (rows.map(
+    (entity) => {
+        const {
+            id,
+        } = entity;
 
-            const termData: string[] = [];
+        const data: string[] = [];
 
-            for (const field of fields) {
-                const term = entity[field];
+        for (const field of fields) {
+            const term = entity[field];
 
-                if (term && typeof term === 'string') {
-                    termData.push(term.toLowerCase());
-                }
+            if (term && typeof term === 'string') {
+                data.push(
+                    term.toLowerCase().trim(),
+                );
             }
+        }
 
-            const searchTerm = {
-                id,
-                data: termData,
-            };
-
-            return searchTerm;
-        },
-    );
-
-    return searchTerms;
-}
+        return {
+            id,
+            data,
+        };
+    },
+));
 // #endregion module
