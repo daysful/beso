@@ -8,8 +8,9 @@
 
 
     import {
-        DispatchActionWithoutPayload,
-    } from '@plurid/plurid-ui-state-react';
+        PluridPubSub,
+        PLURID_PUBSUB_TOPIC,
+    } from '@plurid/plurid-react';
     // #endregion libraries
 
 
@@ -18,10 +19,14 @@
         ToolbarSpecific,
     } from '~kernel-services/styled';
 
+    import {
+        addNewPlane,
+    } from '~kernel-services/logic/general';
+
     import { AppState } from '~kernel-services/state/store';
     import StateContext from '~kernel-services/state/context';
     import selectors from '~kernel-services/state/selectors';
-    import actions from '~kernel-services/state/actions';
+    // import actions from '~kernel-services/state/actions';
     // #endregion external
 
 
@@ -36,13 +41,14 @@
 
 // #region module
 export interface ToolbarHomeControlsOwnProperties {
+    pubsub: PluridPubSub;
 }
 
 export interface ToolbarHomeControlsStateProperties {
 }
 
 export interface ToolbarHomeControlsDispatchProperties {
-    dispatchAddPlane: DispatchActionWithoutPayload<typeof actions.product.addPlane>;
+    dispatch: ThunkDispatch<{}, {}, AnyAction>,
 }
 
 export type ToolbarHomeControlsProperties =
@@ -55,8 +61,12 @@ const ToolbarHomeControls: React.FC<ToolbarHomeControlsProperties> = (
 ) => {
     // #region properties
     const {
+        // #region own
+        pubsub,
+        // #endregion own
+
         // #region dispatch
-        dispatchAddPlane,
+        dispatch,
         // #endregion dispatch
     } = properties;
     // #endregion properties
@@ -67,9 +77,19 @@ const ToolbarHomeControls: React.FC<ToolbarHomeControlsProperties> = (
         type: string,
     ) => {
         switch (type) {
-            case 'new-plane':
-                dispatchAddPlane();
+            case 'new-plane': {
+                const {
+                    plane,
+                } = addNewPlane(dispatch);
+
+                pubsub.publish({
+                    topic: PLURID_PUBSUB_TOPIC.VIEW_ADD_PLANE,
+                    data: {
+                        plane,
+                    },
+                });
                 break;
+            }
             default:
                 break;
         }
@@ -100,9 +120,7 @@ const mapStateToProps = (
 const mapDispatchToProps = (
     dispatch: ThunkDispatch<{}, {}, AnyAction>,
 ): ToolbarHomeControlsDispatchProperties => ({
-    dispatchAddPlane: () => dispatch(
-        actions.product.addPlane(),
-    ),
+    dispatch,
 });
 
 

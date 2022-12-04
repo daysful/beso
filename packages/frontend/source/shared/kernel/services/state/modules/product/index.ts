@@ -59,9 +59,10 @@ export const product = createSlice({
         },
         addPlane: (
             state,
+            action: PayloadAction<string>,
         ) => {
             const newPlane = {
-                id: Math.random() + '',
+                id: action.payload,
             };
 
             state.planes.push(newPlane);

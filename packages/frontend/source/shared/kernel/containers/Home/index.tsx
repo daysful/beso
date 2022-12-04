@@ -25,6 +25,10 @@
     import Head from '~kernel-components/Head';
     import ToolbarHomeControls from '~shared/kernel/components/Toolbar/HomeControls';
 
+    import {
+        addNewPlane,
+    } from '~kernel-services/logic/general';
+
     import { AppState } from '~kernel-services/state/store';
     import StateContext from '~kernel-services/state/context';
     import selectors from '~kernel-services/state/selectors';
@@ -55,6 +59,7 @@ export interface HomeStateProperties {
 }
 
 export interface HomeDispatchProperties {
+    dispatch: ThunkDispatch<{}, {}, AnyAction>,
 }
 
 export type HomeProperties = HomeOwnProperties
@@ -73,8 +78,11 @@ const Home: React.FC<HomeProperties> = (
 
         // #region state
         stateIdentonym,
-        statePlanes,
         // #endregion state
+
+        // #region dispatch
+        dispatch,
+        // #endregion dispatch
     } = properties;
     // #endregion properties
 
@@ -82,8 +90,12 @@ const Home: React.FC<HomeProperties> = (
     // #region effects
     useEffect(() => {
         setTimeout(() => {
+            const {
+                plane,
+            } = addNewPlane(dispatch);
+
             const view = stateIdentonym
-                ? [ '/' ]
+                ? [ plane ]
                 : [ '/login' ];
 
             pubsub.publish({
@@ -105,7 +117,9 @@ const Home: React.FC<HomeProperties> = (
             <Head />
 
             {stateIdentonym && (
-                <ToolbarHomeControls />
+                <ToolbarHomeControls
+                    pubsub={pubsub}
+                />
             )}
         </StyledHome>
     );
@@ -126,6 +140,7 @@ const mapStateToProperties = (
 const mapDispatchToProperties = (
     dispatch: ThunkDispatch<{}, {}, AnyAction>,
 ): HomeDispatchProperties => ({
+    dispatch,
 });
 
 

@@ -32,7 +32,7 @@ const indexRoute: PluridReactRoute = {
             LoginPlane,
         ],
         [
-            '/',
+            '/index/:id',
             IndexPlane,
         ],
         [
