@@ -10,6 +10,7 @@
 const actions = {
     data: modules.data.actions,
     general: modules.general.actions,
+    product: modules.product.actions,
     themes: modules.themes.actions,
 };
 // #endregion module

@@ -8,6 +8,7 @@
 
     import {
         universal,
+        pluridal,
     } from '@plurid/plurid-ui-components-react';
     // #endregion libraries
 // #endregion imports
@@ -29,6 +30,12 @@ const {
         Spinner: PluridSpinner,
     },
 } = universal;
+
+const {
+    toolbars: {
+        ToolbarSpecific,
+    },
+} = pluridal;
 
 
 
@@ -60,5 +67,7 @@ export {
     PluridInputSwitch,
     PluridTextline,
     PluridSpinner,
+
+    ToolbarSpecific,
 };
 // #endregion exports

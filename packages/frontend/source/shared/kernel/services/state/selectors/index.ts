@@ -10,6 +10,11 @@
 const selectors = {
     data: modules.data.selectors,
     general: modules.general.selectors,
+    // FORCE prevent Toolbar/Spaces error
+    owner: {
+        getIdentonym: () => '',
+    },
+    product: modules.product.selectors,
     themes: modules.themes.selectors,
 };
 // #endregion module

@@ -23,6 +23,7 @@
 
     // #region external
     import Head from '~kernel-components/Head';
+    import ToolbarHomeControls from '~shared/kernel/components/Toolbar/HomeControls';
 
     import { AppState } from '~kernel-services/state/store';
     import StateContext from '~kernel-services/state/context';
@@ -50,6 +51,7 @@ export interface HomeStateProperties {
     stateGeneralTheme: Theme;
     stateInteractionTheme: Theme;
     stateIdentonym: string;
+    statePlanes: any[];
 }
 
 export interface HomeDispatchProperties {
@@ -71,6 +73,7 @@ const Home: React.FC<HomeProperties> = (
 
         // #region state
         stateIdentonym,
+        statePlanes,
         // #endregion state
     } = properties;
     // #endregion properties
@@ -100,6 +103,10 @@ const Home: React.FC<HomeProperties> = (
     return (
         <StyledHome>
             <Head />
+
+            {stateIdentonym && (
+                <ToolbarHomeControls />
+            )}
         </StyledHome>
     );
     // #endregion render
@@ -112,6 +119,7 @@ const mapStateToProperties = (
     stateGeneralTheme: selectors.themes.getGeneralTheme(state),
     stateInteractionTheme: selectors.themes.getInteractionTheme(state),
     stateIdentonym: selectors.general.getGeneral(state).identonym,
+    statePlanes: selectors.product.getProduct(state).planes,
 });
 
 
