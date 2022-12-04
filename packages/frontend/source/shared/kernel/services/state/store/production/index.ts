@@ -11,6 +11,8 @@
     import reducer, {
         AppState,
     } from '../reducer';
+
+    import subscriber from '../subscriber';
     // #endregion external
 // #endregion imports
 
@@ -21,11 +23,17 @@ const store: (
     preloadedState: AppState | {},
 ) => Store<AppState> = (
     preloadedState: AppState | {},
-) => configureStore({
-    preloadedState,
-    reducer,
-    devTools: false,
-});
+) => {
+    const internalStore = configureStore({
+        preloadedState,
+        reducer,
+        devTools: false,
+    });
+
+    internalStore.subscribe(() => subscriber((internalStore)));
+
+    return internalStore;
+}
 
 
 export type AppDispatch = ReturnType<typeof store>['dispatch'];
