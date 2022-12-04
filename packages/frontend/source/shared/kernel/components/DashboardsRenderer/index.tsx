@@ -58,6 +58,10 @@ export interface DashboardsRendererProperties {
         // #region methods
         openManual?: () => void;
         atDashboardChange?: (newDashboard: string) => void;
+        atUIChange?: (
+            type: string,
+            value: any,
+        ) => void;
 
         logout?: () => void;
         // #endregion methods
@@ -96,6 +100,7 @@ const DashboardsRenderer: React.FC<DashboardsRendererProperties> = (
 
             // #region methods
             atDashboardChange,
+            atUIChange,
             openManual,
 
             logout,
@@ -162,6 +167,28 @@ const DashboardsRenderer: React.FC<DashboardsRendererProperties> = (
     }, [
         compactSelectorsProperty,
         fullRenderAreaProperty,
+    ]);
+
+    useEffect(() => {
+        if (atUIChange) {
+            atUIChange(
+                'compactSelectors',
+                compactSelectors,
+            );
+        }
+    }, [
+        compactSelectors,
+    ]);
+
+    useEffect(() => {
+        if (atUIChange) {
+            atUIChange(
+                'fullRenderArea',
+                fullRenderArea,
+            );
+        }
+    }, [
+        fullRenderArea,
     ]);
     // #endregion effects
 

@@ -18,7 +18,15 @@
 
 // #region module
 export interface ProductState {
-    ui: any;
+    ui: {
+        toolbars: {
+            alwaysShow: boolean;
+            location: number;
+            scaleIcons: boolean;
+            showNames: boolean;
+        };
+        compactSelectors: boolean;
+    };
     planes: any[];
 }
 
@@ -31,6 +39,7 @@ const initialState: ProductState = {
             scaleIcons: true,
             showNames: true,
         },
+        compactSelectors: false,
     },
     planes: [],
 };
@@ -56,6 +65,13 @@ export const product = createSlice({
             } = action.payload;
 
             state[field] = value;
+        },
+        setCompactSelectors: (
+            state,
+            // action: PayloadAction<boolean>,
+            action: PayloadAction<any>,
+        ) => {
+            state.ui.compactSelectors = action.payload;
         },
         addPlane: (
             state,

@@ -66,6 +66,7 @@ export interface DashboardStateProperties {
 
 export interface DashboardDispatchProperties {
     dispatchSetGeneralField: DispatchAction<typeof actions.general.setGeneralField>;
+    dispatchSetCompactSelectors: DispatchAction<typeof actions.product.setCompactSelectors>;
 }
 
 export type DashboardProperties =
@@ -88,7 +89,17 @@ const Dashboard: React.FC<DashboardProperties> = (
         // stateInteractionTheme,
         stateIdentonym,
         // #endregion state
+
+        // #region dispatch
+        dispatchSetCompactSelectors,
+        // #endregion dispatch
     } = properties;
+
+    const {
+        activeDashboard,
+        activeRender,
+        fullRenderArea,
+    } = plurid.plane.query;
     // #endregion properties
 
 
@@ -115,7 +126,9 @@ const Dashboard: React.FC<DashboardProperties> = (
                 dashboards={dashboards}
                 theme={stateGeneralTheme}
 
-                activeDashboard="simulations"
+                activeDashboard={activeDashboard || 'simulations'}
+                activeRender={activeRender}
+                fullRenderArea={typeof fullRenderArea === 'undefined' ? undefined : fullRenderArea === 'true'}
                 // activeRender="new-simulation"
                 // fullRenderArea={true}
                 // compactSelectors={true}
@@ -136,6 +149,15 @@ const Dashboard: React.FC<DashboardProperties> = (
                 }}
 
                 logout={logout}
+
+                atUIChange={(
+                    type,
+                    value,
+                ) => {
+                    if (type === 'compactSelectors') {
+                        dispatchSetCompactSelectors(value);
+                    }
+                }}
             />
         </StyledDashboard>
     );
@@ -159,6 +181,11 @@ const mapDispatchToProperties = (
         payload,
     ) => dispatch(
         actions.general.setGeneralField(payload),
+    ),
+    dispatchSetCompactSelectors: (
+        payload,
+    ) => dispatch(
+        actions.product.setCompactSelectors(payload),
     ),
 });
 
