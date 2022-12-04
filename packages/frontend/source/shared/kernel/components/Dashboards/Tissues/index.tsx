@@ -73,6 +73,7 @@ const Tissues: React.FC<TissuesProperties> = (
     const {
         // #region own
         setRenderView,
+        setFullRenderArea,
         // #endregion own
 
         // #region state
@@ -178,7 +179,8 @@ const Tissues: React.FC<TissuesProperties> = (
 
                 actionButtonText="New Tissue"
                 actionButtonClick={() => {
-                    // setRenderView('new-tissue');
+                    setFullRenderArea(true);
+                    setRenderView('new-tissue');
                 }}
 
                 actionScrollBottom={actionScrollBottom}

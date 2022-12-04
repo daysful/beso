@@ -73,6 +73,7 @@ const Biomolecules: React.FC<BiomoleculesProperties> = (
     const {
         // #region own
         setRenderView,
+        setFullRenderArea,
         // #endregion own
 
         // #region state
@@ -178,7 +179,8 @@ const Biomolecules: React.FC<BiomoleculesProperties> = (
 
                 actionButtonText="New Biomolecule"
                 actionButtonClick={() => {
-                    // setRenderView('new-biomolecule');
+                    setFullRenderArea(true);
+                    setRenderView('new-biomolecule');
                 }}
 
                 actionScrollBottom={actionScrollBottom}

@@ -76,6 +76,7 @@ const InterventionsTargeted: React.FC<InterventionsTargetedProperties> = (
         // #region own
         renderView,
         setRenderView,
+        setFullRenderArea,
         // #endregion own
 
         // #region state
@@ -197,7 +198,8 @@ const InterventionsTargeted: React.FC<InterventionsTargetedProperties> = (
 
                 actionButtonText="New Targeted Intervention"
                 actionButtonClick={() => {
-                    // setRenderView('new-targeted-intervention');
+                    setFullRenderArea(true);
+                    setRenderView('new-interventionTargeted');
                 }}
 
                 actionScrollBottom={actionScrollBottom}

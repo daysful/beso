@@ -76,6 +76,7 @@ const Simulations: React.FC<SimulationsProperties> = (
     const {
         // #region own
         setRenderView,
+        setFullRenderArea,
         // #endregion own
 
         // #region state
@@ -190,6 +191,7 @@ const Simulations: React.FC<SimulationsProperties> = (
 
                 actionButtonText="New Simulation"
                 actionButtonClick={() => {
+                    setFullRenderArea(true);
                     setRenderView('new-simulation');
                 }}
 

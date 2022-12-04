@@ -73,6 +73,7 @@ const Channels: React.FC<ChannelsProperties> = (
     const {
         // #region own
         setRenderView,
+        setFullRenderArea,
         // #endregion own
 
         // #region state
@@ -178,7 +179,8 @@ const Channels: React.FC<ChannelsProperties> = (
 
                 actionButtonText="New Channel"
                 actionButtonClick={() => {
-                    // setRenderView('new-channel');
+                    setFullRenderArea(true);
+                    setRenderView('new-channel');
                 }}
 
                 actionScrollBottom={actionScrollBottom}

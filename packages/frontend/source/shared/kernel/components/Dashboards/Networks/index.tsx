@@ -73,6 +73,7 @@ const Networks: React.FC<NetworksProperties> = (
     const {
         // #region own
         setRenderView,
+        setFullRenderArea,
         // #endregion own
 
         // #region state
@@ -178,7 +179,8 @@ const Networks: React.FC<NetworksProperties> = (
 
                 actionButtonText="New Network"
                 actionButtonClick={() => {
-                    // setRenderView('new-network');
+                    setFullRenderArea(true);
+                    setRenderView('new-network');
                 }}
 
                 actionScrollBottom={actionScrollBottom}

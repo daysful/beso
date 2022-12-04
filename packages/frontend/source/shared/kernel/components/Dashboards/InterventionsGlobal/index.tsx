@@ -76,6 +76,7 @@ const InterventionsGlobal: React.FC<InterventionsGlobalProperties> = (
         // #region own
         renderView,
         setRenderView,
+        setFullRenderArea,
         // #endregion own
 
         // #region state
@@ -197,7 +198,8 @@ const InterventionsGlobal: React.FC<InterventionsGlobalProperties> = (
 
                 actionButtonText="New Global Intervention"
                 actionButtonClick={() => {
-                    // setRenderView('new-global-intervention');
+                    setFullRenderArea(true);
+                    setRenderView('new-interventionGlobal');
                 }}
 
                 actionScrollBottom={actionScrollBottom}

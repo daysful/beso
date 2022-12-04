@@ -73,6 +73,7 @@ const Reactions: React.FC<ReactionsProperties> = (
     const {
         // #region own
         setRenderView,
+        setFullRenderArea,
         // #endregion own
 
         // #region state
@@ -178,7 +179,8 @@ const Reactions: React.FC<ReactionsProperties> = (
 
                 actionButtonText="New Reaction"
                 actionButtonClick={() => {
-                    // setRenderView('new-reaction');
+                    setFullRenderArea(true);
+                    setRenderView('new-reaction');
                 }}
 
                 actionScrollBottom={actionScrollBottom}

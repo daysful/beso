@@ -34,12 +34,14 @@ export interface RenderAreaProperties {
         dashboards: Dashboard[];
         selectedDashboard: string;
         renderView: string;
+        fullRenderArea: boolean;
         theme: Theme;
         // #endregion values
 
         // #region methods
         setSelectedDashboard: React.Dispatch<string>;
         setRenderView: React.Dispatch<string>;
+        setFullRenderArea: React.Dispatch<boolean>;
         // #endregion methods
     // #endregion required
 }
@@ -54,12 +56,14 @@ const RenderArea: React.FC<RenderAreaProperties> = (
             dashboards,
             selectedDashboard,
             renderView,
+            fullRenderArea,
             theme,
             // #endregion values
 
             // #region methods
             setSelectedDashboard,
             setRenderView,
+            setFullRenderArea,
             // #endregion methods
         // #endregion required
     } = properties;
@@ -128,6 +132,8 @@ const RenderArea: React.FC<RenderAreaProperties> = (
                 setSelectedDashboard={setSelectedDashboard}
                 renderView={renderView}
                 setRenderView={setRenderView}
+                fullRenderArea={fullRenderArea}
+                setFullRenderArea={setFullRenderArea}
             />
         </StyledRenderArea>
     );

@@ -183,6 +183,8 @@ const DashboardsRenderer: React.FC<DashboardsRendererProperties> = (
                     setSelectedDashboard={setSelectedDashboard}
                     renderView={renderView}
                     setRenderView={setRenderView}
+                    fullRenderArea={fullRenderArea}
+                    setFullRenderArea={setFullRenderArea}
                     theme={theme}
                 />
             )}

@@ -73,6 +73,7 @@ const Worlds: React.FC<WorldsProperties> = (
     const {
         // #region own
         setRenderView,
+        setFullRenderArea,
         // #endregion own
 
         // #region state
@@ -178,7 +179,8 @@ const Worlds: React.FC<WorldsProperties> = (
 
                 actionButtonText="New World"
                 actionButtonClick={() => {
-                    // setRenderView('new-world');
+                    setFullRenderArea(true);
+                    setRenderView('new-world');
                 }}
 
                 actionScrollBottom={actionScrollBottom}

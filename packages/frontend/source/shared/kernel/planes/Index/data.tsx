@@ -16,15 +16,34 @@
 
     // #region external
     import Simulations from '~kernel-components/Dashboards/Simulations';
+    import NewSimulation from '~kernel-components/Dashboards/NewSimulation';
+
     import Worlds from '~kernel-components/Dashboards/Worlds';
+    import NewWorld from '~kernel-components/Dashboards/NewWorld';
+
     import Tissues from '~kernel-components/Dashboards/Tissues';
+    import NewTissue from '~kernel-components/Dashboards/NewTissue';
+
     import InterventionsTargeted from '~kernel-components/Dashboards/InterventionsTargeted';
+    import NewInterventionTargeted from '~kernel-components/Dashboards/NewInterventionTargeted';
+
     import InterventionsGlobal from '~kernel-components/Dashboards/InterventionsGlobal';
+    import NewInterventionGlobal from '~kernel-components/Dashboards/NewInterventionGlobal';
+
     import Modulators from '~kernel-components/Dashboards/Modulators';
+    import NewModulator from '~kernel-components/Dashboards/NewModulator';
+
     import Networks from '~kernel-components/Dashboards/Networks';
+    import NewNetwork from '~kernel-components/Dashboards/NewNetwork';
+
     import Biomolecules from '~kernel-components/Dashboards/Biomolecules';
+    import NewBiomolecule from '~kernel-components/Dashboards/NewBiomolecule';
+
     import Reactions from '~kernel-components/Dashboards/Reactions';
+    import NewReaction from '~kernel-components/Dashboards/NewReaction';
+
     import Channels from '~kernel-components/Dashboards/Channels';
+    import NewChannel from '~kernel-components/Dashboards/NewChannel';
     // #endregion external
 // #endregion imports
 
@@ -51,6 +70,7 @@ export const dashboards = [
         label: 'simulations',
         renderers: {
             'simulations': Simulations,
+            'new-simulation': NewSimulation,
         },
     },
     {
@@ -59,6 +79,7 @@ export const dashboards = [
         label: 'worlds',
         renderers: {
             'worlds': Worlds,
+            'new-world': NewWorld,
         },
     },
     {
@@ -67,6 +88,8 @@ export const dashboards = [
         label: 'tissues',
         renderers: {
             'tissues': Tissues,
+            'new-tissue': NewTissue,
+
         },
     },
     {
@@ -76,7 +99,9 @@ export const dashboards = [
         defaultRender: 'interventionsTargeted',
         renderers: {
             'interventionsTargeted': InterventionsTargeted,
+            'new-interventionTargeted': NewInterventionTargeted,
             'interventionsGlobal': InterventionsGlobal,
+            'new-interventionGlobal': NewInterventionGlobal,
         },
     },
     {
@@ -85,6 +110,7 @@ export const dashboards = [
         label: 'modulators',
         renderers: {
             'modulators': Modulators,
+            'new-modulator': NewModulator,
         },
     },
     {
@@ -93,6 +119,7 @@ export const dashboards = [
         label: 'networks',
         renderers: {
             'networks': Networks,
+            'new-network': NewNetwork,
         },
     },
     {
@@ -101,6 +128,7 @@ export const dashboards = [
         label: 'biomolecules',
         renderers: {
             'biomolecules': Biomolecules,
+            'new-biomolecule': NewBiomolecule,
         },
     },
     {
@@ -109,6 +137,7 @@ export const dashboards = [
         label: 'reactions',
         renderers: {
             'reactions': Reactions,
+            'new-reaction': NewReaction,
         },
     },
     {
@@ -117,6 +146,7 @@ export const dashboards = [
         label: 'channels',
         renderers: {
             'channels': Channels,
+            'new-channel': NewChannel,
         },
     },
 ];

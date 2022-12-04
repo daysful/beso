@@ -73,6 +73,7 @@ const Modulators: React.FC<ModulatorsProperties> = (
     const {
         // #region own
         setRenderView,
+        setFullRenderArea,
         // #endregion own
 
         // #region state
@@ -178,7 +179,8 @@ const Modulators: React.FC<ModulatorsProperties> = (
 
                 actionButtonText="New Modulator"
                 actionButtonClick={() => {
-                    // setRenderView('new-modulator');
+                    setFullRenderArea(true);
+                    setRenderView('new-modulator');
                 }}
 
                 actionScrollBottom={actionScrollBottom}

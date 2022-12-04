@@ -17,6 +17,8 @@ export interface DashboardRenderProperties {
     setSelectedDashboard: React.Dispatch<string>;
     renderView: string;
     setRenderView: React.Dispatch<string>;
+    fullRenderArea: boolean;
+    setFullRenderArea: React.Dispatch<boolean>;
 }
 
 export interface Dashboard {
