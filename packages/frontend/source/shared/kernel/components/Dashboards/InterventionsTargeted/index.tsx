@@ -32,8 +32,9 @@
 
     import {
         StyledDashboardContainer,
-        StyledInterventionsSelector,
     } from '~kernel-services/styled';
+
+    import InterventionsSelector from '~kernel-components/InterventionsSelector';
 
     import { AppState } from '~kernel-services/state/store';
     import StateContext from '~kernel-services/state/context';
@@ -169,19 +170,10 @@ const InterventionsTargeted: React.FC<InterventionsTargetedProperties> = (
         <StyledDashboardContainer
             theme={stateGeneralTheme}
         >
-            <StyledInterventionsSelector>
-                <div
-                    onClick={() => toggleInterventions()}
-                >
-                    global interventions
-                </div>
-
-                <div
-                    onClick={() => toggleInterventions()}
-                >
-                    targeted interventions
-                </div>
-            </StyledInterventionsSelector>
+            <InterventionsSelector
+                targeted={renderView === 'interventionsTargeted'}
+                toggleInterventions={toggleInterventions}
+            />
 
             <EntityView
                 ref={entityView}

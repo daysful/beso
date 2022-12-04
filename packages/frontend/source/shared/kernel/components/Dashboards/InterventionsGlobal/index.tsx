@@ -34,6 +34,8 @@
         StyledDashboardContainer,
     } from '~kernel-services/styled';
 
+    import InterventionsSelector from '~kernel-components/InterventionsSelector';
+
     import { AppState } from '~kernel-services/state/store';
     import StateContext from '~kernel-services/state/context';
     import selectors from '~kernel-services/state/selectors';
@@ -72,6 +74,7 @@ const InterventionsGlobal: React.FC<InterventionsGlobalProperties> = (
     // #region properties
     const {
         // #region own
+        renderView,
         setRenderView,
         // #endregion own
 
@@ -137,6 +140,17 @@ const InterventionsGlobal: React.FC<InterventionsGlobalProperties> = (
     // #endregion state
 
 
+    // #region handlers
+    const toggleInterventions = () => {
+        if (renderView === 'interventionsTargeted') {
+            setRenderView('interventionsGlobal');
+        } else {
+            setRenderView('interventionsTargeted');
+        }
+    }
+    // #endregion handlers
+
+
     // #region render
     const rowsHeader = (
         <>
@@ -156,6 +170,11 @@ const InterventionsGlobal: React.FC<InterventionsGlobalProperties> = (
         <StyledDashboardContainer
             theme={stateGeneralTheme}
         >
+            <InterventionsSelector
+                targeted={renderView === 'interventionsTargeted'}
+                toggleInterventions={toggleInterventions}
+            />
+
             <EntityView
                 ref={entityView}
 
