@@ -15,32 +15,17 @@
     import {
         AppState,
     } from '../reducer';
+
+    import {
+        loadState,
+        saveState,
+    } from '~kernel-services/logic/localStorage';
     // #endregion external
 // #endregion imports
 
 
 
 // #region module
-const stateID = 'beso-state';
-
-const loadState = () => {
-    try {
-        const serializedState = localStorage.getItem(stateID);
-        if (serializedState === null) {
-            return {};
-        }
-        return JSON.parse(serializedState);
-    } catch (error) {
-        return {};
-    }
-};
-
-const saveState = (state: any) => {
-    const serializedState = JSON.stringify(state);
-    localStorage.setItem(stateID, serializedState);
-};
-
-
 const subscriber = (
     store: Store<AppState, any>,
 ) => {

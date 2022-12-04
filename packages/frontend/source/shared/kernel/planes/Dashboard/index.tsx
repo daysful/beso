@@ -62,6 +62,7 @@ export interface DashboardStateProperties {
     stateGeneralTheme: Theme;
     stateInteractionTheme: Theme;
     stateIdentonym: string;
+    stateCompactSelectors: boolean;
 }
 
 export interface DashboardDispatchProperties {
@@ -88,6 +89,7 @@ const Dashboard: React.FC<DashboardProperties> = (
         stateGeneralTheme,
         // stateInteractionTheme,
         stateIdentonym,
+        stateCompactSelectors,
         // #endregion state
 
         // #region dispatch
@@ -131,7 +133,7 @@ const Dashboard: React.FC<DashboardProperties> = (
                 fullRenderArea={typeof fullRenderArea === 'undefined' ? undefined : fullRenderArea === 'true'}
                 // activeRender="new-simulation"
                 // fullRenderArea={true}
-                // compactSelectors={true}
+                compactSelectors={stateCompactSelectors}
                 rendererID={plurid.plane.planeID}
                 identonym={stateIdentonym}
                 usageType="PRIVATE_USAGE"
@@ -171,6 +173,7 @@ const mapStateToProperties = (
     stateGeneralTheme: selectors.themes.getGeneralTheme(state),
     stateInteractionTheme: selectors.themes.getInteractionTheme(state),
     stateIdentonym: selectors.general.getGeneral(state).identonym,
+    stateCompactSelectors: selectors.product.getProductUI(state).compactSelectors,
 });
 
 
