@@ -46,7 +46,7 @@
     } from './data';
 
     import {
-        StyledIndex,
+        StyledDashboard,
     } from './styled';
     // #endregion internal
 // #endregion imports
@@ -54,27 +54,27 @@
 
 
 // #region module
-export interface IndexOwnProperties {
+export interface DashboardOwnProperties {
     plurid: PluridPlaneComponentProperty;
 }
 
-export interface IndexStateProperties {
+export interface DashboardStateProperties {
     stateGeneralTheme: Theme;
     stateInteractionTheme: Theme;
     stateIdentonym: string;
 }
 
-export interface IndexDispatchProperties {
+export interface DashboardDispatchProperties {
     dispatchSetGeneralField: DispatchAction<typeof actions.general.setGeneralField>;
 }
 
-export type IndexProperties =
-    & IndexOwnProperties
-    & IndexStateProperties
-    & IndexDispatchProperties;
+export type DashboardProperties =
+    & DashboardOwnProperties
+    & DashboardStateProperties
+    & DashboardDispatchProperties;
 
 
-const Index: React.FC<IndexProperties> = (
+const Dashboard: React.FC<DashboardProperties> = (
     properties,
 ) => {
     // #region properties
@@ -108,7 +108,7 @@ const Index: React.FC<IndexProperties> = (
 
     // #region render
     return (
-        <StyledIndex
+        <StyledDashboard
             theme={stateGeneralTheme}
         >
             <DashboardsRenderer
@@ -116,6 +116,9 @@ const Index: React.FC<IndexProperties> = (
                 theme={stateGeneralTheme}
 
                 activeDashboard="simulations"
+                // activeRender="new-simulation"
+                // fullRenderArea={true}
+                // compactSelectors={true}
                 rendererID={plurid.plane.planeID}
                 identonym={stateIdentonym}
                 usageType="PRIVATE_USAGE"
@@ -134,7 +137,7 @@ const Index: React.FC<IndexProperties> = (
 
                 logout={logout}
             />
-        </StyledIndex>
+        </StyledDashboard>
     );
     // #endregion render
 }
@@ -142,7 +145,7 @@ const Index: React.FC<IndexProperties> = (
 
 const mapStateToProperties = (
     state: AppState,
-): IndexStateProperties => ({
+): DashboardStateProperties => ({
     stateGeneralTheme: selectors.themes.getGeneralTheme(state),
     stateInteractionTheme: selectors.themes.getInteractionTheme(state),
     stateIdentonym: selectors.general.getGeneral(state).identonym,
@@ -151,7 +154,7 @@ const mapStateToProperties = (
 
 const mapDispatchToProperties = (
     dispatch: ThunkDispatch<{}, {}, AnyAction>,
-): IndexDispatchProperties => ({
+): DashboardDispatchProperties => ({
     dispatchSetGeneralField: (
         payload,
     ) => dispatch(
@@ -160,18 +163,18 @@ const mapDispatchToProperties = (
 });
 
 
-const ConnectedIndex = connect(
+const ConnectedDashboard = connect(
     mapStateToProperties,
     mapDispatchToProperties,
     null,
     {
         context: StateContext,
     },
-)(Index);
+)(Dashboard);
 // #endregion module
 
 
 
 // #region exports
-export default ConnectedIndex;
+export default ConnectedDashboard;
 // #endregion exports

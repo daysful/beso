@@ -26,7 +26,7 @@
     import ToolbarHomeControls from '~shared/kernel/components/Toolbar/HomeControls';
 
     import {
-        addNewPlane,
+        addNewDashboard,
     } from '~kernel-services/logic/general';
 
     import { AppState } from '~kernel-services/state/store';
@@ -91,11 +91,11 @@ const Home: React.FC<HomeProperties> = (
     useEffect(() => {
         setTimeout(() => {
             const {
-                plane,
-            } = addNewPlane(dispatch);
+                dashboard,
+            } = addNewDashboard(dispatch);
 
             const view = stateIdentonym
-                ? [ plane ]
+                ? [ dashboard ]
                 : [ '/login' ];
 
             pubsub.publish({

@@ -1,6 +1,9 @@
 // #region imports
     // #region libraries
-    import React from 'react';
+    import React, {
+        useState,
+        useEffect,
+    } from 'react';
 
     import {
         AnyAction,
@@ -20,8 +23,11 @@
     } from '~kernel-components/DashboardsRenderer/data';
 
     import {
-        PluridLinkButton,
         StyledDashboardContainer,
+        PluridInputLine,
+        PluridPureButton,
+        PluridDropdown,
+        PluridLinkButton,
     } from '~kernel-services/styled';
 
     import { AppState } from '~kernel-services/state/store';
@@ -32,6 +38,9 @@
 
 
     // #region internal
+    import {
+        StyledNewSimulation,
+    } from './styled';
     // #endregion internal
 // #endregion imports
 
@@ -73,23 +82,136 @@ const NewSimulation: React.FC<NewSimulationProperties> = (
     // #endregion properties
 
 
+    // #region state
+    const [
+        name,
+        setName,
+    ] = useState('');
+
+    const [
+        world,
+        setWorld,
+    ] = useState('');
+
+    const [
+        tissues,
+        setTissues,
+    ] = useState<string[]>([]);
+
+    const [
+        interventions,
+        setInterventions,
+    ] = useState<string[]>([]);
+
+    const [
+        modulators,
+        setModulators,
+    ] = useState<string[]>([]);
+
+    const [
+        networks,
+        setNetworks,
+    ] = useState<string[]>([]);
+
+    const [
+        biomolecules,
+        setBiomolecules,
+    ] = useState<string[]>([]);
+
+    const [
+        reactions,
+        setReactions,
+    ] = useState<string[]>([]);
+
+    const [
+        channels,
+        setChannels,
+    ] = useState<string[]>([]);
+
+    const [
+        isValid,
+        setIsValid,
+    ] = useState(false);
+    // #endregion state
+
+
+    // #region effects
+    useEffect(() => {
+        if (
+            name
+            && world
+            && tissues.length > 0
+            && interventions.length > 0
+            && modulators.length > 0
+            && networks.length > 0
+            && biomolecules.length > 0
+            && reactions.length > 0
+            && channels.length > 0
+        ) {
+            setIsValid(true);
+        } else {
+            setIsValid(false);
+        }
+    }, [
+        name,
+        world,
+        tissues,
+        interventions,
+        modulators,
+        networks,
+        biomolecules,
+        reactions,
+        channels,
+    ]);
+    // #endregion effects
+
+
     // #region render
     return (
         <StyledDashboardContainer
             theme={stateGeneralTheme}
         >
-            <h1>
-                New Simulation
-            </h1>
+            <StyledNewSimulation>
+                <h1>
+                    New Simulation
+                </h1>
 
-            <PluridLinkButton
-                text="cancel"
-                atClick={() => {
-                    setFullRenderArea(false);
-                    setRenderView('simulation');
-                }}
-                theme={stateGeneralTheme}
-            />
+                <PluridInputLine
+                    theme={stateGeneralTheme}
+                    name="name"
+                    text={name}
+                    atChange={(event) => {
+                        setName(event.target.value);
+                    }}
+                />
+
+                <PluridPureButton
+                    text="Add New Simulation"
+                    atClick={() => {
+                    }}
+                    theme={stateGeneralTheme}
+                    level={2}
+                    disabled={!isValid}
+                />
+
+                <PluridDropdown
+                    selected={world || 'select'}
+                    selectables={[
+                        'new world',
+                    ]}
+                    atSelect={(selection) => {}}
+                    theme={stateGeneralTheme}
+                />
+
+                <PluridLinkButton
+                    text="cancel"
+                    atClick={() => {
+                        setFullRenderArea(false);
+                        setRenderView('simulation');
+                    }}
+                    theme={stateGeneralTheme}
+                />
+            </StyledNewSimulation>
         </StyledDashboardContainer>
     );
     // #endregion render

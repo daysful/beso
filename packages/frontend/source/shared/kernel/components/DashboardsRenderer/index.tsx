@@ -49,6 +49,9 @@ export interface DashboardsRendererProperties {
         brandingNameStyle?: React.CSSProperties;
         brandingLogo?: string;
         activeDashboard?: string;
+        activeRender?: string;
+        compactSelectors?: boolean;
+        fullRenderArea?: boolean;
         noDashboardRender?: JSX.Element;
         // #endregion values
 
@@ -85,6 +88,9 @@ const DashboardsRenderer: React.FC<DashboardsRendererProperties> = (
             brandingNameStyle,
             brandingLogo,
             activeDashboard,
+            activeRender,
+            compactSelectors: compactSelectorsProperty,
+            fullRenderArea: fullRenderAreaProperty,
             noDashboardRender,
             // #endregion values
 
@@ -103,12 +109,12 @@ const DashboardsRenderer: React.FC<DashboardsRendererProperties> = (
     const [
         compactSelectors,
         setCompactSelectors,
-    ] = useState(false);
+    ] = useState(compactSelectorsProperty ?? false);
 
     const [
         fullRenderArea,
         setFullRenderArea,
-    ] = useState(false);
+    ] = useState(fullRenderAreaProperty ?? false);
 
     const [
         selectedDashboard,
@@ -118,7 +124,7 @@ const DashboardsRenderer: React.FC<DashboardsRendererProperties> = (
     const [
         renderView,
         setRenderView,
-    ] = useState('');
+    ] = useState(activeRender || '');
     // #endregion state
 
 
@@ -143,6 +149,19 @@ const DashboardsRenderer: React.FC<DashboardsRendererProperties> = (
         }
     }, [
         renderView,
+    ]);
+
+    useEffect(() => {
+        if (typeof compactSelectorsProperty === 'boolean') {
+            setCompactSelectors(compactSelectorsProperty);
+        }
+
+        if (typeof fullRenderAreaProperty === 'boolean') {
+            setFullRenderArea(fullRenderAreaProperty);
+        }
+    }, [
+        compactSelectorsProperty,
+        fullRenderAreaProperty,
     ]);
     // #endregion effects
 

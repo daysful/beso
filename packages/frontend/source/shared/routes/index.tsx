@@ -12,7 +12,7 @@
     import Head from '~kernel-components/Head';
 
     import LoginPlane from '~kernel-planes/Login';
-    import IndexPlane from '~kernel-planes/Index';
+    import DashboardPlane from '~shared/kernel/planes/Dashboard';
     import SimulationPlane from '~kernel-planes/Simulation';
     import NotFoundPlane from '~kernel-planes/NotFound';
 
@@ -32,8 +32,8 @@ const indexRoute: PluridReactRoute = {
             LoginPlane,
         ],
         [
-            '/index/:id',
-            IndexPlane,
+            '/dashboard/:id',
+            DashboardPlane,
         ],
         [
             '/simulation',

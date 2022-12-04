@@ -25,6 +25,7 @@ const {
         InputLine: PluridInputLine,
         InputSwitch: PluridInputSwitch,
         Textline: PluridTextline,
+        Dropdown: PluridDropdown,
     },
     markers: {
         Spinner: PluridSpinner,
@@ -58,6 +59,7 @@ export {
     PluridInputLine,
     PluridInputSwitch,
     PluridTextline,
+    PluridDropdown,
     PluridSpinner,
 
     ToolbarSpecific,

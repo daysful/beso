@@ -15,8 +15,8 @@
 // #region module
 export const buttons: ToolbarButton[] = [
     {
-        type: 'new-plane',
-        text: 'new plane',
+        type: 'new-dashboard',
+        text: 'new dashboard',
         icon: PluridIconAdd,
         first: true,
         last: true,

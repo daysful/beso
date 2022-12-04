@@ -34,7 +34,7 @@ export const logout = () => {
 }
 
 
-export const addNewPlane = (
+export const addNewDashboard = (
     dispatch: ThunkDispatch<{}, {}, AnyAction>,
 ) => {
     const dispatchAddPlane: DispatchAction<typeof actions.product.addPlane> = (
@@ -48,7 +48,7 @@ export const addNewPlane = (
 
     return {
         id,
-        plane: `/index/${id}`,
+        dashboard: `/dashboard/${id}`,
     };
 }
 // #endregion module

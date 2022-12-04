@@ -20,7 +20,7 @@
     } from '~kernel-services/styled';
 
     import {
-        addNewPlane,
+        addNewDashboard,
     } from '~kernel-services/logic/general';
 
     import { AppState } from '~kernel-services/state/store';
@@ -77,15 +77,15 @@ const ToolbarHomeControls: React.FC<ToolbarHomeControlsProperties> = (
         type: string,
     ) => {
         switch (type) {
-            case 'new-plane': {
+            case 'new-dashboard': {
                 const {
-                    plane,
-                } = addNewPlane(dispatch);
+                    dashboard,
+                } = addNewDashboard(dispatch);
 
                 pubsub.publish({
                     topic: PLURID_PUBSUB_TOPIC.VIEW_ADD_PLANE,
                     data: {
-                        plane,
+                        plane: dashboard,
                     },
                 });
                 break;
