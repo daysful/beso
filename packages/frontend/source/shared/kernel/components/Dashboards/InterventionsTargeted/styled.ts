@@ -11,10 +11,4 @@
 
 
 // #region module
-export interface IStyledInterventionsTargeted {
-    theme: Theme;
-}
-
-export const StyledInterventionsTargeted = styled.div<IStyledInterventionsTargeted>`
-`;
 // #region module

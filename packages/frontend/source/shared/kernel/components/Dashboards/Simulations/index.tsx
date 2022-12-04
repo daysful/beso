@@ -26,6 +26,10 @@
         EntityViewRefAttributes,
     } from '~kernel-components/EntityView';
 
+    import {
+        StyledDashboardContainer,
+    } from '~kernel-services/styled';
+
     import { AppState } from '~kernel-services/state/store';
     import StateContext from '~kernel-services/state/context';
     import selectors from '~kernel-services/state/selectors';
@@ -34,10 +38,6 @@
 
 
     // #region internal
-    import {
-        StyledSimulations,
-    } from './styled';
-
     import {
         simulationRowRenderer,
     } from './logic';
@@ -169,7 +169,7 @@ const Simulations: React.FC<SimulationsProperties> = (
     );
 
     return (
-        <StyledSimulations
+        <StyledDashboardContainer
             theme={stateGeneralTheme}
         >
             <EntityView
@@ -199,7 +199,7 @@ const Simulations: React.FC<SimulationsProperties> = (
 
                 actionScrollBottom={actionScrollBottom}
             />
-        </StyledSimulations>
+        </StyledDashboardContainer>
     );
     // #endregion render
 }

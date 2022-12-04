@@ -1,5 +1,11 @@
 // #region imports
     // #region libraries
+    import styled from 'styled-components';
+
+    import {
+        Theme,
+    } from '@plurid/plurid-themes';
+
     import {
         universal,
     } from '@plurid/plurid-ui-components-react';
@@ -23,6 +29,25 @@ const {
         Spinner: PluridSpinner,
     },
 } = universal;
+
+
+
+export interface IStyledDashboardContainer {
+    theme: Theme;
+}
+
+export const StyledDashboardContainer = styled.div<IStyledDashboardContainer>`
+    padding: 2rem;
+    height: 100%;
+`;
+
+
+export const StyledInterventionsSelector = styled.div`
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 1rem;
+`;
 // #endregion module
 
 

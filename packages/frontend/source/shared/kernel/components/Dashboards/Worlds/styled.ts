@@ -11,10 +11,4 @@
 
 
 // #region module
-export interface IStyledWorlds {
-    theme: Theme;
-}
-
-export const StyledWorlds = styled.div<IStyledWorlds>`
-`;
 // #region module

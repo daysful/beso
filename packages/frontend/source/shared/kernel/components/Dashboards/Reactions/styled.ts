@@ -11,10 +11,4 @@
 
 
 // #region module
-export interface IStyledReactions {
-    theme: Theme;
-}
-
-export const StyledReactions = styled.div<IStyledReactions>`
-`;
 // #region module

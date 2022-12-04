@@ -1,6 +1,9 @@
 // #region imports
     // #region libraries
-    import React from 'react';
+    import React, {
+        useRef,
+        useState,
+    } from 'react';
 
     import {
         AnyAction,
@@ -23,6 +26,10 @@
         EntityViewRefAttributes,
     } from '~kernel-components/EntityView';
 
+    import {
+        StyledDashboardContainer,
+    } from '~kernel-services/styled';
+
     import { AppState } from '~kernel-services/state/store';
     import StateContext from '~kernel-services/state/context';
     import selectors from '~kernel-services/state/selectors';
@@ -31,9 +38,6 @@
 
 
     // #region internal
-    import {
-        StyledModulators,
-    } from './styled';
     // #endregion internal
 // #endregion imports
 
@@ -52,7 +56,7 @@ export interface ModulatorsDispatchProperties {
 }
 
 export type ModulatorsProperties =
-    & ModulatorsOwnProperties
+    & ModulatorsOwnProperties & DashboardRenderProperties
     & ModulatorsStateProperties
     & ModulatorsDispatchProperties;
 
@@ -64,19 +68,114 @@ const Modulators: React.FC<ModulatorsProperties> = (
     const {
         // #region state
         stateGeneralTheme,
-        // stateInteractionTheme,
+        stateInteractionTheme,
         // #endregion state
     } = properties;
+
+    const stateModulators: any[] = [];
     // #endregion properties
 
 
+    // #region references
+    const entityView = useRef<EntityViewRefAttributes | null>(null);
+    // #endregion references
+
+
+    // #region handlers
+    const handleObliterate = async (
+        id: string,
+    ) => {
+        try {
+
+        } catch (error) {
+            return;
+        }
+    }
+
+    const filterUpdate = (
+        rawValue: string,
+    ) => {
+    }
+
+    const actionScrollBottom = async (
+        simulations: any[],
+    ) => {
+    }
+    // #endregion handlers
+
+
+    // #region state
+    const [
+        filteredRows,
+        setFilteredRows,
+    ] = useState(
+        [],
+    );
+
+    const [
+        loading,
+        setLoading,
+    ] = useState(false);
+
+    const [
+        filterValue,
+        setFilterValue,
+    ] = useState('');
+
+    const [
+        filterIDs,
+        setFilterIDs,
+    ] = useState<string[]>([]);
+    // #endregion state
+
+
     // #region render
+    const rowsHeader = (
+        <>
+            <div>
+                name
+            </div>
+
+            <div>
+                generated on
+            </div>
+
+            <div />
+        </>
+    );
+
     return (
-        <StyledModulators
+        <StyledDashboardContainer
             theme={stateGeneralTheme}
         >
-            Modulators
-        </StyledModulators>
+            <EntityView
+                ref={entityView}
+
+                entities={stateModulators}
+                searchFields={['name']}
+
+                generalTheme={stateGeneralTheme}
+                interactionTheme={stateInteractionTheme}
+
+                rowTemplate="0.5fr 0.5fr 0.5fr 30px 30px"
+                rowsHeader={rowsHeader}
+                rows={filteredRows}
+                noRows="no modulators"
+
+                loading={loading ? 1 : 0}
+
+                filterUpdate={filterUpdate}
+                refresh={() => {
+                }}
+
+                actionButtonText="New Modulator"
+                actionButtonClick={() => {
+                    // setRenderView('new-modulator');
+                }}
+
+                actionScrollBottom={actionScrollBottom}
+            />
+        </StyledDashboardContainer>
     );
     // #endregion render
 }

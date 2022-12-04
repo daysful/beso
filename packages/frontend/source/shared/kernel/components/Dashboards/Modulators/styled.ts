@@ -11,10 +11,4 @@
 
 
 // #region module
-export interface IStyledModulators {
-    theme: Theme;
-}
-
-export const StyledModulators = styled.div<IStyledModulators>`
-`;
 // #region module

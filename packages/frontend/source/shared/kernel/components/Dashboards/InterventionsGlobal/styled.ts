@@ -11,10 +11,4 @@
 
 
 // #region module
-export interface IStyledInterventionsGlobal {
-    theme: Theme;
-}
-
-export const StyledInterventionsGlobal = styled.div<IStyledInterventionsGlobal>`
-`;
 // #region module

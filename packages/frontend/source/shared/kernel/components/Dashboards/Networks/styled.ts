@@ -11,10 +11,4 @@
 
 
 // #region module
-export interface IStyledNetworks {
-    theme: Theme;
-}
-
-export const StyledNetworks = styled.div<IStyledNetworks>`
-`;
 // #region module

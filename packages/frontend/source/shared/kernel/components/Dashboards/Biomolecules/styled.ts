@@ -11,10 +11,4 @@
 
 
 // #region module
-export interface IStyledBiomolecules {
-    theme: Theme;
-}
-
-export const StyledBiomolecules = styled.div<IStyledBiomolecules>`
-`;
 // #region module

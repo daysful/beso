@@ -11,10 +11,4 @@
 
 
 // #region module
-export interface IStyledTissues {
-    theme: Theme;
-}
-
-export const StyledTissues = styled.div<IStyledTissues>`
-`;
 // #region module

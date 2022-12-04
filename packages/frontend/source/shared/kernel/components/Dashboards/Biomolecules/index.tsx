@@ -1,6 +1,9 @@
 // #region imports
     // #region libraries
-    import React from 'react';
+    import React, {
+        useRef,
+        useState,
+    } from 'react';
 
     import {
         AnyAction,
@@ -23,6 +26,10 @@
         EntityViewRefAttributes,
     } from '~kernel-components/EntityView';
 
+    import {
+        StyledDashboardContainer,
+    } from '~kernel-services/styled';
+
     import { AppState } from '~kernel-services/state/store';
     import StateContext from '~kernel-services/state/context';
     import selectors from '~kernel-services/state/selectors';
@@ -31,9 +38,6 @@
 
 
     // #region internal
-    import {
-        StyledBiomolecules,
-    } from './styled';
     // #endregion internal
 // #endregion imports
 
@@ -52,7 +56,7 @@ export interface BiomoleculesDispatchProperties {
 }
 
 export type BiomoleculesProperties =
-    & BiomoleculesOwnProperties
+    & BiomoleculesOwnProperties & DashboardRenderProperties
     & BiomoleculesStateProperties
     & BiomoleculesDispatchProperties;
 
@@ -64,19 +68,114 @@ const Biomolecules: React.FC<BiomoleculesProperties> = (
     const {
         // #region state
         stateGeneralTheme,
-        // stateInteractionTheme,
+        stateInteractionTheme,
         // #endregion state
     } = properties;
+
+    const stateBiomolecules: any[] = [];
     // #endregion properties
 
 
+    // #region references
+    const entityView = useRef<EntityViewRefAttributes | null>(null);
+    // #endregion references
+
+
+    // #region handlers
+    const handleObliterate = async (
+        id: string,
+    ) => {
+        try {
+
+        } catch (error) {
+            return;
+        }
+    }
+
+    const filterUpdate = (
+        rawValue: string,
+    ) => {
+    }
+
+    const actionScrollBottom = async (
+        simulations: any[],
+    ) => {
+    }
+    // #endregion handlers
+
+
+    // #region state
+    const [
+        filteredRows,
+        setFilteredRows,
+    ] = useState(
+        [],
+    );
+
+    const [
+        loading,
+        setLoading,
+    ] = useState(false);
+
+    const [
+        filterValue,
+        setFilterValue,
+    ] = useState('');
+
+    const [
+        filterIDs,
+        setFilterIDs,
+    ] = useState<string[]>([]);
+    // #endregion state
+
+
     // #region render
+    const rowsHeader = (
+        <>
+            <div>
+                name
+            </div>
+
+            <div>
+                generated on
+            </div>
+
+            <div />
+        </>
+    );
+
     return (
-        <StyledBiomolecules
+        <StyledDashboardContainer
             theme={stateGeneralTheme}
         >
-            Biomolecules
-        </StyledBiomolecules>
+            <EntityView
+                ref={entityView}
+
+                entities={stateBiomolecules}
+                searchFields={['name']}
+
+                generalTheme={stateGeneralTheme}
+                interactionTheme={stateInteractionTheme}
+
+                rowTemplate="0.5fr 0.5fr 0.5fr 30px 30px"
+                rowsHeader={rowsHeader}
+                rows={filteredRows}
+                noRows="no biomolecules"
+
+                loading={loading ? 1 : 0}
+
+                filterUpdate={filterUpdate}
+                refresh={() => {
+                }}
+
+                actionButtonText="New Biomolecule"
+                actionButtonClick={() => {
+                    // setRenderView('new-biomolecule');
+                }}
+
+                actionScrollBottom={actionScrollBottom}
+            />
+        </StyledDashboardContainer>
     );
     // #endregion render
 }

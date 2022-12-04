@@ -11,10 +11,4 @@
 
 
 // #region module
-export interface IStyledChannels {
-    theme: Theme;
-}
-
-export const StyledChannels = styled.div<IStyledChannels>`
-`;
 // #region module
