@@ -40,11 +40,11 @@ export interface SelectorProperties {
         data: Dashboard;
         compactSelectors: boolean;
         theme: Theme;
-        renderView: string;
+        selectedDashboard: string;
         // #endregion values
 
         // #region methods
-        setRenderView: React.Dispatch<string>;
+        setSelectedDashboard: React.Dispatch<string>;
         // #endregion methods
     // #endregion required
 
@@ -66,13 +66,13 @@ const Selector: React.FC<SelectorProperties> = (
         // #region required
             // #region values
             data,
-            renderView,
+            selectedDashboard,
             compactSelectors,
             theme,
             // #endregion values
 
             // #region methods
-            setRenderView,
+            setSelectedDashboard,
             // #endregion methods
         // #endregion required
 
@@ -95,7 +95,7 @@ const Selector: React.FC<SelectorProperties> = (
     // FORCE uppercase for React.
     const Icon: any = icon;
 
-    const selected = id === renderView;
+    const selected = id === selectedDashboard;
     // #endregion properties
 
 
@@ -141,7 +141,7 @@ const Selector: React.FC<SelectorProperties> = (
         <StyledSelector
             key={(rendererID || '') + id}
 
-            onClick={() => setRenderView(id)}
+            onClick={() => setSelectedDashboard(id)}
             onMouseEnter={() => setMouseOver(true)}
             onMouseLeave={() => setMouseOver(false)}
 

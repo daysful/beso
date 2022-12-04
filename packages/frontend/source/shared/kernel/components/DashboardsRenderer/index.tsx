@@ -48,7 +48,7 @@ export interface DashboardsRendererProperties {
         brandingName?: string;
         brandingNameStyle?: React.CSSProperties;
         brandingLogo?: string;
-        activeRender?: string;
+        activeDashboard?: string;
         noDashboardRender?: JSX.Element;
         // #endregion values
 
@@ -84,7 +84,7 @@ const DashboardsRenderer: React.FC<DashboardsRendererProperties> = (
             brandingName,
             brandingNameStyle,
             brandingLogo,
-            activeRender,
+            activeDashboard,
             noDashboardRender,
             // #endregion values
 
@@ -111,25 +111,30 @@ const DashboardsRenderer: React.FC<DashboardsRendererProperties> = (
     ] = useState(false);
 
     const [
+        selectedDashboard,
+        setSelectedDashboard,
+    ] = useState(activeDashboard || '');
+
+    const [
         renderView,
         setRenderView,
-    ] = useState(activeRender || '');
+    ] = useState('');
     // #endregion state
 
 
     // #region effects
     useEffect(() => {
-        if (!activeRender) {
+        if (!activeDashboard) {
             return;
         }
 
-        if (renderView === activeRender) {
+        if (selectedDashboard === activeDashboard) {
             return;
         }
 
-        setRenderView(activeRender);
+        setSelectedDashboard(activeDashboard);
     }, [
-        activeRender,
+        activeDashboard,
     ]);
 
     useEffect(() => {
@@ -156,8 +161,8 @@ const DashboardsRenderer: React.FC<DashboardsRendererProperties> = (
 
                     compactSelectors={compactSelectors}
                     setCompactSelectors={setCompactSelectors}
-                    renderView={renderView}
-                    setRenderView={setRenderView}
+                    selectedDashboard={selectedDashboard}
+                    setSelectedDashboard={setSelectedDashboard}
                     identonym={identonym}
                     usageType={usageType}
 
@@ -171,17 +176,18 @@ const DashboardsRenderer: React.FC<DashboardsRendererProperties> = (
                 />
             )}
 
-            {renderView && (
+            {selectedDashboard && (
                 <RenderArea
                     dashboards={dashboards}
+                    selectedDashboard={selectedDashboard}
+                    setSelectedDashboard={setSelectedDashboard}
                     renderView={renderView}
-                    theme={theme}
-
                     setRenderView={setRenderView}
+                    theme={theme}
                 />
             )}
 
-            {!renderView && noDashboardRender && (
+            {!selectedDashboard && noDashboardRender && (
                 <StyledNoDashboardRender>
                     {noDashboardRender}
                 </StyledNoDashboardRender>

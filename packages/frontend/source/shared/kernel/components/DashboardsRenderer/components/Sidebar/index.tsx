@@ -49,8 +49,8 @@ export interface SidebarProperties {
 
         compactSelectors: boolean;
         setCompactSelectors: React.Dispatch<boolean>;
-        renderView: string;
-        setRenderView: React.Dispatch<string>;
+        selectedDashboard: string;
+        setSelectedDashboard: React.Dispatch<string>;
         // #endregion values
 
         // #region methods
@@ -86,8 +86,8 @@ const Sidebar: React.FC<SidebarProperties> = (
 
             compactSelectors,
             setCompactSelectors,
-            renderView,
-            setRenderView,
+            selectedDashboard,
+            setSelectedDashboard,
 
             identonym,
             usageType,
@@ -182,8 +182,8 @@ const Sidebar: React.FC<SidebarProperties> = (
                     data={dashboard}
                     compactSelectors={compactSelectors}
                     theme={theme}
-                    renderView={renderView}
-                    setRenderView={setRenderView}
+                    selectedDashboard={selectedDashboard}
+                    setSelectedDashboard={setSelectedDashboard}
                     rendererID={rendererID}
                 />
             ))}

@@ -29,11 +29,13 @@ export interface IStyledInterventionsSelectorItem {
 }
 
 export const StyledInterventionsSelectorItem = styled.div<IStyledInterventionsSelectorItem>`
-    border-bottom: 2px solid ${
+    border-bottom: 1px solid ${
         ({
             selected,
             theme,
         }: IStyledInterventionsSelectorItem) => selected ? theme.colorPrimary : 'transparent'
     };
+    cursor: pointer;
+    user-select: none;
 `;
 // #region module

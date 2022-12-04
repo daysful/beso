@@ -115,7 +115,7 @@ const Index: React.FC<IndexProperties> = (
                 dashboards={dashboards}
                 theme={stateGeneralTheme}
 
-                activeRender="simulations"
+                activeDashboard="simulations"
                 rendererID={plurid.plane.planeID}
                 identonym={stateIdentonym}
                 usageType="PRIVATE_USAGE"

@@ -13,6 +13,8 @@
 // #region module
 export interface DashboardRenderProperties {
     theme: Theme;
+    selectedDashboard: string;
+    setSelectedDashboard: React.Dispatch<string>;
     renderView: string;
     setRenderView: React.Dispatch<string>;
 }

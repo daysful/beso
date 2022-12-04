@@ -1,6 +1,9 @@
 // #region imports
     // #region libraries
-    import React from 'react';
+    import React, {
+        useState,
+        useEffect,
+    } from 'react';
 
     import {
         Theme,
@@ -29,22 +32,16 @@ export interface RenderAreaProperties {
     // #region required
         // #region values
         dashboards: Dashboard[];
+        selectedDashboard: string;
         renderView: string;
         theme: Theme;
         // #endregion values
 
         // #region methods
+        setSelectedDashboard: React.Dispatch<string>;
         setRenderView: React.Dispatch<string>;
         // #endregion methods
     // #endregion required
-
-    // #region optional
-        // #region values
-        // #endregion values
-
-        // #region methods
-        // #endregion methods
-    // #endregion optional
 }
 
 const RenderArea: React.FC<RenderAreaProperties> = (
@@ -55,36 +52,67 @@ const RenderArea: React.FC<RenderAreaProperties> = (
         // #region required
             // #region values
             dashboards,
+            selectedDashboard,
             renderView,
             theme,
             // #endregion values
 
             // #region methods
+            setSelectedDashboard,
             setRenderView,
             // #endregion methods
         // #endregion required
-
-        // #region optional
-            // #region values
-            // #endregion values
-
-            // #region methods
-            // #endregion methods
-        // #endregion optional
     } = properties;
 
     const dashboard = dashboards.find(
-        dashboard => dashboard.id === renderView,
+        dashboard => dashboard.id === selectedDashboard,
     );
-    // #endregion properties
-
-
-    // #region render
     if (!dashboard) {
         return (<></>);
     }
+    // #endregion properties
 
-    const renderID = dashboard.defaultRender || renderView;
+
+    // #region handlers
+    const resolveView = () => {
+        const dashboard = dashboards.find(
+            dashboard => dashboard.id === selectedDashboard,
+        );
+        if (!dashboard) {
+            return;
+        }
+
+        const renderViewInDashboard = dashboard.renderers[renderView];
+        if (renderViewInDashboard) {
+            return renderView;
+        }
+
+        if (dashboard.defaultRender) {
+            return dashboard.defaultRender;
+        }
+
+        return Object.keys(dashboard.renderers)[0];
+    }
+    // #endregion handlers
+
+
+    // #region effects
+    const renderID = resolveView();
+
+    useEffect(() => {
+        if (renderID && renderID !== renderView) {
+            setRenderView(renderID);
+        }
+    }, [
+        renderID,
+    ]);
+    // #endregion effects
+
+
+    // #region render
+    if (!renderID) {
+        return (<></>);
+    }
     const DashboardRender = dashboard.renderers[renderID];
     if (!DashboardRender) {
         return (<></>);
@@ -96,6 +124,8 @@ const RenderArea: React.FC<RenderAreaProperties> = (
         >
             <DashboardRender
                 theme={theme}
+                selectedDashboard={selectedDashboard}
+                setSelectedDashboard={setSelectedDashboard}
                 renderView={renderView}
                 setRenderView={setRenderView}
             />
