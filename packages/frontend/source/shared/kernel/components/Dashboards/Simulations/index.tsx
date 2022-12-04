@@ -19,6 +19,10 @@
 
     // #region external
     import {
+        Simulation,
+    } from '~kernel-data/interfaces';
+
+    import {
         DashboardRenderProperties,
     } from '~kernel-components/DashboardsRenderer/data';
 
@@ -47,19 +51,13 @@
 
 
 // #region module
-export interface Simulation {
-    id: string;
-    name: string;
-    generatedAt: number;
-    lastRun: number;
-}
-
 export interface SimulationsOwnProperties {
 }
 
 export interface SimulationsStateProperties {
     stateGeneralTheme: Theme;
     stateInteractionTheme: Theme;
+    stateSimulations: Simulation[];
 }
 
 export interface SimulationsDispatchProperties {
@@ -83,11 +81,9 @@ const Simulations: React.FC<SimulationsProperties> = (
         // #region state
         stateGeneralTheme,
         stateInteractionTheme,
+        stateSimulations,
         // #endregion state
     } = properties;
-
-    const stateSimulations: Simulation[] = [
-    ];
     // #endregion properties
 
 
@@ -210,6 +206,7 @@ const mapStateToProperties = (
 ): SimulationsStateProperties => ({
     stateGeneralTheme: selectors.themes.getGeneralTheme(state),
     stateInteractionTheme: selectors.themes.getInteractionTheme(state),
+    stateSimulations: selectors.data.getData(state).simulations,
 });
 
 

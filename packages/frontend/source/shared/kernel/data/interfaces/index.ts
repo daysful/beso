@@ -1,4 +1,8 @@
 // #region module
-export interface ExampleInterface {
+export interface Simulation {
+    id: string;
+    name: string;
+    generatedAt: number;
+    lastRun: number;
 }
 // #endregion module

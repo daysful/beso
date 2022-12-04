@@ -8,6 +8,7 @@
 
 // #region module
 const actions = {
+    data: modules.data.actions,
     general: modules.general.actions,
     themes: modules.themes.actions,
 };

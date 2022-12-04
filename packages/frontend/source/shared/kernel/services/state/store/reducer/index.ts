@@ -15,6 +15,7 @@
 
 // #region module
 const reducer = combineReducers({
+    data: modules.data.reducer,
     general: modules.general.reducer,
     themes: modules.themes.reducer,
 });
