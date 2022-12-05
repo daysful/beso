@@ -131,7 +131,8 @@ const Dashboard: React.FC<DashboardProperties> = (
                 activeDashboard={activeDashboard || 'simulations'}
                 activeRender={activeRender}
                 fullRenderArea={typeof fullRenderArea === 'undefined' ? undefined : fullRenderArea === 'true'}
-                // activeRender="new-simulation"
+                // activeDashboard={'worlds'}
+                // activeRender="new-world"
                 // fullRenderArea={true}
                 compactSelectors={stateCompactSelectors}
                 rendererID={plurid.plane.planeID}

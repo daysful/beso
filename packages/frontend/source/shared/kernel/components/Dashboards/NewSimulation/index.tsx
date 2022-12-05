@@ -24,6 +24,7 @@
 
     import {
         StyledDashboardContainer,
+        StyledNewEntity,
         PluridInputLine,
         PluridPureButton,
         PluridDropdown,
@@ -40,9 +41,6 @@
 
 
     // #region internal
-    import {
-        StyledNewSimulation,
-    } from './styled';
     // #endregion internal
 // #endregion imports
 
@@ -380,7 +378,7 @@ const NewSimulation: React.FC<NewSimulationProperties> = (
         <StyledDashboardContainer
             theme={stateGeneralTheme}
         >
-            <StyledNewSimulation>
+            <StyledNewEntity>
                 <h1>
                     New Simulation
                 </h1>
@@ -420,7 +418,7 @@ const NewSimulation: React.FC<NewSimulationProperties> = (
                     }}
                     theme={stateGeneralTheme}
                 />
-            </StyledNewSimulation>
+            </StyledNewEntity>
         </StyledDashboardContainer>
     );
     // #endregion render
