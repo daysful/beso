@@ -87,7 +87,6 @@ const Shell: React.FC<ShellProperties> = (
     // #region effects
     useEffect(() => {
         const state = loadState();
-        console.log(state);
 
         if (typeof state?.product?.ui?.compactSelectors === 'boolean') {
             dispatchSetCompactSelectors(state.product.ui.compactSelectors);
