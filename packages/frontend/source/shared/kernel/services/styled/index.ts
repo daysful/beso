@@ -22,6 +22,7 @@ const {
         LinkButton: PluridLinkButton,
     },
     inputs: {
+        InputBox: PluridInputBox,
         InputLine: PluridInputLine,
         InputSwitch: PluridInputSwitch,
         Textline: PluridTextline,
@@ -63,6 +64,7 @@ export const StyledNewEntity = styled.div`
 
     hr {
         width: 100%;
+        margin: 1.4rem 0;
     }
 
     display: grid;
@@ -79,6 +81,7 @@ export const StyledNewEntity = styled.div`
 export {
     PluridPureButton,
     PluridLinkButton,
+    PluridInputBox,
     PluridInputLine,
     PluridInputSwitch,
     PluridTextline,
