@@ -5,6 +5,8 @@ export interface BaseField {
     state: string;
     value?: any;
     required?: boolean;
+    unit?: string;
+    help?: string;
 }
 
 export interface StringField extends BaseField {

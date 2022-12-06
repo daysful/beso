@@ -16,5 +16,6 @@ export interface IStyledNumberField {
 }
 
 export const StyledNumberField = styled.div<IStyledNumberField>`
+    position: relative;
 `;
 // #region module

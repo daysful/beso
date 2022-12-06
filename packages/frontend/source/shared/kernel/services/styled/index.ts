@@ -35,6 +35,7 @@ const {
     },
     markers: {
         Spinner: PluridSpinner,
+        Tooltip: PluridTooltip,
     },
 } = universal;
 
@@ -90,6 +91,7 @@ export {
     PluridSwitch,
     PluridFormLeftRight,
     PluridSpinner,
+    PluridTooltip,
 
     ToolbarSpecific,
 };

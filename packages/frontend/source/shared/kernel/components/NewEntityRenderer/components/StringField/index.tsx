@@ -27,6 +27,8 @@
     import {
         StringField as IStringField,
     } from '~kernel-components/NewEntityRenderer/data';
+
+    import UtilityGroup from '../UtilityGroup';
     // #endregion external
 
 
@@ -96,6 +98,10 @@ const StringField: React.FC<StringFieldProperties> = (
                         event.target.value,
                     );
                 }}
+            />
+
+            <UtilityGroup
+                data={data}
             />
         </StyledStringField>
     );

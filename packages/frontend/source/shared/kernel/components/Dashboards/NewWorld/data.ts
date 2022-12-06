@@ -24,6 +24,8 @@ export const fields: NewEntityField[] = [
         value: 150e-6,
         format: 'scientific',
         required: true,
+        unit: 'm',
+        help: 'world size',
     },
     {
         label: 'cell radius',

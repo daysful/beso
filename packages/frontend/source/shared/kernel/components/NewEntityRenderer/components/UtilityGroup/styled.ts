@@ -11,11 +11,14 @@
 
 
 // #region module
-export interface IStyledStringField {
+export interface IStyledUtilityGroup {
     theme: Theme;
 }
 
-export const StyledStringField = styled.div<IStyledStringField>`
-    position: relative;
+export const StyledUtilityGroup = styled.div<IStyledUtilityGroup>`
+    position: absolute;
+    top: -4px;
+    right: 8px;
+    display: flex;
 `;
 // #region module
