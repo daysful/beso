@@ -2,6 +2,7 @@
     // #region libraries
     import React, {
         useState,
+        useEffect,
     } from 'react';
 
     import {
@@ -103,10 +104,12 @@ const NewEntityRenderer: React.FC<NewEntityRendererProperties> = (
 
 
     // #region handlers
-    const composePaste = () => {
+    const composePaste = (
+        newEntityState?: NewEntityField[],
+    ) => {
         const paste = {};
 
-        for (const field of fields) {
+        for (const field of (newEntityState || fields)) {
             paste[field.state] = field.value;
         }
 
@@ -135,10 +138,16 @@ const NewEntityRenderer: React.FC<NewEntityRendererProperties> = (
         });
 
         atChange(newEntityState);
-
-        composePaste();
+        composePaste(newEntityState);
     }
     // #endregion handlers
+
+
+    // #region effects
+    useEffect(() => {
+        composePaste();
+    }, []);
+    // #endregion effects
 
 
     // #region render
