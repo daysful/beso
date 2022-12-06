@@ -1,9 +1,6 @@
 // #region imports
     // #region libraries
-    import React, {
-        useState,
-        useEffect,
-    } from 'react';
+    import React from 'react';
 
     import {
         AnyAction,
@@ -85,26 +82,6 @@ const BooleanField: React.FC<BooleanFieldProperties> = (
     // #endregion properties
 
 
-    // #region state
-    const [
-        value,
-        setValue,
-    ] = useState(data.value);
-    // #endregion state
-
-
-    // #region effects
-    useEffect(() => {
-        update(
-            data.state,
-            value,
-        );
-    }, [
-        value,
-    ]);
-    // #endregion effects
-
-
     // #region render
     return (
         <StyledBooleanField
@@ -117,9 +94,12 @@ const BooleanField: React.FC<BooleanFieldProperties> = (
 
                 <PluridSwitch
                     theme={stateGeneralTheme}
-                    checked={value}
+                    checked={data.value}
                     atChange={() => {
-                        setValue(value => !value);
+                        update(
+                            data.state,
+                            !data.value,
+                        );
                     }}
                     exclusive={true}
                     level={2}

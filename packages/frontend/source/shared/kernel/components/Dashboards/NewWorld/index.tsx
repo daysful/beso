@@ -2,7 +2,7 @@
     // #region libraries
     import React, {
         useState,
-        useEffect,
+        useRef,
     } from 'react';
 
     import {
@@ -44,6 +44,7 @@
     // #region internal
     import {
         fields,
+        pasteParser,
     } from './data';
     // #endregion internal
 // #endregion imports
@@ -86,11 +87,18 @@ const NewWorld: React.FC<NewWorldProperties> = (
     // #endregion properties
 
 
+    // #region references
+    const rendererID = useRef(Math.random() + '');
+    // #endregion references
+
+
     // #region state
     const [
         state,
         setState,
-    ] = useState<any>();
+    ] = useState<any>(
+        JSON.parse(JSON.stringify(fields)),
+    );
 
     const [
         isValid,
@@ -125,15 +133,18 @@ const NewWorld: React.FC<NewWorldProperties> = (
                 </h1>
 
                 <NewEntityRenderer
-                    fields={fields}
-                    atChange={(state) => {
-                        setState(state);
+                    id={rendererID.current}
+                    fields={state}
+                    atChange={(newState) => {
+                        setState(newState);
                     }}
+                    pasteParser={pasteParser}
                 />
 
                 <PluridPureButton
                     text="Add New World"
                     atClick={() => {
+                        console.log(state);
                     }}
                     theme={stateGeneralTheme}
                     level={2}

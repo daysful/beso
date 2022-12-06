@@ -2,7 +2,6 @@
     // #region libraries
     import React, {
         useState,
-        useCallback,
     } from 'react';
 
     import {
@@ -50,9 +49,14 @@
 
 // #region module
 export interface NewEntityRendererOwnProperties {
+    id: string;
     fields: NewEntityField[];
 
-    atChange: (state: Record<string, any>) => void;
+    atChange: (fields: NewEntityField[]) => void;
+    pasteParser: (
+        text: string,
+        language: 'yaml' | 'json' | 'deon',
+    ) => any;
 }
 
 export interface NewEntityRendererStateProperties {
@@ -75,9 +79,11 @@ const NewEntityRenderer: React.FC<NewEntityRendererProperties> = (
     // #region properties
     const {
         // #region own
+        id,
         fields,
 
         atChange,
+        pasteParser,
         // #endregion own
 
         // #region state
@@ -85,9 +91,6 @@ const NewEntityRenderer: React.FC<NewEntityRendererProperties> = (
         // stateInteractionTheme,
         // #endregion state
     } = properties;
-
-    const rendererID = Math.random() + '';
-    // const rendererID = 'one';
     // #endregion properties
 
 
@@ -96,29 +99,45 @@ const NewEntityRenderer: React.FC<NewEntityRendererProperties> = (
         paste,
         setPaste,
     ] = useState('');
-
-    const [
-        entityState,
-        setEntityState,
-    ] = useState('{}');
     // #endregion state
 
 
     // #region handlers
-    const update = useCallback((
-        state: any,
+    const composePaste = () => {
+        const paste = {};
+
+        for (const field of fields) {
+            paste[field.state] = field.value;
+        }
+
+        setPaste(
+            JSON.stringify(paste, null, 4),
+        );
+    }
+
+    const update = (
+        state: string,
         value: any,
     ) => {
-        // console.log('entityState', entityState, state, value);
-        const newEntityState = {
-            ...JSON.parse(entityState),
-        };
-        newEntityState[state] = value;
+        const newEntityState: NewEntityField[] = [
+            ...JSON.parse(JSON.stringify(fields)),
+        ].map(field => {
+            if (field.state === state) {
+                return {
+                    ...field,
+                    value,
+                };
+            }
 
-        setEntityState(JSON.stringify(newEntityState));
-    }, [
-        entityState,
-    ]);
+            return {
+                ...field,
+            };
+        });
+
+        atChange(newEntityState);
+
+        composePaste();
+    }
     // #endregion handlers
 
 
@@ -137,7 +156,7 @@ const NewEntityRenderer: React.FC<NewEntityRendererProperties> = (
             />
 
             {fields.map(field => {
-                const key = rendererID + field.state;
+                const key = id + field.state;
 
                 const properties: any = {
                     key: key,
@@ -173,8 +192,8 @@ const NewEntityRenderer: React.FC<NewEntityRendererProperties> = (
                     case 'group':
                         return (
                             <GroupField
-                                key={key}
-                                data={field}
+                                {...properties}
+                                id={id}
                             />
                         );
                 }

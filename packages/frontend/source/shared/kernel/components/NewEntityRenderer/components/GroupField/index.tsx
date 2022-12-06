@@ -3,7 +3,6 @@
     import React, {
         useState,
         useCallback,
-        useEffect,
     } from 'react';
 
     import {
@@ -46,6 +45,7 @@
 
 // #region module
 export interface GroupFieldOwnProperties {
+    id: string;
     data: IGroupField;
 }
 
@@ -69,6 +69,7 @@ const GroupField: React.FC<GroupFieldProperties> = (
     // #region properties
     const {
         // #region own
+        id,
         data,
         // #endregion own
 
@@ -117,7 +118,7 @@ const GroupField: React.FC<GroupFieldProperties> = (
             </h2>
 
             {data.value.map(field => {
-                const key = groupID + field.state;
+                const key = id + groupID + field.state;
 
                 const properties: any = {
                     key: key,

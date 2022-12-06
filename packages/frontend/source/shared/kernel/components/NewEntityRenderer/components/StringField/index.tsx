@@ -1,9 +1,6 @@
 // #region imports
     // #region libraries
-    import React, {
-        useState,
-        useEffect,
-    } from 'react';
+    import React from 'react';
 
     import {
         AnyAction,
@@ -84,26 +81,6 @@ const StringField: React.FC<StringFieldProperties> = (
     // #endregion properties
 
 
-    // #region state
-    const [
-        value,
-        setValue,
-    ] = useState(data.value);
-    // #endregion state
-
-
-    // #region effects
-    useEffect(() => {
-        update(
-            data.state,
-            value,
-        );
-    }, [
-        value,
-    ]);
-    // #endregion effects
-
-
     // #region render
     return (
         <StyledStringField
@@ -112,9 +89,12 @@ const StringField: React.FC<StringFieldProperties> = (
             <PluridInputLine
                 theme={stateGeneralTheme}
                 name={data.label}
-                text={value}
+                text={data.value}
                 atChange={(event) => {
-                    setValue(event.target.value);
+                    update(
+                        data.state,
+                        event.target.value,
+                    );
                 }}
             />
         </StyledStringField>
