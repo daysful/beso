@@ -54,6 +54,7 @@
         "graphql": "^16.6.0",
         "graphql-tag": "^2.12.6",
         "hammerjs": "^2.0.8",
+        "js-yaml": "^4.1.0",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
         "react-helmet-async": "^1.3.0",
