@@ -9,6 +9,10 @@
 
     // #region external
     import {
+        PasteLanguage,
+    } from '~kernel-data/interfaces';
+
+    import {
         getRandomFace,
     } from '~kernel-planes/NotFound/logic';
 
@@ -25,18 +29,20 @@ export interface GeneralState {
     notFoundFace: string;
     identonym: string;
     allowUserRegistration: boolean;
+    pasteLanguage: PasteLanguage;
 }
 
 
-const initialState: GeneralState = {
+export const initialState: GeneralState = {
     notFoundFace: getRandomFace(),
     identonym: '',
     allowUserRegistration: true,
+    pasteLanguage: 'yaml',
 };
 
 
 export interface SetGeneralFieldPayload<T = any> {
-    field: string;
+    field: keyof GeneralState;
     value: T;
 }
 
@@ -54,7 +60,7 @@ export const general = createSlice({
                 value,
             } = action.payload;
 
-            state[field] = value;
+            (state as any)[field] = value;
         },
     },
 });

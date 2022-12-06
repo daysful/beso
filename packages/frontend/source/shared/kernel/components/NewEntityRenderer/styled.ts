@@ -17,4 +17,15 @@ export interface IStyledNewEntityRenderer {
 
 export const StyledNewEntityRenderer = styled.div<IStyledNewEntityRenderer>`
 `;
+
+
+export const StyledPastedBox = styled.div`
+    position: relative;
+`;
+
+export const StyledPastedLanguage = styled.div`
+    position: absolute;
+    top: -4px;
+    right: 8px;
+`;
 // #region module

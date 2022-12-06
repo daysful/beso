@@ -59,4 +59,8 @@ export interface Channel {
     name: string;
     generatedAt: number;
 }
+
+
+
+export type PasteLanguage = 'yaml' | 'json' | 'deon';
 // #endregion module

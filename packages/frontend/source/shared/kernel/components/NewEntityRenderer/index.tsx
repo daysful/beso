@@ -11,27 +11,40 @@
     } from '@reduxjs/toolkit';
     import { connect } from 'react-redux';
 
+
     import {
         Theme,
     } from '@plurid/plurid-themes';
+
+    import {
+        DispatchAction,
+    } from '@plurid/plurid-ui-state-react';
     // #endregion libraries
 
 
     // #region external
     import {
+        PasteLanguage,
+    } from '~kernel-data/interfaces';
+
+    import {
         PluridInputBox,
+        PluridDropdown,
+        PluridFormLeftRight,
     } from '~kernel-services/styled';
 
     import { AppState } from '~kernel-services/state/store';
     import StateContext from '~kernel-services/state/context';
     import selectors from '~kernel-services/state/selectors';
-    // import actions from '~kernel-services/state/actions';
+    import actions from '~kernel-services/state/actions';
     // #endregion external
 
 
     // #region internal
     import {
         StyledNewEntityRenderer,
+        StyledPastedBox,
+        StyledPastedLanguage,
     } from './styled';
 
     import {
@@ -56,16 +69,18 @@ export interface NewEntityRendererOwnProperties {
     atChange: (fields: NewEntityField[]) => void;
     pasteParser: (
         text: string,
-        language: 'yaml' | 'json' | 'deon',
+        language: PasteLanguage,
     ) => any;
 }
 
 export interface NewEntityRendererStateProperties {
     stateGeneralTheme: Theme;
     stateInteractionTheme: Theme;
+    statePasteLanguage: PasteLanguage;
 }
 
 export interface NewEntityRendererDispatchProperties {
+    dispatchSetGeneralField: DispatchAction<typeof actions.general.setGeneralField>;
 }
 
 export type NewEntityRendererProperties =
@@ -90,7 +105,12 @@ const NewEntityRenderer: React.FC<NewEntityRendererProperties> = (
         // #region state
         stateGeneralTheme,
         // stateInteractionTheme,
+        statePasteLanguage,
         // #endregion state
+
+        // #region dispatch
+        dispatchSetGeneralField,
+        // #endregion dispatch
     } = properties;
     // #endregion properties
 
@@ -155,14 +175,67 @@ const NewEntityRenderer: React.FC<NewEntityRendererProperties> = (
         <StyledNewEntityRenderer
             theme={stateGeneralTheme}
         >
-            <PluridInputBox
-                name="paste"
-                text={paste}
-                atChange={(event) => {
-                    setPaste(event.target.value);
+            <PluridFormLeftRight
+                style={{
+                    padding: '0.7rem',
                 }}
-                theme={stateGeneralTheme}
-            />
+            >
+                <div>
+                    source from
+                </div>
+
+                <PluridDropdown
+                    selected={'select world'}
+                    selectables={[
+                        'none',
+                    ]}
+                    atSelect={(selection) => {
+                        if (typeof selection !== 'string') {
+                            return;
+                        }
+                    }}
+                    style={{
+                        fontSize: '0.9rem',
+                    }}
+                    theme={stateGeneralTheme}
+                />
+            </PluridFormLeftRight>
+
+            <StyledPastedBox>
+                <PluridInputBox
+                    name="paste"
+                    text={paste}
+                    atChange={(event) => {
+                        setPaste(event.target.value);
+                    }}
+                    theme={stateGeneralTheme}
+                />
+
+                <StyledPastedLanguage>
+                    <PluridDropdown
+                        selected={statePasteLanguage || 's'}
+                        selectables={[
+                            'yaml',
+                            'json',
+                            'deon',
+                        ]}
+                        atSelect={(selection) => {
+                            if (typeof selection !== 'string') {
+                                return;
+                            }
+
+                            dispatchSetGeneralField({
+                                field: 'pasteLanguage',
+                                value: selection,
+                            });
+                        }}
+                        style={{
+                            fontSize: '0.9rem',
+                        }}
+                        theme={stateGeneralTheme}
+                    />
+                </StyledPastedLanguage>
+            </StyledPastedBox>
 
             {fields.map(field => {
                 const key = id + field.state;
@@ -218,12 +291,18 @@ const mapStateToProperties = (
 ): NewEntityRendererStateProperties => ({
     stateGeneralTheme: selectors.themes.getGeneralTheme(state),
     stateInteractionTheme: selectors.themes.getInteractionTheme(state),
+    statePasteLanguage: selectors.general.getGeneral(state).pasteLanguage,
 });
 
 
 const mapDispatchToProperties = (
     dispatch: ThunkDispatch<{}, {}, AnyAction>,
 ): NewEntityRendererDispatchProperties => ({
+    dispatchSetGeneralField: (
+        payload,
+    ) => dispatch(
+        actions.general.setGeneralField(payload),
+    ),
 });
 
 

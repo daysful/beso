@@ -14,6 +14,7 @@
         getRandomFace,
     } from '~kernel-planes/NotFound/logic';
 
+    import * as generalState from '~kernel-services/state/modules/general';
     import reduxStore from '~kernel-services/state/store';
 
     import {
@@ -58,6 +59,7 @@ const preserves: PluridPreserve<
 
             const store = reduxStore({
                 general: {
+                    ...generalState.initialState,
                     notFoundFace: getRandomFace(),
                     identonym: data?.user ? data.user.name : '',
                     allowUserRegistration: data?.allowUserRegistration,
