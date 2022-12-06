@@ -11,6 +11,11 @@
     } from '@reduxjs/toolkit';
     import { connect } from 'react-redux';
 
+    import yaml from 'js-yaml';
+    import {
+        DeonPure,
+    } from '@plurid/deon/distribution/pure';
+
 
     import {
         Theme,
@@ -128,14 +133,38 @@ const NewEntityRenderer: React.FC<NewEntityRendererProperties> = (
         newEntityState?: NewEntityField[],
     ) => {
         const paste = {};
-
         for (const field of (newEntityState || fields)) {
+            if (field.type === 'group') {
+                const groupPaste = {};
+                for (const groupField of field.value) {
+                    groupPaste[groupField.state] = groupField.value;
+                }
+
+                paste[field.state] = groupPaste;
+                continue;
+            }
+
             paste[field.state] = field.value;
         }
 
-        setPaste(
-            JSON.stringify(paste, null, 4),
-        );
+        let text = '';
+
+        switch (statePasteLanguage) {
+            case 'yaml':
+                text = yaml.dump(
+                    paste,
+                );
+                break;
+            case 'json':
+                text = JSON.stringify(paste, null, 4);
+                break;
+            case 'deon':
+                const deon = new DeonPure();
+                text = deon.stringify(paste);
+                break;
+        }
+
+        setPaste(text);
     }
 
     const update = (
@@ -167,6 +196,12 @@ const NewEntityRenderer: React.FC<NewEntityRendererProperties> = (
     useEffect(() => {
         composePaste();
     }, []);
+
+    useEffect(() => {
+        composePaste();
+    }, [
+        statePasteLanguage,
+    ]);
     // #endregion effects
 
 
