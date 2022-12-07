@@ -49,6 +49,10 @@
 export interface GroupFieldOwnProperties {
     id: string;
     data: IGroupField;
+    update: (
+        state: string,
+        value: any,
+    ) => void;
 }
 
 export interface GroupFieldStateProperties {
@@ -73,6 +77,7 @@ const GroupField: React.FC<GroupFieldProperties> = (
         // #region own
         id,
         data,
+        update,
         // #endregion own
 
         // #region state
@@ -85,28 +90,29 @@ const GroupField: React.FC<GroupFieldProperties> = (
     // #endregion properties
 
 
-    // #region state
-    const [
-        groupState,
-        setGroupState,
-    ] = useState('{}');
-    // #endregion state
-
-
     // #region handlers
-    const update = useCallback((
-        state: any,
+    const updateGroup = (
+        state: string,
         value: any,
     ) => {
-        const newGroupState = {
-            ...JSON.parse(groupState),
-        };
-        newGroupState[state] = value;
+        const newGroupValue = data.value.map(groupField => {
+            if (groupField.state === state) {
+                return {
+                    ...groupField,
+                    value,
+                }
+            }
 
-        setGroupState(JSON.stringify(newGroupState));
-    }, [
-        groupState,
-    ]);
+            return {
+                ...groupField,
+            }
+        });
+
+        update(
+            data.state,
+            newGroupValue,
+        );
+    }
     // #endregion handlers
 
 
@@ -130,7 +136,7 @@ const GroupField: React.FC<GroupFieldProperties> = (
                 const properties: any = {
                     key: key,
                     data: field,
-                    update: update,
+                    update: updateGroup,
                 };
 
                 switch (field.type) {

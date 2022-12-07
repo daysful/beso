@@ -148,12 +148,9 @@ const NewEntityRenderer: React.FC<NewEntityRendererProperties> = (
         }
 
         let text = '';
-
         switch (statePasteLanguage) {
             case 'yaml':
-                text = yaml.dump(
-                    paste,
-                );
+                text = yaml.dump(paste);
                 break;
             case 'json':
                 text = JSON.stringify(paste, null, 4);
@@ -165,6 +162,71 @@ const NewEntityRenderer: React.FC<NewEntityRendererProperties> = (
         }
 
         setPaste(text);
+    }
+
+    const parsePaste = (
+        text: string,
+    ) => {
+        let data: any;
+        switch (statePasteLanguage) {
+            case 'yaml':
+                data = yaml.load(text);
+                break;
+            case 'json':
+                data = JSON.parse(text);
+                break;
+            case 'deon':
+                const deon = new DeonPure();
+                data = deon.parse(text);
+                break;
+        }
+
+        const newEntityState: NewEntityField[] = [
+            ...JSON.parse(JSON.stringify(fields)),
+        ].map((field: NewEntityField) => {
+            if (field.type === 'group') {
+                const newValue = field.value.map(
+                    groupField => {
+                        if (typeof data[field.state] === 'undefined') {
+                            return {
+                                ...groupField,
+                            };
+                        }
+
+                        const newValue = data[field.state][groupField.state];
+                        if (typeof newValue !== 'undefined') {
+                            return {
+                                ...groupField,
+                                value: newValue,
+                            };
+                        }
+
+                        return {
+                            ...groupField,
+                        };
+                    },
+                );
+
+                return {
+                    ...field,
+                    value: newValue,
+                };
+            }
+
+            const newValue = data[field.state];
+            if (typeof newValue !== 'undefined') {
+                return {
+                    ...field,
+                    value: newValue,
+                };
+            }
+
+            return {
+                ...field,
+            };
+        });
+
+        atChange(newEntityState);
     }
 
     const update = (
@@ -242,8 +304,12 @@ const NewEntityRenderer: React.FC<NewEntityRendererProperties> = (
                     text={paste}
                     atChange={(event) => {
                         setPaste(event.target.value);
+                        parsePaste(event.target.value);
                     }}
                     theme={stateGeneralTheme}
+                    style={{
+                        fontFamily: 'monospace',
+                    }}
                 />
 
                 <StyledPastedLanguage>

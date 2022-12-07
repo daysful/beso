@@ -22,7 +22,8 @@ export const StyledBooleanField = styled.div<IStyledBooleanField>`
 
 
 export const StyledTextLine = styled.div`
+    margin-left: 14px;
     display: flex;
-    gap: 1rem;
+    gap: 0.7rem;
 `;
 // #region module
