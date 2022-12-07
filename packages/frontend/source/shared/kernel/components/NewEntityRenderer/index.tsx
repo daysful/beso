@@ -72,10 +72,6 @@ export interface NewEntityRendererOwnProperties {
     fields: NewEntityField[];
 
     atChange: (fields: NewEntityField[]) => void;
-    pasteParser: (
-        text: string,
-        language: PasteLanguage,
-    ) => any;
 }
 
 export interface NewEntityRendererStateProperties {
@@ -104,7 +100,6 @@ const NewEntityRenderer: React.FC<NewEntityRendererProperties> = (
         fields,
 
         atChange,
-        pasteParser,
         // #endregion own
 
         // #region state

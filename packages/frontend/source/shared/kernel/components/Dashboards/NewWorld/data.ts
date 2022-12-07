@@ -175,15 +175,4 @@ export const fields: NewEntityField[] = [
         help: 'use cell centroids instead of circumcentres when building meshes',
     },
 ];
-
-
-export const pasteParser = (
-    text: string,
-    language: 'yaml' | 'json' | 'deon',
-) => {
-    return {
-        // name, worldSize, etc.
-        // ...
-    };
-}
 // #endregion module

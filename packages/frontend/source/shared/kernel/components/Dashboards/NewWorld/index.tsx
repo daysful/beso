@@ -44,7 +44,6 @@
     // #region internal
     import {
         fields,
-        pasteParser,
     } from './data';
     // #endregion internal
 // #endregion imports
@@ -138,7 +137,6 @@ const NewWorld: React.FC<NewWorldProperties> = (
                     atChange={(newState) => {
                         setState(newState);
                     }}
-                    pasteParser={pasteParser}
                 />
 
                 <PluridPureButton
