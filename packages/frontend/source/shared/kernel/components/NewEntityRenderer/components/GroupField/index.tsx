@@ -31,6 +31,8 @@
     import NumberField from '~kernel-components/NewEntityRenderer/components/NumberField';
     import BooleanField from '~kernel-components/NewEntityRenderer/components/BooleanField';
     import FileField from '~kernel-components/NewEntityRenderer/components/FileField';
+
+    import UtilityGroup from '../UtilityGroup';
     // #endregion external
 
 
@@ -113,6 +115,11 @@ const GroupField: React.FC<GroupFieldProperties> = (
         <StyledGroupField
             theme={stateGeneralTheme}
         >
+            <UtilityGroup
+                data={data}
+                topDistance="6px"
+            />
+
             <h2>
                 {data.label}
             </h2>

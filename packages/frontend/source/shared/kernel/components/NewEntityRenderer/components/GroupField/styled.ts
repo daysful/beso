@@ -16,5 +16,6 @@ export interface IStyledGroupField {
 }
 
 export const StyledGroupField = styled.div<IStyledGroupField>`
+    position: relative;
 `;
 // #region module

@@ -28,12 +28,15 @@
     import {
         BooleanField as IBooleanField,
     } from '~kernel-components/NewEntityRenderer/data';
+
+    import UtilityGroup from '../UtilityGroup';
     // #endregion external
 
 
     // #region internal
     import {
         StyledBooleanField,
+        StyledTextLine,
     } from './styled';
     // #endregion internal
 // #endregion imports
@@ -88,9 +91,17 @@ const BooleanField: React.FC<BooleanFieldProperties> = (
             theme={stateGeneralTheme}
         >
             <PluridFormLeftRight>
-                <div>
-                    {data.label}
-                </div>
+                <StyledTextLine>
+                    <div>
+                        {data.label}
+                    </div>
+
+                    <UtilityGroup
+                        data={data}
+                        relativePosition={true}
+                        topDistance={'0px'}
+                    />
+                </StyledTextLine>
 
                 <PluridSwitch
                     theme={stateGeneralTheme}

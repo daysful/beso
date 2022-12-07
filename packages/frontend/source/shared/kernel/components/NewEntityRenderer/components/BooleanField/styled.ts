@@ -16,6 +16,13 @@ export interface IStyledBooleanField {
 }
 
 export const StyledBooleanField = styled.div<IStyledBooleanField>`
+    position: relative;
     margin-top: 1.4rem;
+`;
+
+
+export const StyledTextLine = styled.div`
+    display: flex;
+    gap: 1rem;
 `;
 // #region module

@@ -43,6 +43,9 @@
 // #region module
 export interface UtilityGroupOwnProperties {
     data: BaseField;
+
+    relativePosition?: boolean;
+    topDistance?: string;
 }
 
 export interface UtilityGroupStateProperties {
@@ -66,6 +69,9 @@ const UtilityGroup: React.FC<UtilityGroupProperties> = (
     const {
         // #region own
         data,
+
+        relativePosition,
+        topDistance,
         // #endregion own
 
         // #region state
@@ -80,6 +86,10 @@ const UtilityGroup: React.FC<UtilityGroupProperties> = (
     return (
         <StyledUtilityGroup
             theme={stateGeneralTheme}
+            relativePosition={relativePosition}
+            style={{
+                top: topDistance,
+            }}
         >
             {data.unit && (
                 <div>

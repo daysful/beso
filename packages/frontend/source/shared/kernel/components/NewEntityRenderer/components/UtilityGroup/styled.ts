@@ -13,10 +13,21 @@
 // #region module
 export interface IStyledUtilityGroup {
     theme: Theme;
+    relativePosition?: boolean;
 }
 
 export const StyledUtilityGroup = styled.div<IStyledUtilityGroup>`
-    position: absolute;
+    position: ${
+        ({
+            relativePosition,
+        }) => {
+            if (relativePosition) {
+                return 'relative';
+            }
+
+            return 'absolute';
+        }
+    };
     top: -4px;
     right: 8px;
     display: flex;
