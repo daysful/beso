@@ -17,5 +17,20 @@ export const fields: NewEntityField[] = [
         value: 'new targeted intervention',
         required: true,
     },
+    {
+        label: 'change Na membrane',
+        type: 'group',
+        state: 'changeNaMem',
+        value: [
+            {
+                label: 'event happens',
+                type: 'boolean',
+                state: 'eventHappens',
+                value: false,
+                help: 'turn the event on (True) or off (False)',
+            },
+        ],
+        help: 'Change the membrane permeability to Na+',
+    },
 ];
 // #endregion module

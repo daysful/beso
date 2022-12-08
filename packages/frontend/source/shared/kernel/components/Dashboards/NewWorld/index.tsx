@@ -27,11 +27,8 @@
     import {
         StyledDashboardContainer,
         StyledNewEntity,
-        PluridInputLine,
         PluridPureButton,
         PluridLinkButton,
-        PluridSwitch,
-        PluridFormLeftRight,
     } from '~kernel-services/styled';
 
     import { AppState } from '~kernel-services/state/store';
