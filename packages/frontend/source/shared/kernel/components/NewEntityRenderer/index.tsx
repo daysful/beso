@@ -59,6 +59,7 @@
     import StringField from './components/StringField';
     import NumberField from './components/NumberField';
     import BooleanField from './components/BooleanField';
+    import ListField from './components/ListField';
     import FileField from './components/FileField';
     import GroupField from './components/GroupField';
     // #endregion internal
@@ -358,6 +359,12 @@ const NewEntityRenderer: React.FC<NewEntityRendererProperties> = (
                     case 'boolean':
                         return (
                             <BooleanField
+                                {...properties}
+                            />
+                        );
+                    case 'list':
+                        return (
+                            <ListField
                                 {...properties}
                             />
                         );

@@ -1,9 +1,6 @@
 // #region imports
     // #region libraries
-    import React, {
-        useState,
-        useCallback,
-    } from 'react';
+    import React from 'react';
 
     import {
         AnyAction,
@@ -30,6 +27,7 @@
     import StringField from '~kernel-components/NewEntityRenderer/components/StringField';
     import NumberField from '~kernel-components/NewEntityRenderer/components/NumberField';
     import BooleanField from '~kernel-components/NewEntityRenderer/components/BooleanField';
+    import ListField from '~kernel-components/NewEntityRenderer/components/ListField';
     import FileField from '~kernel-components/NewEntityRenderer/components/FileField';
 
     import UtilityGroup from '../UtilityGroup';
@@ -155,6 +153,12 @@ const GroupField: React.FC<GroupFieldProperties> = (
                     case 'boolean':
                         return (
                             <BooleanField
+                                {...properties}
+                            />
+                        );
+                    case 'list':
+                        return (
+                            <ListField
                                 {...properties}
                             />
                         );

@@ -25,6 +25,11 @@ export interface BooleanField extends BaseField {
     value: boolean;
 }
 
+export interface ListField extends BaseField {
+    type: 'list';
+    value: string[];
+}
+
 export interface FileField extends BaseField {
     type: 'file';
     filetypes?: string[];
@@ -34,6 +39,7 @@ export type PrimitiveField =
     | StringField
     | NumberField
     | BooleanField
+    | ListField
     | FileField;
 
 export interface GroupField extends BaseField {
