@@ -43,8 +43,8 @@ export type PrimitiveField =
     | FileField;
 
 export interface GroupField extends BaseField {
-    type: 'group';
-    value: PrimitiveField[];
+    type: 'group' | 'subgroup';
+    value: NewEntityField[];
 }
 
 export type NewEntityField =

@@ -32,11 +32,9 @@
         GroupField as IGroupField,
     } from '~kernel-components/NewEntityRenderer/data';
 
-    import StringField from '~kernel-components/NewEntityRenderer/components/StringField';
-    import NumberField from '~kernel-components/NewEntityRenderer/components/NumberField';
-    import BooleanField from '~kernel-components/NewEntityRenderer/components/BooleanField';
-    import ListField from '~kernel-components/NewEntityRenderer/components/ListField';
-    import FileField from '~kernel-components/NewEntityRenderer/components/FileField';
+    import {
+        resolveView,
+    } from '~kernel-components/NewEntityRenderer/logic';
 
     import UtilityGroup from '../UtilityGroup';
     // #endregion external
@@ -60,6 +58,7 @@ export interface GroupFieldOwnProperties {
         state: string,
         value: any,
     ) => void;
+    isSubgroup: boolean;
 }
 
 export interface GroupFieldStateProperties {
@@ -85,6 +84,7 @@ const GroupField: React.FC<GroupFieldProperties> = (
         id,
         data,
         update,
+        isSubgroup,
         // #endregion own
 
         // #region state
@@ -132,6 +132,12 @@ const GroupField: React.FC<GroupFieldProperties> = (
 
 
     // #region render
+    const view = resolveView(
+        data.value,
+        id + groupID,
+        updateGroup,
+    );
+
     return (
         <StyledGroupField
             theme={stateGeneralTheme}
@@ -141,7 +147,9 @@ const GroupField: React.FC<GroupFieldProperties> = (
                 topDistance="3px"
             />
 
-            <StyledExpander>
+            <StyledExpander
+                isSubgroup={isSubgroup}
+            >
                 {show && (
                     <PluridIconArrowUp
                         atClick={() => setShow(false)}
@@ -165,48 +173,7 @@ const GroupField: React.FC<GroupFieldProperties> = (
 
             {show && (
                 <>
-                    {data.value.map(field => {
-                        const key = id + groupID + field.state;
-
-                        const properties: any = {
-                            key: key,
-                            data: field,
-                            update: updateGroup,
-                        };
-
-                        switch (field.type) {
-                            case 'string':
-                                return (
-                                    <StringField
-                                        {...properties}
-                                    />
-                                );
-                            case 'number':
-                                return (
-                                    <NumberField
-                                        {...properties}
-                                    />
-                                );
-                            case 'boolean':
-                                return (
-                                    <BooleanField
-                                        {...properties}
-                                    />
-                                );
-                            case 'list':
-                                return (
-                                    <ListField
-                                        {...properties}
-                                    />
-                                );
-                            case 'file':
-                                return (
-                                    <FileField
-                                        {...properties}
-                                    />
-                                );
-                        }
-                    })}
+                    {view}
 
                     <hr />
                 </>

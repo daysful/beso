@@ -25,9 +25,17 @@ export const StyledGroupField = styled.div<IStyledGroupField>`
 `;
 
 
-export const StyledExpander = styled.div`
+export interface IStyledExpander {
+    isSubgroup: boolean;
+}
+
+export const StyledExpander = styled.div<IStyledExpander>`
     position: absolute;
     top: 3px;
-    left: 10px;
+    left: ${
+        ({
+            isSubgroup,
+        }) => isSubgroup ? '25px' : '10px'
+    };
 `;
 // #region module

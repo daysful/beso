@@ -56,12 +56,9 @@
         NewEntityField,
     } from './data';
 
-    import StringField from './components/StringField';
-    import NumberField from './components/NumberField';
-    import BooleanField from './components/BooleanField';
-    import ListField from './components/ListField';
-    import FileField from './components/FileField';
-    import GroupField from './components/GroupField';
+    import {
+        resolveView,
+    } from './logic';
     // #endregion internal
 // #endregion imports
 
@@ -264,6 +261,12 @@ const NewEntityRenderer: React.FC<NewEntityRendererProperties> = (
 
 
     // #region render
+    const view = resolveView(
+        fields,
+        id,
+        update,
+    );
+
     return (
         <StyledNewEntityRenderer
             theme={stateGeneralTheme}
@@ -334,55 +337,7 @@ const NewEntityRenderer: React.FC<NewEntityRendererProperties> = (
                 </StyledPastedLanguage>
             </StyledPastedBox>
 
-            {fields.map(field => {
-                const key = id + field.state;
-
-                const properties: any = {
-                    key: key,
-                    data: field,
-                    update: update,
-                };
-
-                switch (field.type) {
-                    case 'string':
-                        return (
-                            <StringField
-                                {...properties}
-                            />
-                        );
-                    case 'number':
-                        return (
-                            <NumberField
-                                {...properties}
-                            />
-                        );
-                    case 'boolean':
-                        return (
-                            <BooleanField
-                                {...properties}
-                            />
-                        );
-                    case 'list':
-                        return (
-                            <ListField
-                                {...properties}
-                            />
-                        );
-                    case 'file':
-                        return (
-                            <FileField
-                                {...properties}
-                            />
-                        );
-                    case 'group':
-                        return (
-                            <GroupField
-                                {...properties}
-                                id={id}
-                            />
-                        );
-                }
-            })}
+            {view}
         </StyledNewEntityRenderer>
     );
     // #endregion render
