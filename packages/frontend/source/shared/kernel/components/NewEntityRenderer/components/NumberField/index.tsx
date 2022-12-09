@@ -93,9 +93,14 @@ const NumberField: React.FC<NumberFieldProperties> = (
                 name={data.label}
                 text={data.value + ''}
                 atChange={(event) => {
+                    const value = event.target.value;
+                    const number = data.format === 'integer'
+                        ? parseInt(value)
+                        : parseFloat(value);
+
                     update(
                         data.state,
-                        parseInt(event.target.value),
+                        number,
                     );
                 }}
             />
