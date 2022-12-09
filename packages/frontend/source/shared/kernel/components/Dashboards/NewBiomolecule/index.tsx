@@ -19,9 +19,10 @@
         DashboardRenderProperties,
     } from '~kernel-components/DashboardsRenderer/data';
 
+    import NewEntityComponent from '~kernel-components/NewEntityComponent';
+
     import {
-        PluridLinkButton,
-        StyledDashboardContainer,
+        PluridDropdown,
     } from '~kernel-services/styled';
 
     import { AppState } from '~kernel-services/state/store';
@@ -32,6 +33,9 @@
 
 
     // #region internal
+    import {
+        fields,
+    } from './data';
     // #endregion internal
 // #endregion imports
 
@@ -75,22 +79,32 @@ const NewBiomolecule: React.FC<NewBiomoleculeProperties> = (
 
     // #region render
     return (
-        <StyledDashboardContainer
-            theme={stateGeneralTheme}
-        >
-            <h1>
-                New Biomolecule
-            </h1>
+        <NewEntityComponent
+            fields={fields}
 
-            <PluridLinkButton
-                text="cancel"
-                atClick={() => {
-                    setFullRenderArea(false);
-                    setRenderView('biomolecules');
-                }}
-                theme={stateGeneralTheme}
-            />
-        </StyledDashboardContainer>
+            setRenderView={setRenderView}
+            renderViewPath="biomolecules"
+            setFullRenderArea={setFullRenderArea}
+
+            kind="Biomolecule"
+            sourceFrom={(
+                <PluridDropdown
+                    selected={'select biomolecule'}
+                    selectables={[
+                        'none',
+                    ]}
+                    atSelect={(selection) => {
+                        if (typeof selection !== 'string') {
+                            return;
+                        }
+                    }}
+                    style={{
+                        fontSize: '0.9rem',
+                    }}
+                    theme={stateGeneralTheme}
+                />
+            )}
+        />
     );
     // #endregion render
 }

@@ -1,9 +1,6 @@
 // #region imports
     // #region libraries
-    import React, {
-        useState,
-        useRef,
-    } from 'react';
+    import React from 'react';
 
     import {
         AnyAction,
@@ -22,13 +19,9 @@
         DashboardRenderProperties,
     } from '~kernel-components/DashboardsRenderer/data';
 
-    import NewEntityRenderer from '~kernel-components/NewEntityRenderer';
+    import NewEntityComponent from '~kernel-components/NewEntityComponent';
 
     import {
-        StyledDashboardContainer,
-        StyledNewEntity,
-        PluridPureButton,
-        PluridLinkButton,
         PluridDropdown,
     } from '~kernel-services/styled';
 
@@ -84,96 +77,49 @@ const NewWorld: React.FC<NewWorldProperties> = (
     // #endregion properties
 
 
-    // #region references
-    const rendererID = useRef(Math.random() + '');
-    // #endregion references
-
-
-    // #region state
-    const [
-        state,
-        setState,
-    ] = useState<any>(
-        JSON.parse(JSON.stringify(fields)),
-    );
-
-    const [
-        isValid,
-        setIsValid,
-    ] = useState(false);
-    // #endregion state
-
-
-    // #region effects
-    // useEffect(() => {
-    //     if (
+    // #region handlers
+    const checkValid = (
+        state: any,
+    ) => {
+    //   if (
     //         name
     //     ) {
     //         setIsValid(true);
     //     } else {
     //         setIsValid(false);
     //     }
-    // }, [
-    //     name,
-    // ]);
-    // #endregion effects
+    }
+    // #endregion handlers
 
 
     // #region render
     return (
-        <StyledDashboardContainer
-            theme={stateGeneralTheme}
-        >
-            <StyledNewEntity>
-                <h1>
-                    New World
-                </h1>
+        <NewEntityComponent
+            fields={fields}
 
-                <NewEntityRenderer
-                    id={rendererID.current}
-                    fields={state}
-                    atChange={(newState) => {
-                        setState(newState);
+            setRenderView={setRenderView}
+            renderViewPath="worlds"
+            setFullRenderArea={setFullRenderArea}
+
+            kind="World"
+            sourceFrom={(
+                <PluridDropdown
+                    selected={'select world'}
+                    selectables={[
+                        'none',
+                    ]}
+                    atSelect={(selection) => {
+                        if (typeof selection !== 'string') {
+                            return;
+                        }
                     }}
-                    sourceFrom={(
-                        <PluridDropdown
-                            selected={'select world'}
-                            selectables={[
-                                'none',
-                            ]}
-                            atSelect={(selection) => {
-                                if (typeof selection !== 'string') {
-                                    return;
-                                }
-                            }}
-                            style={{
-                                fontSize: '0.9rem',
-                            }}
-                            theme={stateGeneralTheme}
-                        />
-                    )}
-                />
-
-                <PluridPureButton
-                    text="Add New World"
-                    atClick={() => {
-                        console.log(state);
-                    }}
-                    theme={stateGeneralTheme}
-                    level={2}
-                    disabled={!isValid}
-                />
-
-                <PluridLinkButton
-                    text="cancel"
-                    atClick={() => {
-                        setFullRenderArea(false);
-                        setRenderView('worlds');
+                    style={{
+                        fontSize: '0.9rem',
                     }}
                     theme={stateGeneralTheme}
                 />
-            </StyledNewEntity>
-        </StyledDashboardContainer>
+            )}
+        />
     );
     // #endregion render
 }

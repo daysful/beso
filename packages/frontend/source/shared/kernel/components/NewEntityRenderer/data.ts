@@ -27,7 +27,7 @@ export interface BooleanField extends BaseField {
 
 export interface ListField extends BaseField {
     type: 'list';
-    value: string[];
+    value: (string | number)[];
 }
 
 export interface FileField extends BaseField {
