@@ -70,6 +70,8 @@ export interface NewEntityRendererOwnProperties {
     fields: NewEntityField[];
 
     atChange: (fields: NewEntityField[]) => void;
+
+    sourceFrom?: JSX.Element;
 }
 
 export interface NewEntityRendererStateProperties {
@@ -98,6 +100,8 @@ const NewEntityRenderer: React.FC<NewEntityRendererProperties> = (
         fields,
 
         atChange,
+
+        sourceFrom,
         // #endregion own
 
         // #region state
@@ -271,31 +275,19 @@ const NewEntityRenderer: React.FC<NewEntityRendererProperties> = (
         <StyledNewEntityRenderer
             theme={stateGeneralTheme}
         >
-            <PluridFormLeftRight
-                style={{
-                    padding: '0.7rem',
-                }}
-            >
-                <div>
-                    source from
-                </div>
-
-                <PluridDropdown
-                    selected={'select world'}
-                    selectables={[
-                        'none',
-                    ]}
-                    atSelect={(selection) => {
-                        if (typeof selection !== 'string') {
-                            return;
-                        }
-                    }}
+            {sourceFrom && (
+                <PluridFormLeftRight
                     style={{
-                        fontSize: '0.9rem',
+                        padding: '0.7rem',
                     }}
-                    theme={stateGeneralTheme}
-                />
-            </PluridFormLeftRight>
+                >
+                    <div>
+                        source from
+                    </div>
+
+                    {sourceFrom}
+                </PluridFormLeftRight>
+            )}
 
             <StyledPastedBox>
                 <PluridInputBox

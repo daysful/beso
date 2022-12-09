@@ -29,6 +29,7 @@
         StyledNewEntity,
         PluridPureButton,
         PluridLinkButton,
+        PluridDropdown,
     } from '~kernel-services/styled';
 
     import { AppState } from '~kernel-services/state/store';
@@ -134,6 +135,23 @@ const NewWorld: React.FC<NewWorldProperties> = (
                     atChange={(newState) => {
                         setState(newState);
                     }}
+                    sourceFrom={(
+                        <PluridDropdown
+                            selected={'select world'}
+                            selectables={[
+                                'none',
+                            ]}
+                            atSelect={(selection) => {
+                                if (typeof selection !== 'string') {
+                                    return;
+                                }
+                            }}
+                            style={{
+                                fontSize: '0.9rem',
+                            }}
+                            theme={stateGeneralTheme}
+                        />
+                    )}
                 />
 
                 <PluridPureButton
