@@ -19,7 +19,7 @@ export const StyledInterventionsSelector = styled.div<IStyledInterventionsSelect
     position: absolute;
     z-index: 9999;
     left: 65%;
-    top: 50px;
+    top: 42px;
     transform: translateX(-65%);
 
     display: flex;
