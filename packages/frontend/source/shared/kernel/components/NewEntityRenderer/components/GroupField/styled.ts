@@ -17,5 +17,17 @@ export interface IStyledGroupField {
 
 export const StyledGroupField = styled.div<IStyledGroupField>`
     position: relative;
+
+    h2 {
+        font-size: 1.1rem;
+        font-weight: normal;
+    }
+`;
+
+
+export const StyledExpander = styled.div`
+    position: absolute;
+    top: 3px;
+    left: 10px;
 `;
 // #region module

@@ -1,6 +1,8 @@
 // #region imports
     // #region libraries
-    import React from 'react';
+    import React, {
+        useState,
+    } from 'react';
 
     import {
         AnyAction,
@@ -8,9 +10,15 @@
     } from '@reduxjs/toolkit';
     import { connect } from 'react-redux';
 
+
     import {
         Theme,
     } from '@plurid/plurid-themes';
+
+    import {
+        PluridIconArrowDown,
+        PluridIconArrowUp,
+    } from '@plurid/plurid-icons-react';
     // #endregion libraries
 
 
@@ -37,6 +45,7 @@
     // #region internal
     import {
         StyledGroupField,
+        StyledExpander,
     } from './styled';
     // #endregion internal
 // #endregion imports
@@ -88,6 +97,14 @@ const GroupField: React.FC<GroupFieldProperties> = (
     // #endregion properties
 
 
+    // #region state
+    const [
+        show,
+        setShow,
+    ] = useState(true);
+    // #endregion state
+
+
     // #region handlers
     const updateGroup = (
         state: string,
@@ -121,57 +138,79 @@ const GroupField: React.FC<GroupFieldProperties> = (
         >
             <UtilityGroup
                 data={data}
-                topDistance="6px"
+                topDistance="3px"
             />
+
+            <StyledExpander>
+                {show && (
+                    <PluridIconArrowUp
+                        atClick={() => setShow(false)}
+                        size={'small'}
+                        theme={stateGeneralTheme}
+                    />
+                )}
+
+                {!show && (
+                    <PluridIconArrowDown
+                        atClick={() => setShow(true)}
+                        size={'small'}
+                        theme={stateGeneralTheme}
+                    />
+                )}
+            </StyledExpander>
 
             <h2>
                 {data.label}
             </h2>
 
-            {data.value.map(field => {
-                const key = id + groupID + field.state;
+            {show && (
+                <>
+                    {data.value.map(field => {
+                        const key = id + groupID + field.state;
 
-                const properties: any = {
-                    key: key,
-                    data: field,
-                    update: updateGroup,
-                };
+                        const properties: any = {
+                            key: key,
+                            data: field,
+                            update: updateGroup,
+                        };
 
-                switch (field.type) {
-                    case 'string':
-                        return (
-                            <StringField
-                                {...properties}
-                            />
-                        );
-                    case 'number':
-                        return (
-                            <NumberField
-                                {...properties}
-                            />
-                        );
-                    case 'boolean':
-                        return (
-                            <BooleanField
-                                {...properties}
-                            />
-                        );
-                    case 'list':
-                        return (
-                            <ListField
-                                {...properties}
-                            />
-                        );
-                    case 'file':
-                        return (
-                            <FileField
-                                {...properties}
-                            />
-                        );
-                }
-            })}
+                        switch (field.type) {
+                            case 'string':
+                                return (
+                                    <StringField
+                                        {...properties}
+                                    />
+                                );
+                            case 'number':
+                                return (
+                                    <NumberField
+                                        {...properties}
+                                    />
+                                );
+                            case 'boolean':
+                                return (
+                                    <BooleanField
+                                        {...properties}
+                                    />
+                                );
+                            case 'list':
+                                return (
+                                    <ListField
+                                        {...properties}
+                                    />
+                                );
+                            case 'file':
+                                return (
+                                    <FileField
+                                        {...properties}
+                                    />
+                                );
+                        }
+                    })}
 
-            <hr />
+                    <hr />
+                </>
+            )}
         </StyledGroupField>
     );
     // #endregion render
