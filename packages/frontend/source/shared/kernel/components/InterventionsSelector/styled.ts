@@ -16,6 +16,12 @@ export interface IStyledInterventionsSelector {
 }
 
 export const StyledInterventionsSelector = styled.div<IStyledInterventionsSelector>`
+    position: absolute;
+    z-index: 9999;
+    left: 65%;
+    top: 50px;
+    transform: translateX(-65%);
+
     display: flex;
     justify-content: center;
     gap: 2rem;
