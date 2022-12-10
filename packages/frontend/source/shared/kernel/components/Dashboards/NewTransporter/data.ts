@@ -106,6 +106,7 @@ export const fields: NewEntityField[] = [
         value: 0,
         format: 'float',
         required: true,
+        noneable: true,
         unit: 'J/mol',
         help: `standard free energy of reaction in J/mol. 'None' creates non-reversible reaction`,
     },
