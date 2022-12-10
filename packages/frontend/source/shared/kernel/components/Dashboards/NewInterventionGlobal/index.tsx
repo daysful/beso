@@ -1,9 +1,6 @@
 // #region imports
     // #region libraries
-    import React, {
-        useRef,
-        useState,
-    } from 'react';
+    import React from 'react';
 
     import {
         AnyAction,
@@ -22,13 +19,10 @@
         DashboardRenderProperties,
     } from '~kernel-components/DashboardsRenderer/data';
 
-    import NewEntityRenderer from '~kernel-components/NewEntityRenderer';
+    import NewEntityComponent from '~kernel-components/NewEntityComponent';
 
     import {
-        StyledDashboardContainer,
-        StyledNewEntity,
-        PluridPureButton,
-        PluridLinkButton,
+        PluridDropdown,
     } from '~kernel-services/styled';
 
     import { AppState } from '~kernel-services/state/store';
@@ -83,64 +77,34 @@ const NewInterventionGlobal: React.FC<NewInterventionGlobalProperties> = (
     // #endregion properties
 
 
-    // #region references
-    const rendererID = useRef(Math.random() + '');
-    // #endregion references
-
-
-    // #region state
-    const [
-        state,
-        setState,
-    ] = useState<any>(
-        JSON.parse(JSON.stringify(fields)),
-    );
-
-    const [
-        isValid,
-        setIsValid,
-    ] = useState(false);
-    // #endregion state
-
-
     // #region render
     return (
-        <StyledDashboardContainer
-            theme={stateGeneralTheme}
-        >
-            <StyledNewEntity>
-                <h1>
-                    New Global Intervention
-                </h1>
+        <NewEntityComponent
+            fields={fields}
 
-                <NewEntityRenderer
-                    id={rendererID.current}
-                    fields={state}
-                    atChange={(newState) => {
-                        setState(newState);
+            setRenderView={setRenderView}
+            renderViewPath="interventionsGlobal"
+            setFullRenderArea={setFullRenderArea}
+
+            kind="Global Intervention"
+            sourceFrom={(
+                <PluridDropdown
+                    selected={'select global intervention'}
+                    selectables={[
+                        'none',
+                    ]}
+                    atSelect={(selection) => {
+                        if (typeof selection !== 'string') {
+                            return;
+                        }
                     }}
-                />
-
-                <PluridPureButton
-                    text="Add New Global Intervention"
-                    atClick={() => {
-                        console.log(state);
-                    }}
-                    theme={stateGeneralTheme}
-                    level={2}
-                    disabled={!isValid}
-                />
-
-                <PluridLinkButton
-                    text="cancel"
-                    atClick={() => {
-                        setFullRenderArea(false);
-                        setRenderView('interventionsGlobal');
+                    style={{
+                        fontSize: '0.9rem',
                     }}
                     theme={stateGeneralTheme}
                 />
-            </StyledNewEntity>
-        </StyledDashboardContainer>
+            )}
+        />
     );
     // #endregion render
 }
