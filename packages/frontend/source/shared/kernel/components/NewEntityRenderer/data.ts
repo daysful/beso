@@ -5,6 +5,7 @@ export interface BaseField {
     state: string;
     value?: any;
     required?: boolean;
+    noneable?: boolean;
     unit?: string;
     help?: string;
 }
