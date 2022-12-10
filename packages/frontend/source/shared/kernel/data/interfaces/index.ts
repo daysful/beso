@@ -60,6 +60,12 @@ export interface Channel {
     generatedAt: number;
 }
 
+export interface Transporter {
+    id: string;
+    name: string;
+    generatedAt: number;
+}
+
 
 
 export type PasteLanguage = 'yaml' | 'json' | 'deon';

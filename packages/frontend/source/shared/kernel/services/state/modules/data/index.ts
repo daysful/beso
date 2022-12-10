@@ -19,6 +19,7 @@
         Biomolecule,
         Reaction,
         Channel,
+        Transporter,
     } from '~kernel-data/interfaces';
 
     import type {
@@ -41,6 +42,7 @@ export interface DataState {
     biomolecules: Biomolecule[];
     reactions: Reaction[];
     channels: Channel[];
+    transporters: Transporter[];
 }
 
 
@@ -55,6 +57,7 @@ const initialState: DataState = {
     biomolecules: [],
     reactions: [],
     channels: [],
+    transporters: [],
 };
 
 

@@ -10,6 +10,7 @@
         PluridIconBlocks,
         PluridIconLoop,
         PluridIconWebhook,
+        PluridIconReset,
     } from '@plurid/plurid-icons-react';
     // #endregion libraries
 
@@ -44,6 +45,9 @@
 
     import Channels from '~kernel-components/Dashboards/Channels';
     import NewChannel from '~kernel-components/Dashboards/NewChannel';
+
+    import Transporters from '~kernel-components/Dashboards/Transporters';
+    import NewTransporter from '~kernel-components/Dashboards/NewTransporter';
     // #endregion external
 // #endregion imports
 
@@ -60,6 +64,7 @@ export const icons = {
     biomolecules: PluridIconBlocks,
     reactions: PluridIconLoop,
     channels: PluridIconWebhook,
+    transporters: PluridIconReset,
 };
 
 
@@ -105,15 +110,6 @@ export const dashboards = [
         },
     },
     {
-        id: 'modulators',
-        icon: icons.modulators,
-        label: 'modulators',
-        renderers: {
-            'modulators': Modulators,
-            'new-modulator': NewModulator,
-        },
-    },
-    {
         id: 'networks',
         icon: icons.networks,
         label: 'networks',
@@ -147,6 +143,24 @@ export const dashboards = [
         renderers: {
             'channels': Channels,
             'new-channel': NewChannel,
+        },
+    },
+    {
+        id: 'transporters',
+        icon: icons.transporters,
+        label: 'transporters',
+        renderers: {
+            'transporters': Transporters,
+            'new-transporter': NewTransporter,
+        },
+    },
+    {
+        id: 'modulators',
+        icon: icons.modulators,
+        label: 'modulators',
+        renderers: {
+            'modulators': Modulators,
+            'new-modulator': NewModulator,
         },
     },
 ];
