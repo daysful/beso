@@ -8,20 +8,22 @@ class Collections(StrEnum):
     betseWorlds = 'betseWorlds',
     betseTissues = 'betseTissues',
     betseInterventions = 'betseInterventions',
-    betseModulators = 'betseModulators',
     betseNetworks = 'betseNetworks',
     betseBiomolecules = 'betseBiomolecules',
     betseReactions = 'betseReactions',
-    betseChannels = 'betseChannels'
+    betseChannels = 'betseChannels',
+    betseTransporters = 'betseTransporters',
+    betseModulators = 'betseModulators'
 
 tables = [
     Collections.betseSimulations,
     Collections.betseWorlds,
     Collections.betseTissues,
     Collections.betseInterventions,
-    Collections.betseModulators,
     Collections.betseNetworks,
     Collections.betseBiomolecules,
     Collections.betseReactions,
     Collections.betseChannels,
+    Collections.betseTransporters,
+    Collections.betseModulators,
 ]
