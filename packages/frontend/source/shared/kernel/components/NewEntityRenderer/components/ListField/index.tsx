@@ -135,6 +135,7 @@ const ListField: React.FC<ListFieldProperties> = (
             </PluridFormLeftRight>
 
             <PluridTextline
+                placeholder="new value"
                 text={newValue}
                 atChange={(event) => {
                     setNewValue(event.target.value);
@@ -163,6 +164,9 @@ const ListField: React.FC<ListFieldProperties> = (
                     );
                 }}
                 theme={stateGeneralTheme}
+                style={{
+                    maxWidth: '350px',
+                }}
             />
         </StyledListField>
     );
