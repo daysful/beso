@@ -22,8 +22,10 @@ export const StyledListField = styled.div<IStyledListField>`
 
 
 export const StyledTextLine = styled.div`
+    width: 100%;
     margin-left: 14px;
     display: flex;
     gap: 0.7rem;
+    justify-content: space-between;
 `;
 // #region module

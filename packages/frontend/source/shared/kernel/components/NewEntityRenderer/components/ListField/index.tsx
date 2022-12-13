@@ -1,6 +1,8 @@
 // #region imports
     // #region libraries
-    import React from 'react';
+    import React, {
+        useState,
+    } from 'react';
 
     import {
         AnyAction,
@@ -16,8 +18,9 @@
 
     // #region external
     import {
-        PluridSwitch,
         PluridFormLeftRight,
+        PluridEntityPillGroup,
+        PluridTextline,
     } from '~kernel-services/styled';
 
     import { AppState } from '~kernel-services/state/store';
@@ -48,7 +51,7 @@ export interface ListFieldOwnProperties {
     data: IListField;
     update: (
         state: string,
-        value: boolean,
+        value: (string | number)[],
     ) => void;
 }
 
@@ -85,6 +88,33 @@ const ListField: React.FC<ListFieldProperties> = (
     // #endregion properties
 
 
+    // #region state
+    const [
+        newValue,
+        setNewValue,
+    ] = useState('');
+    // #endregion state
+
+
+    // #region handlers
+    const parseNewValue = () => {
+        const valueAsInt = parseInt(newValue);
+        const valueAsFloat = parseFloat(newValue);
+
+        if (isNaN(valueAsInt) && isNaN(valueAsFloat)) {
+            // string
+            return newValue;
+        }
+
+        if (newValue.indexOf('.') > -1 ) {
+            return valueAsFloat;
+        }
+
+        return valueAsInt;
+    }
+    // #endregion handlers
+
+
     // #region render
     return (
         <StyledListField
@@ -102,8 +132,38 @@ const ListField: React.FC<ListFieldProperties> = (
                         topDistance={'0px'}
                     />
                 </StyledTextLine>
-
             </PluridFormLeftRight>
+
+            <PluridTextline
+                text={newValue}
+                atChange={(event) => {
+                    setNewValue(event.target.value);
+                }}
+                theme={stateGeneralTheme}
+                enterAtClick={() => {
+                    update(
+                        data.state,
+                        [...data.value, parseNewValue()],
+                    );
+
+                    setNewValue('');
+                }}
+                level={2}
+                style={{
+                    margin: '0.5rem auto',
+                }}
+            />
+
+            <PluridEntityPillGroup
+                entities={data.value.map(value => value + '')}
+                remove={(removedValue) => {
+                    update(
+                        data.state,
+                        data.value.filter(value => value + '' !== removedValue + ''),
+                    );
+                }}
+                theme={stateGeneralTheme}
+            />
         </StyledListField>
     );
     // #endregion render
