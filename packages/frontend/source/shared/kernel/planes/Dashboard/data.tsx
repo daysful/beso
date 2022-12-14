@@ -5,12 +5,13 @@
         PluridIconGlobal,
         PluridIconPalette,
         PluridIconAdminSpace,
-        PluridIconApps,
+        PluridIconBrainCircuits,
         PluridIconShare,
         PluridIconBlocks,
         PluridIconLoop,
         PluridIconWebhook,
         PluridIconReset,
+        PluridIconApps,
     } from '@plurid/plurid-icons-react';
     // #endregion libraries
 
@@ -31,8 +32,8 @@
     import InterventionsGlobal from '~kernel-components/Dashboards/InterventionsGlobal';
     import NewInterventionGlobal from '~kernel-components/Dashboards/NewInterventionGlobal';
 
-    import Modulators from '~kernel-components/Dashboards/Modulators';
-    import NewModulator from '~kernel-components/Dashboards/NewModulator';
+    import Functions from '~kernel-components/Dashboards/Functions';
+    import NewFunction from '~kernel-components/Dashboards/NewFunction';
 
     import Networks from '~kernel-components/Dashboards/Networks';
     import NewNetwork from '~kernel-components/Dashboards/NewNetwork';
@@ -48,6 +49,9 @@
 
     import Transporters from '~kernel-components/Dashboards/Transporters';
     import NewTransporter from '~kernel-components/Dashboards/NewTransporter';
+
+    import Modulators from '~kernel-components/Dashboards/Modulators';
+    import NewModulator from '~kernel-components/Dashboards/NewModulator';
     // #endregion external
 // #endregion imports
 
@@ -59,12 +63,13 @@ export const icons = {
     worlds: PluridIconGlobal,
     tissues: PluridIconPalette,
     interventions: PluridIconAdminSpace,
-    modulators: PluridIconApps,
+    functions: PluridIconBrainCircuits,
     networks: PluridIconShare,
     biomolecules: PluridIconBlocks,
     reactions: PluridIconLoop,
     channels: PluridIconWebhook,
     transporters: PluridIconReset,
+    modulators: PluridIconApps,
 };
 
 
@@ -107,6 +112,15 @@ export const dashboards = [
             'new-interventionTargeted': NewInterventionTargeted,
             'interventionsGlobal': InterventionsGlobal,
             'new-interventionGlobal': NewInterventionGlobal,
+        },
+    },
+    {
+        id: 'functions',
+        icon: icons.functions,
+        label: 'functions',
+        renderers: {
+            'functions': Functions,
+            'new-function': NewFunction,
         },
     },
     {
