@@ -352,6 +352,13 @@ export const fields: NewEntityField[] = [
                 state: 'pressures',
                 value: [
                     {
+                        label: 'include electrostatic pressure',
+                        type: 'boolean',
+                        state: 'includeElectrostaticPressure',
+                        value: true,
+                        required: true,
+                    },
+                    {
                         label: 'include osmotic pressure',
                         type: 'boolean',
                         state: 'includeOsmoticPressure',
@@ -542,6 +549,29 @@ export const fields: NewEntityField[] = [
                 value: false,
                 required: true,
                 help: `calculate alternative Vmem with Goldman-Hodgkin-Katz (GHK) voltage equation for comparison purposes`,
+            },
+        ],
+        required: true,
+    },
+    {
+        label: 'results options',
+        type: 'group',
+        state: 'resultsOptions',
+        value: [
+            {
+                label: 'show cells',
+                type: 'boolean',
+                state: 'showCells',
+                value: true,
+                required: true,
+                help: `visualize discrete cells or only a homogeneous gradient of cell data`,
+            },
+            {
+                label: 'enumerate cells',
+                type: 'boolean',
+                state: 'enumerateCells',
+                value: true,
+                required: true,
             },
         ],
         required: true,
