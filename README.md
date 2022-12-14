@@ -22,6 +22,11 @@
 `BESO` is based on [`BETSE`](https://github.com/betsee/betse) to provide a bioelectric tissue simulation management environment through a web application interface.
 
 
+<p align="center">
+    <img src="https://raw.githubusercontent.com/daysful/beso/master/about/screenshots/frontend-1.png" height="600px">
+</p>
+
+
 
 ## Setup
 
