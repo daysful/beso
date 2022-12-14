@@ -1,6 +1,7 @@
 // #region imports
     // #region libraries
     import React, {
+        useRef,
         useState,
         useEffect,
     } from 'react';
@@ -22,6 +23,8 @@
         DashboardRenderProperties,
     } from '~kernel-components/DashboardsRenderer/data';
 
+    import NewEntityRenderer from '~kernel-components/NewEntityRenderer';
+
     import {
         StyledDashboardContainer,
         StyledNewEntity,
@@ -41,6 +44,9 @@
 
 
     // #region internal
+    import {
+        fields,
+    } from './data';
     // #endregion internal
 // #endregion imports
 
@@ -82,11 +88,23 @@ const NewSimulation: React.FC<NewSimulationProperties> = (
     // #endregion properties
 
 
+    // #region references
+    const rendererID = useRef(Math.random() + '');
+    // #endregion references
+
+
     // #region state
     const [
         name,
         setName,
     ] = useState('');
+
+    const [
+        state,
+        setState,
+    ] = useState<any>(
+        JSON.parse(JSON.stringify(fields)),
+    );
 
     const [
         world,
@@ -389,6 +407,14 @@ const NewSimulation: React.FC<NewSimulationProperties> = (
                     text={name}
                     atChange={(event) => {
                         setName(event.target.value);
+                    }}
+                />
+
+                <NewEntityRenderer
+                    id={rendererID.current}
+                    fields={state}
+                    atChange={(newState) => {
+                        setState(newState);
                     }}
                 />
 
