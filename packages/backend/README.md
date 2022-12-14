@@ -80,7 +80,7 @@ BESO_FAVICON_PATH # path to favicon
 
 ### Frontend
 
-The `beso-frontend` requires the environment variable `BESO_BACKEND` to discover the `beso-backend` if running without `--network="host"`.
+The `beso-frontend` requires the environment variable `BESO_BACKEND` to discover the `beso-backend` if running without `--network="host"` or if running the `beso-backend` on another port.
 
 ``` bash
 docker run --name beso-frontend \
