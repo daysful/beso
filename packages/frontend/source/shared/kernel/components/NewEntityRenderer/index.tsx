@@ -126,23 +126,28 @@ const NewEntityRenderer: React.FC<NewEntityRendererProperties> = (
 
 
     // #region handlers
-    const composePaste = (
-        newEntityState?: NewEntityField[],
+    const extractPasteState = (
+        fields: NewEntityField[],
     ) => {
         const paste = {};
-        for (const field of (newEntityState || fields)) {
-            if (field.type === 'group') {
-                const groupPaste = {};
-                for (const groupField of field.value) {
-                    groupPaste[groupField.state] = groupField.value;
-                }
 
+        for (const field of fields) {
+            if (field.type === 'group') {
+                const groupPaste = extractPasteState(field.value);
                 paste[field.state] = groupPaste;
                 continue;
             }
 
             paste[field.state] = field.value;
         }
+
+        return paste;
+    }
+
+    const composePaste = (
+        newEntityState?: NewEntityField[],
+    ) => {
+        const paste = extractPasteState(newEntityState || fields);
 
         let text = '';
         switch (statePasteLanguage) {
