@@ -203,7 +203,7 @@ export const fields: NewEntityField[] = [
                     {
                         label: 'cytosolic Na+ concentration',
                         type: 'number',
-                        state: 'extracellularNa+Concentration',
+                        state: 'cytosolicNa+Concentration',
                         value: 12.0,
                         format: 'float',
                         required: true,
@@ -213,7 +213,7 @@ export const fields: NewEntityField[] = [
                     {
                         label: 'cytosolic K+ concentration',
                         type: 'number',
-                        state: 'extracellularK+Concentration',
+                        state: 'cytosolicK+Concentration',
                         value: 139.0,
                         format: 'float',
                         required: true,
@@ -223,7 +223,7 @@ export const fields: NewEntityField[] = [
                     {
                         label: 'cytosolic Cl- concentration',
                         type: 'number',
-                        state: 'extracellularCl-Concentration',
+                        state: 'cytosolicCl-Concentration',
                         value: 4.0,
                         format: 'float',
                         required: true,
@@ -233,7 +233,7 @@ export const fields: NewEntityField[] = [
                     {
                         label: 'cytosolic Ca2+ concentration',
                         type: 'number',
-                        state: 'extracellularCa2+Concentration',
+                        state: 'cytosolicCa2+Concentration',
                         value: 2.0e-5,
                         format: 'scientific',
                         required: true,
@@ -243,7 +243,7 @@ export const fields: NewEntityField[] = [
                     {
                         label: 'cytosolic protein- concentration',
                         type: 'number',
-                        state: 'extracellularProtein-Concentration',
+                        state: 'cytosolicProtein-Concentration',
                         value: 135.0,
                         format: 'float',
                         required: true,
