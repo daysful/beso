@@ -1,7 +1,9 @@
+from typing import TypeVar, Type
 import copy
 
 from source.utilities.general import now, generate_id
 from source.database.main import insert
+from source.graphql.context import Info
 from source.graphql.types.general import User
 
 
@@ -47,3 +49,24 @@ def store_entity(
         copy.deepcopy(entity),
         False,
     )
+
+
+def mutation_maker(
+    data: dict[str, str],
+):
+    Input = TypeVar('Input')
+    Result = TypeVar('Result')
+
+    def adder(input: Type[Input], info: Info) -> Type[Result] | None:
+        user = info.context.user
+        if not user:
+            return
+
+        return store_entity(
+            user,
+            input,
+            data['collection'],
+            data['model'],
+        )
+
+    return adder
