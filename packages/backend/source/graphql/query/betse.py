@@ -6,7 +6,7 @@ from source.graphql.types.betse import \
     BetseTissue, BetseTissueDiffusionConstants, BetseTissueCellTargets, \
     BetseIntervention, \
     BetseFunction, BetseFunctionGradientX, BetseFunctionGradientY, BetseFunctionGradientR, BetseFunctionPeriodic, BetseFunctionFSweep, BetseFunctionGradientBitmap, BetseFunctionSingleCell, \
-    BetseNetwork, \
+    BetseNetwork, BetseNetworkOptimization, \
     BetseBiomolecule, \
     BetseReaction, \
     BetseChannel, \
@@ -76,6 +76,7 @@ def modelBetseNetwork(
 ):
     model = json.loads(data['data'])
     model['id'] = data['id']
+    model['optimization'] = BetseNetworkOptimization(**model['optimization'])
 
     return BetseNetwork(**model)
 

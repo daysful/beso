@@ -240,13 +240,45 @@ class BetseFunction:
 
 # region BetseNetwork
 # region input BetseNetwork
+@strawberry.input
+class InputBetseNetworkOptimization:
+    optimize_network: bool
+    optimization_steps: int
+    optimization_method: str
+    optimization_T: float
+    optimization_step: float
+    target_Vmem: float
+
+@strawberry.input
+class InputBetseNetwork:
+    id: str
+    name: str
+    enable_mitochondria: bool
+    optimization: InputBetseNetworkOptimization
+    time_dilation_factor: float
+    reset_microtubules: bool
+    recalculate_fluid: bool
 # endregion input BetseNetwork
 
 # region type BetseNetwork
 @strawberry.type
+class BetseNetworkOptimization:
+    optimize_network: bool
+    optimization_steps: int
+    optimization_method: str
+    optimization_T: float
+    optimization_step: float
+    target_Vmem: float
+
+@strawberry.type
 class BetseNetwork:
     id: str
     name: str
+    enable_mitochondria: bool
+    optimization: BetseNetworkOptimization
+    time_dilation_factor: float
+    reset_microtubules: bool
+    recalculate_fluid: bool
 # endregion type BetseNetwork
 # endregion BetseNetwork
 
