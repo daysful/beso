@@ -28,6 +28,8 @@ class Context(BaseContext):
         try:
             token = authorization.replace('Bearer ', '')
             payload = jwt.decode(token, jwt_secret, algorithms=['HS256'])
+            if not payload.get('identonym'):
+                return
 
             user = get(Collections.users, payload['identonym'], 'name')
             if not user:
