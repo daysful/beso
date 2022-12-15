@@ -26,8 +26,13 @@ def modelBetseSimulation(
 
 def modelBetseWorld(
     data: any,
+    load_json: bool = True,
 ):
-    model = json.loads(data['data'])
+    if load_json:
+        model = json.loads(data['data'])
+    else:
+        model = data
+
     model['id'] = data['id']
     model['mesh_refinement'] = BetseWorldMeshRefinement(**model['mesh_refinement'])
     model['import_from_svg'] = BetseWorldImportFromSVG(**model['import_from_svg'])
@@ -37,6 +42,7 @@ def modelBetseWorld(
 
 def modelBetseTissue(
     data: any,
+    load_json: bool = True,
 ):
     model = json.loads(data['data'])
     model['id'] = data['id']
@@ -48,6 +54,7 @@ def modelBetseTissue(
 
 def modelBetseIntervention(
     data: any,
+    load_json: bool = True,
 ):
     model = json.loads(data['data'])
     model['id'] = data['id']
@@ -57,6 +64,7 @@ def modelBetseIntervention(
 
 def modelBetseFunction(
     data: any,
+    load_json: bool = True,
 ):
     model = json.loads(data['data'])
     model['id'] = data['id']
@@ -73,6 +81,7 @@ def modelBetseFunction(
 
 def modelBetseNetwork(
     data: any,
+    load_json: bool = True,
 ):
     model = json.loads(data['data'])
     model['id'] = data['id']
@@ -83,6 +92,7 @@ def modelBetseNetwork(
 
 def modelBetseBiomolecule(
     data: any,
+    load_json: bool = True,
 ):
     model = json.loads(data['data'])
     model['id'] = data['id']
@@ -97,6 +107,7 @@ def modelBetseBiomolecule(
 
 def modelBetseReaction(
     data: any,
+    load_json: bool = True,
 ):
     model = json.loads(data['data'])
     model['id'] = data['id']
@@ -106,6 +117,7 @@ def modelBetseReaction(
 
 def modelBetseChannel(
     data: any,
+    load_json: bool = True,
 ):
     model = json.loads(data['data'])
     model['id'] = data['id']
@@ -115,6 +127,7 @@ def modelBetseChannel(
 
 def modelBetseTransporter(
     data: any,
+    load_json: bool = True,
 ):
     model = json.loads(data['data'])
     model['id'] = data['id']
@@ -124,6 +137,7 @@ def modelBetseTransporter(
 
 def modelBetseModulator(
     data: any,
+    load_json: bool = True,
 ):
     model = json.loads(data['data'])
     model['id'] = data['id']
