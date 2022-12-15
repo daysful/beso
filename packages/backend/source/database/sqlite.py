@@ -133,6 +133,25 @@ def sqlite_get(
     return item
 
 
+def sqlite_get_all(
+    connection: sqlite3.Connection,
+    name: str,
+    id: str,
+    key = 'id',
+):
+    sql = f'''
+        SELECT * FROM {name} WHERE {key.upper()}="{id}"
+        '''
+
+    connection.row_factory = dict_factory
+
+    cursor = connection.cursor()
+    cursor.execute(sql)
+
+    items = cursor.fetchall()
+    return items
+
+
 def sqlite_remove(
     connection: sqlite3.Connection,
     name: str,

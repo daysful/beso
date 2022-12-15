@@ -4,6 +4,8 @@ from source.constants import allow_user_registration
 from source.graphql.types.general import User
 from source.graphql.types.betse import Betse
 from source.graphql.context import Info
+from source.database.collections import Collections
+from source.database.main import get_all
 
 
 
@@ -23,16 +25,28 @@ class QueryUser:
         if not user:
             return None
 
+        simulations=get_all(Collections.betseSimulations, user.id, 'generated_by') or []
+        worlds=get_all(Collections.betseWorlds, user.id, 'generated_by') or []
+        tissues=get_all(Collections.betseTissues, user.id, 'generated_by') or []
+        interventions=get_all(Collections.betseInterventions, user.id, 'generated_by') or []
+        functions=get_all(Collections.betseFunctions, user.id, 'generated_by') or []
+        networks=get_all(Collections.betseNetworks, user.id, 'generated_by') or []
+        biomolecules=get_all(Collections.betseBiomolecules, user.id, 'generated_by') or []
+        reactions=get_all(Collections.betseReactions, user.id, 'generated_by') or []
+        channels=get_all(Collections.betseChannels, user.id, 'generated_by') or []
+        transporters=get_all(Collections.betseTransporters, user.id, 'generated_by') or []
+        modulators=get_all(Collections.betseModulators, user.id, 'generated_by') or []
+
         return Betse(
-            simulations=[],
-            worlds=[],
-            tissues=[],
-            interventions=[],
-            functions=[],
-            networks=[],
-            biomolecules=[],
-            reactions=[],
-            channels=[],
-            transporters=[],
-            modulators=[],
+            simulations=simulations,
+            worlds=worlds,
+            tissues=tissues,
+            interventions=interventions,
+            functions=functions,
+            networks=networks,
+            biomolecules=biomolecules,
+            reactions=reactions,
+            channels=channels,
+            transporters=transporters,
+            modulators=modulators,
         )

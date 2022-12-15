@@ -4,11 +4,13 @@ from .mongo import \
     generate_mongo_connection, \
     mongo_insert, \
     mongo_get, \
+    mongo_get_all, \
     mongo_remove
 from .sqlite import \
     generate_sqlite_connection, \
     sqlite_insert, \
     sqlite_get, \
+    sqlite_get_all, \
     sqlite_remove
 
 
@@ -63,6 +65,27 @@ def get(
         )
     else:
         return sqlite_get(
+            database,
+            name,
+            id,
+            by,
+        )
+
+
+def get_all(
+    name: str,
+    id: str,
+    by: str | None,
+) -> list[dict[str, any]] | None:
+    if database_type == 'mongo':
+        return mongo_get_all(
+            database,
+            name,
+            id,
+            by,
+        )
+    else:
+        return sqlite_get_all(
             database,
             name,
             id,

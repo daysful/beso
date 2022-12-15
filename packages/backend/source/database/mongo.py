@@ -36,6 +36,20 @@ def mongo_get(
     return item
 
 
+def mongo_get_all(
+    database: MongoClient,
+    name: str,
+    id: str,
+    key = 'id',
+):
+    collection = database[database_name][name]
+    filter = {}
+    filter[key] = id
+    items = collection.find(filter)
+
+    return items
+
+
 def mongo_remove(
     database: MongoClient,
     name: str,
