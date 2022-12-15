@@ -5,6 +5,7 @@ import strawberry
 @strawberry.type
 class BetseSimulation:
     id: str
+    name: str
 
 
 
@@ -36,7 +37,6 @@ class BetseWorld:
     alpha_shape: float
     use_centers: bool
 
-
 default_betse_world = BetseWorld(
     id='one',
     name='one',
@@ -66,54 +66,63 @@ default_betse_world = BetseWorld(
 @strawberry.type
 class BetseTissue:
     id: str
+    name: str
 
 
 
 @strawberry.type
 class BetseIntervention:
     id: str
+    name: str
 
 
 
 @strawberry.type
 class BetseFunction:
     id: str
+    name: str
 
 
 
 @strawberry.type
 class BetseNetwork:
     id: str
+    name: str
 
 
 
 @strawberry.type
 class BetseBiomolecule:
     id: str
+    name: str
 
 
 
 @strawberry.type
 class BetseReaction:
     id: str
+    name: str
 
 
 
 @strawberry.type
 class BetseChannel:
     id: str
+    name: str
 
 
 
 @strawberry.type
 class BetseTransporter:
     id: str
+    name: str
 
 
 
 @strawberry.type
 class BetseModulator:
     id: str
+    name: str
 
 
 

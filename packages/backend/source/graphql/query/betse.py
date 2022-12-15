@@ -108,15 +108,3 @@ def modelBetseModulator(
     model['id'] = data['id']
 
     return BetseModulator(**model)
-
-
-
-@strawberry.type
-class QueryBetseWorld:
-    @strawberry.field
-    def betse_world(self, id: str, info: Info) -> BetseWorld | None:
-        betse_world = get(Collections.betseWorlds, id)
-        if not betse_world:
-            return
-
-        return modelBetseWorld(betse_world)
