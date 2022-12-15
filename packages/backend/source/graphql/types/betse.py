@@ -21,6 +21,32 @@ class BetseSimulation:
 
 # region BetseWorld
 # region input BetseWorld
+@strawberry.input
+class InputBetseWorldMeshRefinement:
+    refine_mesh: bool
+    maximum_steps: int
+    convergence_threshold: float
+
+@strawberry.input
+class InputBetseWorldImportFromSVG:
+    svg_override: bool
+    cells_from_svg: str
+    svg_size: int
+
+@strawberry.input
+class InputBetseWorld:
+    name: str
+    world_size: float
+    cell_radius: float
+    cell_height: float
+    cell_spacing: float
+    simulate_single_cell: bool
+    lattice_type: str
+    lattice_disorder: float
+    mesh_refinement: InputBetseWorldMeshRefinement
+    import_from_svg: InputBetseWorldImportFromSVG
+    alpha_shape: float
+    use_centers: bool
 # endregion input BetseWorld
 
 # region type BetseWorld
@@ -75,6 +101,31 @@ default_betse_world = BetseWorld(
     alpha_shape=0.01,
     use_centers=False,
 )
+
+# {
+#   "input": {
+#     "name": "one",
+#   	"worldSize": 150e-6,
+#     "cellRadius": 5.0e-6,
+#     "cellHeight": 10.0e-6,
+#     "cellSpacing": 26.0e-9,
+#     "simulateSingleCell": false,
+#     "latticeType": "hex",
+#     "latticeDisorder": 0.4,
+#     "meshRefinement": {
+#         "refineMesh": true,
+#         "maximumSteps": 10,
+#         "convergenceThreshold": 1.5
+#     },
+#     "importFromSvg": {
+#         "svgOverride": false,
+#         "cellsFromSvg": "geo/root/root_cells.svg",
+#         "svgSize": 500
+#     },
+#     "alphaShape": 0.01,
+#     "useCenters": false
+#   }
+# }
 # endregion type BetseWorld
 # endregion BetseWorld
 
