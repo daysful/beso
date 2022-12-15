@@ -302,13 +302,171 @@ class BetseNetwork:
 
 # region BetseBiomolecule
 # region input BetseBiomolecule
-# endregion input BetseBiomolecule
+@strawberry.type
+class InputBetseBiomoleculeGrowthAndDecay:
+    production_rate: float
+    decay_rate: float
+    apply_to: list[str]
+    modulator_function: str
+    activators: list[str]
+    Km_activators: list[float]
+    n_activators: list[float]
+    inhibitors: list[str]
+    Km_inhibitors: list[float]
+    n_inhibitors: list[float]
 
-# region type BetseBiomolecule
+@strawberry.type
+class InputBetseBiomoleculeIonChannelGating:
+    channel_name: str
+    ion_channel_target: list[str]
+    target_Hill_coefficient: float
+    target_Hill_exponent: float
+    peak_channel_opening: float
+    acts_extracellularly: bool
+    activators: list[str]
+    Km_activators: list[float]
+    n_activators: list[float]
+    zone_activators: str
+    inhibitors: list[str]
+    Km_inhibitors: list[float]
+    n_inhibitors: list[float]
+    zone_inhibitors: str
+
+@strawberry.type
+class InputBetseBiomoleculeActivePumping:
+    turn_on: bool
+    pump_to_cell: bool
+    maximum_rate: float
+    pump_Km: float
+    uses_ATP: bool
+
+@strawberry.type
+class InputBetseBiomoleculeChangeAtBounds:
+    event_happens: bool
+    change_start: float
+    change_finish: float
+    change_rate: float
+    concentration: float
+
+@strawberry.type
+class InputBetseBiomoleculePlotting:
+    plot_2D: bool
+    animate: bool
+    autoscale_colorbar: bool
+    max_val: bool
+    min_val: bool
+
 @strawberry.type
 class BetseBiomolecule:
     id: str
     name: str
+    Dm: float
+    Do: float
+    Dgj: float
+    Mu_mem: float
+    u_mtube: float
+    z: float
+    env_conc: float
+    cell_conc: float
+    mit_conc: float
+    transmem: bool
+    update_intracellular: bool
+    initial_asymmetry: str
+    TJ_permeable: bool
+    GJ_impermeable: bool
+    TJ_factor: float
+    ignore_ECM: bool
+    scale_factor: float
+    use_time_dilation: bool
+    growth_and_decay: InputBetseBiomoleculeGrowthAndDecay
+    ion_channel_gating: InputBetseBiomoleculeIonChannelGating
+    active_pumping: InputBetseBiomoleculeActivePumping
+    change_at_bounds: InputBetseBiomoleculeChangeAtBounds
+    plotting: InputBetseBiomoleculePlotting
+# endregion input BetseBiomolecule
+
+# region type BetseBiomolecule
+@strawberry.type
+class BetseBiomoleculeGrowthAndDecay:
+    production_rate: float
+    decay_rate: float
+    apply_to: list[str]
+    modulator_function: str
+    activators: list[str]
+    Km_activators: list[float]
+    n_activators: list[float]
+    inhibitors: list[str]
+    Km_inhibitors: list[float]
+    n_inhibitors: list[float]
+
+@strawberry.type
+class BetseBiomoleculeIonChannelGating:
+    channel_name: str
+    ion_channel_target: list[str]
+    target_Hill_coefficient: float
+    target_Hill_exponent: float
+    peak_channel_opening: float
+    acts_extracellularly: bool
+    activators: list[str]
+    Km_activators: list[float]
+    n_activators: list[float]
+    zone_activators: str
+    inhibitors: list[str]
+    Km_inhibitors: list[float]
+    n_inhibitors: list[float]
+    zone_inhibitors: str
+
+@strawberry.type
+class BetseBiomoleculeActivePumping:
+    turn_on: bool
+    pump_to_cell: bool
+    maximum_rate: float
+    pump_Km: float
+    uses_ATP: bool
+
+@strawberry.type
+class BetseBiomoleculeChangeAtBounds:
+    event_happens: bool
+    change_start: float
+    change_finish: float
+    change_rate: float
+    concentration: float
+
+@strawberry.type
+class BetseBiomoleculePlotting:
+    plot_2D: bool
+    animate: bool
+    autoscale_colorbar: bool
+    max_val: bool
+    min_val: bool
+
+@strawberry.type
+class BetseBiomolecule:
+    id: str
+    name: str
+    Dm: float
+    Do: float
+    Dgj: float
+    Mu_mem: float
+    u_mtube: float
+    z: float
+    env_conc: float
+    cell_conc: float
+    mit_conc: float
+    transmem: bool
+    update_intracellular: bool
+    initial_asymmetry: str
+    TJ_permeable: bool
+    GJ_impermeable: bool
+    TJ_factor: float
+    ignore_ECM: bool
+    scale_factor: float
+    use_time_dilation: bool
+    growth_and_decay: BetseBiomoleculeGrowthAndDecay
+    ion_channel_gating: BetseBiomoleculeIonChannelGating
+    active_pumping: BetseBiomoleculeActivePumping
+    change_at_bounds: BetseBiomoleculeChangeAtBounds
+    plotting: BetseBiomoleculePlotting
 # endregion type BetseBiomolecule
 # endregion BetseBiomolecule
 
