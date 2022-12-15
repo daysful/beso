@@ -177,9 +177,9 @@ export const fields: NewEntityField[] = [
         help: 'generate a sinusoidal oscillation of a property',
     },
     {
-        label: 'f_sweep',
+        label: 'f sweep',
         type: 'group',
-        state: 'f_sweep',
+        state: 'fSweep',
         value: [
             {
                 label: 'start frequency',
@@ -204,9 +204,9 @@ export const fields: NewEntityField[] = [
         help: 'apply a sinusoidal oscillation of a property as a sequence of frequencies',
     },
     {
-        label: 'gradient_bitmap',
+        label: 'gradient bitmap',
         type: 'group',
-        state: 'gradient_bitmap',
+        state: 'gradientBitmap',
         value: [
             {
                 label: 'file',
@@ -228,9 +228,9 @@ export const fields: NewEntityField[] = [
         help: 'generate a spatial gradient of a property from an imported bitmap image (png)',
     },
     {
-        label: 'single_cell',
+        label: 'single cell',
         type: 'group',
-        state: 'single_cell',
+        state: 'singleCell',
         value: [
             {
                 label: 'z-offset',
