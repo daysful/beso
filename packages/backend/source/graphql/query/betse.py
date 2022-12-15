@@ -7,7 +7,7 @@ from source.graphql.types.betse import \
     BetseIntervention, \
     BetseFunction, BetseFunctionGradientX, BetseFunctionGradientY, BetseFunctionGradientR, BetseFunctionPeriodic, BetseFunctionFSweep, BetseFunctionGradientBitmap, BetseFunctionSingleCell, \
     BetseNetwork, BetseNetworkOptimization, \
-    BetseBiomolecule, \
+    BetseBiomolecule, BetseBiomoleculeGrowthAndDecay, BetseBiomoleculeIonChannelGating, BetseBiomoleculeActivePumping, BetseBiomoleculeChangeAtBounds, BetseBiomoleculePlotting, \
     BetseReaction, \
     BetseChannel, \
     BetseTransporter, \
@@ -86,6 +86,11 @@ def modelBetseBiomolecule(
 ):
     model = json.loads(data['data'])
     model['id'] = data['id']
+    model['growth_and_decay'] = BetseBiomoleculeGrowthAndDecay(**model['growth_and_decay'])
+    model['ion_channel_gating'] = BetseBiomoleculeIonChannelGating(**model['ion_channel_gating'])
+    model['active_pumping'] = BetseBiomoleculeActivePumping(**model['active_pumping'])
+    model['change_at_bounds'] = BetseBiomoleculeChangeAtBounds(**model['change_at_bounds'])
+    model['plotting'] = BetseBiomoleculePlotting(**model['plotting'])
 
     return BetseBiomolecule(**model)
 
