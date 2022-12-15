@@ -82,6 +82,7 @@ export interface NewEntityRendererStateProperties {
 
 export interface NewEntityRendererDispatchProperties {
     dispatchSetGeneralField: DispatchAction<typeof actions.general.setGeneralField>;
+    dispatchAddNotification: DispatchAction<typeof actions.notifications.add>;
 }
 
 export type NewEntityRendererProperties =
@@ -112,6 +113,7 @@ const NewEntityRenderer: React.FC<NewEntityRendererProperties> = (
 
         // #region dispatch
         dispatchSetGeneralField,
+        dispatchAddNotification,
         // #endregion dispatch
     } = properties;
     // #endregion properties
@@ -357,6 +359,11 @@ const mapDispatchToProperties = (
         payload,
     ) => dispatch(
         actions.general.setGeneralField(payload),
+    ),
+    dispatchAddNotification: (
+        payload,
+    ) => dispatch(
+        actions.notifications.add(payload),
     ),
 });
 

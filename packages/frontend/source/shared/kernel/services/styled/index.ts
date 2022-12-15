@@ -43,6 +43,9 @@ const {
     toolbars: {
         ToolbarSpecific,
     },
+    notifications: {
+        Notifications,
+    },
 } = pluridal;
 
 
@@ -94,5 +97,6 @@ export {
     PluridTooltip,
 
     ToolbarSpecific,
+    Notifications,
 };
 // #endregion exports

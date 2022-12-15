@@ -21,6 +21,7 @@
 
     import {
         DispatchAction,
+        Notification,
     } from '@plurid/plurid-ui-state-react';
     // #endregion libraries
 
@@ -29,6 +30,10 @@
     import {
         loadState,
     } from '~kernel-services/logic/localStorage';
+
+    import {
+        Notifications,
+    } from '~kernel-services/styled';
 
     import { AppState } from '~kernel-services/state/store';
     import StateContext from '~kernel-services/state/context';
@@ -54,6 +59,7 @@ export interface ShellOwnProperties {
 }
 
 export interface ShellStateProperties {
+    stateNotifications: Notification[];
     stateGeneralTheme: Theme;
     stateInteractionTheme: Theme;
 }
@@ -76,6 +82,10 @@ const Shell: React.FC<ShellProperties> = (
         // #region own
         children,
         // #endregion own
+
+        // #region state
+        stateNotifications,
+        // #endregion state
 
         // #region dispatch
         dispatchSetCompactSelectors,
@@ -101,6 +111,13 @@ const Shell: React.FC<ShellProperties> = (
             <GlobalStyle />
 
             {children}
+
+            {stateNotifications.length > 0 && (
+                <Notifications
+                    selectors={selectors}
+                    context={StateContext}
+                />
+            )}
         </>
     );
     // #endregion render
@@ -110,6 +127,7 @@ const Shell: React.FC<ShellProperties> = (
 const mapStateToProperties = (
     state: AppState,
 ): ShellStateProperties => ({
+    stateNotifications: selectors.notifications.getAll(state),
     stateGeneralTheme: selectors.themes.getGeneralTheme(state),
     stateInteractionTheme: selectors.themes.getInteractionTheme(state),
 });

@@ -10,6 +10,7 @@
 const actions = {
     data: modules.data.actions,
     general: modules.general.actions,
+    notifications: modules.notifications.actions,
     product: modules.product.actions,
     themes: modules.themes.actions,
 };

@@ -10,6 +10,7 @@
 const selectors = {
     data: modules.data.selectors,
     general: modules.general.selectors,
+    notifications: modules.notifications.selectors,
     // FORCE prevent Toolbar/Spaces error
     owner: {
         getIdentonym: () => '',

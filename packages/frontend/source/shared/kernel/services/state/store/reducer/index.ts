@@ -17,6 +17,7 @@
 const reducer = combineReducers({
     data: modules.data.reducer,
     general: modules.general.reducer,
+    notifications: modules.notifications.reducer,
     product: modules.product.reducer,
     themes: modules.themes.reducer,
 });
