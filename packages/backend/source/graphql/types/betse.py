@@ -90,6 +90,7 @@ class BetseTissue:
     cell_targets: BetseTissueDiffusionConstants
 
 
+
 @strawberry.type
 class BetseIntervention:
     id: str
@@ -98,9 +99,56 @@ class BetseIntervention:
 
 
 @strawberry.type
+class BetseFunctionGradientX:
+    slope: float
+    x_offset: float
+    z_offset: float
+    exponent: float
+
+@strawberry.type
+class BetseFunctionGradientY:
+    slope: float
+    x_offset: float
+    z_offset: float
+    exponent: float
+
+@strawberry.type
+class BetseFunctionGradientR:
+    slope: float
+    x_offset: float
+    z_offset: float
+    exponent: float
+
+@strawberry.type
+class BetseFunctionPeriodic:
+    frequency: float
+    phase: float
+
+@strawberry.type
+class BetseFunctionFSweep:
+    start_frequency: float
+    end_frequency: float
+
+@strawberry.type
+class BetseFunctionGradientBitmap:
+    file: str
+    z_offset: float
+
+@strawberry.type
+class BetseFunctionSingleCell:
+    z_offset: float
+
+@strawberry.type
 class BetseFunction:
     id: str
     name: str
+    gradient_x: BetseFunctionGradientX
+    gradient_y: BetseFunctionGradientY
+    gradient_r: BetseFunctionGradientR
+    periodic: BetseFunctionPeriodic
+    f_sweep: BetseFunctionFSweep
+    gradient_bitmap: BetseFunctionGradientBitmap
+    single_cell: BetseFunctionSingleCell
 
 
 
