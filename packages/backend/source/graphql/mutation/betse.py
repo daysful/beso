@@ -5,7 +5,7 @@ from source.utilities.general import now, generate_id
 from source.database.main import insert
 from source.database.collections import Collections
 from source.graphql.context import Info
-from source.graphql.types.betse import BetseWorld, InputBetseWorld
+from source.graphql.types.betse import BetseWorld, InputBetseWorld, BetseWorldMeshRefinement, BetseWorldImportFromSVG
 
 
 
@@ -25,6 +25,9 @@ def add_betse_world(input: InputBetseWorld, info: Info) -> BetseWorld | None:
     data['is_json'] = True
 
     insert(Collections.betseWorlds, data)
+
+    betse_world['mesh_refinement'] = BetseWorldMeshRefinement(**betse_world['mesh_refinement'])
+    betse_world['import_from_svg'] = BetseWorldImportFromSVG(**betse_world['import_from_svg'])
 
     return BetseWorld(**betse_world)
 

@@ -31,6 +31,7 @@ class InputBetseWorldMeshRefinement:
 class InputBetseWorldImportFromSVG:
     svg_override: bool
     cells_from_svg: str
+    # cells_from_svg: Upload
     svg_size: int
 
 @strawberry.input
