@@ -62,13 +62,12 @@ def load_jwt_secret(
 
         return data['jwt_secret']
 
-    jwt_secret = generate_id()
     data = {
-        "jwt_secret": jwt_secret,
+        "jwt_secret": generate_id(),
     }
     text = json.dumps(data, indent=4)
     file = open(secrets_datastore, 'w')
     file.write(text)
     file.close()
 
-    return jwt_secret
+    return data['jwt_secret']
