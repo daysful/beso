@@ -1,21 +1,17 @@
 import json
-import strawberry
 
-from source.database.main import get
-from source.database.collections import Collections
 from source.graphql.types.betse import \
     BetseSimulation, \
     BetseWorld, BetseWorldMeshRefinement, BetseWorldImportFromSVG, \
-    BetseTissue, \
+    BetseTissue, BetseTissueDiffusionConstants, BetseTissueCellTargets, \
     BetseIntervention, \
-    BetseFunction, \
+    BetseFunction, BetseFunctionGradientX, BetseFunctionGradientY, BetseFunctionGradientR, BetseFunctionPeriodic, BetseFunctionFSweep, BetseFunctionGradientBitmap, BetseFunctionSingleCell, \
     BetseNetwork, \
     BetseBiomolecule, \
     BetseReaction, \
     BetseChannel, \
     BetseTransporter, \
     BetseModulator
-from source.graphql.context import Info
 
 
 
@@ -27,6 +23,7 @@ def modelBetseSimulation(
 
     return BetseSimulation(**model)
 
+
 def modelBetseWorld(
     data: any,
 ):
@@ -37,13 +34,17 @@ def modelBetseWorld(
 
     return BetseWorld(**model)
 
+
 def modelBetseTissue(
     data: any,
 ):
     model = json.loads(data['data'])
     model['id'] = data['id']
+    model['diffusion_constants'] = BetseTissueDiffusionConstants(**model['diffusion_constants'])
+    model['cell_targets'] = BetseTissueCellTargets(**model['cell_targets'])
 
     return BetseTissue(**model)
+
 
 def modelBetseIntervention(
     data: any,
@@ -53,13 +54,22 @@ def modelBetseIntervention(
 
     return BetseIntervention(**model)
 
+
 def modelBetseFunction(
     data: any,
 ):
     model = json.loads(data['data'])
     model['id'] = data['id']
+    model['gradient_x'] = BetseFunctionGradientX(**model['gradient_x'])
+    model['gradient_y'] = BetseFunctionGradientY(**model['gradient_y'])
+    model['gradient_r'] = BetseFunctionGradientR(**model['gradient_r'])
+    model['periodic'] = BetseFunctionPeriodic(**model['periodic'])
+    model['f_sweep'] = BetseFunctionFSweep(**model['f_sweep'])
+    model['gradient_bitmap'] = BetseFunctionGradientBitmap(**model['gradient_bitmap'])
+    model['single_cell'] = BetseFunctionSingleCell(**model['single_cell'])
 
     return BetseFunction(**model)
+
 
 def modelBetseNetwork(
     data: any,
@@ -69,6 +79,7 @@ def modelBetseNetwork(
 
     return BetseNetwork(**model)
 
+
 def modelBetseBiomolecule(
     data: any,
 ):
@@ -76,6 +87,7 @@ def modelBetseBiomolecule(
     model['id'] = data['id']
 
     return BetseBiomolecule(**model)
+
 
 def modelBetseReaction(
     data: any,
@@ -85,6 +97,7 @@ def modelBetseReaction(
 
     return BetseReaction(**model)
 
+
 def modelBetseChannel(
     data: any,
 ):
@@ -93,6 +106,7 @@ def modelBetseChannel(
 
     return BetseChannel(**model)
 
+
 def modelBetseTransporter(
     data: any,
 ):
@@ -100,6 +114,7 @@ def modelBetseTransporter(
     model['id'] = data['id']
 
     return BetseTransporter(**model)
+
 
 def modelBetseModulator(
     data: any,

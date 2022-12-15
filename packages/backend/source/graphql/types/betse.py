@@ -106,7 +106,7 @@ class BetseTissue:
     name: str
     insular: bool
     diffusion_constants: BetseTissueDiffusionConstants
-    cell_targets: BetseTissueDiffusionConstants
+    cell_targets: BetseTissueCellTargets
 # endregion type BetseTissue
 # endregion BetseTissue
 
