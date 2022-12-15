@@ -78,55 +78,6 @@ class BetseWorld:
     import_from_svg: BetseWorldImportFromSVG
     alpha_shape: float
     use_centers: bool
-
-default_betse_world = BetseWorld(
-    id='one',
-    name='one',
-    world_size=150e-6,
-    cell_radius=5.0e-6,
-    cell_height=10.0e-6,
-    cell_spacing=26.0e-9,
-    simulate_single_cell=False,
-    lattice_type='hex',
-    lattice_disorder=0.4,
-    mesh_refinement=BetseWorldMeshRefinement(
-        refine_mesh=True,
-        maximum_steps=10,
-        convergence_threshold=1.5,
-    ),
-    import_from_svg=BetseWorldImportFromSVG(
-        svg_override=False,
-        cells_from_svg='geo/root/root_cells.svg',
-        svg_size=500,
-    ),
-    alpha_shape=0.01,
-    use_centers=False,
-)
-
-# {
-#   "input": {
-#     "name": "one",
-#   	"worldSize": 150e-6,
-#     "cellRadius": 5.0e-6,
-#     "cellHeight": 10.0e-6,
-#     "cellSpacing": 26.0e-9,
-#     "simulateSingleCell": false,
-#     "latticeType": "hex",
-#     "latticeDisorder": 0.4,
-#     "meshRefinement": {
-#         "refineMesh": true,
-#         "maximumSteps": 10,
-#         "convergenceThreshold": 1.5
-#     },
-#     "importFromSvg": {
-#         "svgOverride": false,
-#         "cellsFromSvg": "geo/root/root_cells.svg",
-#         "svgSize": 500
-#     },
-#     "alphaShape": 0.01,
-#     "useCenters": false
-#   }
-# }
 # endregion type BetseWorld
 # endregion BetseWorld
 
