@@ -7,6 +7,26 @@ from source.graphql.context import Info
 from source.database.collections import Collections
 from source.database.main import get_all
 
+from .betse import \
+    modelBetseSimulation, \
+    modelBetseWorld, \
+    modelBetseTissue, \
+    modelBetseIntervention, \
+    modelBetseFunction, \
+    modelBetseNetwork, \
+    modelBetseBiomolecule, \
+    modelBetseReaction, \
+    modelBetseChannel, \
+    modelBetseTransporter, \
+    modelBetseModulator
+
+
+
+def modeler(
+    data: list,
+    model: callable,
+):
+    return [model(item) for item in data]
 
 
 @strawberry.type
@@ -25,17 +45,50 @@ class QueryUser:
         if not user:
             return None
 
-        simulations=get_all(Collections.betseSimulations, user.id, 'generated_by') or []
-        worlds=get_all(Collections.betseWorlds, user.id, 'generated_by') or []
-        tissues=get_all(Collections.betseTissues, user.id, 'generated_by') or []
-        interventions=get_all(Collections.betseInterventions, user.id, 'generated_by') or []
-        functions=get_all(Collections.betseFunctions, user.id, 'generated_by') or []
-        networks=get_all(Collections.betseNetworks, user.id, 'generated_by') or []
-        biomolecules=get_all(Collections.betseBiomolecules, user.id, 'generated_by') or []
-        reactions=get_all(Collections.betseReactions, user.id, 'generated_by') or []
-        channels=get_all(Collections.betseChannels, user.id, 'generated_by') or []
-        transporters=get_all(Collections.betseTransporters, user.id, 'generated_by') or []
-        modulators=get_all(Collections.betseModulators, user.id, 'generated_by') or []
+        simulations=modeler(
+            get_all(Collections.betseSimulations, user.id, 'generated_by') or [],
+            modelBetseSimulation,
+        )
+        worlds=modeler(
+            get_all(Collections.betseWorlds, user.id, 'generated_by') or [],
+            modelBetseWorld,
+        )
+        tissues=modeler(
+            get_all(Collections.betseTissues, user.id, 'generated_by') or [],
+            modelBetseTissue,
+        )
+        interventions=modeler(
+            get_all(Collections.betseInterventions, user.id, 'generated_by') or [],
+            modelBetseIntervention,
+        )
+        functions=modeler(
+            get_all(Collections.betseFunctions, user.id, 'generated_by') or [],
+            modelBetseFunction,
+        )
+        networks=modeler(
+            get_all(Collections.betseNetworks, user.id, 'generated_by') or [],
+            modelBetseNetwork,
+        )
+        biomolecules=modeler(
+            get_all(Collections.betseBiomolecules, user.id, 'generated_by') or [],
+            modelBetseBiomolecule,
+        )
+        reactions=modeler(
+            get_all(Collections.betseReactions, user.id, 'generated_by') or [],
+            modelBetseReaction,
+        )
+        channels=modeler(
+            get_all(Collections.betseChannels, user.id, 'generated_by') or [],
+            modelBetseChannel,
+        )
+        transporters=modeler(
+            get_all(Collections.betseTransporters, user.id, 'generated_by') or [],
+            modelBetseTransporter,
+        )
+        modulators=modeler(
+            get_all(Collections.betseModulators, user.id, 'generated_by') or [],
+            modelBetseModulator,
+        )
 
         return Betse(
             simulations=simulations,
