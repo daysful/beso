@@ -85,6 +85,29 @@ class BetseWorld:
 
 # region BetseTissue
 # region input BetseTissue
+@strawberry.input
+class InputBetseTissueDiffusionConstants:
+    Dm_Na: float
+    Dm_K: float
+    Dm_Cl: float
+    Dm_Ca: float
+    Dm_M: float
+    Dm_P: float
+
+@strawberry.input
+class InputBetseTissueCellTargets:
+    type: str
+    color: str
+    image: str
+    indices: list[int]
+    percent: float
+
+@strawberry.input
+class InputBetseTissue:
+    name: str
+    insular: bool
+    diffusion_constants: InputBetseTissueDiffusionConstants
+    cell_targets: InputBetseTissueCellTargets
 # endregion input BetseTissue
 
 # region type BetseTissue
