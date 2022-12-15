@@ -54,3 +54,19 @@ default_betse_world = BetseWorld(
     alpha_shape=0.01,
     use_centers=False,
 )
+
+
+
+@strawberry.type
+class Betse:
+    # simulations: list[BetseSimulations]
+    worlds: list[BetseWorld]
+    # tissues: list[BetseTissues]
+    # interventions: list[BetseInterventions]
+    # functions: list[BetseFunctions]
+    # networks: list[BetseNetworks]
+    # biomolecules: list[BetseBiomolecules]
+    # reactions: list[BetseReactions]
+    # channels: list[BetseChannels]
+    # transporters: list[BetseTransporters]
+    # modulators: list[BetseModulators]
