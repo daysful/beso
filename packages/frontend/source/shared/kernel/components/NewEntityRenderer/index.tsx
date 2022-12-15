@@ -113,7 +113,7 @@ const NewEntityRenderer: React.FC<NewEntityRendererProperties> = (
 
         // #region dispatch
         dispatchSetGeneralField,
-        dispatchAddNotification,
+        // dispatchAddNotification,
         // #endregion dispatch
     } = properties;
     // #endregion properties
@@ -168,67 +168,61 @@ const NewEntityRenderer: React.FC<NewEntityRendererProperties> = (
         setPaste(text);
     }
 
+    const parsePasteLogic = (
+        fields: NewEntityField[],
+        data: any
+    ): any => (fields.map(field => {
+        if (field.type === 'group') {
+            const newValue = parsePasteLogic(
+                field.value,
+                data[field.state],
+            );
+
+            return {
+                ...field,
+                value: newValue,
+            };
+        }
+
+        const newValue = data[field.state];
+        if (typeof newValue !== 'undefined') {
+            return {
+                ...field,
+                value: newValue,
+            };
+        }
+
+        return {
+            ...field,
+        };
+    }));
+
     const parsePaste = (
         text: string,
     ) => {
         let data: any;
-        switch (statePasteLanguage) {
-            case 'yaml':
-                data = yaml.load(text);
-                break;
-            case 'json':
-                data = JSON.parse(text);
-                break;
-            case 'deon':
-                const deon = new DeonPure();
-                data = deon.parse(text);
-                break;
+
+        try {
+            switch (statePasteLanguage) {
+                case 'yaml':
+                    data = yaml.load(text);
+                    break;
+                case 'json':
+                    data = JSON.parse(text);
+                    break;
+                case 'deon':
+                    const deon = new DeonPure();
+                    data = deon.parse(text);
+                    break;
+            }
+        } catch (error) {
+            return;
         }
 
-        const newEntityState: NewEntityField[] = [
-            ...JSON.parse(JSON.stringify(fields)),
-        ].map((field: NewEntityField) => {
-            if (field.type === 'group') {
-                const newValue = field.value.map(
-                    groupField => {
-                        if (typeof data[field.state] === 'undefined') {
-                            return {
-                                ...groupField,
-                            };
-                        }
-
-                        const newValue = data[field.state][groupField.state];
-                        if (typeof newValue !== 'undefined') {
-                            return {
-                                ...groupField,
-                                value: newValue,
-                            };
-                        }
-
-                        return {
-                            ...groupField,
-                        };
-                    },
-                );
-
-                return {
-                    ...field,
-                    value: newValue,
-                };
-            }
-
-            const newValue = data[field.state];
-            if (typeof newValue !== 'undefined') {
-                return {
-                    ...field,
-                    value: newValue,
-                };
-            }
-
-            return {
-                ...field,
-            };
-        });
+        const newEntityState = parsePasteLogic(
+            JSON.parse(JSON.stringify(fields)),
+            data,
+        );
 
         atChange(newEntityState);
     }
