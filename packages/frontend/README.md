@@ -35,8 +35,8 @@ In order to run `BESO`, a `backend` (`BETSE`-based) and a `frontend` (`plurid`-b
 Provided [`docker`](https://docs.docker.com/get-docker/) is installed, run
 
 ``` bash
-docker pull daysful/beso-backend
-docker pull daysful/beso-frontend
+docker pull hypod.cloud/daysful/beso-backend
+docker pull hypod.cloud/daysful/beso-frontend
 
 mkdir ./beso_data
 
@@ -44,11 +44,11 @@ docker run --name beso-backend \
     --network="host"
     --mount type=bind,source="$(pwd)"/beso_data,target=/app/data \
     -p 54567:54567 \
-    -d daysful/beso-backend
+    -d hypod.cloud/daysful/beso-backend
 docker run --name beso-frontend \
     --network="host" \
     -p 54568:54568 \
-    -d daysful/beso-frontend
+    -d hypod.cloud/daysful/beso-frontend
 ```
 
 for a default setup, storing the data in a local `beso_data` directory.
@@ -63,7 +63,7 @@ docker run --name beso-backend \
     --mount type=bind,source="$(pwd)"/beso_data,target=/app/data \
     --env BESO_MONGO_CONNECTION_STRING="mongodb://[username:password@]host[:port]" \
     -p 54567:54567 \
-    -d daysful/beso-backend
+    -d hypod.cloud/daysful/beso-backend
 ```
 
 Users can be specified through the `BESO_USERS` environment variable as user tuples (`id,name,key`) separated by semicolon, e.g. `BESO_USERS="123,user1,key1;124,user2,key2"`.
@@ -86,7 +86,7 @@ The `beso-frontend` requires the environment variable `BESO_BACKEND` to discover
 docker run --name beso-frontend \
     --env BESO_BACKEND="http://host[:port]" \
     -p 54568:54568 \
-    -d daysful/beso-frontend
+    -d hypod.cloud/daysful/beso-frontend
 ```
 
 
