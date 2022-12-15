@@ -19,7 +19,7 @@
 </h3>
 
 
-`BESO` relies on [`BETSE`](https://github.com/betsee/betse) and [plurid](https://github.com/plurid/pluird) to provide a bioelectric tissue simulation management environment through a web application interface.
+`BESO` relies on [`BETSE`](https://github.com/betsee/betse) and [`plurid`](https://github.com/plurid/pluird) to provide a bioelectric tissue simulation management environment through a web application interface.
 
 
 <p align="center">
@@ -30,7 +30,7 @@
 
 ## Setup
 
-In order to run `BESO`, a `backend` (BETSE-based) and a `frontend` (plurid-based) server must be set up, given a `*NIX` environment.
+In order to run `BESO`, a `backend` (`BETSE`-based) and a `frontend` (`plurid`-based) server must be set up, given a `*NIX` environment.
 
 Provided [`docker`](https://docs.docker.com/get-docker/) is installed, run
 
