@@ -1,4 +1,5 @@
 import strawberry
+from strawberry.file_uploads import Upload
 
 
 
@@ -64,10 +65,29 @@ default_betse_world = BetseWorld(
 
 
 @strawberry.type
+class BetseTissueDiffusionConstants:
+    Dm_Na: float
+    Dm_K: float
+    Dm_Cl: float
+    Dm_Ca: float
+    Dm_M: float
+    Dm_P: float
+
+@strawberry.type
+class BetseTissueCellTargets:
+    type: str
+    color: str
+    image: str
+    indices: list[int]
+    percent: float
+
+@strawberry.type
 class BetseTissue:
     id: str
     name: str
-
+    insular: bool
+    diffusion_constants: BetseTissueDiffusionConstants
+    cell_targets: BetseTissueDiffusionConstants
 
 
 @strawberry.type
