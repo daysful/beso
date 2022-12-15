@@ -19,7 +19,7 @@
 </h3>
 
 
-`BESO` relies on [`BETSE`](https://github.com/betsee/betse) and [`plurid`](https://github.com/plurid/pluird) to provide a bioelectric tissue simulation management environment through a web application interface.
+`BESO` relies on [`BETSE`](https://github.com/betsee/betse) and [`plurid`](https://github.com/plurid/plurid) to provide a bioelectric tissue simulation management environment through a web application interface.
 
 
 <p align="center">
