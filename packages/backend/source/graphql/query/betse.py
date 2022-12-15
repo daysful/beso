@@ -4,7 +4,17 @@ import strawberry
 from source.database.main import get
 from source.database.collections import Collections
 from source.graphql.types.betse import \
-    BetseWorld, BetseWorldMeshRefinement, BetseWorldImportFromSVG
+    BetseSimulation, \
+    BetseWorld, BetseWorldMeshRefinement, BetseWorldImportFromSVG, \
+    BetseTissue, \
+    BetseIntervention, \
+    BetseFunction, \
+    BetseNetwork, \
+    BetseBiomolecule, \
+    BetseReaction, \
+    BetseChannel, \
+    BetseTransporter, \
+    BetseModulator
 from source.graphql.context import Info
 
 
@@ -12,62 +22,92 @@ from source.graphql.context import Info
 def modelBetseSimulation(
     data: any,
 ):
-    return {}
+    model = json.loads(data['data'])
+    model['id'] = data['id']
+
+    return BetseSimulation(**model)
 
 def modelBetseWorld(
-    betse_world: any,
+    data: any,
 ):
-    data = json.loads(betse_world['data'])
-    data['id'] = betse_world['id']
-    data['mesh_refinement'] = BetseWorldMeshRefinement(**data['mesh_refinement'])
-    data['import_from_svg'] = BetseWorldImportFromSVG(**data['import_from_svg'])
+    model = json.loads(data['data'])
+    model['id'] = data['id']
+    model['mesh_refinement'] = BetseWorldMeshRefinement(**model['mesh_refinement'])
+    model['import_from_svg'] = BetseWorldImportFromSVG(**model['import_from_svg'])
 
-    return BetseWorld(**data)
+    return BetseWorld(**model)
 
 def modelBetseTissue(
     data: any,
 ):
-    return {}
+    model = json.loads(data['data'])
+    model['id'] = data['id']
+
+    return BetseTissue(**model)
 
 def modelBetseIntervention(
     data: any,
 ):
-    return {}
+    model = json.loads(data['data'])
+    model['id'] = data['id']
+
+    return BetseIntervention(**model)
 
 def modelBetseFunction(
     data: any,
 ):
-    return {}
+    model = json.loads(data['data'])
+    model['id'] = data['id']
+
+    return BetseFunction(**model)
 
 def modelBetseNetwork(
     data: any,
 ):
-    return {}
+    model = json.loads(data['data'])
+    model['id'] = data['id']
+
+    return BetseNetwork(**model)
 
 def modelBetseBiomolecule(
     data: any,
 ):
-    return {}
+    model = json.loads(data['data'])
+    model['id'] = data['id']
+
+    return BetseBiomolecule(**model)
 
 def modelBetseReaction(
     data: any,
 ):
-    return {}
+    model = json.loads(data['data'])
+    model['id'] = data['id']
+
+    return BetseReaction(**model)
 
 def modelBetseChannel(
     data: any,
 ):
-    return {}
+    model = json.loads(data['data'])
+    model['id'] = data['id']
+
+    return BetseChannel(**model)
 
 def modelBetseTransporter(
     data: any,
 ):
-    return {}
+    model = json.loads(data['data'])
+    model['id'] = data['id']
+
+    return BetseTransporter(**model)
 
 def modelBetseModulator(
     data: any,
 ):
-    return {}
+    model = json.loads(data['data'])
+    model['id'] = data['id']
+
+    return BetseModulator(**model)
 
 
 
