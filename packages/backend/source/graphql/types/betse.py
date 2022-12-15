@@ -3,6 +3,12 @@ import strawberry
 
 
 @strawberry.type
+class BetseSimulation:
+    id: str
+
+
+
+@strawberry.type
 class BetseWorldMeshRefinement:
     refine_mesh: bool
     maximum_steps: int
@@ -58,15 +64,69 @@ default_betse_world = BetseWorld(
 
 
 @strawberry.type
+class BetseTissue:
+    id: str
+
+
+
+@strawberry.type
+class BetseIntervention:
+    id: str
+
+
+
+@strawberry.type
+class BetseFunction:
+    id: str
+
+
+
+@strawberry.type
+class BetseNetwork:
+    id: str
+
+
+
+@strawberry.type
+class BetseBiomolecule:
+    id: str
+
+
+
+@strawberry.type
+class BetseReaction:
+    id: str
+
+
+
+@strawberry.type
+class BetseChannel:
+    id: str
+
+
+
+@strawberry.type
+class BetseTransporter:
+    id: str
+
+
+
+@strawberry.type
+class BetseModulator:
+    id: str
+
+
+
+@strawberry.type
 class Betse:
-    # simulations: list[BetseSimulations]
+    simulations: list[BetseSimulation]
     worlds: list[BetseWorld]
-    # tissues: list[BetseTissues]
-    # interventions: list[BetseInterventions]
-    # functions: list[BetseFunctions]
-    # networks: list[BetseNetworks]
-    # biomolecules: list[BetseBiomolecules]
-    # reactions: list[BetseReactions]
-    # channels: list[BetseChannels]
-    # transporters: list[BetseTransporters]
-    # modulators: list[BetseModulators]
+    tissues: list[BetseTissue]
+    interventions: list[BetseIntervention]
+    functions: list[BetseFunction]
+    networks: list[BetseNetwork]
+    biomolecules: list[BetseBiomolecule]
+    reactions: list[BetseReaction]
+    channels: list[BetseChannel]
+    transporters: list[BetseTransporter]
+    modulators: list[BetseModulator]
