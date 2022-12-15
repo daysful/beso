@@ -1,3 +1,5 @@
+from enum import Enum
+
 import strawberry
 from strawberry.file_uploads import Upload
 
@@ -239,11 +241,24 @@ class BetseFunction:
 
 
 # region BetseNetwork
+@strawberry.enum
+class BetseNetworkOptimizationOptimizationMethod(Enum):
+    COBYLA = 'COBYLA'
+    LBFGSB = 'L-BFGS-B'
+    CG = 'CG'
+    NELDER_MEAD = 'Nelder-Mead'
+    POWELL = 'Powell'
+    BFGS = 'BFGS'
+    TNC = 'TNC'
+    SLSQP = 'SLSQP'
+
+
 # region input BetseNetwork
 @strawberry.input
 class InputBetseNetworkOptimization:
     optimize_network: bool
     optimization_steps: int
+    # optimization_method: BetseNetworkOptimizationOptimizationMethod
     optimization_method: str
     optimization_T: float
     optimization_step: float
@@ -265,6 +280,7 @@ class InputBetseNetwork:
 class BetseNetworkOptimization:
     optimize_network: bool
     optimization_steps: int
+    # optimization_method: BetseNetworkOptimizationOptimizationMethod
     optimization_method: str
     optimization_T: float
     optimization_step: float
