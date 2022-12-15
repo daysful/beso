@@ -3,13 +3,25 @@ from strawberry.file_uploads import Upload
 
 
 
+# region BetseSimulation
+# region input BetseSimulation
+# endregion input BetseSimulation
+
+# region type BetseSimulation
 @strawberry.type
 class BetseSimulation:
     id: str
     name: str
+# endregion type BetseSimulation
+# endregion BetseSimulation
 
 
 
+# region BetseWorld
+# region input BetseWorld
+# endregion input BetseWorld
+
+# region type BetseWorld
 @strawberry.type
 class BetseWorldMeshRefinement:
     refine_mesh: bool
@@ -61,9 +73,16 @@ default_betse_world = BetseWorld(
     alpha_shape=0.01,
     use_centers=False,
 )
+# endregion type BetseWorld
+# endregion BetseWorld
 
 
 
+# region BetseTissue
+# region input BetseTissue
+# endregion input BetseTissue
+
+# region type BetseTissue
 @strawberry.type
 class BetseTissueDiffusionConstants:
     Dm_Na: float
@@ -88,16 +107,81 @@ class BetseTissue:
     insular: bool
     diffusion_constants: BetseTissueDiffusionConstants
     cell_targets: BetseTissueDiffusionConstants
+# endregion type BetseTissue
+# endregion BetseTissue
 
 
 
+# region BetseIntervention
+# region input BetseIntervention
+# endregion input BetseIntervention
+
+# region type BetseIntervention
 @strawberry.type
 class BetseIntervention:
     id: str
     name: str
+# endregion type BetseIntervention
+# endregion BetseIntervention
 
 
 
+# region BetseFunction
+# region input BetseFunction
+@strawberry.input
+class InputBetseFunctionGradientX:
+    slope: float
+    x_offset: float
+    z_offset: float
+    exponent: float
+
+@strawberry.input
+class InputBetseFunctionGradientY:
+    slope: float
+    x_offset: float
+    z_offset: float
+    exponent: float
+
+@strawberry.input
+class InputBetseFunctionGradientR:
+    slope: float
+    x_offset: float
+    z_offset: float
+    exponent: float
+
+@strawberry.input
+class InputBetseFunctionPeriodic:
+    frequency: float
+    phase: float
+
+@strawberry.input
+class InputBetseFunctionFSweep:
+    start_frequency: float
+    end_frequency: float
+
+@strawberry.input
+class InputBetseFunctionGradientBitmap:
+    file: str
+    z_offset: float
+
+@strawberry.input
+class InputBetseFunctionSingleCell:
+    z_offset: float
+
+@strawberry.input
+class InputBetseFunction:
+    id: str
+    name: str
+    gradient_x: InputBetseFunctionGradientX
+    gradient_y: InputBetseFunctionGradientY
+    gradient_r: InputBetseFunctionGradientR
+    periodic: InputBetseFunctionPeriodic
+    f_sweep: InputBetseFunctionFSweep
+    gradient_bitmap: InputBetseFunctionGradientBitmap
+    single_cell: InputBetseFunctionSingleCell
+# endregion input BetseFunction
+
+# region type BetseFunction
 @strawberry.type
 class BetseFunctionGradientX:
     slope: float
@@ -149,48 +233,92 @@ class BetseFunction:
     f_sweep: BetseFunctionFSweep
     gradient_bitmap: BetseFunctionGradientBitmap
     single_cell: BetseFunctionSingleCell
+# endregion type BetseFunction
+# endregion BetseFunction
 
 
 
+# region BetseNetwork
+# region input BetseNetwork
+# endregion input BetseNetwork
+
+# region type BetseNetwork
 @strawberry.type
 class BetseNetwork:
     id: str
     name: str
+# endregion type BetseNetwork
+# endregion BetseNetwork
 
 
 
+# region BetseBiomolecule
+# region input BetseBiomolecule
+# endregion input BetseBiomolecule
+
+# region type BetseBiomolecule
 @strawberry.type
 class BetseBiomolecule:
     id: str
     name: str
+# endregion type BetseBiomolecule
+# endregion BetseBiomolecule
 
 
 
+# region BetseReaction
+# region input BetseReaction
+# endregion input BetseReaction
+
+# region type BetseReaction
 @strawberry.type
 class BetseReaction:
     id: str
     name: str
+# endregion type BetseReaction
+# endregion BetseReaction
 
 
 
+# region BetseChannel
+# region input BetseChannel
+# endregion input BetseChannel
+
+# region type BetseChannel
 @strawberry.type
 class BetseChannel:
     id: str
     name: str
+# endregion type BetseChannel
+# endregion BetseChannel
 
 
 
+# region BetseTransporter
+# region input BetseTransporter
+# endregion input BetseTransporter
+
+# region type BetseTransporter
 @strawberry.type
 class BetseTransporter:
     id: str
     name: str
+# endregion type BetseTransporter
+# endregion BetseTransporter
 
 
 
+# region BetseModulator
+# region input BetseModulator
+# endregion input BetseModulator
+
+# region type BetseModulator
 @strawberry.type
 class BetseModulator:
     id: str
     name: str
+# endregion type BetseModulator
+# endregion BetseModulator
 
 
 
