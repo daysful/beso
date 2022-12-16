@@ -47,6 +47,8 @@ export interface NewEntityComponentOwnProperties {
 
     kind: string;
     sourceFrom: JSX.Element;
+
+    onAdd?: (state: any) => void;
 }
 
 export interface NewEntityComponentStateProperties {
@@ -77,6 +79,8 @@ const NewEntityComponent: React.FC<NewEntityComponentProperties> = (
 
         kind,
         sourceFrom,
+
+        onAdd,
         // #endregion own
 
         // #region state
@@ -103,7 +107,7 @@ const NewEntityComponent: React.FC<NewEntityComponentProperties> = (
     const [
         isValid,
         setIsValid,
-    ] = useState(false);
+    ] = useState(true);
     // #endregion state
 
 
@@ -129,7 +133,9 @@ const NewEntityComponent: React.FC<NewEntityComponentProperties> = (
                 <PluridPureButton
                     text={`Add New ${kind}`}
                     atClick={() => {
-                        console.log(state);
+                        if (onAdd) {
+                            onAdd(state);
+                        }
                     }}
                     theme={stateGeneralTheme}
                     level={2}
