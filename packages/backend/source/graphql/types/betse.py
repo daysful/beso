@@ -91,7 +91,6 @@ class InputBetseSimulationVariableSettings:
 
 @strawberry.input
 class InputBetseSimulation:
-    id: str
     name: str
     init_time_settings: InputBetseSimulationInitTimeSettings
     sim_time_settings: InputBetseSimulationSimTimeSettings
@@ -336,7 +335,6 @@ class BetseTissue:
 # region input BetseIntervention
 @strawberry.input
 class InputBetseIntervention:
-    id: str
     name: str
     type: str # 'targeted' | 'global'
     data: str
@@ -398,7 +396,6 @@ class InputBetseFunctionSingleCell:
 
 @strawberry.input
 class InputBetseFunction:
-    id: str
     name: str
     gradient_x: InputBetseFunctionGradientX
     gradient_y: InputBetseFunctionGradientY
@@ -491,7 +488,6 @@ class InputBetseNetworkOptimization:
 
 @strawberry.input
 class InputBetseNetwork:
-    id: str
     name: str
     enable_mitochondria: bool
     optimization: InputBetseNetworkOptimization
@@ -583,7 +579,6 @@ class InputBetseBiomoleculePlotting:
 
 @strawberry.input
 class InputBetseBiomolecule:
-    id: str
     name: str
     Dm: float
     Do: float
@@ -701,7 +696,6 @@ class BetseBiomolecule:
 # region input BetseReaction
 @strawberry.input
 class InputBetseReaction:
-    id: str
     name: str
     reaction_zone: str
     reactant_multipliers: list[float]
@@ -751,7 +745,6 @@ class BetseReaction:
 # region input BetseChannel
 @strawberry.input
 class InputBetseChannel:
-    id: str
     name: str
     channel_class: str
     channel_type: str
@@ -799,7 +792,6 @@ class BetseChannel:
 # region input BetseTransporter
 @strawberry.input
 class InputBetseTransporter:
-    id: str
     name: str
     reaction_zone: str
     reactants: list[str]
@@ -855,7 +847,6 @@ class BetseTransporter:
 # region input BetseModulator
 @strawberry.input
 class InputBetseModulator:
-    id: str
     name: str
     target: str
     max_effect: float
