@@ -54,7 +54,7 @@ def insert(
 def get(
     name: str,
     id: str,
-    by: str | None,
+    by: str | None = 'id',
 ) -> dict[str, any] | None:
     if database_type == 'mongo':
         return mongo_get(
@@ -75,7 +75,7 @@ def get(
 def get_all(
     name: str,
     id: str,
-    by: str | None,
+    by: str | None = 'id',
 ) -> list[dict[str, any]] | None:
     if database_type == 'mongo':
         return mongo_get_all(

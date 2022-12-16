@@ -28,7 +28,7 @@ from source.graphql.types.betse import \
     InputBetseTransporter, BetseTransporter, \
     InputBetseModulator, BetseModulator
 
-from .utilities import mutation_entity_adder_factory
+from .utilities import mutation_entity_adder_factory, mutation_entity_remove
 
 
 
@@ -114,16 +114,86 @@ def add_betse_modulator(input: InputBetseModulator, info: Info) -> BetseModulato
     return mutation_entity_adder_factory(mutation_data['modulator'])(input, info)
 
 
+def remove_betse_simulation(id: str, info: Info) -> bool | None:
+    return mutation_entity_remove(
+        info,
+        Collections.betseSimulations,
+        id,
+    )
+
 def remove_betse_world(id: str, info: Info) -> bool | None:
-    user = info.context.user
-    if not user:
-        return
+    return mutation_entity_remove(
+        info,
+        Collections.betseWorlds,
+        id,
+    )
 
-    return True
+def remove_betse_tissue(id: str, info: Info) -> bool | None:
+    return mutation_entity_remove(
+        info,
+        Collections.betseTissues,
+        id,
+    )
+
+def remove_betse_intervention(id: str, info: Info) -> bool | None:
+    return mutation_entity_remove(
+        info,
+        Collections.betseInterventions,
+        id,
+    )
+
+def remove_betse_function(id: str, info: Info) -> bool | None:
+    return mutation_entity_remove(
+        info,
+        Collections.betseFunctions,
+        id,
+    )
+
+def remove_betse_network(id: str, info: Info) -> bool | None:
+    return mutation_entity_remove(
+        info,
+        Collections.betseNetworks,
+        id,
+    )
+
+def remove_betse_biomolecule(id: str, info: Info) -> bool | None:
+    return mutation_entity_remove(
+        info,
+        Collections.betseBiomolecules,
+        id,
+    )
+
+def remove_betse_reaction(id: str, info: Info) -> bool | None:
+    return mutation_entity_remove(
+        info,
+        Collections.betseReactions,
+        id,
+    )
+
+def remove_betse_channel(id: str, info: Info) -> bool | None:
+    return mutation_entity_remove(
+        info,
+        Collections.betseChannels,
+        id,
+    )
+
+def remove_betse_transporter(id: str, info: Info) -> bool | None:
+    return mutation_entity_remove(
+        info,
+        Collections.betseTransporters,
+        id,
+    )
+
+def remove_betse_modulator(id: str, info: Info) -> bool | None:
+    return mutation_entity_remove(
+        info,
+        Collections.betseModulators,
+        id,
+    )
 
 
 
-adders = [
+mutations = [
     add_betse_simulation,
     add_betse_world,
     add_betse_tissue,
@@ -135,13 +205,23 @@ adders = [
     add_betse_channel,
     add_betse_transporter,
     add_betse_modulator,
+
+    remove_betse_simulation,
+    remove_betse_world,
+    remove_betse_tissue,
+    remove_betse_intervention,
+    remove_betse_network,
+    remove_betse_biomolecule,
+    remove_betse_reaction,
+    remove_betse_channel,
+    remove_betse_transporter,
+    remove_betse_modulator,
 ]
 
 
 MutationBetseWorld = create_type(
     'MutationBetseWorld',
     [
-        *[strawberry.mutation(adder) for adder in adders],
-        strawberry.mutation(remove_betse_world),
+        *[strawberry.mutation(mutation) for mutation in mutations],
     ],
 )

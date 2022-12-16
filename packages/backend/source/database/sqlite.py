@@ -121,13 +121,13 @@ def sqlite_get(
     key = 'id',
 ):
     sql = f'''
-        SELECT * FROM {name} WHERE {key.upper()}="{id}"
+        SELECT * FROM {name} WHERE {key.upper()}=?
         '''
 
     connection.row_factory = dict_factory
 
     cursor = connection.cursor()
-    cursor.execute(sql)
+    cursor.execute(sql, (id,))
 
     item = cursor.fetchone()
     return item
@@ -140,13 +140,13 @@ def sqlite_get_all(
     key = 'id',
 ):
     sql = f'''
-        SELECT * FROM {name} WHERE {key.upper()}="{id}"
+        SELECT * FROM {name} WHERE {key.upper()}=?
         '''
 
     connection.row_factory = dict_factory
 
     cursor = connection.cursor()
-    cursor.execute(sql)
+    cursor.execute(sql, (id,))
 
     items = cursor.fetchall()
     return items
@@ -158,7 +158,7 @@ def sqlite_remove(
     id: str,
 ):
     sql = f'''
-        DELETE FROM {name} WHERE ID="{id}"
+        DELETE FROM {name} WHERE ID=?
         '''
 
     cursor = connection.cursor()

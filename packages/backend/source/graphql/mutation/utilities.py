@@ -2,7 +2,7 @@ from typing import TypeVar, Type
 import copy
 
 from source.utilities.general import now, generate_id
-from source.database.main import insert
+from source.database.main import insert, get, remove
 from source.graphql.context import Info
 from source.graphql.types.general import User
 
@@ -70,3 +70,25 @@ def mutation_entity_adder_factory(
         )
 
     return adder
+
+
+def mutation_entity_remove(
+    info: Info,
+    collection: str,
+    id: str,
+):
+    user = info.context.user
+    if not user:
+        return
+
+    entity = get(collection, id)
+    if not entity:
+        return
+
+    if not entity['generated_by'] == user.id:
+        return
+
+    return remove(
+        collection,
+        id,
+    )
