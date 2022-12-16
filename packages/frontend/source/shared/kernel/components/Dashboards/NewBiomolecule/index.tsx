@@ -25,6 +25,16 @@
         PluridDropdown,
     } from '~kernel-services/styled';
 
+    import {
+        extractState,
+    } from '~kernel-services/logic/betse';
+
+    import graphqlClient from '~kernel-services/graphql/client';
+
+    import {
+        BETSE_MUTATIONS,
+    } from '~kernel-services/graphql/mutate/betse';
+
     import { AppState } from '~kernel-services/state/store';
     import StateContext from '~kernel-services/state/context';
     import selectors from '~kernel-services/state/selectors';
@@ -104,6 +114,19 @@ const NewBiomolecule: React.FC<NewBiomoleculeProperties> = (
                     theme={stateGeneralTheme}
                 />
             )}
+
+            onAdd={(state) => {
+                const input = {
+                    ...extractState(state),
+                };
+
+                graphqlClient.mutate({
+                    mutation: BETSE_MUTATIONS.ADD_BETSE_BIOMOLECULE,
+                    variables: {
+                        input,
+                    },
+                });
+            }}
         />
     );
     // #endregion render

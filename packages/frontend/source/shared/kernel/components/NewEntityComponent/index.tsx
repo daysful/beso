@@ -48,7 +48,7 @@ export interface NewEntityComponentOwnProperties {
     kind: string;
     sourceFrom: JSX.Element;
 
-    onAdd?: (state: any) => void;
+    onAdd: (state: any) => void;
 }
 
 export interface NewEntityComponentStateProperties {
