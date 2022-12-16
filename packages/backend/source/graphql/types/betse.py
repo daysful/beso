@@ -8,16 +8,204 @@ from strawberry.file_uploads import Upload
 # region BetseSimulation
 # region input BetseSimulation
 @strawberry.input
+class InputBetseSimulationInitTimeSettings:
+    time_step: float
+    total_time: float
+    sampling_rate: float
+
+@strawberry.input
+class InputBetseSimulationSimTimeSettings:
+    time_step: float
+    total_time: float
+    sampling_rate: float
+
+@strawberry.input
+class InputBetseSimulationGeneralOptionsCustomizedIonProfile:
+    extracellular_Na_concentration: float
+    extracellular_K_concentration: float
+    extracellular_Cl_concentration: float
+    extracellular_Ca2_concentration: float
+    extracellular_protein_concentration: float
+    cytosolic_Na_concentration: float
+    cytosolic_K_concentration: float
+    cytosolic_Cl_concentration: float
+    cytosolic_Ca2_concentration: float
+    cytosolic_protein_concentration: float
+
+@strawberry.input
+class InputBetseSimulationGeneralOptions:
+    comp_grid_size: int
+    simulate_extracellular_spaces: bool
+    ion_profile: str
+    customized_ion_profile: InputBetseSimulationGeneralOptionsCustomizedIonProfile
+
+@strawberry.input
+class InputBetseSimulationVariableSettingsDeformation:
+    turn_on: bool
+    galvanotropism: float
+    viscous_damping: float
+    fixed_cluster_boundary: bool
+    young_modulus: float
+
+@strawberry.input
+class InputBetseSimulationVariableSettingsPressures:
+    include_electrostatic_pressure: bool
+    include_osmotic_pressure: bool
+    membrane_water_conductivity: float
+
+@strawberry.input
+class InputBetseSimulationVariableSettingsNoise:
+    static_noise_level: float
+    dynamic_noise: bool
+    dynamic_noise_level: float
+
+@strawberry.input
+class InputBetseSimulationVariableSettingsGapJunctions:
+    gap_junction_surface_area: float
+    voltage_sensitive_gj: bool
+    gj_voltage_threshold: float
+    gj_voltage_window: float
+    gj_minimum: float
+
+@strawberry.input
+class InputBetseSimulationVariableSettingsTightJunctionRelativeDiffusion:
+    Na: int
+    K: int
+    Cl: int
+    Ca: int
+    M: int
+    P: int
+
+@strawberry.input
+class InputBetseSimulationVariableSettings:
+    env_boundary_concentrations: str
+    temperature: float
+    deformation: InputBetseSimulationVariableSettingsDeformation
+    pressures: InputBetseSimulationVariableSettingsPressures
+    noise: InputBetseSimulationVariableSettingsNoise
+    gap_junctions: InputBetseSimulationVariableSettingsGapJunctions
+    tight_junction_scaling: float
+    tight_junction_relative_diffusion: InputBetseSimulationVariableSettingsTightJunctionRelativeDiffusion
+    adherens_junction_scaling: float
+    use_Goldman_calculator: bool
+
+@strawberry.input
 class InputBetseSimulation:
     id: str
     name: str
+    init_time_settings: InputBetseSimulationInitTimeSettings
+    sim_time_settings: InputBetseSimulationSimTimeSettings
+    general_options: InputBetseSimulationGeneralOptions
+    variable_settings: InputBetseSimulationVariableSettings
+    world: str
+    tissues: list[str]
+    interventions: list[str]
+    modulators: list[str]
+    networks: list[str]
+    biomolecules: list[str]
+    reactions: list[str]
+    channels: list[str]
 # endregion input BetseSimulation
 
 # region type BetseSimulation
 @strawberry.type
+class BetseSimulationInitTimeSettings:
+    time_step: float
+    total_time: float
+    sampling_rate: float
+
+@strawberry.type
+class BetseSimulationSimTimeSettings:
+    time_step: float
+    total_time: float
+    sampling_rate: float
+
+@strawberry.type
+class BetseSimulationGeneralOptionsCustomizedIonProfile:
+    extracellular_Na_concentration: float
+    extracellular_K_concentration: float
+    extracellular_Cl_concentration: float
+    extracellular_Ca2_concentration: float
+    extracellular_protein_concentration: float
+    cytosolic_Na_concentration: float
+    cytosolic_K_concentration: float
+    cytosolic_Cl_concentration: float
+    cytosolic_Ca2_concentration: float
+    cytosolic_protein_concentration: float
+
+@strawberry.type
+class BetseSimulationGeneralOptions:
+    comp_grid_size: int
+    simulate_extracellular_spaces: bool
+    ion_profile: str
+    customized_ion_profile: BetseSimulationGeneralOptionsCustomizedIonProfile
+
+@strawberry.type
+class BetseSimulationVariableSettingsDeformation:
+    turn_on: bool
+    galvanotropism: float
+    viscous_damping: float
+    fixed_cluster_boundary: bool
+    young_modulus: float
+
+@strawberry.type
+class BetseSimulationVariableSettingsPressures:
+    include_electrostatic_pressure: bool
+    include_osmotic_pressure: bool
+    membrane_water_conductivity: float
+
+@strawberry.type
+class BetseSimulationVariableSettingsNoise:
+    static_noise_level: float
+    dynamic_noise: bool
+    dynamic_noise_level: float
+
+@strawberry.type
+class BetseSimulationVariableSettingsGapJunctions:
+    gap_junction_surface_area: float
+    voltage_sensitive_gj: bool
+    gj_voltage_threshold: float
+    gj_voltage_window: float
+    gj_minimum: float
+
+@strawberry.type
+class BetseSimulationVariableSettingsTightJunctionRelativeDiffusion:
+    Na: int
+    K: int
+    Cl: int
+    Ca: int
+    M: int
+    P: int
+
+@strawberry.type
+class BetseSimulationVariableSettings:
+    env_boundary_concentrations: str
+    temperature: float
+    deformation: BetseSimulationVariableSettingsDeformation
+    pressures: BetseSimulationVariableSettingsPressures
+    noise: BetseSimulationVariableSettingsNoise
+    gap_junctions: BetseSimulationVariableSettingsGapJunctions
+    tight_junction_scaling: float
+    tight_junction_relative_diffusion: BetseSimulationVariableSettingsTightJunctionRelativeDiffusion
+    adherens_junction_scaling: float
+    use_Goldman_calculator: bool
+
+@strawberry.type
 class BetseSimulation:
     id: str
     name: str
+    init_time_settings: BetseSimulationInitTimeSettings
+    sim_time_settings: BetseSimulationSimTimeSettings
+    general_options: BetseSimulationGeneralOptions
+    variable_settings: BetseSimulationVariableSettings
+    world: str
+    tissues: list[str]
+    interventions: list[str]
+    modulators: list[str]
+    networks: list[str]
+    biomolecules: list[str]
+    reactions: list[str]
+    channels: list[str]
 # endregion type BetseSimulation
 # endregion BetseSimulation
 
