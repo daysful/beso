@@ -51,7 +51,7 @@ def store_entity(
     )
 
 
-def mutation_maker(
+def mutation_entity_adder_factory(
     data: dict[str, str],
 ):
     Input = TypeVar('Input')

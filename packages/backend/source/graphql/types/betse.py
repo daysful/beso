@@ -7,6 +7,10 @@ from strawberry.file_uploads import Upload
 
 # region BetseSimulation
 # region input BetseSimulation
+@strawberry.input
+class InputBetseSimulation:
+    id: str
+    name: str
 # endregion input BetseSimulation
 
 # region type BetseSimulation

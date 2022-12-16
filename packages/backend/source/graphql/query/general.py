@@ -1,13 +1,12 @@
 import strawberry
 
 from source.constants import allow_user_registration
+from source.database.collections import Collections
+from source.database.main import get_all
 from source.graphql.types.general import User
 from source.graphql.types.betse import Betse
 from source.graphql.context import Info
-from source.database.collections import Collections
-from source.database.main import get_all
-
-from .betse import \
+from source.graphql.model.betse import \
     modelBetseSimulation, \
     modelBetseWorld, \
     modelBetseTissue, \
