@@ -123,20 +123,25 @@ def remove_betse_world(id: str, info: Info) -> bool | None:
 
 
 
+adders = [
+    add_betse_simulation,
+    add_betse_world,
+    add_betse_tissue,
+    add_betse_intervention,
+    add_betse_function,
+    add_betse_network,
+    add_betse_biomolecule,
+    add_betse_reaction,
+    add_betse_channel,
+    add_betse_transporter,
+    add_betse_modulator,
+]
+
+
 MutationBetseWorld = create_type(
     'MutationBetseWorld',
     [
-        strawberry.mutation(add_betse_world),
-        strawberry.mutation(add_betse_tissue),
-        strawberry.mutation(add_betse_intervention),
-        strawberry.mutation(add_betse_function),
-        strawberry.mutation(add_betse_network),
-        strawberry.mutation(add_betse_biomolecule),
-        strawberry.mutation(add_betse_reaction),
-        strawberry.mutation(add_betse_channel),
-        strawberry.mutation(add_betse_transporter),
-        strawberry.mutation(add_betse_modulator),
-
+        *[strawberry.mutation(adder) for adder in adders],
         strawberry.mutation(remove_betse_world),
     ],
 )
