@@ -20,6 +20,9 @@
 
     // #region external
     import NewEntityRenderer from '~kernel-components/NewEntityRenderer';
+    import {
+        NewEntityField,
+    } from '~kernel-components/NewEntityRenderer/data';
 
     import {
         StyledDashboardContainer,
@@ -39,7 +42,7 @@
 
 // #region module
 export interface NewEntityComponentOwnProperties {
-    fields: any;
+    fields: NewEntityField[];
 
     setRenderView: React.Dispatch<string>;
     renderViewPath: string;
@@ -48,7 +51,7 @@ export interface NewEntityComponentOwnProperties {
     kind: string;
     sourceFrom: JSX.Element;
 
-    onAdd: (state: any) => void;
+    onAdd: (state: NewEntityField[]) => void;
 }
 
 export interface NewEntityComponentStateProperties {
@@ -133,9 +136,7 @@ const NewEntityComponent: React.FC<NewEntityComponentProperties> = (
                 <PluridPureButton
                     text={`Add New ${kind}`}
                     atClick={() => {
-                        if (onAdd) {
-                            onAdd(state);
-                        }
+                        onAdd(state);
                     }}
                     theme={stateGeneralTheme}
                     level={2}
