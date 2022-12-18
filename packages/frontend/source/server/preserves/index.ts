@@ -45,24 +45,43 @@ const preserves: PluridPreserve<
             } = transmission.request;
 
             const getUserData = async () => {
-                const graphqlClient = serverClient(
-                    cookies ? (cookies['Authorization'] || '') : '',
-                );
-                const request = await graphqlClient.query({
-                    query: SERVER_USER,
-                });
+                try {
+                    const graphqlClient = serverClient(
+                        cookies ? (cookies['Authorization'] || '') : '',
+                    );
+                    const request = await graphqlClient.query({
+                        query: SERVER_USER,
+                    });
 
-                return request.data;
+                    return request.data || {};
+                } catch (error) {
+                    return {};
+                }
             }
             const data = await getUserData();
 
+            const betseData = data.betse || {};
 
             const store = reduxStore({
+                data: {
+                    simulations: betseData.simulations || [],
+                    worlds: betseData.worlds || [],
+                    tissues: betseData.tissues || [],
+                    globalInterventions: betseData.globalInterventions || [],
+                    targetedInterventions: betseData.targetedInterventions || [],
+                    modulatorFunctions: betseData.modulatorFunctions || [],
+                    networks: betseData.networks || [],
+                    biomolecules: betseData.biomolecules || [],
+                    reactions: betseData.reactions || [],
+                    channels: betseData.channels || [],
+                    transporters: betseData.transporters || [],
+                    modulators: betseData.modulators || [],
+                },
                 general: {
                     ...generalState.initialState,
                     notFoundFace: getRandomFace(),
-                    identonym: data?.user ? data.user.name : '',
-                    allowUserRegistration: data?.allowUserRegistration,
+                    identonym: data.user ? data.user.name : '',
+                    allowUserRegistration: !!data.allowUserRegistration,
                 },
             });
 
