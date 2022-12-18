@@ -2,6 +2,14 @@
     // #region libraries
     import gql from 'graphql-tag';
     // #endregion libraries
+
+
+    // #region internal
+    import {
+        BETSE_WORLD_FRAGMENT,
+        BETSE_TISSUE_FRAGMENT,
+    } from './fragments';
+    // #endregion internal
 // #endregion imports
 
 
@@ -18,12 +26,23 @@ export const USER = gql`
 
 
 export const SERVER_USER = gql`
+    ${BETSE_WORLD_FRAGMENT}
+    ${BETSE_TISSUE_FRAGMENT}
+
     query User {
         user {
             id
             name
         }
         allowUserRegistration
+        betse {
+            worlds {
+                ...BetseWorldFields
+            }
+            tissues {
+                ...BetseTissueFields
+            }
+        }
     }
 `;
 
