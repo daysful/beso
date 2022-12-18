@@ -30,6 +30,12 @@ export interface TargetedIntervention {
     generatedAt: number;
 }
 
+export interface ModulatorFunction {
+    id: string;
+    name: string;
+    generatedAt: number;
+}
+
 export interface Modulator {
     id: string;
     name: string;

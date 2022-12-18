@@ -14,6 +14,7 @@
         Tissue,
         GlobalIntervention,
         TargetedIntervention,
+        ModulatorFunction,
         Modulator,
         Network,
         Biomolecule,
@@ -37,12 +38,13 @@ export interface DataState {
     tissues: Tissue[];
     globalInterventions: GlobalIntervention[];
     targetedInterventions: TargetedIntervention[];
-    modulators: Modulator[];
+    modulatorFunctions: ModulatorFunction[];
     networks: Network[];
     biomolecules: Biomolecule[];
     reactions: Reaction[];
     channels: Channel[];
     transporters: Transporter[];
+    modulators: Modulator[];
 }
 
 
@@ -52,12 +54,13 @@ const initialState: DataState = {
     tissues: [],
     globalInterventions: [],
     targetedInterventions: [],
-    modulators: [],
+    modulatorFunctions: [],
     networks: [],
     biomolecules: [],
     reactions: [],
     channels: [],
     transporters: [],
+    modulators: [],
 };
 
 
