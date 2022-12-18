@@ -8,6 +8,14 @@
     import {
         BETSE_WORLD_FRAGMENT,
         BETSE_TISSUE_FRAGMENT,
+        BETSE_INTERVENTION_FRAGMENT,
+        BETSE_FUNCTION_FRAGMENT,
+        BETSE_NETWORK_FRAGMENT,
+        BETSE_BIOMOLECULE_FRAGMENT,
+        BETSE_REACTION_FRAGMENT,
+        BETSE_CHANNEL_FRAGMENT,
+        BETSE_TRANSPORTER_FRAGMENT,
+        BETSE_MODULATOR_FRAGMENT,
     } from './fragments';
     // #endregion internal
 // #endregion imports
@@ -28,6 +36,13 @@ export const USER = gql`
 export const SERVER_USER = gql`
     ${BETSE_WORLD_FRAGMENT}
     ${BETSE_TISSUE_FRAGMENT}
+    ${BETSE_FUNCTION_FRAGMENT}
+    ${BETSE_NETWORK_FRAGMENT}
+    ${BETSE_BIOMOLECULE_FRAGMENT}
+    ${BETSE_REACTION_FRAGMENT}
+    ${BETSE_CHANNEL_FRAGMENT}
+    ${BETSE_TRANSPORTER_FRAGMENT}
+    ${BETSE_MODULATOR_FRAGMENT}
 
     query User {
         user {
@@ -41,6 +56,27 @@ export const SERVER_USER = gql`
             }
             tissues {
                 ...BetseTissueFields
+            }
+            functions {
+                ...BetseFunctionFields
+            }
+            networks {
+                ...BetseNetworkFields
+            }
+            biomolecules {
+                ...BetseBiomoleculeFields
+            }
+            reactions {
+                ...BetseReactionFields
+            }
+            channels {
+                ...BetseChannelFields
+            }
+            transporters {
+                ...BetseTransporterFields
+            }
+            modulators {
+                ...BetseModulatorFields
             }
         }
     }
