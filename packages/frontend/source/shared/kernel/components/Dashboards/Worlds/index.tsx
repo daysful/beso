@@ -43,7 +43,7 @@
 
     // #region internal
     import {
-        worldRowRenderer,
+        abstractRowRenderer,
     } from './logic';
     // #endregion internal
 // #endregion imports
@@ -122,9 +122,12 @@ const Worlds: React.FC<WorldsProperties> = (
         setFilteredRows,
     ] = useState<JSX.Element[]>(
         stateWorlds.map(
-            world => worldRowRenderer(
+            world => abstractRowRenderer(
+                ['name', 'generatedAt'],
                 world,
-                handleObliterate,
+                {
+                    handleObliterate,
+                },
             ),
         ),
     );

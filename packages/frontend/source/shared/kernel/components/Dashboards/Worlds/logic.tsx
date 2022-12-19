@@ -7,25 +7,40 @@
 
 
 // #region module
-export const worldRowRenderer = (
-    world: any,
-    handleObliterate: any,
+export const abstractRowRenderer = (
+    columns: string[],
+    data: any,
+    methods: any,
 ) => {
-    const {
-        name,
-        generatedAt,
-    } = world;
+    const renderColumns: JSX.Element[] = [];
 
-    return (<>
-        <div>
-            {name}
-        </div>
+    for (const column of columns) {
+        switch (column) {
+            case 'name':
+                renderColumns.push(
+                    <div
+                        key={Math.random() + ''}
+                    >
+                        {data.name}
+                    </div>
+                );
+                break;
+            case 'generatedAt':
+                renderColumns.push(
+                    <div
+                        key={Math.random() + ''}
+                    >
+                        {new Date(data.generatedAt * 1000).toLocaleString()}
+                    </div>
+                );
+                break;
+        }
+    }
 
-        <div>
-            {new Date(generatedAt * 1000).toLocaleString()}
-        </div>
-
-        <div />
-    </>);
+    return (
+        <>
+            {renderColumns}
+        </>
+    );
 }
 // #endregion module
