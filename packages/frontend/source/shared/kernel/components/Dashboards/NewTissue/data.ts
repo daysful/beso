@@ -32,7 +32,7 @@ export const fields: NewEntityField[] = [
             {
                 label: 'Dm_Na',
                 type: 'number',
-                state: 'Dm_Na',
+                state: 'DmNa',
                 value: 2.0e-18,
                 format: 'scientific',
                 required: true,
@@ -42,7 +42,7 @@ export const fields: NewEntityField[] = [
             {
                 label: 'Dm_K',
                 type: 'number',
-                state: 'Dm_K',
+                state: 'DmK',
                 value: 1.0e-18,
                 format: 'scientific',
                 required: true,
@@ -52,7 +52,7 @@ export const fields: NewEntityField[] = [
             {
                 label: 'Dm_Cl',
                 type: 'number',
-                state: 'Dm_Cl',
+                state: 'DmCl',
                 value: 1.0e-18,
                 format: 'scientific',
                 required: true,
@@ -62,7 +62,7 @@ export const fields: NewEntityField[] = [
             {
                 label: 'Dm_Ca',
                 type: 'number',
-                state: 'Dm_Ca',
+                state: 'DmCa',
                 value: 1.0e-18,
                 format: 'scientific',
                 required: true,
@@ -72,7 +72,7 @@ export const fields: NewEntityField[] = [
             {
                 label: 'Dm_M',
                 type: 'number',
-                state: 'Dm_M',
+                state: 'DmM',
                 value: 1.0e-18,
                 format: 'scientific',
                 required: true,
@@ -82,7 +82,7 @@ export const fields: NewEntityField[] = [
             {
                 label: 'Dm_P',
                 type: 'number',
-                state: 'Dm_P',
+                state: 'DmP',
                 value: 0.0,
                 format: 'scientific',
                 required: true,

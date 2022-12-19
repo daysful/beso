@@ -120,12 +120,17 @@ const NewTissue: React.FC<NewTissueProperties> = (
                     ...extractState(state),
                 };
 
+                input['cellTargets']['image'] = '';
+
                 graphqlClient.mutate({
                     mutation: BETSE_MUTATIONS.ADD_BETSE_TISSUE,
                     variables: {
                         input,
                     },
                 });
+
+                setRenderView('tissues');
+                setFullRenderArea(false);
             }}
         />
     );

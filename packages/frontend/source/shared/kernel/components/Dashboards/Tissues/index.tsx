@@ -115,13 +115,6 @@ const Tissues: React.FC<TissuesProperties> = (
 
     // #region state
     const [
-        filteredRows,
-        setFilteredRows,
-    ] = useState(
-        [],
-    );
-
-    const [
         loading,
         setLoading,
     ] = useState(false);
@@ -168,8 +161,14 @@ const Tissues: React.FC<TissuesProperties> = (
 
                 rowTemplate="0.5fr 0.5fr 0.5fr 30px 30px"
                 rowsHeader={rowsHeader}
-                rows={filteredRows}
                 noRows="no tissues"
+
+                rowRenderFields={[
+                    'name', 'generatedAt', 'pluridlink:tissue', 'obliterate',
+                ]}
+                rowRenderMethods={{
+                    handleObliterate,
+                }}
 
                 loading={loading ? 1 : 0}
 
