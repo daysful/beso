@@ -28,6 +28,7 @@ def make_entity_data(
     user: User,
 ):
     entity_data = copy.deepcopy(data)
+    entity_data['id'] = generate_id()
     entity_data['generated_by'] = user.id
     entity_data['generated_at'] = now()
     entity_data['is_json'] = True
@@ -41,12 +42,18 @@ def store_entity(
     model: callable,
 ):
     entity = make_dict(input)
-    entity['id'] = generate_id()
+    entity_data = make_entity_data(entity, user)
 
-    insert(collection, make_entity_data(entity, user))
+    insert(collection, entity_data)
+
+    model_data = copy.deepcopy(entity_data)
+    if model_data.get('generated_by'):
+        del model_data['generated_by']
+    if model_data.get('is_json'):
+        del model_data['is_json']
 
     return model(
-        copy.deepcopy(entity),
+        copy.deepcopy(model_data),
         False,
     )
 
