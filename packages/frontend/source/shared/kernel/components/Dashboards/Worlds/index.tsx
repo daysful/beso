@@ -42,6 +42,9 @@
 
 
     // #region internal
+    import {
+        worldRowRenderer,
+    } from './logic';
     // #endregion internal
 // #endregion imports
 
@@ -117,8 +120,13 @@ const Worlds: React.FC<WorldsProperties> = (
     const [
         filteredRows,
         setFilteredRows,
-    ] = useState(
-        [],
+    ] = useState<JSX.Element[]>(
+        stateWorlds.map(
+            world => worldRowRenderer(
+                world,
+                handleObliterate,
+            ),
+        ),
     );
 
     const [
