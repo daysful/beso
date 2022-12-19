@@ -14,6 +14,7 @@
     import LoginPlane from '~kernel-planes/Login';
     import DashboardPlane from '~shared/kernel/planes/Dashboard';
     import SimulationPlane from '~kernel-planes/Simulation';
+    import WorldPlane from '~kernel-planes/World';
     import NotFoundPlane from '~kernel-planes/NotFound';
 
     import Home from '~kernel-containers/Home';
@@ -38,6 +39,10 @@ const indexRoute: PluridReactRoute = {
         [
             '/simulation',
             SimulationPlane,
+        ],
+        [
+            '/world/:id',
+            WorldPlane,
         ],
     ],
     view: [],

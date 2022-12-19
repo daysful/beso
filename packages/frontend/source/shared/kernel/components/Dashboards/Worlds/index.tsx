@@ -165,7 +165,7 @@ const Worlds: React.FC<WorldsProperties> = (
                 noRows="no worlds"
 
                 rowRenderFields={[
-                    'name', 'generatedAt',
+                    'name', 'generatedAt', 'pluridlink:world', 'obliterate',
                 ]}
                 rowRenderMethods={{
                     handleObliterate,
