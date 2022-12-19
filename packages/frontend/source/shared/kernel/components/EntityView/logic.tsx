@@ -1,6 +1,15 @@
 // #region imports
     // #region libraries
     import React from 'react';
+
+    import {
+        PluridIconDelete,
+        PluridIconInfo,
+    } from '@plurid/plurid-icons-react';
+
+    import {
+        PluridLink,
+    } from '@plurid/plurid-react';
     // #endregion libraries
 // #endregion imports
 
@@ -44,6 +53,26 @@ export const abstractRowRenderer = (
     const renderColumns: JSX.Element[] = [];
 
     for (const column of columns) {
+        if (column.startsWith('pluridlink:')) {
+            const path = column.replace('pluridlink:', '');
+            renderColumns.push(
+                <PluridLink
+                    key={Math.random() + ''}
+                    route={`/${path}/${data.id}`}
+                    devisible={true}
+                    style={{
+                        display: 'grid',
+                        placeContent: 'center',
+                    }}
+                >
+                    <PluridIconInfo
+                        atClick={() => {}}
+                    />
+                </PluridLink>
+            );
+            continue;
+        }
+
         switch (column) {
             case 'name':
                 renderColumns.push(
@@ -63,7 +92,22 @@ export const abstractRowRenderer = (
                     </div>
                 );
                 break;
+            case 'lastRun':
+                renderColumns.push(
+                    <div
+                        key={Math.random() + ''}
+                    >
+                        {new Date(data.lastRun).toLocaleString()}
+                    </div>
+                );
+                break;
             case 'obliterate':
+                renderColumns.push(
+                    <PluridIconDelete
+                        key={Math.random() + ''}
+                        atClick={() => methods.handleObliterate(data.id)}
+                    />
+                );
                 break;
         }
     }

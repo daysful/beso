@@ -67,7 +67,7 @@ export interface EntityViewProperties {
 
         rowsHeader: JSX.Element;
         rowTemplate: string;
-        rows: JSX.Element[];
+        rows?: JSX.Element[];
         noRows: string;
         // #endregion values
 
@@ -94,6 +94,12 @@ export interface EntityViewProperties {
         actionScrollBottom?: (
             entities: any[],
         ) => void;
+
+        customRowRenderer?: (
+            columns: string[],
+            data: Record<string, any>,
+            methods: Record<string, any>,
+        ) => JSX.Element[];
         // #endregion methods
     // #endregion optional
 }
@@ -120,7 +126,6 @@ const EntityView: React.ForwardRefExoticComponent<EntityViewType> = forwardRef((
 
             rowsHeader,
             rowTemplate,
-            rows,
             noRows,
             // #endregion values
 
@@ -173,7 +178,7 @@ const EntityView: React.ForwardRefExoticComponent<EntityViewType> = forwardRef((
             entity => abstractRowRenderer(
                 rowRenderFields || [],
                 entity,
-                rowRenderMethods,
+                rowRenderMethods || {},
             ),
         ),
     );

@@ -42,9 +42,6 @@
 
 
     // #region internal
-    import {
-        simulationRowRenderer,
-    } from './logic';
     // #endregion internal
 // #endregion imports
 
@@ -118,18 +115,6 @@ const Simulations: React.FC<SimulationsProperties> = (
 
     // #region state
     const [
-        filteredRows,
-        setFilteredRows,
-    ] = useState(
-        stateSimulations.map(
-            simulation => simulationRowRenderer(
-                simulation,
-                handleObliterate,
-            ),
-        ),
-    );
-
-    const [
         loading,
         setLoading,
     ] = useState(false);
@@ -180,8 +165,14 @@ const Simulations: React.FC<SimulationsProperties> = (
 
                 rowTemplate="0.5fr 0.5fr 0.5fr 30px 30px"
                 rowsHeader={rowsHeader}
-                rows={filteredRows}
                 noRows="no simulations"
+
+                rowRenderFields={[
+                    'name', 'generatedAt', 'lastRun', 'pluridlink:simulation', 'obliterate'
+                ]}
+                rowRenderMethods={{
+                    handleObliterate,
+                }}
 
                 loading={loading ? 1 : 0}
 
