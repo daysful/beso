@@ -107,20 +107,13 @@ const Biomolecules: React.FC<BiomoleculesProperties> = (
     }
 
     const actionScrollBottom = async (
-        simulations: any[],
+        data: any[],
     ) => {
     }
     // #endregion handlers
 
 
     // #region state
-    const [
-        filteredRows,
-        setFilteredRows,
-    ] = useState(
-        [],
-    );
-
     const [
         loading,
         setLoading,
@@ -168,8 +161,14 @@ const Biomolecules: React.FC<BiomoleculesProperties> = (
 
                 rowTemplate="0.5fr 0.5fr 0.5fr 30px 30px"
                 rowsHeader={rowsHeader}
-                rows={filteredRows}
                 noRows="no biomolecules"
+
+                rowRenderFields={[
+                    'name', 'generatedAt', 'pluridlink:biomolecule', 'obliterate',
+                ]}
+                rowRenderMethods={{
+                    handleObliterate,
+                }}
 
                 loading={loading ? 1 : 0}
 

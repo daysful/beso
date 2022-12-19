@@ -107,7 +107,7 @@ const Worlds: React.FC<WorldsProperties> = (
     }
 
     const actionScrollBottom = async (
-        simulations: any[],
+        data: any[],
     ) => {
     }
     // #endregion handlers
@@ -161,7 +161,6 @@ const Worlds: React.FC<WorldsProperties> = (
 
                 rowTemplate="0.5fr 0.5fr 0.5fr 30px 30px"
                 rowsHeader={rowsHeader}
-                rows={[]}
                 noRows="no worlds"
 
                 rowRenderFields={[

@@ -107,7 +107,7 @@ const Tissues: React.FC<TissuesProperties> = (
     }
 
     const actionScrollBottom = async (
-        simulations: any[],
+        data: any[],
     ) => {
     }
     // #endregion handlers
