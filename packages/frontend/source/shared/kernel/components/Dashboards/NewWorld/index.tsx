@@ -143,6 +143,9 @@ const NewWorld: React.FC<NewWorldProperties> = (
                         input,
                     },
                 });
+
+                setRenderView('worlds');
+                setFullRenderArea(false);
             }}
         />
     );
