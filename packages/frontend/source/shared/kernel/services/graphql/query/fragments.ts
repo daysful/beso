@@ -11,6 +11,7 @@ export const BETSE_SIMULATION_FRAGMENT = gql`
     fragment BetseSimulationFields on BetseSimulation {
         id
         name
+        generatedAt
         initTimeSettings {
             timeStep
             totalTime
@@ -93,6 +94,7 @@ export const BETSE_WORLD_FRAGMENT = gql`
     fragment BetseWorldFields on BetseWorld {
         id
         name
+        generatedAt
         worldSize
         cellRadius
         cellHeight
@@ -120,6 +122,7 @@ export const BETSE_TISSUE_FRAGMENT = gql`
     fragment BetseTissueFields on BetseTissue {
         id
         name
+        generatedAt
         insular
         diffusionConstants {
             DmNa
@@ -144,7 +147,7 @@ export const BETSE_INTERVENTION_FRAGMENT = gql`
     fragment BetseInterventionFields on BetseIntervention {
         id
         name
-
+        generatedAt
     }
 `;
 
@@ -153,6 +156,7 @@ export const BETSE_FUNCTION_FRAGMENT = gql`
     fragment BetseFunctionFields on BetseFunction {
         id
         name
+        generatedAt
         gradientX {
             slope
             xOffset
@@ -194,6 +198,7 @@ export const BETSE_NETWORK_FRAGMENT = gql`
     fragment BetseNetworkFields on BetseNetwork {
         id
         name
+        generatedAt
         enableMitochondria
         optimization {
             optimizeNetwork
@@ -214,6 +219,7 @@ export const BETSE_BIOMOLECULE_FRAGMENT = gql`
     fragment BetseBiomoleculeFields on BetseBiomolecule {
         id
         name
+        generatedAt
         Dm
         Do
         Dgj
@@ -289,6 +295,7 @@ export const BETSE_REACTION_FRAGMENT = gql`
     fragment BetseReactionFields on BetseReaction {
         id
         name
+        generatedAt
         reactionZone
         reactantMultipliers
         KmReactants
@@ -313,6 +320,7 @@ export const BETSE_CHANNEL_FRAGMENT = gql`
     fragment BetseChannelFields on BetseChannel {
         id
         name
+        generatedAt
         channelClass
         channelType
         maxDm
@@ -336,6 +344,7 @@ export const BETSE_TRANSPORTER_FRAGMENT = gql`
     fragment BetseTransporterFields on BetseTransporter {
         id
         name
+        generatedAt
         reactionZone
         reactants
         reactantMultipliers
@@ -363,6 +372,7 @@ export const BETSE_MODULATOR_FRAGMENT = gql`
     fragment BetseModulatorFields on BetseModulator {
         id
         name
+        generatedAt
         target
         maxEffect
         targetIon
