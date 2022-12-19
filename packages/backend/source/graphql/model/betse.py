@@ -25,6 +25,7 @@ def model_base(
         model = data
 
     model['id'] = data['id']
+    model['generated_at'] = data['generated_at']
 
     return model
 

@@ -193,6 +193,7 @@ class BetseSimulationVariableSettings:
 class BetseSimulation:
     id: str
     name: str
+    generated_at: float
     init_time_settings: BetseSimulationInitTimeSettings
     sim_time_settings: BetseSimulationSimTimeSettings
     general_options: BetseSimulationGeneralOptions
@@ -258,6 +259,7 @@ class BetseWorldImportFromSVG:
 class BetseWorld:
     id: str
     name: str
+    generated_at: float
     world_size: float
     cell_radius: float
     cell_height: float
@@ -323,6 +325,7 @@ class BetseTissueCellTargets:
 class BetseTissue:
     id: str
     name: str
+    generated_at: float
     insular: bool
     diffusion_constants: BetseTissueDiffusionConstants
     cell_targets: BetseTissueCellTargets
@@ -345,6 +348,7 @@ class InputBetseIntervention:
 class BetseIntervention:
     id: str
     name: str
+    generated_at: float
     type: str # 'targeted' | 'global'
     data: str
 # endregion type BetseIntervention
@@ -451,6 +455,7 @@ class BetseFunctionSingleCell:
 class BetseFunction:
     id: str
     name: str
+    generated_at: float
     gradient_x: BetseFunctionGradientX
     gradient_y: BetseFunctionGradientY
     gradient_r: BetseFunctionGradientR
@@ -511,6 +516,7 @@ class BetseNetworkOptimization:
 class BetseNetwork:
     id: str
     name: str
+    generated_at: float
     enable_mitochondria: bool
     optimization: BetseNetworkOptimization
     time_dilation_factor: float
@@ -664,6 +670,7 @@ class BetseBiomoleculePlotting:
 class BetseBiomolecule:
     id: str
     name: str
+    generated_at: float
     Dm: float
     Do: float
     Dgj: float
@@ -720,6 +727,7 @@ class InputBetseReaction:
 class BetseReaction:
     id: str
     name: str
+    generated_at: float
     reaction_zone: str
     reactant_multipliers: list[float]
     Km_reactants: list[float]
@@ -768,6 +776,7 @@ class InputBetseChannel:
 class BetseChannel:
     id: str
     name: str
+    generated_at: float
     channel_class: str
     channel_type: str
     max_Dm: float
@@ -819,6 +828,7 @@ class InputBetseTransporter:
 class BetseTransporter:
     id: str
     name: str
+    generated_at: float
     reaction_zone: str
     reactants: list[str]
     reactant_multipliers: list[float]
@@ -866,6 +876,7 @@ class InputBetseModulator:
 class BetseModulator:
     id: str
     name: str
+    generated_at: float
     target: str
     max_effect: float
     target_ion: str
