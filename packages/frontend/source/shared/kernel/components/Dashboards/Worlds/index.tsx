@@ -42,9 +42,6 @@
 
 
     // #region internal
-    import {
-        abstractRowRenderer,
-    } from './logic';
     // #endregion internal
 // #endregion imports
 
@@ -118,21 +115,6 @@ const Worlds: React.FC<WorldsProperties> = (
 
     // #region state
     const [
-        filteredRows,
-        setFilteredRows,
-    ] = useState<JSX.Element[]>(
-        stateWorlds.map(
-            world => abstractRowRenderer(
-                ['name', 'generatedAt'],
-                world,
-                {
-                    handleObliterate,
-                },
-            ),
-        ),
-    );
-
-    const [
         loading,
         setLoading,
     ] = useState(false);
@@ -179,8 +161,15 @@ const Worlds: React.FC<WorldsProperties> = (
 
                 rowTemplate="0.5fr 0.5fr 0.5fr 30px 30px"
                 rowsHeader={rowsHeader}
-                rows={filteredRows}
+                rows={[]}
                 noRows="no worlds"
+
+                rowRenderFields={[
+                    'name', 'generatedAt',
+                ]}
+                rowRenderMethods={{
+                    handleObliterate,
+                }}
 
                 loading={loading ? 1 : 0}
 

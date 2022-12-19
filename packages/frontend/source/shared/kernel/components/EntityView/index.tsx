@@ -48,6 +48,7 @@
 
     import {
         createSearchTerms,
+        abstractRowRenderer,
     } from './logic';
     // #endregion internal
 // #endregion imports
@@ -78,6 +79,9 @@ export interface EntityViewProperties {
         // #region values
         actionButtonText?: string;
         loading?: number;
+
+        rowRenderFields?: string[];
+        rowRenderMethods?: any;
         // #endregion values
 
         // #region methods
@@ -128,6 +132,9 @@ const EntityView: React.ForwardRefExoticComponent<EntityViewType> = forwardRef((
             // #region values.
             actionButtonText,
             loading,
+
+            rowRenderFields,
+            rowRenderMethods,
             // #endregion values
 
             // #region methods
@@ -156,6 +163,19 @@ const EntityView: React.ForwardRefExoticComponent<EntityViewType> = forwardRef((
         setSearchTerms,
     ] = useState(
         createSearchTerms(entities, searchFields),
+    );
+
+    const [
+        filteredRows,
+        setFilteredRows,
+    ] = useState<JSX.Element[]>(
+        entities.map(
+            entity => abstractRowRenderer(
+                rowRenderFields || [],
+                entity,
+                rowRenderMethods,
+            ),
+        ),
     );
 
     const [
@@ -333,13 +353,13 @@ const EntityView: React.ForwardRefExoticComponent<EntityViewType> = forwardRef((
                 </StyledTopButtons>
             </StyledEntityViewTop>
 
-            {rows.length === 0 && (
+            {filteredRows.length === 0 && (
                 <StyledNoRows>
                     {noRows}
                 </StyledNoRows>
             )}
 
-            {rows.length !== 0 && (
+            {filteredRows.length !== 0 && (
                 <StyledEntityListContainer
                     theme={generalTheme}
                 >
@@ -359,7 +379,7 @@ const EntityView: React.ForwardRefExoticComponent<EntityViewType> = forwardRef((
                         ref={entityList}
                         loading={loading}
                     >
-                        {rows.map(row => (
+                        {filteredRows.map(row => (
                             <StyledEntityListItem
                                 key={Math.random() + ''}
                                 rowTemplate={rowTemplate}
