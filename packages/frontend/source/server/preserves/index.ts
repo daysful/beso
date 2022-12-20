@@ -69,7 +69,7 @@ const preserves: PluridPreserve<
                     tissues: betseData.tissues || [],
                     globalInterventions: betseData.globalInterventions || [],
                     targetedInterventions: betseData.targetedInterventions || [],
-                    modulatorFunctions: betseData.modulatorFunctions || [],
+                    modulatorFunctions: betseData.functions || [],
                     networks: betseData.networks || [],
                     biomolecules: betseData.biomolecules || [],
                     reactions: betseData.reactions || [],
