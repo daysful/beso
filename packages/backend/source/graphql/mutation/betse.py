@@ -210,6 +210,7 @@ mutations = [
     remove_betse_world,
     remove_betse_tissue,
     remove_betse_intervention,
+    remove_betse_function,
     remove_betse_network,
     remove_betse_biomolecule,
     remove_betse_reaction,
