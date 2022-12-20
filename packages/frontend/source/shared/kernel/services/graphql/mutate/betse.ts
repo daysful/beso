@@ -25,13 +25,15 @@ const mutationTypes = [
     'Modulator',
 ] as const;
 
-type MutationNames = `ADD_BETSE_${Uppercase<typeof mutationTypes[number]>}`;
+type MutationNames =
+    | `ADD_BETSE_${Uppercase<typeof mutationTypes[number]>}`
+    | `REMOVE_BETSE_${Uppercase<typeof mutationTypes[number]>}`;
 
 const computeMutations = () => {
     const betseMutations = {};
 
     for (const mutationType of mutationTypes) {
-        const MUTATION = gql`
+        const ADD_MUTATION = gql`
             mutation AddBetse${mutationType}($input: InputBetse${mutationType}!) {
                 addBetse${mutationType}(input: $input) {
                     id
@@ -39,7 +41,14 @@ const computeMutations = () => {
             }
         `;
 
-        betseMutations[`ADD_BETSE_${mutationType.toUpperCase()}`] = MUTATION;
+        const REMOVE_MUTATION = gql`
+            mutation RemoveBetse${mutationType}($input: String!) {
+                removeBetse${mutationType}(id: $input)
+            }
+        `;
+
+        betseMutations[`ADD_BETSE_${mutationType.toUpperCase()}`] = ADD_MUTATION;
+        betseMutations[`REMOVE_BETSE_${mutationType.toUpperCase()}`] = REMOVE_MUTATION;
     }
 
     return betseMutations as Record<MutationNames, DocumentNode>;
