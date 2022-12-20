@@ -120,18 +120,9 @@ const NewEntityComponent: React.FC<NewEntityComponentProperties> = (
             theme={stateGeneralTheme}
         >
             <StyledNewEntity>
-                <h1>
+                {/* <h1>
                     New {kind}
-                </h1>
-
-                <NewEntityRenderer
-                    id={rendererID.current}
-                    fields={state}
-                    atChange={(newState) => {
-                        setState(newState);
-                    }}
-                    sourceFrom={sourceFrom}
-                />
+                </h1> */}
 
                 <PluridPureButton
                     text={`Add New ${kind}`}
@@ -150,6 +141,15 @@ const NewEntityComponent: React.FC<NewEntityComponentProperties> = (
                         setRenderView(renderViewPath);
                     }}
                     theme={stateGeneralTheme}
+                />
+
+                <NewEntityRenderer
+                    id={rendererID.current}
+                    fields={state}
+                    atChange={(newState) => {
+                        setState(newState);
+                    }}
+                    sourceFrom={sourceFrom}
                 />
             </StyledNewEntity>
         </StyledDashboardContainer>

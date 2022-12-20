@@ -119,6 +119,9 @@ const NewBiomolecule: React.FC<NewBiomoleculeProperties> = (
                 const input = {
                     ...extractState(state),
                 };
+                console.log({
+                    input,
+                });
 
                 graphqlClient.mutate({
                     mutation: BETSE_MUTATIONS.ADD_BETSE_BIOMOLECULE,

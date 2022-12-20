@@ -106,7 +106,7 @@ export const fields: NewEntityField[] = [
     {
         label: 'Mu_mem',
         type: 'number',
-        state: 'Mu_mem',
+        state: 'MuMem',
         value: 0.0,
         format: 'float',
         required: true,
@@ -115,7 +115,7 @@ export const fields: NewEntityField[] = [
     {
         label: 'u_mtube',
         type: 'number',
-        state: 'u_mtube',
+        state: 'uMtube',
         value: 0.0,
         format: 'float',
         required: true,
@@ -189,7 +189,7 @@ export const fields: NewEntityField[] = [
     {
         label: 'TJ permeable',
         type: 'boolean',
-        state: 'TJpermeable',
+        state: 'TJPermeable',
         value: false,
         required: true,
         help: 'can substances pass through tight junctions (e.g. dissolved oxygen)',
@@ -197,7 +197,7 @@ export const fields: NewEntityField[] = [
     {
         label: 'GJ impermeable',
         type: 'boolean',
-        state: 'GJimpermeable',
+        state: 'GJImpermeable',
         value: false,
         required: true,
         help: 'are substances impermeable through gap junctions (i.e. due to size)',
@@ -205,7 +205,7 @@ export const fields: NewEntityField[] = [
     {
         label: 'TJ factor',
         type: 'number',
-        state: 'TJfactor',
+        state: 'TJFactor',
         value: 1.0,
         format: 'float',
         required: true,
@@ -214,7 +214,7 @@ export const fields: NewEntityField[] = [
     {
         label: 'ignore ECM',
         type: 'boolean',
-        state: 'ignoreECM',
+        state: 'ignoreEcm',
         value: true,
         required: true,
         help: 'treat extracellular spaces as full grid square volume',
@@ -450,7 +450,7 @@ export const fields: NewEntityField[] = [
             {
                 label: 'uses ATP',
                 type: 'boolean',
-                state: 'usesATP',
+                state: 'usesAtp',
                 value: false,
                 required: true,
                 help: 'uses ATP or facilitated transport',
@@ -497,7 +497,7 @@ export const fields: NewEntityField[] = [
             {
                 label: 'plot 2D',
                 type: 'boolean',
-                state: 'plot2D',
+                state: 'plot2d',
                 value: true,
                 required: true,
                 help: 'create a unique set of plots for the substance',
