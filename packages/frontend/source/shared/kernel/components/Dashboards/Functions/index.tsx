@@ -19,7 +19,7 @@
 
     // #region external
     import {
-        Network,
+        ModulatorFunction,
     } from '~kernel-data/interfaces';
 
     import {
@@ -54,7 +54,7 @@ export interface FunctionsOwnProperties {
 export interface FunctionsStateProperties {
     stateGeneralTheme: Theme;
     stateInteractionTheme: Theme;
-    stateFunctions: Network[];
+    stateFunctions: ModulatorFunction[];
 }
 
 export interface FunctionsDispatchProperties {
@@ -195,7 +195,7 @@ const mapStateToProperties = (
 ): FunctionsStateProperties => ({
     stateGeneralTheme: selectors.themes.getGeneralTheme(state),
     stateInteractionTheme: selectors.themes.getInteractionTheme(state),
-    stateFunctions: selectors.data.getData(state).networks,
+    stateFunctions: selectors.data.getData(state).modulatorFunctions,
 });
 
 
