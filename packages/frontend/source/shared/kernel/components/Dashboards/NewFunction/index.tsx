@@ -120,12 +120,17 @@ const NewFunction: React.FC<NewFunctionProperties> = (
                     ...extractState(state),
                 };
 
+                input['gradientBitmap']['file'] = '';
+
                 graphqlClient.mutate({
                     mutation: BETSE_MUTATIONS.ADD_BETSE_FUNCTION,
                     variables: {
                         input,
                     },
                 });
+
+                setRenderView('functions');
+                setFullRenderArea(false);
             }}
         />
     );

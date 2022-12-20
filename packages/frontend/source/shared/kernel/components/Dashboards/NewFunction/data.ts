@@ -20,7 +20,7 @@ export const fields: NewEntityField[] = [
     {
         label: 'gradient_x',
         type: 'group',
-        state: 'gradient_x',
+        state: 'gradientX',
         value: [
             {
                 label: 'slope',
@@ -34,7 +34,7 @@ export const fields: NewEntityField[] = [
             {
                 label: 'x-offset',
                 type: 'number',
-                state: 'x-offset',
+                state: 'xOffset',
                 value: 0,
                 format: 'float',
                 required: true,
@@ -43,7 +43,7 @@ export const fields: NewEntityField[] = [
             {
                 label: 'z-offset',
                 type: 'number',
-                state: 'z-offset',
+                state: 'zOffset',
                 value: 0,
                 format: 'float',
                 required: true,
@@ -64,7 +64,7 @@ export const fields: NewEntityField[] = [
     {
         label: 'gradient_y',
         type: 'group',
-        state: 'gradient_y',
+        state: 'gradientY',
         value: [
             {
                 label: 'slope',
@@ -78,7 +78,7 @@ export const fields: NewEntityField[] = [
             {
                 label: 'x-offset',
                 type: 'number',
-                state: 'x-offset',
+                state: 'xOffset',
                 value: 0,
                 format: 'float',
                 required: true,
@@ -87,7 +87,7 @@ export const fields: NewEntityField[] = [
             {
                 label: 'z-offset',
                 type: 'number',
-                state: 'z-offset',
+                state: 'zOffset',
                 value: 0,
                 format: 'float',
                 required: true,
@@ -108,7 +108,7 @@ export const fields: NewEntityField[] = [
     {
         label: 'gradient_r',
         type: 'group',
-        state: 'gradient_r',
+        state: 'gradientR',
         value: [
             {
                 label: 'slope',
@@ -122,7 +122,7 @@ export const fields: NewEntityField[] = [
             {
                 label: 'x-offset',
                 type: 'number',
-                state: 'x-offset',
+                state: 'xOffset',
                 value: 0,
                 format: 'float',
                 required: true,
@@ -130,7 +130,7 @@ export const fields: NewEntityField[] = [
             {
                 label: 'z-offset',
                 type: 'number',
-                state: 'z-offset',
+                state: 'zOffset',
                 value: 0,
                 format: 'float',
                 required: true,
@@ -218,7 +218,7 @@ export const fields: NewEntityField[] = [
             {
                 label: 'z-offset',
                 type: 'number',
-                state: 'z-offset',
+                state: 'zOffset',
                 value: 0.0,
                 format: 'float',
                 required: true,
@@ -235,7 +235,7 @@ export const fields: NewEntityField[] = [
             {
                 label: 'z-offset',
                 type: 'number',
-                state: 'z-offset',
+                state: 'zOffset',
                 value: 0.0,
                 format: 'float',
                 required: true,
