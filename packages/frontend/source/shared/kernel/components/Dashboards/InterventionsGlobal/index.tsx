@@ -36,6 +36,12 @@
 
     import InterventionsSelector from '~kernel-components/InterventionsSelector';
 
+    import graphqlClient from '~kernel-services/graphql/client';
+
+    import {
+        BETSE_MUTATIONS,
+    } from '~kernel-services/graphql/mutate/betse';
+
     import { AppState } from '~kernel-services/state/store';
     import StateContext from '~kernel-services/state/context';
     import selectors from '~kernel-services/state/selectors';
@@ -98,7 +104,12 @@ const InterventionsGlobal: React.FC<InterventionsGlobalProperties> = (
         id: string,
     ) => {
         try {
-
+            graphqlClient.mutate({
+                mutation: BETSE_MUTATIONS.REMOVE_BETSE_INTERVENTION,
+                variables: {
+                    input: id,
+                },
+            });
         } catch (error) {
             return;
         }
