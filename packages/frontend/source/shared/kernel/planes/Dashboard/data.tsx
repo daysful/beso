@@ -17,41 +17,41 @@
 
 
     // #region external
-    import Simulations from '~kernel-components/Dashboards/Simulations';
-    import NewSimulation from '~kernel-components/Dashboards/NewSimulation';
+    import Simulations from '~shared/kernel/components/Dashboards/Entities/Simulations';
+    import NewSimulation from '~shared/kernel/components/Dashboards/NewEntity/NewSimulation';
 
-    import Worlds from '~kernel-components/Dashboards/Worlds';
-    import NewWorld from '~kernel-components/Dashboards/NewWorld';
+    import Worlds from '~shared/kernel/components/Dashboards/Entities/Worlds';
+    import NewWorld from '~shared/kernel/components/Dashboards/NewEntity/NewWorld';
 
-    import Tissues from '~kernel-components/Dashboards/Tissues';
-    import NewTissue from '~kernel-components/Dashboards/NewTissue';
+    import Tissues from '~shared/kernel/components/Dashboards/Entities/Tissues';
+    import NewTissue from '~shared/kernel/components/Dashboards/NewEntity/NewTissue';
 
-    import InterventionsTargeted from '~kernel-components/Dashboards/InterventionsTargeted';
-    import NewInterventionTargeted from '~kernel-components/Dashboards/NewInterventionTargeted';
+    import InterventionsTargeted from '~shared/kernel/components/Dashboards/Entities/InterventionsTargeted';
+    import NewInterventionTargeted from '~shared/kernel/components/Dashboards/NewEntity/NewInterventionTargeted';
 
-    import InterventionsGlobal from '~kernel-components/Dashboards/InterventionsGlobal';
-    import NewInterventionGlobal from '~kernel-components/Dashboards/NewInterventionGlobal';
+    import InterventionsGlobal from '~shared/kernel/components/Dashboards/Entities/InterventionsGlobal';
+    import NewInterventionGlobal from '~shared/kernel/components/Dashboards/NewEntity/NewInterventionGlobal';
 
-    import Functions from '~kernel-components/Dashboards/Functions';
-    import NewFunction from '~kernel-components/Dashboards/NewFunction';
+    import Functions from '~shared/kernel/components/Dashboards/Entities/Functions';
+    import NewFunction from '~shared/kernel/components/Dashboards/NewEntity/NewFunction';
 
-    import Networks from '~kernel-components/Dashboards/Networks';
-    import NewNetwork from '~kernel-components/Dashboards/NewNetwork';
+    import Networks from '~shared/kernel/components/Dashboards/Entities/Networks';
+    import NewNetwork from '~shared/kernel/components/Dashboards/NewEntity/NewNetwork';
 
-    import Biomolecules from '~kernel-components/Dashboards/Biomolecules';
-    import NewBiomolecule from '~kernel-components/Dashboards/NewBiomolecule';
+    import Biomolecules from '~shared/kernel/components/Dashboards/Entities/Biomolecules';
+    import NewBiomolecule from '~shared/kernel/components/Dashboards/NewEntity/NewBiomolecule';
 
-    import Reactions from '~kernel-components/Dashboards/Reactions';
-    import NewReaction from '~kernel-components/Dashboards/NewReaction';
+    import Reactions from '~shared/kernel/components/Dashboards/Entities/Reactions';
+    import NewReaction from '~shared/kernel/components/Dashboards/NewEntity/NewReaction';
 
-    import Channels from '~kernel-components/Dashboards/Channels';
-    import NewChannel from '~kernel-components/Dashboards/NewChannel';
+    import Channels from '~shared/kernel/components/Dashboards/Entities/Channels';
+    import NewChannel from '~kernel-components/Dashboards/NewEntity/NewChannel';
 
-    import Transporters from '~kernel-components/Dashboards/Transporters';
-    import NewTransporter from '~kernel-components/Dashboards/NewTransporter';
+    import Transporters from '~shared/kernel/components/Dashboards/Entities/Transporters';
+    import NewTransporter from '~shared/kernel/components/Dashboards/NewEntity/NewTransporter';
 
-    import Modulators from '~kernel-components/Dashboards/Modulators';
-    import NewModulator from '~kernel-components/Dashboards/NewModulator';
+    import Modulators from '~shared/kernel/components/Dashboards/Entities/Modulators';
+    import NewModulator from '~shared/kernel/components/Dashboards/NewEntity/NewModulator';
     // #endregion external
 // #endregion imports
 
