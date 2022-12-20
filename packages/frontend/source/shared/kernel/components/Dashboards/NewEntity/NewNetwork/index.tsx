@@ -126,6 +126,9 @@ const NewNetwork: React.FC<NewNetworkProperties> = (
                         input,
                     },
                 });
+
+                setRenderView('networks');
+                setFullRenderArea(false);
             }}
         />
     );

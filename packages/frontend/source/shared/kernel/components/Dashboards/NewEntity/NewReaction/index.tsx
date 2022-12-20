@@ -126,6 +126,9 @@ const NewReaction: React.FC<NewReactionProperties> = (
                         input,
                     },
                 });
+
+                setRenderView('reactions');
+                setFullRenderArea(false);
             }}
         />
     );

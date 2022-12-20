@@ -126,6 +126,9 @@ const NewTransporter: React.FC<NewTransporterProperties> = (
                         input,
                     },
                 });
+
+                setRenderView('transporters');
+                setFullRenderArea(false);
             }}
         />
     );

@@ -126,6 +126,9 @@ const NewBiomolecule: React.FC<NewBiomoleculeProperties> = (
                         input,
                     },
                 });
+
+                setRenderView('biomolecules');
+                setFullRenderArea(false);
             }}
         />
     );

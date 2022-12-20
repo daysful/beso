@@ -126,6 +126,9 @@ const NewInterventionGlobal: React.FC<NewInterventionGlobalProperties> = (
                         input,
                     },
                 });
+
+                setRenderView('interventionsGlobal');
+                setFullRenderArea(false);
             }}
         />
     );

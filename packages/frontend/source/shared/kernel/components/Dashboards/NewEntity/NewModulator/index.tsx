@@ -126,6 +126,9 @@ const NewModulator: React.FC<NewModulatorProperties> = (
                         input,
                     },
                 });
+
+                setRenderView('modulators');
+                setFullRenderArea(false);
             }}
         />
     );

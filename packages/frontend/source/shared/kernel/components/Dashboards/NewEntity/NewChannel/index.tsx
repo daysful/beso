@@ -126,6 +126,9 @@ const NewChannel: React.FC<NewChannelProperties> = (
                         input,
                     },
                 });
+
+                setRenderView('channels');
+                setFullRenderArea(false);
             }}
         />
     );

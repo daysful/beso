@@ -126,6 +126,9 @@ const NewInterventionTargeted: React.FC<NewInterventionTargetedProperties> = (
                         input,
                     },
                 });
+
+                setRenderView('interventionsTargeted');
+                setFullRenderArea(false);
             }}
         />
     );
