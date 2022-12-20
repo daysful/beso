@@ -1,8 +1,17 @@
 from enum import Enum
+from typing import NewType
 
 import strawberry
 from strawberry.file_uploads import Upload
 
+
+
+GraphqlAny = strawberry.scalar(
+    NewType("Any", object),
+    description="anything",
+    serialize=lambda v: v,
+    parse_value=lambda v: v,
+)
 
 
 # region BetseSimulation
@@ -536,11 +545,15 @@ class InputBetseBiomoleculeGrowthAndDecay:
     apply_to: list[str]
     modulator_function: str
     activators: list[str]
-    Km_activators: list[float]
-    n_activators: list[float]
+    # Km_activators: list[float]
+    # n_activators: list[float]
+    Km_activators: GraphqlAny
+    n_activators: GraphqlAny
     inhibitors: list[str]
-    Km_inhibitors: list[float]
-    n_inhibitors: list[float]
+    # Km_inhibitors: list[float]
+    # n_inhibitors: list[float]
+    Km_inhibitors: GraphqlAny
+    n_inhibitors: GraphqlAny
 
 @strawberry.input
 class InputBetseBiomoleculeIonChannelGating:
@@ -551,12 +564,16 @@ class InputBetseBiomoleculeIonChannelGating:
     peak_channel_opening: float
     acts_extracellularly: bool
     activators: list[str]
-    Km_activators: list[float]
-    n_activators: list[float]
+    # Km_activators: list[float]
+    # n_activators: list[float]
+    Km_activators: GraphqlAny
+    n_activators: GraphqlAny
     zone_activators: str
     inhibitors: list[str]
-    Km_inhibitors: list[float]
-    n_inhibitors: list[float]
+    # Km_inhibitors: list[float]
+    # n_inhibitors: list[float]
+    Km_inhibitors: GraphqlAny
+    n_inhibitors: GraphqlAny
     zone_inhibitors: str
 
 @strawberry.input
@@ -580,8 +597,8 @@ class InputBetseBiomoleculePlotting:
     plot_2D: bool
     animate: bool
     autoscale_colorbar: bool
-    max_val: bool
-    min_val: bool
+    max_val: float
+    min_val: float
 
 @strawberry.input
 class InputBetseBiomolecule:
@@ -619,11 +636,15 @@ class BetseBiomoleculeGrowthAndDecay:
     apply_to: list[str]
     modulator_function: str
     activators: list[str]
-    Km_activators: list[float]
-    n_activators: list[float]
+    # Km_activators: list[float]
+    # n_activators: list[float]
+    Km_activators: GraphqlAny
+    n_activators: GraphqlAny
     inhibitors: list[str]
-    Km_inhibitors: list[float]
-    n_inhibitors: list[float]
+    # Km_inhibitors: list[float]
+    # n_inhibitors: list[float]
+    Km_inhibitors: GraphqlAny
+    n_inhibitors: GraphqlAny
 
 @strawberry.type
 class BetseBiomoleculeIonChannelGating:
@@ -634,12 +655,16 @@ class BetseBiomoleculeIonChannelGating:
     peak_channel_opening: float
     acts_extracellularly: bool
     activators: list[str]
-    Km_activators: list[float]
-    n_activators: list[float]
+    # Km_activators: list[float]
+    # n_activators: list[float]
+    Km_activators: GraphqlAny
+    n_activators: GraphqlAny
     zone_activators: str
     inhibitors: list[str]
-    Km_inhibitors: list[float]
-    n_inhibitors: list[float]
+    # Km_inhibitors: list[float]
+    # n_inhibitors: list[float]
+    Km_inhibitors: GraphqlAny
+    n_inhibitors: GraphqlAny
     zone_inhibitors: str
 
 @strawberry.type
