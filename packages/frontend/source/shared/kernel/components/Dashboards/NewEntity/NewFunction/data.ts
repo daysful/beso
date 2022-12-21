@@ -64,7 +64,7 @@ export const fields: NewEntityField[] = [
     {
         label: 'gradient_y',
         type: 'group',
-        state: 'gradientY',
+        state: 'gradient_y',
         value: [
             {
                 label: 'slope',
