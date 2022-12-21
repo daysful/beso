@@ -213,7 +213,7 @@ export const BETSE_NETWORK_FRAGMENT = gql`
                 optimize_network
                 optimization_steps
                 optimization_method
-                optimization_t
+                optimization_T
                 optimization_step
                 target_Vmem
             }
@@ -369,7 +369,7 @@ export const BETSE_TRANSPORTER_FRAGMENT = gql`
             products
             product_multipliers
             Km_products
-            transfered_out_ofCell
+            transfered_out_of_cell
             transfered_into_cell
             max_rate
             standard_free_energy
