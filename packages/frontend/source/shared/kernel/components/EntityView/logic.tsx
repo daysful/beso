@@ -88,7 +88,7 @@ export const abstractRowRenderer = (
                     <div
                         key={Math.random() + ''}
                     >
-                        {new Date(data.generatedAt * 1_000).toLocaleString()}
+                        {new Date(data.generated_at * 1_000).toLocaleString()}
                     </div>
                 );
                 break;
@@ -97,7 +97,7 @@ export const abstractRowRenderer = (
                     <div
                         key={Math.random() + ''}
                     >
-                        {new Date(data.lastRun).toLocaleString()}
+                        {new Date(data.last_run).toLocaleString()}
                     </div>
                 );
                 break;

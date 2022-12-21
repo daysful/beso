@@ -131,11 +131,18 @@ const NewWorld: React.FC<NewWorldProperties> = (
             )}
 
             onAdd={(state) => {
-                const input = {
-                    ...extractState(state),
-                };
+                const value = extractState(state);
+                const name = value['name'];
+                delete value['name'];
 
-                input['importFromSvg']['cellsFromSvg'] = '';
+                value['import_from_svg']['cells_from_svg'] = '';
+
+                const input = {
+                    name,
+                    data: {
+                        ...value,
+                    },
+                };
 
                 graphqlClient.mutate({
                     mutation: BETSE_MUTATIONS.ADD_BETSE_WORLD,
