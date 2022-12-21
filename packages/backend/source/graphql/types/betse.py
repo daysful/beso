@@ -99,8 +99,7 @@ class InputBetseSimulationVariableSettings:
     use_Goldman_calculator: bool
 
 @strawberry.input
-class InputBetseSimulation:
-    name: str
+class InputBetseSimulationData:
     init_time_settings: InputBetseSimulationInitTimeSettings
     sim_time_settings: InputBetseSimulationSimTimeSettings
     general_options: InputBetseSimulationGeneralOptions
@@ -113,6 +112,11 @@ class InputBetseSimulation:
     biomolecules: list[str]
     reactions: list[str]
     channels: list[str]
+
+@strawberry.input
+class InputBetseSimulation:
+    name: str
+    data: InputBetseSimulationData
 # endregion input BetseSimulation
 
 # region type BetseSimulation
@@ -199,10 +203,7 @@ class BetseSimulationVariableSettings:
     use_Goldman_calculator: bool
 
 @strawberry.type
-class BetseSimulation:
-    id: str
-    name: str
-    generated_at: float
+class BetseSimulationData:
     init_time_settings: BetseSimulationInitTimeSettings
     sim_time_settings: BetseSimulationSimTimeSettings
     general_options: BetseSimulationGeneralOptions
@@ -215,6 +216,13 @@ class BetseSimulation:
     biomolecules: list[str]
     reactions: list[str]
     channels: list[str]
+
+@strawberry.type
+class BetseSimulation:
+    id: str
+    name: str
+    generated_at: float
+    data: BetseSimulationData
 # endregion type BetseSimulation
 # endregion BetseSimulation
 
@@ -236,8 +244,7 @@ class InputBetseWorldImportFromSVG:
     svg_size: int
 
 @strawberry.input
-class InputBetseWorld:
-    name: str
+class InputBetseWorldData:
     world_size: float
     cell_radius: float
     cell_height: float
@@ -249,6 +256,11 @@ class InputBetseWorld:
     import_from_svg: InputBetseWorldImportFromSVG
     alpha_shape: float
     use_centers: bool
+
+@strawberry.input
+class InputBetseWorld:
+    name: str
+    data: InputBetseWorldData
 # endregion input BetseWorld
 
 # region type BetseWorld
@@ -265,10 +277,7 @@ class BetseWorldImportFromSVG:
     svg_size: int
 
 @strawberry.type
-class BetseWorld:
-    id: str
-    name: str
-    generated_at: float
+class BetseWorldData:
     world_size: float
     cell_radius: float
     cell_height: float
@@ -280,6 +289,13 @@ class BetseWorld:
     import_from_svg: BetseWorldImportFromSVG
     alpha_shape: float
     use_centers: bool
+
+@strawberry.type
+class BetseWorld:
+    id: str
+    name: str
+    generated_at: float
+    data: BetseWorldData
 # endregion type BetseWorld
 # endregion BetseWorld
 
@@ -305,11 +321,15 @@ class InputBetseTissueCellTargets:
     percent: float
 
 @strawberry.input
-class InputBetseTissue:
-    name: str
+class InputBetseTissueData:
     insular: bool
     diffusion_constants: InputBetseTissueDiffusionConstants
     cell_targets: InputBetseTissueCellTargets
+
+@strawberry.input
+class InputBetseTissue:
+    name: str
+    data: InputBetseTissueData
 # endregion input BetseTissue
 
 # region type BetseTissue
@@ -331,13 +351,17 @@ class BetseTissueCellTargets:
     percent: float
 
 @strawberry.type
+class BetseTissueData:
+    insular: bool
+    diffusion_constants: BetseTissueDiffusionConstants
+    cell_targets: BetseTissueCellTargets
+
+@strawberry.type
 class BetseTissue:
     id: str
     name: str
     generated_at: float
-    insular: bool
-    diffusion_constants: BetseTissueDiffusionConstants
-    cell_targets: BetseTissueCellTargets
+    data: BetseTissueData
 # endregion type BetseTissue
 # endregion BetseTissue
 
@@ -408,8 +432,7 @@ class InputBetseFunctionSingleCell:
     z_offset: float
 
 @strawberry.input
-class InputBetseFunction:
-    name: str
+class InputBetseFunctionData:
     gradient_x: InputBetseFunctionGradientX
     gradient_y: InputBetseFunctionGradientY
     gradient_r: InputBetseFunctionGradientR
@@ -417,6 +440,11 @@ class InputBetseFunction:
     f_sweep: InputBetseFunctionFSweep
     gradient_bitmap: InputBetseFunctionGradientBitmap
     single_cell: InputBetseFunctionSingleCell
+
+@strawberry.input
+class InputBetseFunction:
+    name: str
+    data: InputBetseFunctionData
 # endregion input BetseFunction
 
 # region type BetseFunction
@@ -461,10 +489,7 @@ class BetseFunctionSingleCell:
     z_offset: float
 
 @strawberry.type
-class BetseFunction:
-    id: str
-    name: str
-    generated_at: float
+class BetseFunctionData:
     gradient_x: BetseFunctionGradientX
     gradient_y: BetseFunctionGradientY
     gradient_r: BetseFunctionGradientR
@@ -472,6 +497,13 @@ class BetseFunction:
     f_sweep: BetseFunctionFSweep
     gradient_bitmap: BetseFunctionGradientBitmap
     single_cell: BetseFunctionSingleCell
+
+@strawberry.type
+class BetseFunction:
+    id: str
+    name: str
+    generated_at: float
+    data: BetseFunctionData
 # endregion type BetseFunction
 # endregion BetseFunction
 
@@ -501,13 +533,17 @@ class InputBetseNetworkOptimization:
     target_Vmem: float
 
 @strawberry.input
-class InputBetseNetwork:
-    name: str
+class InputBetseNetworkData:
     enable_mitochondria: bool
     optimization: InputBetseNetworkOptimization
     time_dilation_factor: float
     reset_microtubules: bool
     recalculate_fluid: bool
+
+@strawberry.input
+class InputBetseNetwork:
+    name: str
+    data: InputBetseNetworkData
 # endregion input BetseNetwork
 
 # region type BetseNetwork
@@ -522,15 +558,19 @@ class BetseNetworkOptimization:
     target_Vmem: float
 
 @strawberry.type
-class BetseNetwork:
-    id: str
-    name: str
-    generated_at: float
+class BetseNetworkData:
     enable_mitochondria: bool
     optimization: BetseNetworkOptimization
     time_dilation_factor: float
     reset_microtubules: bool
     recalculate_fluid: bool
+
+@strawberry.type
+class BetseNetwork:
+    id: str
+    name: str
+    generated_at: float
+    data: BetseNetworkData
 # endregion type BetseNetwork
 # endregion BetseNetwork
 
@@ -601,8 +641,7 @@ class InputBetseBiomoleculePlotting:
     min_val: float
 
 @strawberry.input
-class InputBetseBiomolecule:
-    name: str
+class InputBetseBiomoleculeData:
     Dm: float
     Do: float
     Dgj: float
@@ -626,6 +665,11 @@ class InputBetseBiomolecule:
     active_pumping: InputBetseBiomoleculeActivePumping
     change_at_bounds: InputBetseBiomoleculeChangeAtBounds
     plotting: InputBetseBiomoleculePlotting
+
+@strawberry.input
+class InputBetseBiomolecule:
+    name: str
+    data: InputBetseBiomoleculeData
 # endregion input BetseBiomolecule
 
 # region type BetseBiomolecule
@@ -692,10 +736,7 @@ class BetseBiomoleculePlotting:
     min_val: bool
 
 @strawberry.type
-class BetseBiomolecule:
-    id: str
-    name: str
-    generated_at: float
+class BetseBiomoleculeData:
     Dm: float
     Do: float
     Dgj: float
@@ -719,6 +760,13 @@ class BetseBiomolecule:
     active_pumping: BetseBiomoleculeActivePumping
     change_at_bounds: BetseBiomoleculeChangeAtBounds
     plotting: BetseBiomoleculePlotting
+
+@strawberry.type
+class BetseBiomolecule:
+    id: str
+    name: str
+    generated_at: float
+    data: BetseBiomoleculeData
 # endregion type BetseBiomolecule
 # endregion BetseBiomolecule
 
@@ -727,8 +775,7 @@ class BetseBiomolecule:
 # region BetseReaction
 # region input BetseReaction
 @strawberry.input
-class InputBetseReaction:
-    name: str
+class InputBetseReactionData:
     reaction_zone: str
     reactant_multipliers: list[float]
     Km_reactants: list[float]
@@ -745,30 +792,39 @@ class InputBetseReaction:
     inhibitor_Km: list[float]
     inhibitor_n: list[float]
     inhibitor_zone: list[str]
+
+@strawberry.input
+class InputBetseReaction:
+    name: str
+    data: InputBetseReactionData
 # endregion input BetseReaction
 
 # region type BetseReaction
+@strawberry.type
+class BetseReactionData:
+    reaction_zone: str
+    reactant_multipliers: list[float]
+    Km_reactants: list[float]
+    products: list[str]
+    product_multipliers: list[float]
+    Km_products: list[float]
+    max_rate: float
+    standard_free_energy: str
+    reaction_activators: list[str]
+    activator_Km: list[float]
+    activator_n: list[float]
+    activator_zone: list[str]
+    reaction_inhibitors: list[str]
+    inhibitor_Km: list[float]
+    inhibitor_n: list[float]
+    inhibitor_zone: list[str]
+
 @strawberry.type
 class BetseReaction:
     id: str
     name: str
     generated_at: float
-    reaction_zone: str
-    reactant_multipliers: list[float]
-    Km_reactants: list[float]
-    products: list[str]
-    product_multipliers: list[float]
-    Km_products: list[float]
-    max_rate: float
-    standard_free_energy: str
-    reaction_activators: list[str]
-    activator_Km: list[float]
-    activator_n: list[float]
-    activator_zone: list[str]
-    reaction_inhibitors: list[str]
-    inhibitor_Km: list[float]
-    inhibitor_n: list[float]
-    inhibitor_zone: list[str]
+    data: BetseReactionData
 # endregion type BetseReaction
 # endregion BetseReaction
 
@@ -777,8 +833,7 @@ class BetseReaction:
 # region BetseChannel
 # region input BetseChannel
 @strawberry.input
-class InputBetseChannel:
-    name: str
+class InputBetseChannelData:
     channel_class: str
     channel_type: str
     max_Dm: float
@@ -794,29 +849,38 @@ class InputBetseChannel:
     inhibitor_n: list[float]
     inhibitor_zone: list[str]
     inhibitor_max: float
+
+@strawberry.input
+class InputBetseChannel:
+    name: str
+    data: InputBetseChannelData
 # endregion input BetseChannel
 
 # region type BetseChannel
+@strawberry.type
+class BetseChannelData:
+    channel_class: str
+    channel_type: str
+    max_Dm: float
+    apply_to: list[str]
+    init_active: bool
+    channel_activators: list[str]
+    activator_Km: list[float]
+    activator_n: list[float]
+    activator_zone: list[str]
+    activator_max: float
+    channel_inhibitors: list[str]
+    inhibitor_Km: list[float]
+    inhibitor_n: list[float]
+    inhibitor_zone: list[str]
+    inhibitor_max: float
+
 @strawberry.type
 class BetseChannel:
     id: str
     name: str
     generated_at: float
-    channel_class: str
-    channel_type: str
-    max_Dm: float
-    apply_to: list[str]
-    init_active: bool
-    channel_activators: list[str]
-    activator_Km: list[float]
-    activator_n: list[float]
-    activator_zone: list[str]
-    activator_max: float
-    channel_inhibitors: list[str]
-    inhibitor_Km: list[float]
-    inhibitor_n: list[float]
-    inhibitor_zone: list[str]
-    inhibitor_max: float
+    data: BetseChannelData
 # endregion type BetseChannel
 # endregion BetseChannel
 
@@ -825,8 +889,7 @@ class BetseChannel:
 # region BetseTransporter
 # region input BetseTransporter
 @strawberry.input
-class InputBetseTransporter:
-    name: str
+class InputBetseTransporterData:
     reaction_zone: str
     reactants: list[str]
     reactant_multipliers: list[float]
@@ -846,33 +909,42 @@ class InputBetseTransporter:
     transporter_inhibitors: list[str]
     inhibitor_Km: str
     inhibitor_n: str
+
+@strawberry.input
+class InputBetseTransporter:
+    name: str
+    data: InputBetseTransporterData
 # endregion input BetseTransporter
 
 # region type BetseTransporter
+@strawberry.type
+class BetseTransporterData:
+    reaction_zone: str
+    reactants: list[str]
+    reactant_multipliers: list[float]
+    Km_reactants: list[float]
+    products: list[str]
+    product_multipliers: list[float]
+    Km_products: list[float]
+    transfered_out_of_cell: list[str]
+    transfered_into_cell: list[str]
+    max_rate: float
+    standard_free_energy: float
+    apply_to: list[str]
+    ignore_ECM: bool
+    transporter_activators: list[str]
+    activator_Km: str
+    activator_n: str
+    transporter_inhibitors: list[str]
+    inhibitor_Km: str
+    inhibitor_n: str
+
 @strawberry.type
 class BetseTransporter:
     id: str
     name: str
     generated_at: float
-    reaction_zone: str
-    reactants: list[str]
-    reactant_multipliers: list[float]
-    Km_reactants: list[float]
-    products: list[str]
-    product_multipliers: list[float]
-    Km_products: list[float]
-    transfered_out_of_cell: list[str]
-    transfered_into_cell: list[str]
-    max_rate: float
-    standard_free_energy: float
-    apply_to: list[str]
-    ignore_ECM: bool
-    transporter_activators: list[str]
-    activator_Km: str
-    activator_n: str
-    transporter_inhibitors: list[str]
-    inhibitor_Km: str
-    inhibitor_n: str
+    data: BetseTransporterData
 # endregion type BetseTransporter
 # endregion BetseTransporter
 
@@ -881,8 +953,7 @@ class BetseTransporter:
 # region BetseModulator
 # region input BetseModulator
 @strawberry.input
-class InputBetseModulator:
-    name: str
+class InputBetseModulatorData:
     target: str
     max_effect: float
     target_ion: str
@@ -894,25 +965,34 @@ class InputBetseModulator:
     inhibitor_Km: list[float]
     inhibitor_n: list[float]
     inhibitor_zone: list[str]
+
+@strawberry.input
+class InputBetseModulator:
+    name: str
+    data: InputBetseModulatorData
 # endregion input BetseModulator
 
 # region type BetseModulator
+@strawberry.type
+class BetseModulatorData:
+    target: str
+    max_effect: float
+    target_ion: str
+    activators: list[str]
+    activator_Km: list[float]
+    activator_n: list[float]
+    activator_zone: list[str]
+    inhibitors: list[str]
+    inhibitor_Km: list[float]
+    inhibitor_n: list[float]
+    inhibitor_zone: list[str]
+
 @strawberry.type
 class BetseModulator:
     id: str
     name: str
     generated_at: float
-    target: str
-    max_effect: float
-    target_ion: str
-    activators: list[str]
-    activator_Km: list[float]
-    activator_n: list[float]
-    activator_zone: list[str]
-    inhibitors: list[str]
-    inhibitor_Km: list[float]
-    inhibitor_n: list[float]
-    inhibitor_zone: list[str]
+    data: BetseModulatorData
 # endregion type BetseModulator
 # endregion BetseModulator
 

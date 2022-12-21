@@ -33,7 +33,7 @@ def logic_login(
     return encoded_jwt
 
 
-def register_user(identonym: str, key: str, info: Info) -> UserWithToken | None:
+def registerUser(identonym: str, key: str, info: Info) -> UserWithToken | None:
     if not allow_user_registration:
         return
 
@@ -57,14 +57,14 @@ def register_user(identonym: str, key: str, info: Info) -> UserWithToken | None:
     )
 
 
-def delete_user(info: Info) -> bool:
+def deleteUser(info: Info) -> bool:
     if not info.context.user:
         return False
 
     return True
 
 
-def login_user(identonym: str, key: str, info: Info) -> UserWithToken | None:
+def loginUser(identonym: str, key: str, info: Info) -> UserWithToken | None:
     user = get(Collections.users, identonym, 'name')
     if not user:
         return
@@ -81,7 +81,7 @@ def login_user(identonym: str, key: str, info: Info) -> UserWithToken | None:
     )
 
 
-def logout_user(info: Info) -> bool:
+def logoutUser(info: Info) -> bool:
     if not info.context.user:
         return False
 
@@ -94,12 +94,13 @@ def logout_user(info: Info) -> bool:
     return True
 
 
+
 MutationUser = create_type(
     'MutationUser',
     [
-        strawberry.mutation(register_user),
-        strawberry.mutation(delete_user),
-        strawberry.mutation(login_user),
-        strawberry.mutation(logout_user),
+        strawberry.mutation(registerUser),
+        strawberry.mutation(deleteUser),
+        strawberry.mutation(loginUser),
+        strawberry.mutation(logoutUser),
     ],
 )

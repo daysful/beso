@@ -80,111 +80,111 @@ mutation_data = {
 }
 
 
-def add_betse_simulation(input: InputBetseSimulation, info: Info) -> BetseSimulation | None:
+def addBetseSimulation(input: InputBetseSimulation, info: Info) -> BetseSimulation | None:
     return mutation_entity_adder_factory(mutation_data['simulation'])(input, info)
 
-def add_betse_world(input: InputBetseWorld, info: Info) -> BetseWorld | None:
+def addBetseWorld(input: InputBetseWorld, info: Info) -> BetseWorld | None:
     return mutation_entity_adder_factory(mutation_data['world'])(input, info)
 
-def add_betse_tissue(input: InputBetseTissue, info: Info) -> BetseTissue | None:
+def addBetseTissue(input: InputBetseTissue, info: Info) -> BetseTissue | None:
     return mutation_entity_adder_factory(mutation_data['tissue'])(input, info)
 
-def add_betse_intervention(input: InputBetseIntervention, info: Info) -> BetseIntervention | None:
+def addBetseIntervention(input: InputBetseIntervention, info: Info) -> BetseIntervention | None:
     return mutation_entity_adder_factory(mutation_data['intervention'])(input, info)
 
-def add_betse_function(input: InputBetseFunction, info: Info) -> BetseFunction | None:
+def addBetseFunction(input: InputBetseFunction, info: Info) -> BetseFunction | None:
     return mutation_entity_adder_factory(mutation_data['function'])(input, info)
 
-def add_betse_network(input: InputBetseNetwork, info: Info) -> BetseNetwork | None:
+def addBetseNetwork(input: InputBetseNetwork, info: Info) -> BetseNetwork | None:
     return mutation_entity_adder_factory(mutation_data['network'])(input, info)
 
-def add_betse_biomolecule(input: InputBetseBiomolecule, info: Info) -> BetseBiomolecule | None:
+def addBetseBiomolecule(input: InputBetseBiomolecule, info: Info) -> BetseBiomolecule | None:
     return mutation_entity_adder_factory(mutation_data['biomolecule'])(input, info)
 
-def add_betse_reaction(input: InputBetseReaction, info: Info) -> BetseReaction | None:
+def addBetseReaction(input: InputBetseReaction, info: Info) -> BetseReaction | None:
     return mutation_entity_adder_factory(mutation_data['reaction'])(input, info)
 
-def add_betse_channel(input: InputBetseChannel, info: Info) -> BetseChannel | None:
+def addBetseChannel(input: InputBetseChannel, info: Info) -> BetseChannel | None:
     return mutation_entity_adder_factory(mutation_data['channel'])(input, info)
 
-def add_betse_transporter(input: InputBetseTransporter, info: Info) -> BetseTransporter | None:
+def addBetseTransporter(input: InputBetseTransporter, info: Info) -> BetseTransporter | None:
     return mutation_entity_adder_factory(mutation_data['transporter'])(input, info)
 
-def add_betse_modulator(input: InputBetseModulator, info: Info) -> BetseModulator | None:
+def addBetseModulator(input: InputBetseModulator, info: Info) -> BetseModulator | None:
     return mutation_entity_adder_factory(mutation_data['modulator'])(input, info)
 
 
-def remove_betse_simulation(id: str, info: Info) -> bool | None:
+def removeBetseSimulation(id: str, info: Info) -> bool | None:
     return mutation_entity_remove(
         info,
         Collections.betseSimulations,
         id,
     )
 
-def remove_betse_world(id: str, info: Info) -> bool | None:
+def removeBetseWorld(id: str, info: Info) -> bool | None:
     return mutation_entity_remove(
         info,
         Collections.betseWorlds,
         id,
     )
 
-def remove_betse_tissue(id: str, info: Info) -> bool | None:
+def removeBetseTissue(id: str, info: Info) -> bool | None:
     return mutation_entity_remove(
         info,
         Collections.betseTissues,
         id,
     )
 
-def remove_betse_intervention(id: str, info: Info) -> bool | None:
+def removeBetseIntervention(id: str, info: Info) -> bool | None:
     return mutation_entity_remove(
         info,
         Collections.betseInterventions,
         id,
     )
 
-def remove_betse_function(id: str, info: Info) -> bool | None:
+def removeBetseFunction(id: str, info: Info) -> bool | None:
     return mutation_entity_remove(
         info,
         Collections.betseFunctions,
         id,
     )
 
-def remove_betse_network(id: str, info: Info) -> bool | None:
+def removeBetseNetwork(id: str, info: Info) -> bool | None:
     return mutation_entity_remove(
         info,
         Collections.betseNetworks,
         id,
     )
 
-def remove_betse_biomolecule(id: str, info: Info) -> bool | None:
+def removeBetseBiomolecule(id: str, info: Info) -> bool | None:
     return mutation_entity_remove(
         info,
         Collections.betseBiomolecules,
         id,
     )
 
-def remove_betse_reaction(id: str, info: Info) -> bool | None:
+def removeBetseReaction(id: str, info: Info) -> bool | None:
     return mutation_entity_remove(
         info,
         Collections.betseReactions,
         id,
     )
 
-def remove_betse_channel(id: str, info: Info) -> bool | None:
+def removeBetseChannel(id: str, info: Info) -> bool | None:
     return mutation_entity_remove(
         info,
         Collections.betseChannels,
         id,
     )
 
-def remove_betse_transporter(id: str, info: Info) -> bool | None:
+def removeBetseTransporter(id: str, info: Info) -> bool | None:
     return mutation_entity_remove(
         info,
         Collections.betseTransporters,
         id,
     )
 
-def remove_betse_modulator(id: str, info: Info) -> bool | None:
+def removeBetseModulator(id: str, info: Info) -> bool | None:
     return mutation_entity_remove(
         info,
         Collections.betseModulators,
@@ -194,29 +194,29 @@ def remove_betse_modulator(id: str, info: Info) -> bool | None:
 
 
 mutations = [
-    add_betse_simulation,
-    add_betse_world,
-    add_betse_tissue,
-    add_betse_intervention,
-    add_betse_function,
-    add_betse_network,
-    add_betse_biomolecule,
-    add_betse_reaction,
-    add_betse_channel,
-    add_betse_transporter,
-    add_betse_modulator,
+    addBetseSimulation,
+    addBetseWorld,
+    addBetseTissue,
+    addBetseIntervention,
+    addBetseFunction,
+    addBetseNetwork,
+    addBetseBiomolecule,
+    addBetseReaction,
+    addBetseChannel,
+    addBetseTransporter,
+    addBetseModulator,
 
-    remove_betse_simulation,
-    remove_betse_world,
-    remove_betse_tissue,
-    remove_betse_intervention,
-    remove_betse_function,
-    remove_betse_network,
-    remove_betse_biomolecule,
-    remove_betse_reaction,
-    remove_betse_channel,
-    remove_betse_transporter,
-    remove_betse_modulator,
+    removeBetseSimulation,
+    removeBetseWorld,
+    removeBetseTissue,
+    removeBetseIntervention,
+    removeBetseFunction,
+    removeBetseNetwork,
+    removeBetseBiomolecule,
+    removeBetseReaction,
+    removeBetseChannel,
+    removeBetseTransporter,
+    removeBetseModulator,
 ]
 
 
