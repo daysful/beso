@@ -4,11 +4,11 @@ import copy
 from source.graphql.types.betse import \
     BetseSimulation, \
     BetseWorld, BetseWorldData, BetseWorldMeshRefinement, BetseWorldImportFromSVG, \
-    BetseTissue, BetseTissueDiffusionConstants, BetseTissueCellTargets, \
+    BetseTissue, BetseTissueData, BetseTissueDiffusionConstants, BetseTissueCellTargets, \
     BetseIntervention, \
-    BetseFunction, BetseFunctionGradientX, BetseFunctionGradientY, BetseFunctionGradientR, BetseFunctionPeriodic, BetseFunctionFSweep, BetseFunctionGradientBitmap, BetseFunctionSingleCell, \
-    BetseNetwork, BetseNetworkOptimization, \
-    BetseBiomolecule, BetseBiomoleculeGrowthAndDecay, BetseBiomoleculeIonChannelGating, BetseBiomoleculeActivePumping, BetseBiomoleculeChangeAtBounds, BetseBiomoleculePlotting, \
+    BetseFunction, BetseFunctionData, BetseFunctionGradientX, BetseFunctionGradientY, BetseFunctionGradientR, BetseFunctionPeriodic, BetseFunctionFSweep, BetseFunctionGradientBitmap, BetseFunctionSingleCell, \
+    BetseNetwork, BetseNetworkData, BetseNetworkOptimization, \
+    BetseBiomolecule, BetseBiomoleculeData, BetseBiomoleculeGrowthAndDecay, BetseBiomoleculeIonChannelGating, BetseBiomoleculeActivePumping, BetseBiomoleculeChangeAtBounds, BetseBiomoleculePlotting, \
     BetseReaction, \
     BetseChannel, \
     BetseTransporter, \
@@ -64,8 +64,9 @@ def modelBetseTissue(
     load_json: bool = True,
 ):
     model = model_base(data, load_json)
-    model['diffusion_constants'] = BetseTissueDiffusionConstants(**model['diffusion_constants'])
-    model['cell_targets'] = BetseTissueCellTargets(**model['cell_targets'])
+    model['data']['diffusion_constants'] = BetseTissueDiffusionConstants(**model['data']['diffusion_constants'])
+    model['data']['cell_targets'] = BetseTissueCellTargets(**model['data']['cell_targets'])
+    model['data'] = BetseTissueData(**model['data'])
 
     return BetseTissue(**model)
 
@@ -84,13 +85,14 @@ def modelBetseFunction(
     load_json: bool = True,
 ):
     model = model_base(data, load_json)
-    model['gradient_x'] = BetseFunctionGradientX(**model['gradient_x'])
-    model['gradient_y'] = BetseFunctionGradientY(**model['gradient_y'])
-    model['gradient_r'] = BetseFunctionGradientR(**model['gradient_r'])
-    model['periodic'] = BetseFunctionPeriodic(**model['periodic'])
-    model['f_sweep'] = BetseFunctionFSweep(**model['f_sweep'])
-    model['gradient_bitmap'] = BetseFunctionGradientBitmap(**model['gradient_bitmap'])
-    model['single_cell'] = BetseFunctionSingleCell(**model['single_cell'])
+    model['data']['gradient_x'] = BetseFunctionGradientX(**model['data']['gradient_x'])
+    model['data']['gradient_y'] = BetseFunctionGradientY(**model['data']['gradient_y'])
+    model['data']['gradient_r'] = BetseFunctionGradientR(**model['data']['gradient_r'])
+    model['data']['periodic'] = BetseFunctionPeriodic(**model['data']['periodic'])
+    model['data']['f_sweep'] = BetseFunctionFSweep(**model['data']['f_sweep'])
+    model['data']['gradient_bitmap'] = BetseFunctionGradientBitmap(**model['data']['gradient_bitmap'])
+    model['data']['single_cell'] = BetseFunctionSingleCell(**model['data']['single_cell'])
+    model['data'] = BetseFunctionData(**model['data'])
 
     return BetseFunction(**model)
 
@@ -100,7 +102,8 @@ def modelBetseNetwork(
     load_json: bool = True,
 ):
     model = model_base(data, load_json)
-    model['optimization'] = BetseNetworkOptimization(**model['optimization'])
+    model['data']['optimization'] = BetseNetworkOptimization(**model['data']['optimization'])
+    model['data'] = BetseNetworkData(**model['data'])
 
     return BetseNetwork(**model)
 
@@ -110,11 +113,12 @@ def modelBetseBiomolecule(
     load_json: bool = True,
 ):
     model = model_base(data, load_json)
-    model['growth_and_decay'] = BetseBiomoleculeGrowthAndDecay(**model['growth_and_decay'])
-    model['ion_channel_gating'] = BetseBiomoleculeIonChannelGating(**model['ion_channel_gating'])
-    model['active_pumping'] = BetseBiomoleculeActivePumping(**model['active_pumping'])
-    model['change_at_bounds'] = BetseBiomoleculeChangeAtBounds(**model['change_at_bounds'])
-    model['plotting'] = BetseBiomoleculePlotting(**model['plotting'])
+    model['data']['growth_and_decay'] = BetseBiomoleculeGrowthAndDecay(**model['data']['growth_and_decay'])
+    model['data']['ion_channel_gating'] = BetseBiomoleculeIonChannelGating(**model['data']['ion_channel_gating'])
+    model['data']['active_pumping'] = BetseBiomoleculeActivePumping(**model['data']['active_pumping'])
+    model['data']['change_at_bounds'] = BetseBiomoleculeChangeAtBounds(**model['data']['change_at_bounds'])
+    model['data']['plotting'] = BetseBiomoleculePlotting(**model['data']['plotting'])
+    model['data'] = BetseBiomoleculeData(**model['data'])
 
     return BetseBiomolecule(**model)
 
