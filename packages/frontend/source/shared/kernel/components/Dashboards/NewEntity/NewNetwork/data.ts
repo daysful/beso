@@ -20,7 +20,7 @@ export const fields: NewEntityField[] = [
     {
         label: 'enable mitochondria',
         type: 'boolean',
-        state: 'enableMitochondria',
+        state: 'enable_mitochondria',
         value: false,
         required: true,
         help: 'enable distinct mitochondrial volumes in each cell',
@@ -33,7 +33,7 @@ export const fields: NewEntityField[] = [
             {
                 label: 'optimize network',
                 type: 'boolean',
-                state: 'optimizeNetwork',
+                state: 'optimize_network',
                 value: false,
                 required: true,
                 help: 'run an optimization of the network to obtain max rates at steady state concentrations',
@@ -41,7 +41,7 @@ export const fields: NewEntityField[] = [
             {
                 label: 'optimization steps',
                 type: 'number',
-                state: 'optimizationSteps',
+                state: 'optimization_steps',
                 value: 50,
                 format: 'integer',
                 required: true,
@@ -50,7 +50,7 @@ export const fields: NewEntityField[] = [
             {
                 label: 'optimization method',
                 type: 'string',
-                state: 'optimizationMethod',
+                state: 'optimization_method',
                 value: 'L-BFGS-B',
                 required: true,
                 help: `optimization algorithm to run ('COBYLA', 'L-BFGS-B', 'CG', Nelder-Mead, Powell, BFGS, 'TNC', 'SLSQP')`,
@@ -58,7 +58,7 @@ export const fields: NewEntityField[] = [
             {
                 label: 'optimization T',
                 type: 'number',
-                state: 'optimizationT',
+                state: 'optimization_T',
                 value: 1.0,
                 format: 'float',
                 required: true,
@@ -66,7 +66,7 @@ export const fields: NewEntityField[] = [
             {
                 label: 'optimization step',
                 type: 'number',
-                state: 'optimizationStep',
+                state: 'optimization_step',
                 value: 0.5,
                 format: 'float',
                 required: true,
@@ -74,7 +74,7 @@ export const fields: NewEntityField[] = [
             {
                 label: 'target Vmem',
                 type: 'number',
-                state: 'targetVmem',
+                state: 'target_Vmem',
                 value: -50e-3,
                 format: 'scientific',
                 required: true,
@@ -86,7 +86,7 @@ export const fields: NewEntityField[] = [
     {
         label: 'time dilation factor',
         type: 'number',
-        state: 'timeDilationFactor',
+        state: 'time_dilation_factor',
         value: 144.0,
         format: 'float',
         required: true,
@@ -95,7 +95,7 @@ export const fields: NewEntityField[] = [
     {
         label: 'reset microtubules',
         type: 'boolean',
-        state: 'resetMicrotubules',
+        state: 'reset_microtubules',
         value: false,
         required: true,
         help: '(sim-grn) reinitialize the MT to disorganized state at begining of network simulation',
@@ -103,7 +103,7 @@ export const fields: NewEntityField[] = [
     {
         label: 'recalculate fluid',
         type: 'boolean',
-        state: 'recalculateFluid',
+        state: 'recalculate_fluid',
         value: false,
         required: true,
     },

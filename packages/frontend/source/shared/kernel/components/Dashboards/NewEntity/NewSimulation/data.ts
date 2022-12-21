@@ -13,7 +13,7 @@ export const fields: NewEntityField[] = [
     {
         label: 'solver type',
         type: 'string',
-        state: 'solverType',
+        state: 'solver_type',
         value: 'full',
         required: true,
         help: `
@@ -33,12 +33,12 @@ export const fields: NewEntityField[] = [
     {
         label: 'init time settings',
         type: 'group',
-        state: 'initTimeSettings',
+        state: 'init_time_settings',
         value: [
             {
                 label: 'time step',
                 type: 'number',
-                state: 'timeStep',
+                state: 'time_step',
                 value: 1.0e-2,
                 format: 'scientific',
                 required: true,
@@ -48,7 +48,7 @@ export const fields: NewEntityField[] = [
             {
                 label: 'total time',
                 type: 'number',
-                state: 'totalTime',
+                state: 'total_time',
                 value: 5.0,
                 format: 'float',
                 required: true,
@@ -58,7 +58,7 @@ export const fields: NewEntityField[] = [
             {
                 label: 'sampling rate',
                 type: 'number',
-                state: 'samplingRate',
+                state: 'sampling_rate',
                 value: 1.0,
                 format: 'float',
                 required: true,
@@ -71,12 +71,12 @@ export const fields: NewEntityField[] = [
     {
         label: 'sim time settings',
         type: 'group',
-        state: 'simTimeSettings',
+        state: 'sim_time_settings',
         value: [
             {
                 label: 'time step',
                 type: 'number',
-                state: 'timeStep',
+                state: 'time_step',
                 value: 1.0e-4,
                 format: 'scientific',
                 required: true,
@@ -86,7 +86,7 @@ export const fields: NewEntityField[] = [
             {
                 label: 'total time',
                 type: 'number',
-                state: 'totalTime',
+                state: 'total_time',
                 value: 0.035,
                 format: 'float',
                 required: true,
@@ -96,7 +96,7 @@ export const fields: NewEntityField[] = [
             {
                 label: 'sampling rate',
                 type: 'number',
-                state: 'samplingRate',
+                state: 'sampling_rate',
                 value: 1.0e-3,
                 format: 'scientific',
                 required: true,
@@ -109,12 +109,12 @@ export const fields: NewEntityField[] = [
     {
         label: 'general options',
         type: 'group',
-        state: 'generalOptions',
+        state: 'general_options',
         value: [
             {
                 label: 'comp grid size',
                 type: 'number',
-                state: 'compGridSize',
+                state: 'comp_grid_size',
                 value: 25,
                 format: 'integer',
                 required: true,
@@ -123,7 +123,7 @@ export const fields: NewEntityField[] = [
             {
                 label: 'simulate extracellular spaces',
                 type: 'boolean',
-                state: 'simulateExtracellularSpaces',
+                state: 'simulate_extracellular_spaces',
                 value: true,
                 required: true,
                 help: `include extracellular spaces and true environment simulation`,
@@ -131,7 +131,7 @@ export const fields: NewEntityField[] = [
             {
                 label: 'ion profile',
                 type: 'string',
-                state: 'ionProfile',
+                state: 'ion_profile',
                 value: 'basic',
                 required: true,
                 help: `
@@ -147,12 +147,12 @@ export const fields: NewEntityField[] = [
             {
                 label: 'customized ion profile',
                 type: 'group',
-                state: 'customizedIonProfile',
+                state: 'customized_ion_profile',
                 value: [
                     {
                         label: 'extracellular Na+ concentration',
                         type: 'number',
-                        state: 'extracellularNa+Concentration',
+                        state: 'extracellular_Na_Concentration',
                         value: 145.0,
                         format: 'float',
                         required: true,
@@ -162,7 +162,7 @@ export const fields: NewEntityField[] = [
                     {
                         label: 'extracellular K+ concentration',
                         type: 'number',
-                        state: 'extracellularK+Concentration',
+                        state: 'extracellular_K_Concentration',
                         value: 5.0,
                         format: 'float',
                         required: true,
@@ -172,7 +172,7 @@ export const fields: NewEntityField[] = [
                     {
                         label: 'extracellular Cl- concentration',
                         type: 'number',
-                        state: 'extracellularCl-Concentration',
+                        state: 'extracellular_Cl_Concentration',
                         value: 115.0,
                         format: 'float',
                         required: true,
@@ -182,7 +182,7 @@ export const fields: NewEntityField[] = [
                     {
                         label: 'extracellular Ca2+ concentration',
                         type: 'number',
-                        state: 'extracellularCa2+Concentration',
+                        state: 'extracellular_Ca2_Concentration',
                         value: 2.0,
                         format: 'float',
                         required: true,
@@ -192,7 +192,7 @@ export const fields: NewEntityField[] = [
                     {
                         label: 'extracellular protein- concentration',
                         type: 'number',
-                        state: 'extracellularProtein-Concentration',
+                        state: 'extracellular_Protein_Concentration',
                         value: 10.0,
                         format: 'float',
                         required: true,
@@ -203,7 +203,7 @@ export const fields: NewEntityField[] = [
                     {
                         label: 'cytosolic Na+ concentration',
                         type: 'number',
-                        state: 'cytosolicNa+Concentration',
+                        state: 'cytosolic_Na_Concentration',
                         value: 12.0,
                         format: 'float',
                         required: true,
@@ -213,7 +213,7 @@ export const fields: NewEntityField[] = [
                     {
                         label: 'cytosolic K+ concentration',
                         type: 'number',
-                        state: 'cytosolicK+Concentration',
+                        state: 'cytosolic_K_Concentration',
                         value: 139.0,
                         format: 'float',
                         required: true,
@@ -223,7 +223,7 @@ export const fields: NewEntityField[] = [
                     {
                         label: 'cytosolic Cl- concentration',
                         type: 'number',
-                        state: 'cytosolicCl-Concentration',
+                        state: 'cytosolic_Cl_Concentration',
                         value: 4.0,
                         format: 'float',
                         required: true,
@@ -233,7 +233,7 @@ export const fields: NewEntityField[] = [
                     {
                         label: 'cytosolic Ca2+ concentration',
                         type: 'number',
-                        state: 'cytosolicCa2+Concentration',
+                        state: 'cytosolic_Ca2_Concentration',
                         value: 2.0e-5,
                         format: 'scientific',
                         required: true,
@@ -243,7 +243,7 @@ export const fields: NewEntityField[] = [
                     {
                         label: 'cytosolic protein- concentration',
                         type: 'number',
-                        state: 'cytosolicProtein-Concentration',
+                        state: 'cytosolic_Protein_Concentration',
                         value: 135.0,
                         format: 'float',
                         required: true,
@@ -263,13 +263,13 @@ export const fields: NewEntityField[] = [
     {
         label: 'variable settings',
         type: 'group',
-        state: 'variableSettings',
+        state: 'variable_settings',
         value: [
             {
                 label: 'env boundary concentrations',
                 // type: 'dictionary',
                 type: 'string',
-                state: 'envBoundaryConcentrations',
+                state: 'env_boundary_concentrations',
                 required: true,
                 value: '',
                 // #    Na: 145.0    # Na+ concentration at bound [mM]
@@ -302,7 +302,7 @@ export const fields: NewEntityField[] = [
                     {
                         label: 'turn on',
                         type: 'boolean',
-                        state: 'turnOn',
+                        state: 'turn_on',
                         value: false,
                         required: true,
                         help: 'include deformation under the osmotic pressure influx and electric fields',
@@ -319,7 +319,7 @@ export const fields: NewEntityField[] = [
                     {
                         label: 'viscous damping',
                         type: 'number',
-                        state: 'viscousDamping',
+                        state: 'viscous_damping',
                         value: 0.01,
                         format: 'float',
                         required: true,
@@ -328,7 +328,7 @@ export const fields: NewEntityField[] = [
                     {
                         label: 'fixed cluster boundary',
                         type: 'boolean',
-                        state: 'fixedClusterBoundary',
+                        state: 'fixed_cluster_boundary',
                         value: true,
                         required: true,
                         help: 'exterior cells of the cluster are fixed (true) or free to move (false)',
@@ -336,7 +336,7 @@ export const fields: NewEntityField[] = [
                     {
                         label: 'young modulus',
                         type: 'number',
-                        state: 'youngModulus',
+                        state: 'young_modulus',
                         value: 1.0e3,
                         format: 'scientific',
                         required: true,
@@ -354,14 +354,14 @@ export const fields: NewEntityField[] = [
                     {
                         label: 'include electrostatic pressure',
                         type: 'boolean',
-                        state: 'includeElectrostaticPressure',
+                        state: 'include_electrostatic_pressure',
                         value: true,
                         required: true,
                     },
                     {
                         label: 'include osmotic pressure',
                         type: 'boolean',
-                        state: 'includeOsmoticPressure',
+                        state: 'include_osmotic_pressure',
                         value: false,
                         required: true,
                         help: 'include osmotic pressure in flow & deformation',
@@ -369,7 +369,7 @@ export const fields: NewEntityField[] = [
                     {
                         label: 'membrane water conductivity',
                         type: 'number',
-                        state: 'membraneWaterConductivity',
+                        state: 'membrane_water_conductivity',
                         value: 1e-2,
                         format: 'scientific',
                         required: true,
@@ -386,7 +386,7 @@ export const fields: NewEntityField[] = [
                     {
                         label: 'static noise level',
                         type: 'number',
-                        state: 'staticNoiseLevel',
+                        state: 'static_noise_level',
                         value: 0,
                         format: 'float',
                         required: true,
@@ -395,7 +395,7 @@ export const fields: NewEntityField[] = [
                     {
                         label: 'dynamic noise',
                         type: 'boolean',
-                        state: 'dynamicNoise',
+                        state: 'dynamic_noise',
                         value: false,
                         required: true,
                         help: 'is dynamic noise desired? simulated as random-walk on cellular protein concentrations',
@@ -403,7 +403,7 @@ export const fields: NewEntityField[] = [
                     {
                         label: 'dynamic noise level',
                         type: 'number',
-                        state: 'dynamicNoiseLevel',
+                        state: 'dynamic_noise_level',
                         value: 1e-6,
                         format: 'scientific',
                         required: true,
@@ -420,7 +420,7 @@ export const fields: NewEntityField[] = [
                     {
                         label: 'gap junction surface area',
                         type: 'number',
-                        state: 'gapJunctionSurfaceArea',
+                        state: 'gap_junction_surface_area',
                         value: 5.0e-8,
                         format: 'scientific',
                         required: true,
@@ -429,7 +429,7 @@ export const fields: NewEntityField[] = [
                     {
                         label: 'voltage sensitive gj',
                         type: 'boolean',
-                        state: 'voltageSensitiveGj',
+                        state: 'voltage_sensitive_gj',
                         value: true,
                         required: true,
                         help: 'gj close with voltage difference between cells',
@@ -437,7 +437,7 @@ export const fields: NewEntityField[] = [
                     {
                         label: 'gj voltage threshold',
                         type: 'number',
-                        state: 'gjVoltageThreshold',
+                        state: 'gj_voltage_threshold',
                         value: 15,
                         format: 'float',
                         required: true,
@@ -447,7 +447,7 @@ export const fields: NewEntityField[] = [
                     {
                         label: 'gj voltage window',
                         type: 'number',
-                        state: 'gjVoltageWindow',
+                        state: 'gj_voltage_window',
                         value: 15,
                         format: 'float',
                         required: true,
@@ -457,7 +457,7 @@ export const fields: NewEntityField[] = [
                     {
                         label: 'gj minimum',
                         type: 'number',
-                        state: 'gjMinimum',
+                        state: 'gj_minimum',
                         value: 0.10,
                         format: 'float',
                         required: true,
@@ -470,7 +470,7 @@ export const fields: NewEntityField[] = [
             {
                 label: 'tight junction scaling',
                 type: 'number',
-                state: 'tightJunctionScaling',
+                state: 'tight_junction_scaling',
                 value: 1.0,
                 format: 'float',
                 required: true,
@@ -479,7 +479,7 @@ export const fields: NewEntityField[] = [
             {
                 label: 'tight junction relative diffusion',
                 type: 'group',
-                state: 'tightJunctionRelativeDiffusion',
+                state: 'tight_junction_relative_diffusion',
                 value: [
                     {
                         label: 'Na',
@@ -536,7 +536,7 @@ export const fields: NewEntityField[] = [
             {
                 label: 'adherens junction scaling',
                 type: 'number',
-                state: 'adherensJunctionScaling',
+                state: 'adherens_junction_scaling',
                 value: 1.0,
                 format: 'float',
                 required: true,
@@ -545,7 +545,7 @@ export const fields: NewEntityField[] = [
             {
                 label: 'use Goldman calculator',
                 type: 'boolean',
-                state: 'useGoldmanCalculator',
+                state: 'use_Goldman_calculator',
                 value: false,
                 required: true,
                 help: `calculate alternative Vmem with Goldman-Hodgkin-Katz (GHK) voltage equation for comparison purposes`,
@@ -556,12 +556,12 @@ export const fields: NewEntityField[] = [
     {
         label: 'results options',
         type: 'group',
-        state: 'resultsOptions',
+        state: 'results_options',
         value: [
             {
                 label: 'show cells',
                 type: 'boolean',
-                state: 'showCells',
+                state: 'show_cells',
                 value: true,
                 required: true,
                 help: `visualize discrete cells or only a homogeneous gradient of cell data`,
@@ -569,7 +569,7 @@ export const fields: NewEntityField[] = [
             {
                 label: 'enumerate cells',
                 type: 'boolean',
-                state: 'enumerateCells',
+                state: 'enumerate_cells',
                 value: true,
                 required: true,
             },
@@ -579,7 +579,7 @@ export const fields: NewEntityField[] = [
     {
         label: 'internal parameters',
         type: 'group',
-        state: 'internalParameters',
+        state: 'internal_parameters',
         value: [
             // default free diffusion constants (cytoplasmic)
             {
@@ -667,7 +667,7 @@ export const fields: NewEntityField[] = [
             {
                 label: 'substances affect Vmem',
                 type: 'boolean',
-                state: 'substancesAffectVmem',
+                state: 'substances_affect_Vmem',
                 value: true,
                 required: true,
                 help: `do ionic biochemicals, metabolites and gene products affect charge state`,
@@ -675,7 +675,7 @@ export const fields: NewEntityField[] = [
             {
                 label: 'environment volume multiplier',
                 type: 'number',
-                state: 'environmentVolumeMultiplier',
+                state: 'environment_volume_multiplier',
                 value: 1.0,
                 format: 'float',
                 required: true,
@@ -684,7 +684,7 @@ export const fields: NewEntityField[] = [
             {
                 label: 'membrane capacitance',
                 type: 'number',
-                state: 'membraneCapacitance',
+                state: 'membrane_capacitance',
                 value: 0.05,
                 format: 'float',
                 required: true,
@@ -694,7 +694,7 @@ export const fields: NewEntityField[] = [
             {
                 label: 'cell polarizability',
                 type: 'number',
-                state: 'cellPolarizability',
+                state: 'cell_polarizability',
                 value: 0.0,
                 format: 'float',
                 required: true,
@@ -703,7 +703,7 @@ export const fields: NewEntityField[] = [
             {
                 label: 'dielectric constant',
                 type: 'number',
-                state: 'dielectricConstant',
+                state: 'dielectric_constant',
                 value: 6.0,
                 format: 'float',
                 required: true,
@@ -712,7 +712,7 @@ export const fields: NewEntityField[] = [
             {
                 label: 'fast update ecm',
                 type: 'boolean',
-                state: 'fastUpdateEcm',
+                state: 'fast_update_ECM',
                 value: false,
                 required: true,
                 help: `use a coarse (fast) or fine (slow) method to update between env and cell grids`,
@@ -720,7 +720,7 @@ export const fields: NewEntityField[] = [
             {
                 label: 'sharpness env',
                 type: 'number',
-                state: 'sharpnessEnv',
+                state: 'sharpness_env',
                 value: 1.0,
                 format: 'float',
                 required: true,
@@ -729,7 +729,7 @@ export const fields: NewEntityField[] = [
             {
                 label: 'sharpness cell',
                 type: 'number',
-                state: 'sharpnessCell',
+                state: 'sharpness_cell',
                 value: 0.5,
                 format: 'float',
                 required: true,
@@ -738,7 +738,7 @@ export const fields: NewEntityField[] = [
             {
                 label: 'true cell size',
                 type: 'number',
-                state: 'trueCellSize',
+                state: 'true_cell_size',
                 value: 1.0e-5,
                 format: 'scientific',
                 required: true,

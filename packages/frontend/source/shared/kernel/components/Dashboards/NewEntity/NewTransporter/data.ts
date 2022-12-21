@@ -20,7 +20,7 @@ export const fields: NewEntityField[] = [
     {
         label: 'reaction zone',
         type: 'string',
-        state: 'reactionZone',
+        state: 'reaction_zone',
         value: 'cell',
         required: true,
         help: `reaction zone identifier: 'cell' or 'mit'; where reaction takes place`,
@@ -36,7 +36,7 @@ export const fields: NewEntityField[] = [
     {
         label: 'reactant multipliers',
         type: 'list',
-        state: 'reactantMultipliers',
+        state: 'reactant_multipliers',
         value: [ 1 ],
         required: true,
         help: `reaction coefficients for reagents, in same order as reagent definition`,
@@ -44,7 +44,7 @@ export const fields: NewEntityField[] = [
     {
         label: 'Km reactants',
         type: 'list',
-        state: 'KmReactants',
+        state: 'Km_reactants',
         value: [ 0.1 ],
         required: true,
         help: `list of half-max coefficients for reagents, in same order as reagents list`,
@@ -60,7 +60,7 @@ export const fields: NewEntityField[] = [
     {
         label: 'product multipliers',
         type: 'list',
-        state: 'productMultipliers',
+        state: 'product_multipliers',
         value: [ 1 ],
         required: true,
         help: `reaction coefficients for products, in same order as product definition`,
@@ -68,7 +68,7 @@ export const fields: NewEntityField[] = [
     {
         label: 'Km products',
         type: 'list',
-        state: 'KmProducts',
+        state: 'Km_products',
         value: [ 0.1 ],
         required: true,
         help: `list of half-max coefficients for reagents, in same order as reagents list`,
@@ -76,7 +76,7 @@ export const fields: NewEntityField[] = [
     {
         label: 'transfered out of cell',
         type: 'list',
-        state: 'transferedOutOfCell',
+        state: 'transfered_out_of_cell',
         value: [],
         required: true,
         help: `items of reaction moved out of cell during forwards reaction`,
@@ -84,7 +84,7 @@ export const fields: NewEntityField[] = [
     {
         label: 'transfered into cell',
         type: 'list',
-        state: 'transferedIntoCell',
+        state: 'transfered_into_cell',
         value: [ 'Substance_A' ],
         required: true,
         help: `items of reaction moved into cell during forwards reaction`,
@@ -92,7 +92,7 @@ export const fields: NewEntityField[] = [
     {
         label: 'max rate',
         type: 'number',
-        state: 'maxRate',
+        state: 'max_rate',
         value: 1.0e-5,
         format: 'scientific',
         required: true,
@@ -102,7 +102,7 @@ export const fields: NewEntityField[] = [
     {
         label: 'standard free energy',
         type: 'number',
-        state: 'standardFreeEnergy',
+        state: 'standard_free_energy',
         value: 0,
         format: 'float',
         required: true,
@@ -113,7 +113,7 @@ export const fields: NewEntityField[] = [
     {
         label: 'apply to',
         type: 'list',
-        state: 'applyTo',
+        state: 'apply_to',
         value: [ 'nerves', 'Spot' ],
         required: true,
         help: `apply transporter only on certain profiles`,
@@ -121,14 +121,14 @@ export const fields: NewEntityField[] = [
     {
         label: 'ignore ECM',
         type: 'boolean',
-        state: 'ignoreECM',
+        state: 'ignore_ECM',
         value: true,
         required: true,
     },
     {
         label: 'transporter activators',
         type: 'string',
-        state: 'transporterActivators',
+        state: 'transporter_activators',
         value: 'None',
         required: true,
         help: 'additional defined substances or ions increasing activity of transporter',
@@ -136,21 +136,21 @@ export const fields: NewEntityField[] = [
     {
         label: 'activator Km',
         type: 'string',
-        state: 'activatorKm',
+        state: 'activator_Km',
         value: 'None',
         required: true,
     },
     {
         label: 'activator n',
         type: 'string',
-        state: 'activatorN',
+        state: 'activator_n',
         value: 'None',
         required: true,
     },
     {
         label: 'transporter inhibitors',
         type: 'string',
-        state: 'transporterInhibitors',
+        state: 'transporter_inhibitors',
         value: 'None',
         required: true,
         help: 'additional defined substances or ions decreasing activity of transporter',
@@ -158,14 +158,14 @@ export const fields: NewEntityField[] = [
     {
         label: 'inhibitor Km',
         type: 'string',
-        state: 'inhibitorKm',
+        state: 'inhibitor_Km',
         value: 'None',
         required: true,
     },
     {
         label: 'inhibitor n',
         type: 'string',
-        state: 'inhibitorN',
+        state: 'inhibitor_n',
         value: 'None',
         required: true,
     },

@@ -18,14 +18,14 @@ export const eventRecords: Record<string, PrimitiveField> = {
     eventHappens: {
         label: 'event happens',
         type: 'boolean',
-        state: 'eventHappens',
+        state: 'event_happens',
         value: false,
         help: 'turn the event on (True) or off (False)',
     },
     changeStart: {
         label: 'change start',
         type: 'number',
-        state: 'changeStart',
+        state: 'change_start',
         value: 1.0,
         format: 'float',
         unit: 's',
@@ -34,7 +34,7 @@ export const eventRecords: Record<string, PrimitiveField> = {
     changeFinish: {
         label: 'change finish',
         type: 'number',
-        state: 'changeFinish',
+        state: 'change_finish',
         value: 4.0,
         format: 'float',
         unit: 's',
@@ -43,7 +43,7 @@ export const eventRecords: Record<string, PrimitiveField> = {
     changeRate: {
         label: 'change rate',
         type: 'number',
-        state: 'changeRate',
+        state: 'change_rate',
         value: 1.0,
         format: 'float',
         unit: 's',
@@ -61,14 +61,14 @@ export const eventRecords: Record<string, PrimitiveField> = {
     modulatorFunction: {
         label: 'modulator function',
         type: 'string',
-        state: 'modulatorFunction',
+        state: 'modulator_function',
         value: '',
         help: `spatial function: 'gradient_x','gradient_y', 'gradient_r', 'periodic', or 'None'`,
     },
     applyTo: {
         label: 'apply to',
         type: 'list',
-        state: 'applyTo',
+        state: 'apply_to',
         value: [ 'Spot' ],
         help: `name(s) of the tissue profile(s) to apply intervention to`,
     },

@@ -25,7 +25,7 @@ export const fields: NewEntityField[] = [
     {
         label: 'change K env',
         type: 'group',
-        state: 'changeKEnv',
+        state: 'change_K_env',
         value: [
             eventRecords.eventHappens,
             {
@@ -50,7 +50,7 @@ export const fields: NewEntityField[] = [
     {
         label: 'change Cl env',
         type: 'group',
-        state: 'changeClEnv',
+        state: 'change_Cl_env',
         value: [
             eventRecords.eventHappens,
             {
@@ -75,7 +75,7 @@ export const fields: NewEntityField[] = [
     {
         label: 'change Na env',
         type: 'group',
-        state: 'changeNaEnv',
+        state: 'change_Na_env',
         value: [
             eventRecords.eventHappens,
             {
@@ -100,7 +100,7 @@ export const fields: NewEntityField[] = [
     {
         label: 'change temperature',
         type: 'group',
-        state: 'changeTemperature',
+        state: 'change_temperature',
         value: [
             eventRecords.eventHappens,
             {
@@ -125,7 +125,7 @@ export const fields: NewEntityField[] = [
     {
         label: 'block gap junctions',
         type: 'group',
-        state: 'blockGapJunctions',
+        state: 'block_gap_junctions',
         value: [
             eventRecords.eventHappens,
             {
@@ -143,7 +143,7 @@ export const fields: NewEntityField[] = [
             {
                 label: 'random fraction',
                 type: 'number',
-                state: 'randomFraction',
+                state: 'random_fraction',
                 value: 100,
                 format: 'integer',
                 help: 'percentage of gap junctions randomly targeted',
@@ -154,7 +154,7 @@ export const fields: NewEntityField[] = [
     {
         label: 'block NaKATP pump',
         type: 'group',
-        state: 'blockNaKATPpump',
+        state: 'block_NaKATP_pump',
         value: [
             eventRecords.eventHappens,
             {

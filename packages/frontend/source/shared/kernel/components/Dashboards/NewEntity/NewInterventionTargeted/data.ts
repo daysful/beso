@@ -28,7 +28,7 @@ export const fields: NewEntityField[] = [
     {
         label: 'change Na mem',
         type: 'group',
-        state: 'changeNaMem',
+        state: 'change_Na_mem',
         value: [
             eventRecords.eventHappens,
             {
@@ -55,7 +55,7 @@ export const fields: NewEntityField[] = [
     {
         label: 'change K mem',
         type: 'group',
-        state: 'changeKMem',
+        state: 'change_K_mem',
         value: [
             eventRecords.eventHappens,
             {
@@ -82,7 +82,7 @@ export const fields: NewEntityField[] = [
     {
         label: 'change Cl mem',
         type: 'group',
-        state: 'changeClMem',
+        state: 'change_Cl_mem',
         value: [
             eventRecords.eventHappens,
             {
@@ -109,7 +109,7 @@ export const fields: NewEntityField[] = [
     {
         label: 'change Ca mem',
         type: 'group',
-        state: 'changeCaMem',
+        state: 'change_Ca_mem',
         value: [
             eventRecords.eventHappens,
             {
@@ -139,7 +139,7 @@ export const fields: NewEntityField[] = [
     {
         label: 'apply pressure',
         type: 'group',
-        state: 'applyPressure',
+        state: 'apply_pressure',
         value: [
             eventRecords.eventHappens,
             {
@@ -169,7 +169,7 @@ export const fields: NewEntityField[] = [
     {
         label: 'apply external voltage',
         type: 'group',
-        state: 'applyExternalVoltage',
+        state: 'apply_external_voltage',
         value: [
             eventRecords.eventHappens,
             {
@@ -190,7 +190,7 @@ export const fields: NewEntityField[] = [
             {
                 label: 'peak voltage',
                 type: 'number',
-                state: 'peakVoltage',
+                state: 'peak_voltage',
                 value: 1.0e-3,
                 format: 'scientific',
                 unit: 'V',
@@ -199,14 +199,14 @@ export const fields: NewEntityField[] = [
             {
                 label: 'positive voltage boundary',
                 type: 'string',
-                state: 'positiveVoltageBoundary',
+                state: 'positive_voltage_boundary',
                 value: 'top',
                 help: 'env boundary to apply positive voltage ("top", "bottom", "left", or "right")',
             },
             {
                 label: 'negative voltage boundary',
                 type: 'string',
-                state: 'negativeVoltageBoundary',
+                state: 'negative_voltage_boundary',
                 value: 'bottom',
                 help: 'env boundary to apply negative voltage ("top", "bottom", "left", or "right")',
             },
@@ -216,7 +216,7 @@ export const fields: NewEntityField[] = [
     {
         label: 'break ecm junctions',
         type: 'group',
-        state: 'breakEcmJunctions',
+        state: 'break_ecm_junctions',
         value: [
             eventRecords.eventHappens,
             {
@@ -243,7 +243,7 @@ export const fields: NewEntityField[] = [
     {
         label: 'cutting event',
         type: 'group',
-        state: 'cuttingEvent',
+        state: 'cutting_event',
         value: [
             {
                 ...eventRecords.eventHappens,
@@ -256,14 +256,14 @@ export const fields: NewEntityField[] = [
             {
                 label: 'break TJ',
                 type: 'boolean',
-                state: 'breakTJ',
+                state: 'break_TJ',
                 value: true,
                 help: 'break tight junctions? (otherwise assumes instant barrier healing)',
             },
             {
                 label: 'wound TJ',
                 type: 'number',
-                state: 'woundTJ',
+                state: 'wound_TJ',
                 value: 1.0e-1,
                 format: 'scientific',
                 help: 'how leaky are the tight junctions at the wound (max 1.0)',

@@ -20,7 +20,7 @@ export const fields: NewEntityField[] = [
     {
         label: 'gradient_x',
         type: 'group',
-        state: 'gradientX',
+        state: 'gradient_x',
         value: [
             {
                 label: 'slope',
@@ -34,7 +34,7 @@ export const fields: NewEntityField[] = [
             {
                 label: 'x-offset',
                 type: 'number',
-                state: 'xOffset',
+                state: 'x_offset',
                 value: 0,
                 format: 'float',
                 required: true,
@@ -43,7 +43,7 @@ export const fields: NewEntityField[] = [
             {
                 label: 'z-offset',
                 type: 'number',
-                state: 'zOffset',
+                state: 'z_offset',
                 value: 0,
                 format: 'float',
                 required: true,
@@ -78,7 +78,7 @@ export const fields: NewEntityField[] = [
             {
                 label: 'x-offset',
                 type: 'number',
-                state: 'xOffset',
+                state: 'x_offset',
                 value: 0,
                 format: 'float',
                 required: true,
@@ -87,7 +87,7 @@ export const fields: NewEntityField[] = [
             {
                 label: 'z-offset',
                 type: 'number',
-                state: 'zOffset',
+                state: 'z_offset',
                 value: 0,
                 format: 'float',
                 required: true,
@@ -108,7 +108,7 @@ export const fields: NewEntityField[] = [
     {
         label: 'gradient_r',
         type: 'group',
-        state: 'gradientR',
+        state: 'gradient_r',
         value: [
             {
                 label: 'slope',
@@ -122,7 +122,7 @@ export const fields: NewEntityField[] = [
             {
                 label: 'x-offset',
                 type: 'number',
-                state: 'xOffset',
+                state: 'x_offset',
                 value: 0,
                 format: 'float',
                 required: true,
@@ -130,7 +130,7 @@ export const fields: NewEntityField[] = [
             {
                 label: 'z-offset',
                 type: 'number',
-                state: 'zOffset',
+                state: 'z_offset',
                 value: 0,
                 format: 'float',
                 required: true,
@@ -179,12 +179,12 @@ export const fields: NewEntityField[] = [
     {
         label: 'f sweep',
         type: 'group',
-        state: 'fSweep',
+        state: 'f_sweep',
         value: [
             {
                 label: 'start frequency',
                 type: 'number',
-                state: 'startFrequency',
+                state: 'start_frequency',
                 value: 0.1e3,
                 format: 'scientific',
                 required: true,
@@ -193,7 +193,7 @@ export const fields: NewEntityField[] = [
             {
                 label: 'end frequency',
                 type: 'number',
-                state: 'endFrequency',
+                state: 'end_frequency',
                 value: 1e3,
                 format: 'scientific',
                 required: true,
@@ -206,7 +206,7 @@ export const fields: NewEntityField[] = [
     {
         label: 'gradient bitmap',
         type: 'group',
-        state: 'gradientBitmap',
+        state: 'gradient_bitmap',
         value: [
             {
                 label: 'file',
@@ -218,7 +218,7 @@ export const fields: NewEntityField[] = [
             {
                 label: 'z-offset',
                 type: 'number',
-                state: 'zOffset',
+                state: 'z_offset',
                 value: 0.0,
                 format: 'float',
                 required: true,
@@ -230,12 +230,12 @@ export const fields: NewEntityField[] = [
     {
         label: 'single cell',
         type: 'group',
-        state: 'singleCell',
+        state: 'single_cell',
         value: [
             {
                 label: 'z-offset',
                 type: 'number',
-                state: 'zOffset',
+                state: 'z_offset',
                 value: 0.0,
                 format: 'float',
                 required: true,

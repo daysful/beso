@@ -26,7 +26,7 @@ const commonFields: Record<string, NewEntityField> = {
     KmActivators: {
         label: 'Km activators',
         type: 'string',
-        state: 'KmActivators',
+        state: 'Km_activators',
         value: 'None',
         required: true,
         help: 'list of half-maximum values for activators',
@@ -34,7 +34,7 @@ const commonFields: Record<string, NewEntityField> = {
     nActivators: {
         label: 'n activators',
         type: 'string',
-        state: 'nActivators',
+        state: 'n_activators',
         value: 'None',
         required: true,
         help: 'list of Hill exponent of activators',
@@ -50,7 +50,7 @@ const commonFields: Record<string, NewEntityField> = {
     KmInhibitors: {
         label: 'Km inhibitors',
         type: 'list',
-        state: 'KmInhibitors',
+        state: 'Km_inhibitors',
         value: [ 1.0 ],
         required: true,
         help: 'list of half-maximum values for inhibitors',
@@ -58,7 +58,7 @@ const commonFields: Record<string, NewEntityField> = {
     nInhibitors: {
         label: 'n inhibitors',
         type: 'list',
-        state: 'nInhibitors',
+        state: 'n_inhibitors',
         value: [ 3.0 ],
         required: true,
         help: 'list of Hill exponent of inhibitors',
@@ -106,7 +106,7 @@ export const fields: NewEntityField[] = [
     {
         label: 'Mu_mem',
         type: 'number',
-        state: 'MuMem',
+        state: 'Mu_mem',
         value: 0.0,
         format: 'float',
         required: true,
@@ -115,7 +115,7 @@ export const fields: NewEntityField[] = [
     {
         label: 'u_mtube',
         type: 'number',
-        state: 'uMtube',
+        state: 'u_mtube',
         value: 0.0,
         format: 'float',
         required: true,
@@ -135,7 +135,7 @@ export const fields: NewEntityField[] = [
     {
         label: 'env conc',
         type: 'number',
-        state: 'envConc',
+        state: 'env_conc',
         value: 1.0e-3,
         format: 'scientific',
         required: true,
@@ -145,7 +145,7 @@ export const fields: NewEntityField[] = [
     {
         label: 'cell conc',
         type: 'number',
-        state: 'cellConc',
+        state: 'cell_conc',
         value: 1.5,
         format: 'float',
         required: true,
@@ -155,7 +155,7 @@ export const fields: NewEntityField[] = [
     {
         label: 'mit conc',
         type: 'number',
-        state: 'mitConc',
+        state: 'mit_conc',
         value: 0.0,
         format: 'float',
         required: true,
@@ -173,7 +173,7 @@ export const fields: NewEntityField[] = [
     {
         label: 'update intracellular',
         type: 'boolean',
-        state: 'updateIntracellular',
+        state: 'update_intracellular',
         value: false,
         required: true,
         help: 'allows you to shut off intracellular transport for fast diffusion with stability',
@@ -181,7 +181,7 @@ export const fields: NewEntityField[] = [
     {
         label: 'initial asymmetry',
         type: 'string',
-        state: 'initialAsymmetry',
+        state: 'initial_asymmetry',
         value: '',
         required: true,
         help: `function applied to initial cell concentrations ('gradient_x', 'gradient_y', 'gradient_r', 'gradient_bitmap', 'single_cell', or 'None')`,
@@ -189,7 +189,7 @@ export const fields: NewEntityField[] = [
     {
         label: 'TJ permeable',
         type: 'boolean',
-        state: 'TJPermeable',
+        state: 'TJ_permeable',
         value: false,
         required: true,
         help: 'can substances pass through tight junctions (e.g. dissolved oxygen)',
@@ -197,7 +197,7 @@ export const fields: NewEntityField[] = [
     {
         label: 'GJ impermeable',
         type: 'boolean',
-        state: 'GJImpermeable',
+        state: 'GJ_impermeable',
         value: false,
         required: true,
         help: 'are substances impermeable through gap junctions (i.e. due to size)',
@@ -205,7 +205,7 @@ export const fields: NewEntityField[] = [
     {
         label: 'TJ factor',
         type: 'number',
-        state: 'TJFactor',
+        state: 'TJ_factor',
         value: 1.0,
         format: 'float',
         required: true,
@@ -214,7 +214,7 @@ export const fields: NewEntityField[] = [
     {
         label: 'ignore ECM',
         type: 'boolean',
-        state: 'ignoreEcm',
+        state: 'ignore_ECM',
         value: true,
         required: true,
         help: 'treat extracellular spaces as full grid square volume',
@@ -222,7 +222,7 @@ export const fields: NewEntityField[] = [
     {
         label: 'scale factor',
         type: 'number',
-        state: 'scaleFactor',
+        state: 'scale_factor',
         value: 1.0e-3,
         format: 'scientific',
         required: true,
@@ -231,7 +231,7 @@ export const fields: NewEntityField[] = [
     {
         label: 'use time dilation',
         type: 'boolean',
-        state: 'useTimeDilation',
+        state: 'use_time_dilation',
         value: false,
         required: true,
         help: 'use time dilation factor for transport and growth/decay of this substance',
@@ -239,12 +239,12 @@ export const fields: NewEntityField[] = [
     {
         label: 'growth and decay',
         type: 'group',
-        state: 'growthAndDecay',
+        state: 'growth_and_decay',
         value: [
             {
                 label: 'production rate',
                 type: 'number',
-                state: 'productionRate',
+                state: 'production_rate',
                 value: 1.0,
                 format: 'float',
                 required: true,
@@ -253,7 +253,7 @@ export const fields: NewEntityField[] = [
             {
                 label: 'decay rate',
                 type: 'number',
-                state: 'decayRate',
+                state: 'decay_rate',
                 value: 0.5,
                 format: 'float',
                 required: true,
@@ -262,7 +262,7 @@ export const fields: NewEntityField[] = [
             {
                 label: 'apply to',
                 type: 'list',
-                state: 'applyTo',
+                state: 'apply_to',
                 value: [ 'Spot' ],
                 required: true,
                 help: 'apply growth only to one or more specific tissue profiles (e.g., ["Spot", "Crest"]) or "all" for everything.',
@@ -270,7 +270,7 @@ export const fields: NewEntityField[] = [
             {
                 label: 'modulator function',
                 type: 'string',
-                state: 'modulatorFunction',
+                state: 'modulator_function',
                 value: 'gradient_x',
                 required: true,
                 help: `spatial modulation of production, options 'gradient_x','gradient_y', 'gradient_r', 'gradient_bitmap', 'single_cell' or 'None'`,
@@ -286,7 +286,7 @@ export const fields: NewEntityField[] = [
             {
                 label: 'Km activators',
                 type: 'string',
-                state: 'KmActivators',
+                state: 'Km_activators',
                 value: 'None',
                 required: true,
                 help: 'list of half-maximum values for activators',
@@ -294,7 +294,7 @@ export const fields: NewEntityField[] = [
             {
                 label: 'n activators',
                 type: 'string',
-                state: 'nActivators',
+                state: 'n_activators',
                 value: 'None',
                 required: true,
                 help: 'list of Hill exponent of activators',
@@ -310,7 +310,7 @@ export const fields: NewEntityField[] = [
             {
                 label: 'Km inhibitors',
                 type: 'list',
-                state: 'KmInhibitors',
+                state: 'Km_inhibitors',
                 value: [ 1.0 ],
                 required: true,
                 help: 'list of half-maximum values for inhibitors',
@@ -318,7 +318,7 @@ export const fields: NewEntityField[] = [
             {
                 label: 'n inhibitors',
                 type: 'list',
-                state: 'nInhibitors',
+                state: 'n_inhibitors',
                 value: [ 3.0 ],
                 required: true,
                 help: 'list of Hill exponent of inhibitors',
@@ -334,7 +334,7 @@ export const fields: NewEntityField[] = [
             {
                 label: 'channel name',
                 type: 'string',
-                state: 'channelName',
+                state: 'channel_name',
                 value: 'P2X',
                 required: true,
                 help: 'supply a unique name for the channel (for inclusion on net graph)',
@@ -342,7 +342,7 @@ export const fields: NewEntityField[] = [
             {
                 label: 'ion channel target',
                 type: 'list',
-                state: 'ionChannelTarget',
+                state: 'ion_channel_target',
                 value: [ 'Na', 'K' ],
                 required: true,
                 help: `ion channel target ('None', 'Na', 'K', 'Cl','Ca')`,
@@ -350,7 +350,7 @@ export const fields: NewEntityField[] = [
             {
                 label: 'target Hill coefficient',
                 type: 'number',
-                state: 'targetHillCoefficient',
+                state: 'target_Hill_coefficient',
                 value: 1.0e-3,
                 format: 'scientific',
                 required: true,
@@ -359,7 +359,7 @@ export const fields: NewEntityField[] = [
             {
                 label: 'target Hill exponent',
                 type: 'number',
-                state: 'targetHillExponent',
+                state: 'target_Hill_exponent',
                 value: 1.0,
                 format: 'float',
                 required: true,
@@ -368,7 +368,7 @@ export const fields: NewEntityField[] = [
             {
                 label: 'peak channel opening',
                 type: 'number',
-                state: 'peakChannelOpening',
+                state: 'peak_channel_opening',
                 value: 1e-16,
                 format: 'scientific',
                 required: true,
@@ -377,7 +377,7 @@ export const fields: NewEntityField[] = [
             {
                 label: 'acts extracellularly',
                 type: 'boolean',
-                state: 'actsExtracellularly',
+                state: 'acts_extracellularly',
                 value: false,
                 required: true,
                 help: 'acts via extracellular (True) or intracellular (False) concentration',
@@ -388,7 +388,7 @@ export const fields: NewEntityField[] = [
             {
                 label: 'zone activators',
                 type: 'string',
-                state: 'zoneActivators',
+                state: 'zone_activators',
                 value: 'None',
                 required: true,
                 help: `location of concentration having an influence ('cell' or 'env')`,
@@ -399,7 +399,7 @@ export const fields: NewEntityField[] = [
             {
                 label: 'zone inhibitors',
                 type: 'string',
-                state: 'zoneInhibitors',
+                state: 'zone_inhibitors',
                 value: 'None',
                 required: true,
                 help: `location of concentration having an influence ('cell' or 'env')`,
@@ -409,12 +409,12 @@ export const fields: NewEntityField[] = [
     {
         label: 'active pumping',
         type: 'group',
-        state: 'activePumping',
+        state: 'active_pumping',
         value: [
             {
                 label: 'turn on',
                 type: 'boolean',
-                state: 'turnOn',
+                state: 'turn_on',
                 value: false,
                 required: true,
                 help: 'turn pumping on',
@@ -422,7 +422,7 @@ export const fields: NewEntityField[] = [
             {
                 label: 'pump to cell',
                 type: 'boolean',
-                state: 'pumpToCell',
+                state: 'pump_to_cell',
                 value: false,
                 required: true,
                 help: 'pump from extracellular space to cell (true) or reverse (false)',
@@ -430,7 +430,7 @@ export const fields: NewEntityField[] = [
             {
                 label: 'maximum rate',
                 type: 'number',
-                state: 'maximumRate',
+                state: 'maximum_rate',
                 value: 1.0e-8,
                 format: 'scientific',
                 required: true,
@@ -440,7 +440,7 @@ export const fields: NewEntityField[] = [
             {
                 label: 'pump Km',
                 type: 'number',
-                state: 'pumpKm',
+                state: 'pump_Km',
                 value: 1.0e-3,
                 format: 'scientific',
                 required: true,
@@ -450,7 +450,7 @@ export const fields: NewEntityField[] = [
             {
                 label: 'uses ATP',
                 type: 'boolean',
-                state: 'usesAtp',
+                state: 'uses_ATP',
                 value: false,
                 required: true,
                 help: 'uses ATP or facilitated transport',
@@ -461,7 +461,7 @@ export const fields: NewEntityField[] = [
     {
         label: 'change at bounds',
         type: 'group',
-        state: 'changeAtBounds',
+        state: 'change_at_bounds',
         value: [
             eventRecords.eventHappens,
             {
@@ -497,7 +497,7 @@ export const fields: NewEntityField[] = [
             {
                 label: 'plot 2D',
                 type: 'boolean',
-                state: 'plot2d',
+                state: 'plot_2D',
                 value: true,
                 required: true,
                 help: 'create a unique set of plots for the substance',
@@ -513,7 +513,7 @@ export const fields: NewEntityField[] = [
             {
                 label: 'autoscale colorbar',
                 type: 'boolean',
-                state: 'autoscaleColorbar',
+                state: 'autoscale_colorbar',
                 value: true,
                 required: true,
                 help: 'autoscale the min-max values of the colorbar',
@@ -521,7 +521,7 @@ export const fields: NewEntityField[] = [
             {
                 label: 'max val',
                 type: 'number',
-                state: 'maxVal',
+                state: 'max_val',
                 value: 2.0,
                 format: 'float',
                 required: true,
@@ -531,7 +531,7 @@ export const fields: NewEntityField[] = [
             {
                 label: 'min val',
                 type: 'number',
-                state: 'minVal',
+                state: 'min_val',
                 value: 0.0,
                 format: 'float',
                 required: true,

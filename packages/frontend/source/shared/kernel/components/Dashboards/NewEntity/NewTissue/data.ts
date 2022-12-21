@@ -27,12 +27,12 @@ export const fields: NewEntityField[] = [
     {
         label: 'diffusion constants',
         type: 'group',
-        state: 'diffusionConstants',
+        state: 'diffusion_constants',
         value: [
             {
                 label: 'Dm_Na',
                 type: 'number',
-                state: 'DmNa',
+                state: 'Dm_Na',
                 value: 2.0e-18,
                 format: 'scientific',
                 required: true,
@@ -42,7 +42,7 @@ export const fields: NewEntityField[] = [
             {
                 label: 'Dm_K',
                 type: 'number',
-                state: 'DmK',
+                state: 'Dm_K',
                 value: 1.0e-18,
                 format: 'scientific',
                 required: true,
@@ -52,7 +52,7 @@ export const fields: NewEntityField[] = [
             {
                 label: 'Dm_Cl',
                 type: 'number',
-                state: 'DmCl',
+                state: 'Dm_Cl',
                 value: 1.0e-18,
                 format: 'scientific',
                 required: true,
@@ -62,7 +62,7 @@ export const fields: NewEntityField[] = [
             {
                 label: 'Dm_Ca',
                 type: 'number',
-                state: 'DmCa',
+                state: 'Dm_Ca',
                 value: 1.0e-18,
                 format: 'scientific',
                 required: true,
@@ -72,7 +72,7 @@ export const fields: NewEntityField[] = [
             {
                 label: 'Dm_M',
                 type: 'number',
-                state: 'DmM',
+                state: 'Dm_M',
                 value: 1.0e-18,
                 format: 'scientific',
                 required: true,
@@ -82,7 +82,7 @@ export const fields: NewEntityField[] = [
             {
                 label: 'Dm_P',
                 type: 'number',
-                state: 'DmP',
+                state: 'Dm_P',
                 value: 0.0,
                 format: 'scientific',
                 required: true,
@@ -95,7 +95,7 @@ export const fields: NewEntityField[] = [
     {
         label: 'cell targets',
         type: 'group',
-        state: 'cellTargets',
+        state: 'cell_targets',
         value: [
             {
                 label: 'type',

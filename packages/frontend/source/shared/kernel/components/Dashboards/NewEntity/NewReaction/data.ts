@@ -20,7 +20,7 @@ export const fields: NewEntityField[] = [
     {
         label: 'reaction zone',
         type: 'string',
-        state: 'reactionZone',
+        state: 'reaction_zone',
         value: 'cell',
         required: true,
         help: `reaction zone identifier: 'cell', 'env', or 'mit'; where reaction takes place`,
@@ -36,7 +36,7 @@ export const fields: NewEntityField[] = [
     {
         label: 'reactant multipliers',
         type: 'list',
-        state: 'reactantMultipliers',
+        state: 'reactant_multipliers',
         value: [ 1 ],
         required: true,
         help: `reaction coefficients for reagents, in same order as reagent definition`,
@@ -44,7 +44,7 @@ export const fields: NewEntityField[] = [
     {
         label: 'Km reactants',
         type: 'list',
-        state: 'KmReactants',
+        state: 'Km_reactants',
         value: [ 1.0 ],
         required: true,
         help: `list of half-max coefficients for reagents, in same order as reagents list`,
@@ -60,7 +60,7 @@ export const fields: NewEntityField[] = [
     {
         label: 'product multipliers',
         type: 'list',
-        state: 'productMultipliers',
+        state: 'product_multipliers',
         value: [ 1, 1 ],
         required: true,
         help: `reaction coefficients for products, in same order as product definition`,
@@ -68,7 +68,7 @@ export const fields: NewEntityField[] = [
     {
         label: 'Km products',
         type: 'list',
-        state: 'KmProducts',
+        state: 'Km_products',
         value: [ 0.1, 0.1 ],
         required: true,
         help: `list of half-max coefficients for reagents, in same order as reagents list`,
@@ -76,7 +76,7 @@ export const fields: NewEntityField[] = [
     {
         label: 'max rate',
         type: 'number',
-        state: 'maxRate',
+        state: 'max_rate',
         value: 5.0e-3,
         format: 'scientific',
         required: true,
@@ -85,7 +85,7 @@ export const fields: NewEntityField[] = [
     {
         label: 'standard free energy',
         type: 'string',
-        state: 'standardFreeEnergy',
+        state: 'standard_free_energy',
         value: 'None',
         required: true,
         unit: 'J/mol',
@@ -94,7 +94,7 @@ export const fields: NewEntityField[] = [
     {
         label: 'reaction activators',
         type: 'string',
-        state: 'reactionActivators',
+        state: 'reaction_activators',
         value: 'None',
         required: true,
         help: `additional defined substances or ions increasing activity of transporter`,
@@ -102,21 +102,21 @@ export const fields: NewEntityField[] = [
     {
         label: 'activator Km',
         type: 'string',
-        state: 'activatorKm',
+        state: 'activator_Km',
         value: 'None',
         required: true,
     },
     {
         label: 'activator n',
         type: 'string',
-        state: 'activatorN',
+        state: 'activator_n',
         value: 'None',
         required: true,
     },
     {
         label: 'activator zone',
         type: 'string',
-        state: 'activatorZone',
+        state: 'activator_zone',
         value: 'None',
         required: true,
         help: `location of concentration having an influence ('cell' or 'env')`,
@@ -124,7 +124,7 @@ export const fields: NewEntityField[] = [
     {
         label: 'reaction inhibitors',
         type: 'string',
-        state: 'reactionInhibitors',
+        state: 'reaction_inhibitors',
         value: 'None',
         required: true,
         help: `additional defined substances or ions decreasing activity of transporter`,
@@ -132,21 +132,21 @@ export const fields: NewEntityField[] = [
     {
         label: 'inhibitor Km',
         type: 'string',
-        state: 'inhibitorKm',
+        state: 'inhibitor_Km',
         value: 'None',
         required: true,
     },
     {
         label: 'inhibitor n',
         type: 'string',
-        state: 'inhibitorN',
+        state: 'inhibitor_n',
         value: 'None',
         required: true,
     },
     {
         label: 'inhibitor zone',
         type: 'string',
-        state: 'inhibitorZone',
+        state: 'inhibitor_zone',
         value: 'None',
         required: true,
     },
