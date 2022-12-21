@@ -11,81 +11,83 @@ export const BETSE_SIMULATION_FRAGMENT = gql`
     fragment BetseSimulationFields on BetseSimulation {
         id
         name
-        generatedAt
-        initTimeSettings {
-            timeStep
-            totalTime
-            samplingRate
+        generated_at
+        data {
+            init_time_settings {
+                time_step
+                total_time
+                sampling_rate
+            }
+            sim_time_settings {
+                time_step
+                total_time
+                sampling_rate
+            }
+            general_options {
+                comp_grid_size
+                simulate_extracellular_spaces
+                ion_profile
+                customized_ion_profile {
+                    extracellular_Na_concentration
+                    extracellular_K_concentration
+                    extracellular_Cl_concentration
+                    extracellular_Ca2_concentration
+                    extracellular_protein_concentration
+                    cytosolic_Na_concentration
+                    cytosolic_K_concentration
+                    cytosolic_Cl_concentration
+                    cytosolic_Ca2_concentration
+                    cytosolic_protein_concentration
+                }
+            }
+            variable_settings {
+                env_boundary_concentrations
+                temperature
+                deformation {
+                    turn_on
+                    galvanotropism
+                    viscous_damping
+                    fixed_cluster_boundary
+                    young_modulus
+                }
+                pressures {
+                    include_electrostatic_pressure
+                    include_osmotic_pressure
+                    membrane_water_conductivity
+                }
+                noise {
+                    static_noise_level
+                    dynamic_noise
+                    dynamic_noise_level
+                }
+                gap_junctions {
+                    gap_junction_surface_area
+                    voltage_sensitive_gj
+                    gj_voltage_threshold
+                    gj_voltage_window
+                    gj_minimum
+                }
+                tight_junction_scaling
+                tight_junction_elative_diffusion {
+                    Na
+                    K
+                    Cl
+                    Ca
+                    M
+                    P
+                }
+                adherens_junction_scaling
+                use_goldman_calculator
+            }
+            world
+            tissues
+            interventions
+            modulators
+            networks
+            biomolecules
+            reactions
+            channels
         }
-        simTimeSettings {
-            timeStep
-            totalTime
-            samplingRate
-        }
-        generalOptions {
-            compGridSize
-            simulateExtracellularSpaces
-            ionProfile
-            customizedIonProfile {
-                extracellularNaConcentration
-                extracellularKConcentration
-                extracellularClConcentration
-                extracellularCa2Concentration
-                extracellularProteinConcentration
-                cytosolicNaConcentration
-                cytosolicKConcentration
-                cytosolicClConcentration
-                cytosolicCa2Concentration
-                cytosolicProteinConcentration
-            }
-        }
-        variableSettings {
-            envBoundaryConcentrations
-            temperature
-            deformation {
-                turnOn
-                galvanotropism
-                viscousDamping
-                fixedClusterBoundary
-                youngModulus
-            }
-            pressures {
-                includeElectrostaticPressure
-                includeOsmoticPressure
-                membraneWaterConductivity
-            }
-            noise {
-                staticNoiseLevel
-                dynamicNoise
-                dynamicNoiseLevel
-            }
-            gapJunctions {
-                gapJunctionSurfaceArea
-                voltageSensitiveGj
-                gjVoltageThreshold
-                gjVoltageWindow
-                gjMinimum
-            }
-            tightJunctionScaling
-            tightJunctionRelativeDiffusion {
-                Na
-                K
-                Cl
-                Ca
-                M
-                P
-            }
-            adherensJunctionScaling
-            use_GoldmanCalculator
-        }
-        world
-        tissues
-        interventions
-        modulators
-        networks
-        biomolecules
-        reactions
-        channels
     }
 `;
 
@@ -94,26 +96,28 @@ export const BETSE_WORLD_FRAGMENT = gql`
     fragment BetseWorldFields on BetseWorld {
         id
         name
-        generatedAt
-        worldSize
-        cellRadius
-        cellHeight
-        cellSpacing
-        simulateSingleCell
-        latticeType
-        latticeDisorder
-        meshRefinement {
-            refineMesh
-            maximumSteps
-            convergenceThreshold
+        generated_at
+        data {
+            world_size
+            cell_radius
+            cell_height
+            cell_spacing
+            simulate_single_cell
+            lattice_type
+            lattice_disorder
+            mesh_refinement {
+                refine_mesh
+                maximum_steps
+                convergence_threshold
+            }
+            import_from_svg {
+                svg_override
+                cells_from_svg
+                svg_size
+            }
+            alpha_shape
+            use_centers
         }
-        importFromSvg {
-            svgOverride
-            cellsFromSvg
-            svgSize
-        }
-        alphaShape
-        useCenters
     }
 `;
 
@@ -122,22 +126,24 @@ export const BETSE_TISSUE_FRAGMENT = gql`
     fragment BetseTissueFields on BetseTissue {
         id
         name
-        generatedAt
-        insular
-        diffusionConstants {
-            DmNa
-            DmK
-            DmCl
-            DmCa
-            DmM
-            DmP
-        }
-        cellTargets {
-            type
-            color
-            image
-            indices
-            percent
+        generated_at
+        data {
+            insular
+            diffusion_constants {
+                Dm_Na
+                Dm_K
+                Dm_Cl
+                Dm_Ca
+                Dm_M
+                Dm_P
+            }
+            cell_targets {
+                type
+                color
+                image
+                indices
+                percent
+            }
         }
     }
 `;
@@ -147,7 +153,7 @@ export const BETSE_INTERVENTION_FRAGMENT = gql`
     fragment BetseInterventionFields on BetseIntervention {
         id
         name
-        generatedAt
+        generated_at
     }
 `;
 
@@ -156,39 +162,41 @@ export const BETSE_FUNCTION_FRAGMENT = gql`
     fragment BetseFunctionFields on BetseFunction {
         id
         name
-        generatedAt
-        gradientX {
-            slope
-            xOffset
-            zOffset
-            exponent
-        }
-        gradientY {
-            slope
-            xOffset
-            zOffset
-            exponent
-        }
-        gradientR {
-            slope
-            xOffset
-            zOffset
-            exponent
-        }
-        periodic {
-            frequency
-            phase
-        }
-        fSweep {
-            startFrequency
-            endFrequency
-        }
-        gradientBitmap {
-            file
-            zOffset
-        }
-        singleCell {
-            zOffset
+        generated_at
+        data {
+            gradient_x {
+                slope
+                x_offset
+                z_offset
+                exponent
+            }
+            gradient_y {
+                slope
+                x_offset
+                z_offset
+                exponent
+            }
+            gradient_r {
+                slope
+                x_offset
+                z_offset
+                exponent
+            }
+            periodic {
+                frequency
+                phase
+            }
+            f_sweep {
+                start_frequency
+                end_frequency
+            }
+            gradient_bitmap {
+                file
+                z_offset
+            }
+            single_cell {
+                z_offset
+            }
         }
     }
 `;
@@ -198,19 +206,21 @@ export const BETSE_NETWORK_FRAGMENT = gql`
     fragment BetseNetworkFields on BetseNetwork {
         id
         name
-        generatedAt
-        enableMitochondria
-        optimization {
-            optimizeNetwork
-            optimizationSteps
-            optimizationMethod
-            optimizationT
-            optimizationStep
-            targetVmem
+        generated_at
+        data {
+            enable_mitochondria
+            optimization {
+                optimize_network
+                optimization_steps
+                optimization_method
+                optimization_t
+                optimization_step
+                target_Vmem
+            }
+            time_dilation_factor
+            reset_microtubules
+            recalculate_fluid
         }
-        timeDilationFactor
-        resetMicrotubules
-        recalculateFluid
     }
 `;
 
@@ -219,73 +229,75 @@ export const BETSE_BIOMOLECULE_FRAGMENT = gql`
     fragment BetseBiomoleculeFields on BetseBiomolecule {
         id
         name
-        generatedAt
-        Dm
-        Do
-        Dgj
-        MuMem
-        uMtube
-        z
-        envConc
-        cellConc
-        mitConc
-        transmem
-        updateIntracellular
-        initialAsymmetry
-        TJPermeable
-        GJImpermeable
-        TJFactor
-        ignoreEcm
-        scaleFactor
-        useTimeDilation
-        growthAndDecay {
-            productionRate
-            decayRate
-            applyTo
-            modulatorFunction
-            activators
-            KmActivators
-            nActivators
-            inhibitors
-            KmInhibitors
-            nInhibitors
-        }
-        ionChannelGating {
-            channelName
-            ionChannelTarget
-            targetHillCoefficient
-            targetHillExponent
-            peakChannelOpening
-            actsExtracellularly
-            activators
-            KmActivators
-            nActivators
-            zoneActivators
-            inhibitors
-            KmInhibitors
-            nInhibitors
-            zoneInhibitors
-        }
-        activePumping {
-            turnOn
-            pumpToCell
-            maximumRate
-            pumpKm
-            usesAtp
-        }
-        changeAtBounds {
-            eventHappens
-            changeStart
-            changeFinish
-            changeRate
-            concentration
-        }
-        plotting {
-            plot2d
-            animate
-            autoscaleColorbar
-            maxVal
-            minVal
+        generated_at
+        data {
+            Dm
+            Do
+            Dgj
+            Mu_mem
+            u_mtube
+            z
+            env_conc
+            cell_conc
+            mit_conc
+            transmem
+            update_intracellular
+            initial_asymmetry
+            TJ_permeable
+            GJ_impermeable
+            TJ_factor
+            ignore_ECM
+            scale_factor
+            use_time_dilation
+            growth_and_decay {
+                production_rate
+                decay_rate
+                apply_to
+                modulator_function
+                activators
+                Km_activators
+                n_activators
+                inhibitors
+                Km_inhibitors
+                n_inhibitors
+            }
+            ion_channel_gating {
+                channel_name
+                ion_channel_target
+                target_Hill_coefficient
+                target_Hill_exponent
+                peak_channel_opening
+                acts_extracellularly
+                activators
+                Km_activators
+                n_activators
+                zone_activators
+                inhibitors
+                Km_inhibitors
+                n_inhibitors
+                zone_inhibitors
+            }
+            active_pumping {
+                turn_on
+                pump_to_cell
+                maximum_rate
+                pump_Km
+                uses_ATP
+            }
+            change_at_bounds {
+                event_happens
+                change_start
+                change_finish
+                change_rate
+                concentration
+            }
+            plotting {
+                plot_2D
+                animate
+                autoscale_colorbar
+                max_val
+                min_val
+            }
         }
     }
 `;
@@ -295,23 +307,25 @@ export const BETSE_REACTION_FRAGMENT = gql`
     fragment BetseReactionFields on BetseReaction {
         id
         name
-        generatedAt
-        reactionZone
-        reactantMultipliers
-        KmReactants
-        products
-        productMultipliers
-        KmProducts
-        maxRate
-        standardFreeEnergy
-        reactionActivators
-        activatorKm
-        activatorN
-        activatorZone
-        reactionInhibitors
-        inhibitorKm
-        inhibitorN
-        inhibitorZone
+        generated_at
+        data {
+            reaction_zone
+            reactant_multipliers
+            Km_reactants
+            products
+            product_multipliers
+            Km_products
+            max_rate
+            standard_free_energy
+            reaction_activators
+            activator_Km
+            activator_n
+            activator_zone
+            reaction_inhibitors
+            inhibitor_Km
+            inhibitor_n
+            inhibitor_zone
+        }
     }
 `;
 
@@ -320,22 +334,24 @@ export const BETSE_CHANNEL_FRAGMENT = gql`
     fragment BetseChannelFields on BetseChannel {
         id
         name
-        generatedAt
-        channelClass
-        channelType
-        maxDm
-        applyTo
-        initActive
-        channelActivators
-        activatorKm
-        activatorN
-        activatorZone
-        activatorMax
-        channelInhibitors
-        inhibitorKm
-        inhibitorN
-        inhibitorZone
-        inhibitorMax
+        generated_at
+        data {
+            channel_class
+            channel_type
+            max_Dm
+            apply_to
+            init_active
+            channel_activators
+            activator_Km
+            activator_n
+            activator_zone
+            activator_max
+            channel_inhibitors
+            inhibitor_Km
+            inhibitor_n
+            inhibitor_zone
+            inhibitor_max
+        }
     }
 `;
 
@@ -344,26 +360,28 @@ export const BETSE_TRANSPORTER_FRAGMENT = gql`
     fragment BetseTransporterFields on BetseTransporter {
         id
         name
-        generatedAt
-        reactionZone
-        reactants
-        reactantMultipliers
-        KmReactants
-        products
-        productMultipliers
-        KmProducts
-        transferedOutOfCell
-        transferedIntoCell
-        maxRate
-        standardFreeEnergy
-        applyTo
-        ignoreEcm
-        transporterActivators
-        activatorKm
-        activatorN
-        transporterInhibitors
-        inhibitorKm
-        inhibitorN
+        generated_at
+        data {
+            reaction_zone
+            reactants
+            reactant_multipliers
+            Km_reactants
+            products
+            product_multipliers
+            Km_products
+            transfered_out_ofCell
+            transfered_into_cell
+            max_rate
+            standard_free_energy
+            apply_to
+            ignore_ECM
+            transporter_activators
+            activator_Km
+            activator_n
+            transporter_inhibitors
+            inhibitor_Km
+            inhibitor_n
+        }
     }
 `;
 
@@ -372,18 +390,20 @@ export const BETSE_MODULATOR_FRAGMENT = gql`
     fragment BetseModulatorFields on BetseModulator {
         id
         name
-        generatedAt
-        target
-        maxEffect
-        targetIon
-        activators
-        activatorKm
-        activatorN
-        activatorZone
-        inhibitors
-        inhibitorKm
-        inhibitorN
-        inhibitorZone
+        generated_at
+        data {
+            target
+            max_effect
+            target_ion
+            activators
+            activator_Km
+            activator_n
+            activator_zone
+            inhibitors
+            inhibitor_Km
+            inhibitor_n
+            inhibitor_zone
+        }
     }
 `;
 // #endregion module
