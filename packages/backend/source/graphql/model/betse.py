@@ -2,7 +2,7 @@ import json
 
 from source.graphql.types.betse import \
     BetseSimulation, \
-    BetseWorld, BetseWorldMeshRefinement, BetseWorldImportFromSVG, \
+    BetseWorld, BetseWorldData, BetseWorldMeshRefinement, BetseWorldImportFromSVG, \
     BetseTissue, BetseTissueDiffusionConstants, BetseTissueCellTargets, \
     BetseIntervention, \
     BetseFunction, BetseFunctionGradientX, BetseFunctionGradientY, BetseFunctionGradientR, BetseFunctionPeriodic, BetseFunctionFSweep, BetseFunctionGradientBitmap, BetseFunctionSingleCell, \
@@ -45,8 +45,9 @@ def modelBetseWorld(
     load_json: bool = True,
 ):
     model = model_base(data, load_json)
-    model['mesh_refinement'] = BetseWorldMeshRefinement(**model['mesh_refinement'])
-    model['import_from_svg'] = BetseWorldImportFromSVG(**model['import_from_svg'])
+    model['data']['mesh_refinement'] = BetseWorldMeshRefinement(**model['data']['mesh_refinement'])
+    model['data']['import_from_svg'] = BetseWorldImportFromSVG(**model['data']['import_from_svg'])
+    model['data'] = BetseWorldData(**model['data'])
 
     return BetseWorld(**model)
 

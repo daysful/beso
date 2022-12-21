@@ -73,11 +73,7 @@ def sqlite_insert(
             VALUES(?, ?, ?, ?)
             '''
 
-        data = value.copy()
-        del data['id']
-        del data['generated_by']
-        del data['generated_at']
-        del data['is_json']
+        data = value['data'].copy()
 
         cursor = connection.cursor()
         cursor.execute(

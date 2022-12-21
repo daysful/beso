@@ -53,7 +53,7 @@ def store_entity(
         del model_data['is_json']
 
     return model(
-        copy.deepcopy(model_data['data']),
+        copy.deepcopy(model_data),
         False,
     )
 
