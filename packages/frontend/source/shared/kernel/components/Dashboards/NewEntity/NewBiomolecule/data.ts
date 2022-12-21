@@ -329,7 +329,7 @@ export const fields: NewEntityField[] = [
     {
         label: 'ion channel gating',
         type: 'group',
-        state: 'ionChannelGating',
+        state: 'ion_channel_gating',
         value: [
             {
                 label: 'channel name',
