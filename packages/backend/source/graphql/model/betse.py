@@ -9,10 +9,10 @@ from source.graphql.types.betse import \
     BetseFunction, BetseFunctionData, BetseFunctionGradientX, BetseFunctionGradientY, BetseFunctionGradientR, BetseFunctionPeriodic, BetseFunctionFSweep, BetseFunctionGradientBitmap, BetseFunctionSingleCell, \
     BetseNetwork, BetseNetworkData, BetseNetworkOptimization, \
     BetseBiomolecule, BetseBiomoleculeData, BetseBiomoleculeGrowthAndDecay, BetseBiomoleculeIonChannelGating, BetseBiomoleculeActivePumping, BetseBiomoleculeChangeAtBounds, BetseBiomoleculePlotting, \
-    BetseReaction, \
-    BetseChannel, \
-    BetseTransporter, \
-    BetseModulator
+    BetseReaction, BetseReactionData, \
+    BetseChannel, BetseChannelData, \
+    BetseTransporter, BetseTransporterData, \
+    BetseModulator, BetseModulatorData
 
 
 
@@ -128,6 +128,7 @@ def modelBetseReaction(
     load_json: bool = True,
 ):
     model = model_base(data, load_json)
+    model['data'] = BetseReactionData(**model['data'])
 
     return BetseReaction(**model)
 
@@ -137,6 +138,7 @@ def modelBetseChannel(
     load_json: bool = True,
 ):
     model = model_base(data, load_json)
+    model['data'] = BetseChannelData(**model['data'])
 
     return BetseChannel(**model)
 
@@ -146,6 +148,7 @@ def modelBetseTransporter(
     load_json: bool = True,
 ):
     model = model_base(data, load_json)
+    model['data'] = BetseTransporterData(**model['data'])
 
     return BetseTransporter(**model)
 
@@ -155,5 +158,6 @@ def modelBetseModulator(
     load_json: bool = True,
 ):
     model = model_base(data, load_json)
+    model['data'] = BetseModulatorData(**model['data'])
 
     return BetseModulator(**model)

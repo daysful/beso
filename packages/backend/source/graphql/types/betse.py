@@ -777,21 +777,31 @@ class BetseBiomolecule:
 @strawberry.input
 class InputBetseReactionData:
     reaction_zone: str
+    reactants: list[str]
     reactant_multipliers: list[float]
     Km_reactants: list[float]
     products: list[str]
     product_multipliers: list[float]
     Km_products: list[float]
     max_rate: float
-    standard_free_energy: str
-    reaction_activators: list[str]
-    activator_Km: list[float]
-    activator_n: list[float]
-    activator_zone: list[str]
-    reaction_inhibitors: list[str]
-    inhibitor_Km: list[float]
-    inhibitor_n: list[float]
-    inhibitor_zone: list[str]
+    # standard_free_energy: str
+    # reaction_activators: list[str]
+    # activator_Km: list[float]
+    # activator_n: list[float]
+    # activator_zone: list[str]
+    # reaction_inhibitors: list[str]
+    # inhibitor_Km: list[float]
+    # inhibitor_n: list[float]
+    # inhibitor_zone: list[str]
+    standard_free_energy: GraphqlAny
+    reaction_activators: GraphqlAny
+    activator_Km: GraphqlAny
+    activator_n: GraphqlAny
+    activator_zone: GraphqlAny
+    reaction_inhibitors: GraphqlAny
+    inhibitor_Km: GraphqlAny
+    inhibitor_n: GraphqlAny
+    inhibitor_zone: GraphqlAny
 
 @strawberry.input
 class InputBetseReaction:
@@ -803,21 +813,31 @@ class InputBetseReaction:
 @strawberry.type
 class BetseReactionData:
     reaction_zone: str
+    reactants: list[str]
     reactant_multipliers: list[float]
     Km_reactants: list[float]
     products: list[str]
     product_multipliers: list[float]
     Km_products: list[float]
     max_rate: float
-    standard_free_energy: str
-    reaction_activators: list[str]
-    activator_Km: list[float]
-    activator_n: list[float]
-    activator_zone: list[str]
-    reaction_inhibitors: list[str]
-    inhibitor_Km: list[float]
-    inhibitor_n: list[float]
-    inhibitor_zone: list[str]
+    # standard_free_energy: str
+    # reaction_activators: list[str]
+    # activator_Km: list[float]
+    # activator_n: list[float]
+    # activator_zone: list[str]
+    # reaction_inhibitors: list[str]
+    # inhibitor_Km: list[float]
+    # inhibitor_n: list[float]
+    # inhibitor_zone: list[str]
+    standard_free_energy: GraphqlAny
+    reaction_activators: GraphqlAny
+    activator_Km: GraphqlAny
+    activator_n: GraphqlAny
+    activator_zone: GraphqlAny
+    reaction_inhibitors: GraphqlAny
+    inhibitor_Km: GraphqlAny
+    inhibitor_n: GraphqlAny
+    inhibitor_zone: GraphqlAny
 
 @strawberry.type
 class BetseReaction:
