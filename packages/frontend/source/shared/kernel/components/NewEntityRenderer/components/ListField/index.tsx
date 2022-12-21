@@ -163,6 +163,7 @@ const ListField: React.FC<ListFieldProperties> = (
                         data.value.filter(value => value + '' !== removedValue + ''),
                     );
                 }}
+                keyFix={data.state}
                 theme={stateGeneralTheme}
                 style={{
                     maxWidth: '350px',
