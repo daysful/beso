@@ -116,11 +116,18 @@ const NewFunction: React.FC<NewFunctionProperties> = (
             )}
 
             onAdd={(state) => {
-                const input = {
-                    ...extractState(state),
-                };
+                const value = extractState(state);
+                const name = value['name'];
+                delete value['name'];
 
-                input['gradientBitmap']['file'] = '';
+                value['gradient_bitmap']['file'] = '';
+
+                const input = {
+                    name,
+                    data: {
+                        ...value,
+                    },
+                };
 
                 graphqlClient.mutate({
                     mutation: BETSE_MUTATIONS.ADD_BETSE_FUNCTION,

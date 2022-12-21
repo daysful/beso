@@ -116,12 +116,16 @@ const NewBiomolecule: React.FC<NewBiomoleculeProperties> = (
             )}
 
             onAdd={(state) => {
+                const value = extractState(state);
+                const name = value['name'];
+                delete value['name'];
+
                 const input = {
-                    ...extractState(state),
+                    name,
+                    data: {
+                        ...value,
+                    },
                 };
-                console.log({
-                    input,
-                });
 
                 graphqlClient.mutate({
                     mutation: BETSE_MUTATIONS.ADD_BETSE_BIOMOLECULE,

@@ -116,8 +116,15 @@ const NewReaction: React.FC<NewReactionProperties> = (
             )}
 
             onAdd={(state) => {
+                const value = extractState(state);
+                const name = value['name'];
+                delete value['name'];
+
                 const input = {
-                    ...extractState(state),
+                    name,
+                    data: {
+                        ...value,
+                    },
                 };
 
                 graphqlClient.mutate({

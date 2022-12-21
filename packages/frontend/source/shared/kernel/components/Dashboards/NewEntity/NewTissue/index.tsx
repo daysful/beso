@@ -116,11 +116,18 @@ const NewTissue: React.FC<NewTissueProperties> = (
             )}
 
             onAdd={(state) => {
-                const input = {
-                    ...extractState(state),
-                };
+                const value = extractState(state);
+                const name = value['name'];
+                delete value['name'];
 
-                input['cellTargets']['image'] = '';
+                value['cell_targets']['image'] = '';
+
+                const input = {
+                    name,
+                    data: {
+                        ...value,
+                    },
+                };
 
                 graphqlClient.mutate({
                     mutation: BETSE_MUTATIONS.ADD_BETSE_TISSUE,
