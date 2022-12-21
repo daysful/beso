@@ -1,4 +1,5 @@
 import json
+import copy
 
 from source.graphql.types.betse import \
     BetseSimulation, \
@@ -19,16 +20,22 @@ def model_base(
     data: any,
     load_json: bool = True,
 ):
+    model = data.copy()
+
     if load_json:
-        model = json.loads(data['data'])
+        model['data'] = json.loads(data['data'])
+
+        data_model = copy.deepcopy(model)['data']
+        data_model['id'] = model['id']
+        data_model['generated_at'] = model['generated_at']
+
+        return data_model
     else:
-        model = data
+        model['id'] = data['id']
+        if data.get('generated_at'):
+            model['generated_at'] = data['generated_at']
 
-    model['id'] = data['id']
-    if data.get('generated_at'):
-        model['generated_at'] = data['generated_at']
-
-    return model
+        return model
 
 
 def modelBetseSimulation(

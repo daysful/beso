@@ -27,12 +27,23 @@ def make_entity_data(
     data: dict,
     user: User,
 ):
-    entity_data = copy.deepcopy(data)
+    entity_data = {}
     entity_data['id'] = generate_id()
     entity_data['generated_by'] = user.id
     entity_data['generated_at'] = now()
     entity_data['is_json'] = True
+    entity_data['data'] = copy.deepcopy(data)
     return entity_data
+
+
+def make_model_data(
+    data: dict,
+):
+    model_data = copy.deepcopy(data['data'])
+    model_data['id'] = data['id']
+    model_data['generated_at'] = data['generated_at']
+
+    return model_data
 
 
 def store_entity(
@@ -46,14 +57,10 @@ def store_entity(
 
     insert(collection, entity_data)
 
-    model_data = copy.deepcopy(entity_data)
-    if model_data.get('generated_by'):
-        del model_data['generated_by']
-    if model_data.get('is_json'):
-        del model_data['is_json']
+    model_data = make_model_data(entity_data)
 
     return model(
-        copy.deepcopy(model_data),
+        model_data,
         False,
     )
 
