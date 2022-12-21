@@ -69,6 +69,7 @@ export interface NewSimulationOwnProperties {
 export interface NewSimulationStateProperties {
     stateGeneralTheme: Theme;
     stateInteractionTheme: Theme;
+    stateData: AppState['data'];
 }
 
 export interface NewSimulationDispatchProperties {
@@ -93,6 +94,7 @@ const NewSimulation: React.FC<NewSimulationProperties> = (
         // #region state
         stateGeneralTheme,
         // stateInteractionTheme,
+        stateData,
         // #endregion state
     } = properties;
     // #endregion properties
@@ -205,6 +207,7 @@ const NewSimulation: React.FC<NewSimulationProperties> = (
                 selected={world || 'select'}
                 selectables={[
                     'new world',
+                    ...stateData.worlds.map(world => world.name),
                 ]}
                 atSelect={(selection) => {}}
                 theme={stateGeneralTheme}
@@ -224,6 +227,7 @@ const NewSimulation: React.FC<NewSimulationProperties> = (
                     selected={'select'}
                     selectables={[
                         'new tissue',
+                        ...stateData.tissues.map(tissue => tissue.name),
                     ]}
                     atSelect={(selection) => {}}
                     theme={stateGeneralTheme}
@@ -466,6 +470,7 @@ const mapStateToProperties = (
 ): NewSimulationStateProperties => ({
     stateGeneralTheme: selectors.themes.getGeneralTheme(state),
     stateInteractionTheme: selectors.themes.getInteractionTheme(state),
+    stateData: selectors.data.getData(state),
 });
 
 
