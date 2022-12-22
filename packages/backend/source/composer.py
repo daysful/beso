@@ -65,18 +65,26 @@ def simulation_composer(
         return
 
     world = get(Collections.betseWorlds, simulation['world'])
-    # get tissues, interventions, etc.
 
-    results = {}
+    entities = {}
 
     for entity in simulation_entities:
         type = entity['type']
-        results[type] = []
+        entities[type] = []
         for id in simulation[type]:
             data = get(entity['collection'], id)
-            results[type].append(
+            entities[type].append(
                 parse(data),
             )
+
+    sim_config = {
+        'init time settings': simulation['data']['init_time_settings'],
+        'sim time settings': simulation['data']['sim_time_settings'],
+        'general options': simulation['data']['general_options'],
+        'world options': world['data'],
+        'tissue profile definition': {},
+        'internal parameters': simulation['data']['internal_parameters'],
+    }
 
 
     # write sim_config.yaml with the gathered simulation data
