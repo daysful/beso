@@ -28,12 +28,16 @@ def model_base(
         data_model = copy.deepcopy(model)['data']
         data_model['id'] = model['id']
         data_model['generated_at'] = model['generated_at']
+        data_model['generated_by'] = model['generated_by']
+        data_model['forked_from'] = None
 
         return data_model
     else:
         model['id'] = data['id']
-        if data.get('generated_at'):
-            model['generated_at'] = data['generated_at']
+
+        model['generated_at'] = data.get('generated_at') or 0
+        model['generated_by'] = data.get('generated_by') or ''
+        model['forked_from'] = data.get('forked_from') or None
 
         return model
 

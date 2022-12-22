@@ -222,6 +222,8 @@ class BetseSimulation:
     id: str
     name: str
     generated_at: float
+    generated_by: str
+    forked_from: str | None
     data: BetseSimulationData
 # endregion type BetseSimulation
 # endregion BetseSimulation
@@ -295,6 +297,8 @@ class BetseWorld:
     id: str
     name: str
     generated_at: float
+    generated_by: str
+    forked_from: str | None
     data: BetseWorldData
 # endregion type BetseWorld
 # endregion BetseWorld
@@ -361,6 +365,8 @@ class BetseTissue:
     id: str
     name: str
     generated_at: float
+    generated_by: str
+    forked_from: str | None
     data: BetseTissueData
 # endregion type BetseTissue
 # endregion BetseTissue
@@ -382,6 +388,8 @@ class BetseIntervention:
     id: str
     name: str
     generated_at: float
+    generated_by: str
+    forked_from: str | None
     type: str # 'targeted' | 'global'
     data: str
 # endregion type BetseIntervention
@@ -503,6 +511,8 @@ class BetseFunction:
     id: str
     name: str
     generated_at: float
+    generated_by: str
+    forked_from: str | None
     data: BetseFunctionData
 # endregion type BetseFunction
 # endregion BetseFunction
@@ -570,6 +580,8 @@ class BetseNetwork:
     id: str
     name: str
     generated_at: float
+    generated_by: str
+    forked_from: str | None
     data: BetseNetworkData
 # endregion type BetseNetwork
 # endregion BetseNetwork
@@ -766,6 +778,8 @@ class BetseBiomolecule:
     id: str
     name: str
     generated_at: float
+    generated_by: str
+    forked_from: str | None
     data: BetseBiomoleculeData
 # endregion type BetseBiomolecule
 # endregion BetseBiomolecule
@@ -844,6 +858,8 @@ class BetseReaction:
     id: str
     name: str
     generated_at: float
+    generated_by: str
+    forked_from: str | None
     data: BetseReactionData
 # endregion type BetseReaction
 # endregion BetseReaction
@@ -900,6 +916,8 @@ class BetseChannel:
     id: str
     name: str
     generated_at: float
+    generated_by: str
+    forked_from: str | None
     data: BetseChannelData
 # endregion type BetseChannel
 # endregion BetseChannel
@@ -964,6 +982,8 @@ class BetseTransporter:
     id: str
     name: str
     generated_at: float
+    generated_by: str
+    forked_from: str | None
     data: BetseTransporterData
 # endregion type BetseTransporter
 # endregion BetseTransporter
@@ -1012,6 +1032,8 @@ class BetseModulator:
     id: str
     name: str
     generated_at: float
+    generated_by: str
+    forked_from: str | None
     data: BetseModulatorData
 # endregion type BetseModulator
 # endregion BetseModulator
