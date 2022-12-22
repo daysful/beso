@@ -118,7 +118,7 @@ const options: PluridServerPartialOptions = {
     quiet,
     debug,
     serverName: 'BESO Frontend Server',
-    hostname: address + ':' + port,
+    hostname: process.env.BESO_FRONTEND || (address + ':' + port),
 };
 
 const template: PluridServerTemplateConfiguration = {
