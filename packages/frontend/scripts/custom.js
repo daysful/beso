@@ -19,6 +19,7 @@ const environment = {
     // 'process.env.ENV_NAME': JSON.stringify(process.env.ENV_NAME || ''),
     'process.env.BESO_BACKEND': JSON.stringify(process.env.BESO_BACKEND || ''),
     'process.env.BESO_BACKEND_GRAPHQL': JSON.stringify(process.env.BESO_BACKEND_GRAPHQL || ''),
+    'process.env.BESO_FRONTEND': JSON.stringify(process.env.BESO_FRONTEND || ''),
 };
 
 
