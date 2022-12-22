@@ -184,23 +184,15 @@ const NewSimulation: React.FC<NewSimulationProperties> = (
         type: string,
     ) => {
         if (typeof selection === 'string') {
-            switch (type) {
-                case 'world':
-                    if (selection === 'add new world') {
-
-                    }
+            switch (selection) {
+                case 'add new world':
                     return;
-                case 'tissue':
-                    if (selection === 'add new tissue') {
-
-                    }
+                case 'add new tissue':
                     return;
             }
 
             return;
         }
-
-        console.log(selection);
 
         switch (type) {
             case 'world':
