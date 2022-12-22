@@ -67,6 +67,7 @@ def store_entity(
 
 def mutation_entity_adder_factory(
     data: dict[str, str],
+    hook: callable = None,
 ):
     Input = TypeVar('Input')
     Result = TypeVar('Result')
@@ -76,12 +77,17 @@ def mutation_entity_adder_factory(
         if not user:
             return
 
-        return store_entity(
+        entity = store_entity(
             user,
             input,
             data['collection'],
             data['model'],
         )
+
+        if hook:
+            hook(entity)
+
+        return entity
 
     return adder
 

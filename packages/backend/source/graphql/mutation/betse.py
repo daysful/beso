@@ -28,6 +28,8 @@ from source.graphql.types.betse import \
     InputBetseTransporter, BetseTransporter, \
     InputBetseModulator, BetseModulator
 
+from source.composer import compose_simulation
+
 from .utilities import mutation_entity_adder_factory, mutation_entity_remove
 
 
@@ -81,7 +83,12 @@ mutation_data = {
 
 
 def addBetseSimulation(input: InputBetseSimulation, info: Info) -> BetseSimulation | None:
-    return mutation_entity_adder_factory(mutation_data['simulation'])(input, info)
+    def hook(entity):
+        if not entity:
+            return
+        compose_simulation(entity.id)
+
+    return mutation_entity_adder_factory(mutation_data['simulation'], hook)(input, info)
 
 def addBetseWorld(input: InputBetseWorld, info: Info) -> BetseWorld | None:
     return mutation_entity_adder_factory(mutation_data['world'])(input, info)

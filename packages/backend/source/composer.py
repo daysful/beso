@@ -1,8 +1,11 @@
-import json
 import copy
+import json
+import yaml
 
 from source.database.collections import Collections
 from source.database.main import get
+
+from source.simulation import betse_copy_data
 
 
 
@@ -57,7 +60,7 @@ simulation_entities = [
 ]
 
 
-def simulation_composer(
+def compose_simulation(
     simulation_id: str,
 ):
     simulation = parse(get(Collections.betseSimulations, simulation_id))
@@ -77,6 +80,8 @@ def simulation_composer(
                 parse(data),
             )
 
+    simulation_path = betse_copy_data(id)
+
     sim_config = {
         'init time settings': simulation['data']['init_time_settings'],
         'sim time settings': simulation['data']['sim_time_settings'],
@@ -86,5 +91,8 @@ def simulation_composer(
         'internal parameters': simulation['data']['internal_parameters'],
     }
 
+    sim_config_yaml = yaml.dump(sim_config)
 
-    # write sim_config.yaml with the gathered simulation data
+    f = open(f'{simulation_path}/sim_config.yaml', 'w')
+    f.write(sim_config_yaml)
+    f.close()
