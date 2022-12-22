@@ -121,7 +121,7 @@ const NewSimulation: React.FC<NewSimulationProperties> = (
     const [
         world,
         setWorld,
-    ] = useState('');
+    ] = useState<any>();
 
     const [
         tissues,
@@ -206,10 +206,22 @@ const NewSimulation: React.FC<NewSimulationProperties> = (
             <PluridDropdown
                 selected={world || 'select'}
                 selectables={[
-                    'new world',
-                    ...stateData.worlds.map(world => world.name),
+                    'add new world',
+                    ...stateData.worlds.map(world => ({
+                        id: world.id,
+                        value: world.name,
+                    })),
                 ]}
-                atSelect={(selection) => {}}
+                atSelect={(selection) => {
+                    if (typeof selection === 'string') {
+                        if (selection === 'add new world') {
+
+                        }
+                        return;
+                    }
+
+                    setWorld(selection);
+                }}
                 theme={stateGeneralTheme}
                 width={130}
             />
