@@ -11,6 +11,17 @@
         PluridLink,
     } from '@plurid/plurid-react';
     // #endregion libraries
+
+
+    // #region external
+    import {
+        BESO_FRONTEND,
+    } from '~kernel-data/constants';
+
+    import {
+        PluridCopyableLine,
+    } from '~kernel-services/styled';
+    // #endregion external
 // #endregion imports
 
 
@@ -78,7 +89,17 @@ export const abstractRowRenderer = (
                 renderColumns.push(
                     <div
                         key={Math.random() + ''}
+                        style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                        }}
                     >
+                        <PluridCopyableLine
+                            data={BESO_FRONTEND + `/view/resource/${data.id}`}
+                            viewData=" "
+                            copyMessage=" "
+                        />
+
                         {data.name}
                     </div>
                 );

@@ -37,6 +37,9 @@ const {
         Spinner: PluridSpinner,
         Tooltip: PluridTooltip,
     },
+    varia: {
+        CopyableLine: PluridCopyableLine,
+    },
 } = universal;
 
 const {
@@ -95,6 +98,7 @@ export {
     PluridFormLeftRight,
     PluridSpinner,
     PluridTooltip,
+    PluridCopyableLine,
 
     ToolbarSpecific,
     Notifications,
