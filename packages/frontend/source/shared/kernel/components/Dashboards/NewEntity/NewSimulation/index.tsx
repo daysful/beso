@@ -521,9 +521,23 @@ const NewSimulation: React.FC<NewSimulationProperties> = (
             theme={stateGeneralTheme}
         >
             <StyledNewEntity>
-                <h1>
-                    New Simulation
-                </h1>
+                <PluridPureButton
+                    text="Add New Simulation"
+                    atClick={() => {
+                    }}
+                    theme={stateGeneralTheme}
+                    level={2}
+                    disabled={!isValid}
+                />
+
+                <PluridLinkButton
+                    text="cancel"
+                    atClick={() => {
+                        setFullRenderArea(false);
+                        setRenderView('simulation');
+                    }}
+                    theme={stateGeneralTheme}
+                />
 
                 <PluridInputLine
                     theme={stateGeneralTheme}
@@ -552,24 +566,6 @@ const NewSimulation: React.FC<NewSimulationProperties> = (
                 {channelsRender}
                 {transportersRender}
                 {modulatorsRender}
-
-                <PluridPureButton
-                    text="Add New Simulation"
-                    atClick={() => {
-                    }}
-                    theme={stateGeneralTheme}
-                    level={2}
-                    disabled={!isValid}
-                />
-
-                <PluridLinkButton
-                    text="cancel"
-                    atClick={() => {
-                        setFullRenderArea(false);
-                        setRenderView('simulation');
-                    }}
-                    theme={stateGeneralTheme}
-                />
             </StyledNewEntity>
         </StyledDashboardContainer>
     );
