@@ -165,6 +165,37 @@ const NewSimulation: React.FC<NewSimulationProperties> = (
     // #endregion state
 
 
+    // #region handlers
+    const makeSelectables = (
+        data: any[],
+    ) => data.map(item => ({
+        id: item.id,
+        value: item.name,
+    }));
+
+    const handleSelection = (
+        selection: any,
+        type: string,
+    ) => {
+        if (typeof selection === 'string') {
+            switch (type) {
+                case 'world':
+                    if (selection === 'add new world') {
+
+                    }
+                    return;
+            }
+        }
+
+        switch (type) {
+            case 'world':
+                setWorld(selection);
+                return;
+        }
+    }
+    // #endregion handlers
+
+
     // #region effects
     useEffect(() => {
         if (
@@ -207,20 +238,10 @@ const NewSimulation: React.FC<NewSimulationProperties> = (
                 selected={world || 'select'}
                 selectables={[
                     'add new world',
-                    ...stateData.worlds.map(world => ({
-                        id: world.id,
-                        value: world.name,
-                    })),
+                    ...makeSelectables(stateData.worlds),
                 ]}
                 atSelect={(selection) => {
-                    if (typeof selection === 'string') {
-                        if (selection === 'add new world') {
-
-                        }
-                        return;
-                    }
-
-                    setWorld(selection);
+                    handleSelection(selection, 'world');
                 }}
                 theme={stateGeneralTheme}
                 width={130}
@@ -238,10 +259,12 @@ const NewSimulation: React.FC<NewSimulationProperties> = (
                 <PluridDropdown
                     selected={'select'}
                     selectables={[
-                        'new tissue',
-                        ...stateData.tissues.map(tissue => tissue.name),
+                        'add new tissue',
+                        ...makeSelectables(stateData.tissues),
                     ]}
-                    atSelect={(selection) => {}}
+                    atSelect={(selection) => {
+                        handleSelection(selection, 'tissue');
+                    }}
                     theme={stateGeneralTheme}
                     width={130}
                 />
@@ -283,19 +306,22 @@ const NewSimulation: React.FC<NewSimulationProperties> = (
         </>
     );
 
-    const modulatorsRender = (
+    const functionsRender = (
         <>
             <PluridFormLeftRight>
                 <div>
-                    modulators
+                    functions
                 </div>
 
                 <PluridDropdown
                     selected={'select'}
                     selectables={[
-                        'new modulator',
+                        'add new function',
+                        ...makeSelectables(stateData.modulatorFunctions),
                     ]}
-                    atSelect={(selection) => {}}
+                    atSelect={(selection) => {
+                        handleSelection(selection, 'function');
+                    }}
                     theme={stateGeneralTheme}
                     width={130}
                 />
@@ -320,9 +346,12 @@ const NewSimulation: React.FC<NewSimulationProperties> = (
                 <PluridDropdown
                     selected={'select'}
                     selectables={[
-                        'new network',
+                        'add new network',
+                        ...makeSelectables(stateData.networks),
                     ]}
-                    atSelect={(selection) => {}}
+                    atSelect={(selection) => {
+                        handleSelection(selection, 'network');
+                    }}
                     theme={stateGeneralTheme}
                     width={130}
                 />
@@ -347,9 +376,12 @@ const NewSimulation: React.FC<NewSimulationProperties> = (
                 <PluridDropdown
                     selected={'select'}
                     selectables={[
-                        'new biomolecule',
+                        'add new biomolecule',
+                        ...makeSelectables(stateData.biomolecules),
                     ]}
-                    atSelect={(selection) => {}}
+                    atSelect={(selection) => {
+                        handleSelection(selection, 'biomolecule');
+                    }}
                     theme={stateGeneralTheme}
                     width={130}
                 />
@@ -374,9 +406,12 @@ const NewSimulation: React.FC<NewSimulationProperties> = (
                 <PluridDropdown
                     selected={'select'}
                     selectables={[
-                        'new reaction',
+                        'add new reaction',
+                        ...makeSelectables(stateData.reactions),
                     ]}
-                    atSelect={(selection) => {}}
+                    atSelect={(selection) => {
+                        handleSelection(selection, 'reaction');
+                    }}
                     theme={stateGeneralTheme}
                     width={130}
                 />
@@ -401,9 +436,72 @@ const NewSimulation: React.FC<NewSimulationProperties> = (
                 <PluridDropdown
                     selected={'select'}
                     selectables={[
-                        'new channel',
+                        'add new channel',
+                        ...makeSelectables(stateData.channels),
                     ]}
-                    atSelect={(selection) => {}}
+                    atSelect={(selection) => {
+                        handleSelection(selection, 'channel');
+                    }}
+                    theme={stateGeneralTheme}
+                    width={130}
+                />
+            </PluridFormLeftRight>
+
+            <PluridEntityPillGroup
+                entities={[
+                ]}
+                remove={() => {}}
+                theme={stateGeneralTheme}
+            />
+        </>
+    );
+
+    const transportersRender = (
+        <>
+            <PluridFormLeftRight>
+                <div>
+                    transporters
+                </div>
+
+                <PluridDropdown
+                    selected={'select'}
+                    selectables={[
+                        'add new function',
+                        ...makeSelectables(stateData.transporters),
+                    ]}
+                    atSelect={(selection) => {
+                        handleSelection(selection, 'transporter');
+                    }}
+                    theme={stateGeneralTheme}
+                    width={130}
+                />
+            </PluridFormLeftRight>
+
+            <PluridEntityPillGroup
+                entities={[
+                ]}
+                remove={() => {}}
+                theme={stateGeneralTheme}
+            />
+        </>
+    );
+
+    const modulatorsRender = (
+        <>
+            <PluridFormLeftRight>
+                <div>
+                    modulators
+                </div>
+
+                <PluridDropdown
+                    selected={'select'}
+                    selectables={[
+                        'add new modulator',
+                        ...makeSelectables(stateData.modulators),
+                    ]}
+                    atSelect={(selection) => {
+                        handleSelection(selection, 'modulator');
+                    }}
                     theme={stateGeneralTheme}
                     width={130}
                 />
@@ -447,11 +545,13 @@ const NewSimulation: React.FC<NewSimulationProperties> = (
                 {worldRender}
                 {tissuesRender}
                 {interventionsRender}
-                {modulatorsRender}
+                {functionsRender}
                 {networksRender}
                 {biomoleculesRender}
                 {reactionsRender}
                 {channelsRender}
+                {transportersRender}
+                {modulatorsRender}
 
                 <PluridPureButton
                     text="Add New Simulation"
