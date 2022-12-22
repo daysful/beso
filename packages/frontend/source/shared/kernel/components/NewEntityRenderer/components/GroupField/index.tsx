@@ -101,7 +101,7 @@ const GroupField: React.FC<GroupFieldProperties> = (
     const [
         show,
         setShow,
-    ] = useState(true);
+    ] = useState(false);
     // #endregion state
 
 

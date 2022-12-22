@@ -12,9 +12,15 @@
     } from '@reduxjs/toolkit';
     import { connect } from 'react-redux';
 
+
     import {
         Theme,
     } from '@plurid/plurid-themes';
+
+    import {
+        PluridUIEntityPillData,
+        PluridUIDropdownSelectable,
+    } from '@plurid/plurid-ui-components-react';
     // #endregion libraries
 
 
@@ -126,7 +132,7 @@ const NewSimulation: React.FC<NewSimulationProperties> = (
     const [
         tissues,
         setTissues,
-    ] = useState<string[]>([]);
+    ] = useState<PluridUIEntityPillData[]>([]);
 
     const [
         interventions,
@@ -174,7 +180,7 @@ const NewSimulation: React.FC<NewSimulationProperties> = (
     }));
 
     const handleSelection = (
-        selection: any,
+        selection: string | PluridUIDropdownSelectable,
         type: string,
     ) => {
         if (typeof selection === 'string') {
@@ -184,13 +190,36 @@ const NewSimulation: React.FC<NewSimulationProperties> = (
 
                     }
                     return;
+                case 'tissue':
+                    if (selection === 'add new tissue') {
+
+                    }
+                    return;
             }
+
+            return;
         }
+
+        console.log(selection);
 
         switch (type) {
             case 'world':
                 setWorld(selection);
                 return;
+            case 'tissue': {
+                const tissueAdded = tissues.find(tissue => tissue.id === selection.id);
+
+                if (!tissueAdded) {
+                    setTissues([
+                        ...tissues,
+                        {
+                            id: selection.id,
+                            text: selection.value,
+                        },
+                    ]);
+                }
+                return;
+            }
         }
     }
     // #endregion handlers
@@ -260,7 +289,9 @@ const NewSimulation: React.FC<NewSimulationProperties> = (
                     selected={'select'}
                     selectables={[
                         'add new tissue',
-                        ...makeSelectables(stateData.tissues),
+                        ...makeSelectables(stateData.tissues.filter(
+                            tissue => !tissues.find(added => added.id === tissue.id),
+                        )),
                     ]}
                     atSelect={(selection) => {
                         handleSelection(selection, 'tissue');
@@ -271,9 +302,12 @@ const NewSimulation: React.FC<NewSimulationProperties> = (
             </PluridFormLeftRight>
 
             <PluridEntityPillGroup
-                entities={[
-                ]}
-                remove={() => {}}
+                entities={tissues}
+                remove={(id) => {
+                    setTissues(
+                        tissues.filter(tissue => tissue.id !== id),
+                    );
+                }}
                 theme={stateGeneralTheme}
             />
         </>
