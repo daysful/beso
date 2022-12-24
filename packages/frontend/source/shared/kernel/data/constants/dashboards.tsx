@@ -27,9 +27,7 @@ export const rowsHeader = (
 
 export const rowTemplate = '20px 0.5fr 0.5fr 60px 60px';
 
-export const rowRenderFields = (
-    pluridlinkType: string,
-) => ([
-    'link', 'name', 'generatedAt', `pluridlink:${pluridlinkType}`, 'obliterate',
-]);
+export const rowRenderFields = [
+    'link', 'name', 'generatedAt', `pluridlink`, 'obliterate',
+];
 // #endregion module

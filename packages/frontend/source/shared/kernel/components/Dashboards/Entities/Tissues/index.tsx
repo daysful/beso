@@ -40,6 +40,10 @@
         StyledDashboardContainer,
     } from '~kernel-services/styled';
 
+    import {
+        makeEntitiesData,
+    } from '~kernel-services/logic/entities';
+
     import graphqlClient from '~kernel-services/graphql/client';
 
     import {
@@ -156,7 +160,7 @@ const Tissues: React.FC<TissuesProperties> = (
             <EntityView
                 ref={entityView}
 
-                entities={stateTissues}
+                entities={makeEntitiesData(stateTissues, 'tissue')}
                 searchFields={['name']}
 
                 generalTheme={stateGeneralTheme}
@@ -166,7 +170,7 @@ const Tissues: React.FC<TissuesProperties> = (
                 rowsHeader={rowsHeader}
                 noRows="no tissues"
 
-                rowRenderFields={rowRenderFields('tissue')}
+                rowRenderFields={rowRenderFields}
                 rowRenderMethods={{
                     handleObliterate,
                 }}

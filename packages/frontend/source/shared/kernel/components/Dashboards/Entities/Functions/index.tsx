@@ -40,6 +40,10 @@
         StyledDashboardContainer,
     } from '~kernel-services/styled';
 
+    import {
+        makeEntitiesData,
+    } from '~kernel-services/logic/entities';
+
     import graphqlClient from '~kernel-services/graphql/client';
 
     import {
@@ -156,7 +160,7 @@ const Functions: React.FC<FunctionsProperties> = (
             <EntityView
                 ref={entityView}
 
-                entities={stateFunctions}
+                entities={makeEntitiesData(stateFunctions, 'function')}
                 searchFields={['name']}
 
                 generalTheme={stateGeneralTheme}
@@ -166,7 +170,7 @@ const Functions: React.FC<FunctionsProperties> = (
                 rowsHeader={rowsHeader}
                 noRows="no functions"
 
-                rowRenderFields={rowRenderFields('function')}
+                rowRenderFields={rowRenderFields}
                 rowRenderMethods={{
                     handleObliterate,
                 }}

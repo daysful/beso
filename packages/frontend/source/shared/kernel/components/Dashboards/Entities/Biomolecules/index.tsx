@@ -40,6 +40,10 @@
         StyledDashboardContainer,
     } from '~kernel-services/styled';
 
+    import {
+        makeEntitiesData,
+    } from '~kernel-services/logic/entities';
+
     import graphqlClient from '~kernel-services/graphql/client';
 
     import {
@@ -156,7 +160,7 @@ const Biomolecules: React.FC<BiomoleculesProperties> = (
             <EntityView
                 ref={entityView}
 
-                entities={stateBiomolecules}
+                entities={makeEntitiesData(stateBiomolecules, 'biomolecule')}
                 searchFields={['name']}
 
                 generalTheme={stateGeneralTheme}
@@ -166,7 +170,7 @@ const Biomolecules: React.FC<BiomoleculesProperties> = (
                 rowsHeader={rowsHeader}
                 noRows="no biomolecules"
 
-                rowRenderFields={rowRenderFields('biomolecule')}
+                rowRenderFields={rowRenderFields}
                 rowRenderMethods={{
                     handleObliterate,
                 }}

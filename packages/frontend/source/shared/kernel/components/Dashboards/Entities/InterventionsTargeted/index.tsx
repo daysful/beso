@@ -42,6 +42,10 @@
 
     import InterventionsSelector from '~kernel-components/InterventionsSelector';
 
+    import {
+        makeEntitiesData,
+    } from '~kernel-services/logic/entities';
+
     import graphqlClient from '~kernel-services/graphql/client';
 
     import {
@@ -175,7 +179,7 @@ const InterventionsTargeted: React.FC<InterventionsTargetedProperties> = (
             <EntityView
                 ref={entityView}
 
-                entities={stateTargetedInterventions}
+                entities={makeEntitiesData(stateTargetedInterventions, 'intervention')}
                 searchFields={['name']}
 
                 generalTheme={stateGeneralTheme}
@@ -185,7 +189,7 @@ const InterventionsTargeted: React.FC<InterventionsTargetedProperties> = (
                 rowsHeader={rowsHeader}
                 noRows="no targeted interventions"
 
-                rowRenderFields={rowRenderFields('intervention')}
+                rowRenderFields={rowRenderFields}
                 rowRenderMethods={{
                     handleObliterate,
                 }}

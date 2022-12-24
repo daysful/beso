@@ -42,6 +42,10 @@
 
     import InterventionsSelector from '~kernel-components/InterventionsSelector';
 
+    import {
+        makeEntitiesData,
+    } from '~kernel-services/logic/entities';
+
     import graphqlClient from '~kernel-services/graphql/client';
 
     import {
@@ -175,7 +179,7 @@ const InterventionsGlobal: React.FC<InterventionsGlobalProperties> = (
             <EntityView
                 ref={entityView}
 
-                entities={stateGlobalInterventions}
+                entities={makeEntitiesData(stateGlobalInterventions, 'intervention')}
                 searchFields={['name']}
 
                 generalTheme={stateGeneralTheme}
@@ -185,7 +189,7 @@ const InterventionsGlobal: React.FC<InterventionsGlobalProperties> = (
                 rowsHeader={rowsHeader}
                 noRows="no global interventions"
 
-                rowRenderFields={rowRenderFields('intervention')}
+                rowRenderFields={rowRenderFields}
                 rowRenderMethods={{
                     handleObliterate,
                 }}

@@ -40,6 +40,10 @@
         StyledDashboardContainer,
     } from '~kernel-services/styled';
 
+    import {
+        makeEntitiesData,
+    } from '~kernel-services/logic/entities';
+
     import graphqlClient from '~kernel-services/graphql/client';
 
     import {
@@ -156,7 +160,7 @@ const Transporters: React.FC<TransportersProperties> = (
             <EntityView
                 ref={entityView}
 
-                entities={stateTransporters}
+                entities={makeEntitiesData(stateTransporters, 'transporter')}
                 searchFields={['name']}
 
                 generalTheme={stateGeneralTheme}
@@ -166,7 +170,7 @@ const Transporters: React.FC<TransportersProperties> = (
                 rowsHeader={rowsHeader}
                 noRows="no transporters"
 
-                rowRenderFields={rowRenderFields('transporter')}
+                rowRenderFields={rowRenderFields}
                 rowRenderMethods={{
                     handleObliterate,
                 }}

@@ -40,6 +40,10 @@
         StyledDashboardContainer,
     } from '~kernel-services/styled';
 
+    import {
+        makeEntitiesData,
+    } from '~kernel-services/logic/entities';
+
     import graphqlClient from '~kernel-services/graphql/client';
 
     import {
@@ -156,7 +160,7 @@ const Channels: React.FC<ChannelsProperties> = (
             <EntityView
                 ref={entityView}
 
-                entities={stateChannels}
+                entities={makeEntitiesData(stateChannels, 'channel')}
                 searchFields={['name']}
 
                 generalTheme={stateGeneralTheme}
@@ -166,7 +170,7 @@ const Channels: React.FC<ChannelsProperties> = (
                 rowsHeader={rowsHeader}
                 noRows="no channels"
 
-                rowRenderFields={rowRenderFields('channel')}
+                rowRenderFields={rowRenderFields}
                 rowRenderMethods={{
                     handleObliterate,
                 }}

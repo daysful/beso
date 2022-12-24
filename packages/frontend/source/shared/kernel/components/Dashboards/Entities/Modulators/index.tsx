@@ -40,6 +40,10 @@
         StyledDashboardContainer,
     } from '~kernel-services/styled';
 
+    import {
+        makeEntitiesData,
+    } from '~kernel-services/logic/entities';
+
     import graphqlClient from '~kernel-services/graphql/client';
 
     import {
@@ -156,7 +160,7 @@ const Modulators: React.FC<ModulatorsProperties> = (
             <EntityView
                 ref={entityView}
 
-                entities={stateModulators}
+                entities={makeEntitiesData(stateModulators, 'modulator')}
                 searchFields={['name']}
 
                 generalTheme={stateGeneralTheme}
@@ -166,7 +170,7 @@ const Modulators: React.FC<ModulatorsProperties> = (
                 rowsHeader={rowsHeader}
                 noRows="no modulators"
 
-                rowRenderFields={rowRenderFields('modulator')}
+                rowRenderFields={rowRenderFields}
                 rowRenderMethods={{
                     handleObliterate,
                 }}

@@ -40,6 +40,10 @@
         StyledDashboardContainer,
     } from '~kernel-services/styled';
 
+    import {
+        makeEntitiesData,
+    } from '~kernel-services/logic/entities';
+
     import graphqlClient from '~kernel-services/graphql/client';
 
     import {
@@ -156,7 +160,7 @@ const Networks: React.FC<NetworksProperties> = (
             <EntityView
                 ref={entityView}
 
-                entities={stateNetworks}
+                entities={makeEntitiesData(stateNetworks, 'network')}
                 searchFields={['name']}
 
                 generalTheme={stateGeneralTheme}
@@ -166,7 +170,7 @@ const Networks: React.FC<NetworksProperties> = (
                 rowsHeader={rowsHeader}
                 noRows="no networks"
 
-                rowRenderFields={rowRenderFields('network')}
+                rowRenderFields={rowRenderFields}
                 rowRenderMethods={{
                     handleObliterate,
                 }}

@@ -15,10 +15,6 @@
 
     // #region external
     import {
-        BESO_FRONTEND,
-    } from '~kernel-data/constants';
-
-    import {
         PluridCopyableLine,
     } from '~kernel-services/styled';
     // #endregion external
@@ -64,32 +60,12 @@ export const abstractRowRenderer = (
     const renderColumns: JSX.Element[] = [];
 
     for (const column of columns) {
-        if (column.startsWith('pluridlink:')) {
-            const path = column.replace('pluridlink:', '');
-            renderColumns.push(
-                <PluridLink
-                    key={Math.random() + ''}
-                    route={`/${path}/${data.id}`}
-                    devisible={true}
-                    style={{
-                        display: 'grid',
-                        placeContent: 'center',
-                    }}
-                >
-                    <PluridIconInfo
-                        atClick={() => {}}
-                    />
-                </PluridLink>
-            );
-            continue;
-        }
-
         switch (column) {
             case 'link':
                 renderColumns.push(
                     <PluridCopyableLine
                         key={Math.random() + ''}
-                        data={BESO_FRONTEND + `/view/resource/${data.id}`}
+                        data={data.link}
                         viewData=" "
                         copyMessage=" "
                     />
@@ -120,6 +96,23 @@ export const abstractRowRenderer = (
                     >
                         {new Date(data.last_run).toLocaleString()}
                     </div>
+                );
+                break;
+            case 'pluridlink':
+                renderColumns.push(
+                    <PluridLink
+                        key={Math.random() + ''}
+                        route={data.pluridlink}
+                        devisible={true}
+                        style={{
+                            display: 'grid',
+                            placeContent: 'center',
+                        }}
+                    >
+                        <PluridIconInfo
+                            atClick={() => {}}
+                        />
+                    </PluridLink>
                 );
                 break;
             case 'obliterate':

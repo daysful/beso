@@ -40,6 +40,10 @@
         StyledDashboardContainer,
     } from '~kernel-services/styled';
 
+    import {
+        makeEntitiesData,
+    } from '~kernel-services/logic/entities';
+
     import graphqlClient from '~kernel-services/graphql/client';
 
     import {
@@ -156,7 +160,7 @@ const Worlds: React.FC<WorldsProperties> = (
             <EntityView
                 ref={entityView}
 
-                entities={stateWorlds}
+                entities={makeEntitiesData(stateWorlds, 'world')}
                 searchFields={['name']}
 
                 generalTheme={stateGeneralTheme}
@@ -166,7 +170,7 @@ const Worlds: React.FC<WorldsProperties> = (
                 rowsHeader={rowsHeader}
                 noRows="no worlds"
 
-                rowRenderFields={rowRenderFields('world')}
+                rowRenderFields={rowRenderFields}
                 rowRenderMethods={{
                     handleObliterate,
                 }}
