@@ -23,6 +23,17 @@
         Channel,
     } from '~kernel-data/interfaces';
 
+    import {
+        fields,
+    } from '~kernel-data/constants/entity/transporter';
+
+    import Head from '~kernel-components/Head';
+    import EditEntityComponent from '~kernel-components/EditEntityComponent';
+
+    import {
+        mergeDataIntoFields,
+    } from '~kernel-services/logic/betse';
+
     import { AppState } from '~kernel-services/state/store';
     import StateContext from '~kernel-services/state/context';
     import selectors from '~kernel-services/state/selectors';
@@ -92,9 +103,18 @@ const Channel: React.FC<ChannelProperties> = (
         <StyledChannel
             theme={stateGeneralTheme}
         >
-            <h1>
-                '{channel.name}' channel
-            </h1>
+            <Head />
+
+            <EditEntityComponent
+                title={`'${channel.name}' channel`}
+                fields={mergeDataIntoFields(channel['data'], fields)}
+                kind="Channel"
+
+                onEdit={(state) => {
+                }}
+                onCancel={() => {
+                }}
+            />
         </StyledChannel>
     );
     // #endregion render

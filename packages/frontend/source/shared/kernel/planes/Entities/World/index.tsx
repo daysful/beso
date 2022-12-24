@@ -27,6 +27,7 @@
         fields,
     } from '~kernel-data/constants/entity/world';
 
+    import Head from '~kernel-components/Head';
     import EditEntityComponent from '~kernel-components/EditEntityComponent';
 
     import {
@@ -102,6 +103,8 @@ const World: React.FC<WorldProperties> = (
         <StyledWorld
             theme={stateGeneralTheme}
         >
+            <Head />
+
             <EditEntityComponent
                 title={`'${world.name}' world`}
                 fields={mergeDataIntoFields(world['data'], fields)}

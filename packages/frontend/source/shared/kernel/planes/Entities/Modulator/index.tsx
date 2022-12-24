@@ -23,6 +23,17 @@
         Modulator,
     } from '~kernel-data/interfaces';
 
+    import {
+        fields,
+    } from '~kernel-data/constants/entity/transporter';
+
+    import Head from '~kernel-components/Head';
+    import EditEntityComponent from '~kernel-components/EditEntityComponent';
+
+    import {
+        mergeDataIntoFields,
+    } from '~kernel-services/logic/betse';
+
     import { AppState } from '~kernel-services/state/store';
     import StateContext from '~kernel-services/state/context';
     import selectors from '~kernel-services/state/selectors';
@@ -92,9 +103,18 @@ const Modulator: React.FC<ModulatorProperties> = (
         <StyledModulator
             theme={stateGeneralTheme}
         >
-            <h1>
-                '{modulator.name}' modulator
-            </h1>
+            <Head />
+
+            <EditEntityComponent
+                title={`'${modulator.name}' modulator`}
+                fields={mergeDataIntoFields(modulator['data'], fields)}
+                kind="Modulator"
+
+                onEdit={(state) => {
+                }}
+                onCancel={() => {
+                }}
+            />
         </StyledModulator>
     );
     // #endregion render

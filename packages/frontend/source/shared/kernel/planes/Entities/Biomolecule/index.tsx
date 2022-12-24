@@ -23,6 +23,17 @@
         Biomolecule,
     } from '~kernel-data/interfaces';
 
+    import {
+        fields,
+    } from '~kernel-data/constants/entity/transporter';
+
+    import Head from '~kernel-components/Head';
+    import EditEntityComponent from '~kernel-components/EditEntityComponent';
+
+    import {
+        mergeDataIntoFields,
+    } from '~kernel-services/logic/betse';
+
     import { AppState } from '~kernel-services/state/store';
     import StateContext from '~kernel-services/state/context';
     import selectors from '~kernel-services/state/selectors';
@@ -92,9 +103,18 @@ const Biomolecule: React.FC<BiomoleculeProperties> = (
         <StyledBiomolecule
             theme={stateGeneralTheme}
         >
-            <h1>
-                '{biomolecule.name}' biomolecule
-            </h1>
+            <Head />
+
+            <EditEntityComponent
+                title={`'${biomolecule.name}' biomolecule`}
+                fields={mergeDataIntoFields(biomolecule['data'], fields)}
+                kind="Biomolecule"
+
+                onEdit={(state) => {
+                }}
+                onCancel={() => {
+                }}
+            />
         </StyledBiomolecule>
     );
     // #endregion render

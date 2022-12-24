@@ -23,6 +23,17 @@
         Network,
     } from '~kernel-data/interfaces';
 
+    import {
+        fields,
+    } from '~kernel-data/constants/entity/transporter';
+
+    import Head from '~kernel-components/Head';
+    import EditEntityComponent from '~kernel-components/EditEntityComponent';
+
+    import {
+        mergeDataIntoFields,
+    } from '~kernel-services/logic/betse';
+
     import { AppState } from '~kernel-services/state/store';
     import StateContext from '~kernel-services/state/context';
     import selectors from '~kernel-services/state/selectors';
@@ -92,9 +103,18 @@ const Network: React.FC<NetworkProperties> = (
         <StyledNetwork
             theme={stateGeneralTheme}
         >
-            <h1>
-                '{network.name}' network
-            </h1>
+            <Head />
+
+            <EditEntityComponent
+                title={`'${network.name}' network`}
+                fields={mergeDataIntoFields(network['data'], fields)}
+                kind="Network"
+
+                onEdit={(state) => {
+                }}
+                onCancel={() => {
+                }}
+            />
         </StyledNetwork>
     );
     // #endregion render

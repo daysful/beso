@@ -28,6 +28,17 @@
         startSimulation,
     } from '~kernel-services/logic/requests';
 
+    import {
+        fields,
+    } from '~kernel-data/constants/entity/transporter';
+
+    import Head from '~kernel-components/Head';
+    import EditEntityComponent from '~kernel-components/EditEntityComponent';
+
+    import {
+        mergeDataIntoFields,
+    } from '~kernel-services/logic/betse';
+
     import { AppState } from '~kernel-services/state/store';
     import StateContext from '~kernel-services/state/context';
     import selectors from '~kernel-services/state/selectors';

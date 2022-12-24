@@ -23,6 +23,17 @@
         ModulatorFunction,
     } from '~kernel-data/interfaces';
 
+    import {
+        fields,
+    } from '~kernel-data/constants/entity/transporter';
+
+    import Head from '~kernel-components/Head';
+    import EditEntityComponent from '~kernel-components/EditEntityComponent';
+
+    import {
+        mergeDataIntoFields,
+    } from '~kernel-services/logic/betse';
+
     import { AppState } from '~kernel-services/state/store';
     import StateContext from '~kernel-services/state/context';
     import selectors from '~kernel-services/state/selectors';
@@ -92,9 +103,18 @@ const Function: React.FC<FunctionProperties> = (
         <StyledFunction
             theme={stateGeneralTheme}
         >
-            <h1>
-                '{modulatorFunction.name}' function
-            </h1>
+            <Head />
+
+            <EditEntityComponent
+                title={`'${modulatorFunction.name}' function`}
+                fields={mergeDataIntoFields(modulatorFunction['data'], fields)}
+                kind="Function"
+
+                onEdit={(state) => {
+                }}
+                onCancel={() => {
+                }}
+            />
         </StyledFunction>
     );
     // #endregion render
