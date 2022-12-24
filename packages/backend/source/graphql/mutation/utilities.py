@@ -65,6 +65,25 @@ def store_entity(
     )
 
 
+def update_entity(
+    user: User,
+    input: callable,
+    collection: str,
+    model: callable,
+):
+    entity = make_dict(input)
+    entity_data = make_entity_data(entity, user)
+
+    # edit(collection, entity_data)
+
+    model_data = make_model_data(entity_data)
+
+    return model(
+        model_data,
+        False,
+    )
+
+
 def mutation_entity_adder_factory(
     data: dict[str, str],
     hook: callable = None,
@@ -90,6 +109,33 @@ def mutation_entity_adder_factory(
         return entity
 
     return adder
+
+
+def mutation_entity_updater_factory(
+    data: dict[str, str],
+    hook: callable = None,
+):
+    Input = TypeVar('Input')
+    Result = TypeVar('Result')
+
+    def updater(input: Type[Input], info: Info) -> Type[Result] | None:
+        user = info.context.user
+        if not user:
+            return
+
+        entity = update_entity(
+            user,
+            input,
+            data['collection'],
+            data['model'],
+        )
+
+        if hook:
+            hook(entity)
+
+        return entity
+
+    return updater
 
 
 def mutation_entity_remove(
