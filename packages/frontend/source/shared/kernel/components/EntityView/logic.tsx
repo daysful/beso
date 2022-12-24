@@ -85,21 +85,21 @@ export const abstractRowRenderer = (
         }
 
         switch (column) {
+            case 'link':
+                renderColumns.push(
+                    <PluridCopyableLine
+                        key={Math.random() + ''}
+                        data={BESO_FRONTEND + `/view/resource/${data.id}`}
+                        viewData=" "
+                        copyMessage=" "
+                    />
+                );
+                break;
             case 'name':
                 renderColumns.push(
                     <div
                         key={Math.random() + ''}
-                        style={{
-                            display: 'flex',
-                            alignItems: 'center',
-                        }}
                     >
-                        <PluridCopyableLine
-                            data={BESO_FRONTEND + `/view/resource/${data.id}`}
-                            viewData=" "
-                            copyMessage=" "
-                        />
-
                         {data.name}
                     </div>
                 );

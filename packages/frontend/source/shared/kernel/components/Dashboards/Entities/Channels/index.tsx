@@ -23,6 +23,7 @@
     } from '~kernel-data/interfaces';
 
     import {
+        rowsHeader,
         rowTemplate,
         rowRenderFields,
     } from '~kernel-data/constants';
@@ -148,20 +149,6 @@ const Channels: React.FC<ChannelsProperties> = (
 
 
     // #region render
-    const rowsHeader = (
-        <>
-            <div>
-                name
-            </div>
-
-            <div>
-                generated on
-            </div>
-
-            <div />
-        </>
-    );
-
     return (
         <StyledDashboardContainer
             theme={stateGeneralTheme}

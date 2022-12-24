@@ -23,6 +23,7 @@
     } from '~kernel-data/interfaces';
 
     import {
+        rowsHeader,
         rowTemplate,
         rowRenderFields,
     } from '~kernel-data/constants';
@@ -162,20 +163,6 @@ const InterventionsGlobal: React.FC<InterventionsGlobalProperties> = (
 
 
     // #region render
-    const rowsHeader = (
-        <>
-            <div>
-                name
-            </div>
-
-            <div>
-                generated on
-            </div>
-
-            <div />
-        </>
-    );
-
     return (
         <StyledDashboardContainer
             theme={stateGeneralTheme}
