@@ -27,6 +27,7 @@ const mutationTypes = [
 
 type MutationNames =
     | `ADD_BETSE_${Uppercase<typeof mutationTypes[number]>}`
+    | `EDIT_BETSE_${Uppercase<typeof mutationTypes[number]>}`
     | `REMOVE_BETSE_${Uppercase<typeof mutationTypes[number]>}`;
 
 const computeMutations = () => {
@@ -41,6 +42,14 @@ const computeMutations = () => {
             }
         `;
 
+        const EDIT_MUTATION = gql`
+            mutation EditBetse${mutationType}($input: InputBetse${mutationType}!) {
+                editBetse${mutationType}(input: $input) {
+                    id
+                }
+            }
+        `;
+
         const REMOVE_MUTATION = gql`
             mutation RemoveBetse${mutationType}($input: String!) {
                 removeBetse${mutationType}(id: $input)
@@ -48,6 +57,7 @@ const computeMutations = () => {
         `;
 
         betseMutations[`ADD_BETSE_${mutationType.toUpperCase()}`] = ADD_MUTATION;
+        betseMutations[`EDIT_BETSE_${mutationType.toUpperCase()}`] = EDIT_MUTATION;
         betseMutations[`REMOVE_BETSE_${mutationType.toUpperCase()}`] = REMOVE_MUTATION;
     }
 
