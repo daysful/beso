@@ -26,7 +26,7 @@
 
     import {
         StyledDashboardContainer,
-        StyledNewEntity,
+        StyledEntity,
         PluridPureButton,
         PluridLinkButton,
     } from '~kernel-services/styled';
@@ -42,6 +42,7 @@
 
 // #region module
 export interface NewEntityComponentOwnProperties {
+    title: string;
     fields: NewEntityField[];
     kind: string;
 
@@ -69,8 +70,8 @@ const NewEntityComponent: React.FC<NewEntityComponentProperties> = (
     // #region properties
     const {
         // #region own
+        title,
         fields,
-
         kind,
 
         onEdit,
@@ -102,6 +103,11 @@ const NewEntityComponent: React.FC<NewEntityComponentProperties> = (
         isValid,
         setIsValid,
     ] = useState(true);
+
+    const [
+        edit,
+        setEdit,
+    ] = useState(false);
     // #endregion state
 
 
@@ -110,33 +116,52 @@ const NewEntityComponent: React.FC<NewEntityComponentProperties> = (
         <StyledDashboardContainer
             theme={stateGeneralTheme}
         >
-            <StyledNewEntity>
-                <PluridPureButton
-                    text={`Edit ${kind}`}
-                    atClick={() => {
-                        onEdit(state);
-                    }}
-                    theme={stateGeneralTheme}
-                    level={2}
-                    disabled={!isValid}
-                />
+            <StyledEntity>
+                <h1>
+                    {title}
+                </h1>
 
-                <PluridLinkButton
-                    text="cancel"
-                    atClick={() => {
-                        onCancel();
-                    }}
-                    theme={stateGeneralTheme}
-                />
+                {!edit && (
+                    <PluridLinkButton
+                        text="edit"
+                        atClick={() => {
+                            setEdit(true);
+                        }}
+                    />
+                )}
 
-                <NewEntityRenderer
-                    id={rendererID.current}
-                    fields={state}
-                    atChange={(newState) => {
-                        setState(newState);
-                    }}
-                />
-            </StyledNewEntity>
+                {edit && (
+                    <>
+                        <PluridPureButton
+                            text={`Edit ${kind}`}
+                            atClick={() => {
+                                onEdit(state);
+                                setEdit(false);
+                            }}
+                            theme={stateGeneralTheme}
+                            level={2}
+                            disabled={!isValid}
+                        />
+
+                        <PluridLinkButton
+                            text="cancel"
+                            atClick={() => {
+                                onCancel();
+                                setEdit(false);
+                            }}
+                            theme={stateGeneralTheme}
+                        />
+
+                        <NewEntityRenderer
+                            id={rendererID.current}
+                            fields={state}
+                            atChange={(newState) => {
+                                setState(newState);
+                            }}
+                        />
+                    </>
+                )}
+            </StyledEntity>
         </StyledDashboardContainer>
     );
     // #endregion render

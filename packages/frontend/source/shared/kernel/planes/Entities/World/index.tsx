@@ -1,8 +1,6 @@
 // #region imports
     // #region libraries
-    import React, {
-        useState,
-    } from 'react';
+    import React from 'react';
 
     import {
         AnyAction,
@@ -34,10 +32,6 @@
     import {
         mergeDataIntoFields,
     } from '~kernel-services/logic/betse';
-
-    import {
-        PluridLinkButton,
-    } from '~kernel-services/styled';
 
     import { AppState } from '~kernel-services/state/store';
     import StateContext from '~kernel-services/state/context';
@@ -99,14 +93,6 @@ const World: React.FC<WorldProperties> = (
     // #endregion properties
 
 
-    // #region state
-    const [
-        edit,
-        setEdit,
-    ] = useState(false);
-    // #endregion state
-
-
     // #region render
     if (!world) {
         return (<></>);
@@ -116,32 +102,16 @@ const World: React.FC<WorldProperties> = (
         <StyledWorld
             theme={stateGeneralTheme}
         >
-            <h1>
-                '{world.name}' world
-            </h1>
+            <EditEntityComponent
+                title={`'${world.name}' world`}
+                fields={mergeDataIntoFields(world['data'], fields)}
+                kind="World"
 
-            {!edit && (
-                <PluridLinkButton
-                    text="edit"
-                    atClick={() => {
-                        setEdit(true);
-                    }}
-                />
-            )}
-
-            {edit && (
-                <EditEntityComponent
-                    fields={mergeDataIntoFields(world['data'], fields)}
-                    kind="World"
-
-                    onEdit={(state) => {
-                        setEdit(false);
-                    }}
-                    onCancel={() => {
-                        setEdit(false);
-                    }}
-                />
-            )}
+                onEdit={(state) => {
+                }}
+                onCancel={() => {
+                }}
+            />
         </StyledWorld>
     );
     // #endregion render

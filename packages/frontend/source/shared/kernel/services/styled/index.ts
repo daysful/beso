@@ -63,7 +63,7 @@ export const StyledDashboardContainer = styled.div<IStyledDashboardContainer>`
 `;
 
 
-export const StyledNewEntity = styled.div`
+export const StyledEntity = styled.div`
     h1 {
         font-size: 1.4rem;
         margin: 0;

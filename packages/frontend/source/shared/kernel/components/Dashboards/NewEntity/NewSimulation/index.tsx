@@ -37,7 +37,7 @@
 
     import {
         StyledDashboardContainer,
-        StyledNewEntity,
+        StyledEntity,
         PluridInputLine,
         PluridPureButton,
         PluridDropdown,
@@ -543,7 +543,7 @@ const NewSimulation: React.FC<NewSimulationProperties> = (
         <StyledDashboardContainer
             theme={stateGeneralTheme}
         >
-            <StyledNewEntity>
+            <StyledEntity>
                 <PluridPureButton
                     text="Add New Simulation"
                     atClick={() => {
@@ -589,7 +589,7 @@ const NewSimulation: React.FC<NewSimulationProperties> = (
                 {channelsRender}
                 {transportersRender}
                 {modulatorsRender}
-            </StyledNewEntity>
+            </StyledEntity>
         </StyledDashboardContainer>
     );
     // #endregion render

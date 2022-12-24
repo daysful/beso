@@ -16,6 +16,5 @@ export interface IStyledWorld {
 }
 
 export const StyledWorld = styled.div<IStyledWorld>`
-    padding: 2rem;
 `;
 // #region module

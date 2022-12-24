@@ -26,7 +26,7 @@
 
     import {
         StyledDashboardContainer,
-        StyledNewEntity,
+        StyledEntity,
         PluridPureButton,
         PluridLinkButton,
     } from '~kernel-services/styled';
@@ -119,7 +119,7 @@ const NewEntityComponent: React.FC<NewEntityComponentProperties> = (
         <StyledDashboardContainer
             theme={stateGeneralTheme}
         >
-            <StyledNewEntity>
+            <StyledEntity>
                 {/* <h1>
                     New {kind}
                 </h1> */}
@@ -151,7 +151,7 @@ const NewEntityComponent: React.FC<NewEntityComponentProperties> = (
                     }}
                     sourceFrom={sourceFrom}
                 />
-            </StyledNewEntity>
+            </StyledEntity>
         </StyledDashboardContainer>
     );
     // #endregion render
