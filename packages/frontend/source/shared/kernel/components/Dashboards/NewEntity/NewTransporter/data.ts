@@ -14,7 +14,7 @@ export const fields: NewEntityField[] = [
         label: 'name',
         type: 'string',
         state: 'name',
-        value: 'new reaction',
+        value: 'new transporter',
         required: true,
     },
     {
