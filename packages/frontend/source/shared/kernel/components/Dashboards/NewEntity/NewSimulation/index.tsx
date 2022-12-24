@@ -26,6 +26,10 @@
 
     // #region external
     import {
+        fields,
+    } from '~shared/kernel/data/constants/entity/simulation';
+
+    import {
         DashboardRenderProperties,
     } from '~kernel-components/DashboardsRenderer/data';
 
@@ -57,13 +61,6 @@
     import selectors from '~kernel-services/state/selectors';
     // import actions from '~kernel-services/state/actions';
     // #endregion external
-
-
-    // #region internal
-    import {
-        fields,
-    } from './data';
-    // #endregion internal
 // #endregion imports
 
 
