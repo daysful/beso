@@ -23,6 +23,11 @@
     } from '~kernel-data/interfaces';
 
     import {
+        rowTemplate,
+        rowRenderFields,
+    } from '~kernel-data/constants';
+
+    import {
         DashboardRenderProperties,
     } from '~kernel-components/DashboardsRenderer/data';
 
@@ -174,13 +179,11 @@ const Simulations: React.FC<SimulationsProperties> = (
                 generalTheme={stateGeneralTheme}
                 interactionTheme={stateInteractionTheme}
 
-                rowTemplate="0.5fr 0.5fr 0.5fr 30px 30px"
+                rowTemplate={rowTemplate}
                 rowsHeader={rowsHeader}
                 noRows="no simulations"
 
-                rowRenderFields={[
-                    'name', 'generatedAt', 'lastRun', 'pluridlink:simulation', 'obliterate'
-                ]}
+                rowRenderFields={rowRenderFields('simulation')}
                 rowRenderMethods={{
                     handleObliterate,
                 }}

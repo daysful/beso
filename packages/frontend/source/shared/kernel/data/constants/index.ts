@@ -75,3 +75,9 @@ export const eventRecords: Record<string, PrimitiveField> = {
     },
 };
 // #endregion module
+
+
+
+// #region exports
+export * from './dashboards';
+// #endregion exports

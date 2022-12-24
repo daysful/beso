@@ -23,6 +23,11 @@
     } from '~kernel-data/interfaces';
 
     import {
+        rowTemplate,
+        rowRenderFields,
+    } from '~kernel-data/constants';
+
+    import {
         DashboardRenderProperties,
     } from '~kernel-components/DashboardsRenderer/data';
 
@@ -170,13 +175,11 @@ const Tissues: React.FC<TissuesProperties> = (
                 generalTheme={stateGeneralTheme}
                 interactionTheme={stateInteractionTheme}
 
-                rowTemplate="0.5fr 0.5fr 0.5fr 30px 30px"
+                rowTemplate={rowTemplate}
                 rowsHeader={rowsHeader}
                 noRows="no tissues"
 
-                rowRenderFields={[
-                    'name', 'generatedAt', 'pluridlink:tissue', 'obliterate',
-                ]}
+                rowRenderFields={rowRenderFields('tissue')}
                 rowRenderMethods={{
                     handleObliterate,
                 }}

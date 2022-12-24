@@ -23,6 +23,11 @@
     } from '~kernel-data/interfaces';
 
     import {
+        rowTemplate,
+        rowRenderFields,
+    } from '~kernel-data/constants';
+
+    import {
         DashboardRenderProperties,
     } from '~kernel-components/DashboardsRenderer/data';
 
@@ -170,13 +175,11 @@ const Reactions: React.FC<ReactionsProperties> = (
                 generalTheme={stateGeneralTheme}
                 interactionTheme={stateInteractionTheme}
 
-                rowTemplate="0.5fr 0.5fr 0.5fr 30px 30px"
+                rowTemplate={rowTemplate}
                 rowsHeader={rowsHeader}
                 noRows="no reactions"
 
-                rowRenderFields={[
-                    'name', 'generatedAt', 'pluridlink:reaction', 'obliterate',
-                ]}
+                rowRenderFields={rowRenderFields('reaction')}
                 rowRenderMethods={{
                     handleObliterate,
                 }}
