@@ -25,7 +25,7 @@
 
     import {
         fields,
-    } from '~kernel-data/constants/entity/transporter';
+    } from '~kernel-data/constants/entity/network';
 
     import Head from '~kernel-components/Head';
     import EditEntityComponent from '~kernel-components/EditEntityComponent';

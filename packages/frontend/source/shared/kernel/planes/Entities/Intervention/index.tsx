@@ -25,8 +25,12 @@
     } from '~kernel-data/interfaces';
 
     import {
-        fields,
-    } from '~kernel-data/constants/entity/transporter';
+        fields as targetedFields,
+    } from '~kernel-data/constants/entity/interventionTargeted';
+
+    import {
+        fields as globalFields,
+    } from '~kernel-data/constants/entity/interventionGlobal';
 
     import Head from '~kernel-components/Head';
     import EditEntityComponent from '~kernel-components/EditEntityComponent';
@@ -95,6 +99,8 @@ const Intervention: React.FC<InterventionProperties> = (
 
     const intervention = stateGlobalInterventions.find(intervention => intervention.id === id)
         || stateTargetedInterventions.find(intervention => intervention.id === id);
+
+    const fields = targetedFields || globalFields;
     // #endregion properties
 
 
