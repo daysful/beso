@@ -31,6 +31,7 @@
 
     import {
         extractState,
+        fetchBetseData,
     } from '~kernel-services/logic/betse';
 
     import graphqlClient from '~kernel-services/graphql/client';
@@ -58,6 +59,7 @@ export interface NewWorldStateProperties {
 }
 
 export interface NewWorldDispatchProperties {
+    dispatch: ThunkDispatch<{}, {}, AnyAction>;
 }
 
 export type NewWorldProperties =
@@ -80,6 +82,10 @@ const NewWorld: React.FC<NewWorldProperties> = (
         stateGeneralTheme,
         // stateInteractionTheme,
         // #endregion state
+
+        // #region dispatch
+        dispatch,
+        // #endregion dispatch
     } = properties;
     // #endregion properties
 
@@ -127,7 +133,7 @@ const NewWorld: React.FC<NewWorldProperties> = (
                 />
             )}
 
-            onAdd={(state) => {
+            onAdd={async (state) => {
                 const value = extractState(state);
                 const name = value['name'];
                 delete value['name'];
@@ -141,15 +147,17 @@ const NewWorld: React.FC<NewWorldProperties> = (
                     },
                 };
 
-                graphqlClient.mutate({
+                setRenderView('worlds');
+                setFullRenderArea(false);
+
+                await graphqlClient.mutate({
                     mutation: BETSE_MUTATIONS.ADD_BETSE_WORLD,
                     variables: {
                         input,
                     },
                 });
 
-                setRenderView('worlds');
-                setFullRenderArea(false);
+                fetchBetseData(dispatch);
             }}
         />
     );
@@ -168,6 +176,7 @@ const mapStateToProperties = (
 const mapDispatchToProperties = (
     dispatch: ThunkDispatch<{}, {}, AnyAction>,
 ): NewWorldDispatchProperties => ({
+    dispatch,
 });
 
 

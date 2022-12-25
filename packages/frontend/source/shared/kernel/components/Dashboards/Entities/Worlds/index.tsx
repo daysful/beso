@@ -44,6 +44,10 @@
         makeEntitiesData,
     } from '~kernel-services/logic/entities';
 
+    import {
+        fetchBetseData,
+    } from '~kernel-services/logic/betse';
+
     import graphqlClient from '~kernel-services/graphql/client';
 
     import {
@@ -74,6 +78,7 @@ export interface WorldsStateProperties {
 }
 
 export interface WorldsDispatchProperties {
+    dispatch: ThunkDispatch<{}, {}, AnyAction>;
 }
 
 export type WorldsProperties =
@@ -97,6 +102,10 @@ const Worlds: React.FC<WorldsProperties> = (
         stateInteractionTheme,
         stateWorlds,
         // #endregion state
+
+        // #region dispatch
+        dispatch,
+        // #endregion dispatch
     } = properties;
     // #endregion properties
 
@@ -111,12 +120,14 @@ const Worlds: React.FC<WorldsProperties> = (
         id: string,
     ) => {
         try {
-            graphqlClient.mutate({
+            await graphqlClient.mutate({
                 mutation: BETSE_MUTATIONS.REMOVE_BETSE_WORLD,
                 variables: {
                     input: id,
                 },
             });
+
+            fetchBetseData(dispatch);
         } catch (error) {
             return;
         }
@@ -207,6 +218,7 @@ const mapStateToProperties = (
 const mapDispatchToProperties = (
     dispatch: ThunkDispatch<{}, {}, AnyAction>,
 ): WorldsDispatchProperties => ({
+    dispatch,
 });
 
 
