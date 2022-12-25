@@ -6,6 +6,7 @@
 
     // #region internal
     import {
+        BETSE_SIMULATION_FRAGMENT,
         BETSE_WORLD_FRAGMENT,
         BETSE_TISSUE_FRAGMENT,
         BETSE_INTERVENTION_FRAGMENT,
@@ -33,7 +34,7 @@ export const USER = gql`
 `;
 
 
-export const SERVER_USER = gql`
+export const BETSE_USER = gql`
     ${BETSE_WORLD_FRAGMENT}
     ${BETSE_TISSUE_FRAGMENT}
     ${BETSE_FUNCTION_FRAGMENT}

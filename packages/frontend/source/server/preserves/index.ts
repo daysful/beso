@@ -22,7 +22,7 @@
     } from '~kernel-services/graphql/client';
 
     import {
-        SERVER_USER,
+        BETSE_USER,
     } from '~kernel-services/graphql/query';
     // #endregion external
 // #endregion imports
@@ -50,7 +50,7 @@ const preserves: PluridPreserve<
                         cookies ? (cookies['Authorization'] || '') : '',
                     );
                     const request = await graphqlClient.query({
-                        query: SERVER_USER,
+                        query: BETSE_USER,
                     });
 
                     return request.data || {};

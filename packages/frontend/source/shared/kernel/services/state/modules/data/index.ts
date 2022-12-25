@@ -74,6 +74,23 @@ export const data = createSlice({
     name: 'data',
     initialState,
     reducers: {
+        setData: (
+            state,
+            action: PayloadAction<any>,
+        ) => {
+            state.simulations = action.payload.simulations || state.simulations;
+            state.worlds = action.payload.worlds || state.worlds;
+            state.tissues = action.payload.tissues || state.tissues;
+            state.globalInterventions = action.payload.globalInterventions || state.globalInterventions;
+            state.targetedInterventions = action.payload.targetedInterventions || state.targetedInterventions;
+            state.modulatorFunctions = action.payload.modulatorFunctions || state.modulatorFunctions;
+            state.networks = action.payload.networks || state.networks;
+            state.biomolecules = action.payload.biomolecules || state.biomolecules;
+            state.reactions = action.payload.reactions || state.reactions;
+            state.channels = action.payload.channels || state.channels;
+            state.transporters = action.payload.transporters || state.transporters;
+            state.modulators = action.payload.modulators || state.modulators;
+        },
         setDataField: (
             state,
             action: PayloadAction<SetDataFieldPayload>,

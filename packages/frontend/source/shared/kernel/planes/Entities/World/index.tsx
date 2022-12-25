@@ -36,6 +36,7 @@
 
     import {
         extractState,
+        fetchBetseData,
     } from '~kernel-services/logic/betse';
 
     import graphqlClient from '~kernel-services/graphql/client';
@@ -72,6 +73,7 @@ export interface WorldStateProperties {
 }
 
 export interface WorldDispatchProperties {
+    dispatch: ThunkDispatch<{}, {}, AnyAction>,
 }
 
 export type WorldProperties =
@@ -94,6 +96,10 @@ const World: React.FC<WorldProperties> = (
         // stateInteractionTheme,
         stateWorlds,
         // #endregion state
+
+        // #region dispatch
+        dispatch,
+        // #endregion dispatch
     } = properties;
 
     const {
@@ -144,6 +150,8 @@ const World: React.FC<WorldProperties> = (
                             input,
                         },
                     });
+
+                    fetchBetseData(dispatch);
                 }}
             />
         </StyledWorld>
@@ -164,6 +172,7 @@ const mapStateToProperties = (
 const mapDispatchToProperties = (
     dispatch: ThunkDispatch<{}, {}, AnyAction>,
 ): WorldDispatchProperties => ({
+    dispatch,
 });
 
 
