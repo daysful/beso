@@ -71,6 +71,8 @@ def update_entity(
     collection: str,
     model: callable,
 ):
+    entity = make_dict(input)
+
     stored_entity = get(collection, entity['id'])
     if not stored_entity:
         return
@@ -78,7 +80,10 @@ def update_entity(
     if stored_entity['generated_by'] != user.id:
         return
 
-    entity = make_dict(input)
+    update_data = {
+        'name': entity['name'],
+        'data': entity['data']
+    }
 
     update(
         collection,
@@ -89,7 +94,12 @@ def update_entity(
         },
     )
 
-    model_data = make_model_data(entity)
+    model_data = make_model_data({
+        'id': stored_entity['id'],
+        'generated_by': stored_entity['generated_by'],
+        'generated_at': stored_entity['generated_at'],
+        'data': update_data,
+    })
 
     return model(
         model_data,
