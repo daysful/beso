@@ -11,9 +11,14 @@
     } from '@reduxjs/toolkit';
     import { connect } from 'react-redux';
 
+
     import {
         Theme,
     } from '@plurid/plurid-themes';
+
+    import {
+        DispatchAction,
+    } from '@plurid/plurid-ui-state-react';
     // #endregion libraries
 
 
@@ -53,7 +58,7 @@
     import { AppState } from '~kernel-services/state/store';
     import StateContext from '~kernel-services/state/context';
     import selectors from '~kernel-services/state/selectors';
-    // import actions from '~kernel-services/state/actions';
+    import actions from '~kernel-services/state/actions';
     // #endregion external
 
 
@@ -74,6 +79,7 @@ export interface ReactionsStateProperties {
 }
 
 export interface ReactionsDispatchProperties {
+    dispatchRemoveDataEntity: DispatchAction<typeof actions.data.removeDataEntity>;
 }
 
 export type ReactionsProperties =
@@ -97,6 +103,10 @@ const Reactions: React.FC<ReactionsProperties> = (
         stateInteractionTheme,
         stateReactions,
         // #endregion state
+
+        // #region dispatch
+        dispatchRemoveDataEntity,
+        // #endregion dispatch
     } = properties;
     // #endregion properties
 
@@ -111,7 +121,12 @@ const Reactions: React.FC<ReactionsProperties> = (
         id: string,
     ) => {
         try {
-            graphqlClient.mutate({
+            dispatchRemoveDataEntity({
+                type: 'reactions',
+                id,
+            });
+
+            await graphqlClient.mutate({
                 mutation: BETSE_MUTATIONS.REMOVE_BETSE_REACTION,
                 variables: {
                     input: id,
@@ -207,6 +222,11 @@ const mapStateToProperties = (
 const mapDispatchToProperties = (
     dispatch: ThunkDispatch<{}, {}, AnyAction>,
 ): ReactionsDispatchProperties => ({
+    dispatchRemoveDataEntity: (
+        payload,
+    ) => dispatch(
+        actions.data.removeDataEntity(payload),
+    ),
 });
 
 

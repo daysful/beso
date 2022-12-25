@@ -11,9 +11,14 @@
     } from '@reduxjs/toolkit';
     import { connect } from 'react-redux';
 
+
     import {
         Theme,
     } from '@plurid/plurid-themes';
+
+    import {
+        DispatchAction,
+    } from '@plurid/plurid-ui-state-react';
     // #endregion libraries
 
 
@@ -44,10 +49,6 @@
         makeEntitiesData,
     } from '~kernel-services/logic/entities';
 
-    import {
-        fetchBetseData,
-    } from '~kernel-services/logic/betse';
-
     import graphqlClient from '~kernel-services/graphql/client';
 
     import {
@@ -57,7 +58,7 @@
     import { AppState } from '~kernel-services/state/store';
     import StateContext from '~kernel-services/state/context';
     import selectors from '~kernel-services/state/selectors';
-    // import actions from '~kernel-services/state/actions';
+    import actions from '~kernel-services/state/actions';
     // #endregion external
 
 
@@ -78,7 +79,7 @@ export interface WorldsStateProperties {
 }
 
 export interface WorldsDispatchProperties {
-    dispatch: ThunkDispatch<{}, {}, AnyAction>;
+    dispatchRemoveDataEntity: DispatchAction<typeof actions.data.removeDataEntity>;
 }
 
 export type WorldsProperties =
@@ -104,7 +105,7 @@ const Worlds: React.FC<WorldsProperties> = (
         // #endregion state
 
         // #region dispatch
-        dispatch,
+        dispatchRemoveDataEntity,
         // #endregion dispatch
     } = properties;
     // #endregion properties
@@ -120,14 +121,17 @@ const Worlds: React.FC<WorldsProperties> = (
         id: string,
     ) => {
         try {
+            dispatchRemoveDataEntity({
+                type: 'worlds',
+                id,
+            });
+
             await graphqlClient.mutate({
                 mutation: BETSE_MUTATIONS.REMOVE_BETSE_WORLD,
                 variables: {
                     input: id,
                 },
             });
-
-            fetchBetseData(dispatch);
         } catch (error) {
             return;
         }
@@ -218,7 +222,11 @@ const mapStateToProperties = (
 const mapDispatchToProperties = (
     dispatch: ThunkDispatch<{}, {}, AnyAction>,
 ): WorldsDispatchProperties => ({
-    dispatch,
+    dispatchRemoveDataEntity: (
+        payload,
+    ) => dispatch(
+        actions.data.removeDataEntity(payload),
+    ),
 });
 
 

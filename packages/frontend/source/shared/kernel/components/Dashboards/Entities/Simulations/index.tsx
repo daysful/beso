@@ -11,9 +11,14 @@
     } from '@reduxjs/toolkit';
     import { connect } from 'react-redux';
 
+
     import {
         Theme,
     } from '@plurid/plurid-themes';
+
+    import {
+        DispatchAction,
+    } from '@plurid/plurid-ui-state-react';
     // #endregion libraries
 
 
@@ -52,7 +57,7 @@
     import { AppState } from '~kernel-services/state/store';
     import StateContext from '~kernel-services/state/context';
     import selectors from '~kernel-services/state/selectors';
-    // import actions from '~kernel-services/state/actions';
+    import actions from '~kernel-services/state/actions';
     // #endregion external
 
 
@@ -73,6 +78,7 @@ export interface SimulationsStateProperties {
 }
 
 export interface SimulationsDispatchProperties {
+    dispatchRemoveDataEntity: DispatchAction<typeof actions.data.removeDataEntity>;
 }
 
 export type SimulationsProperties =
@@ -96,6 +102,10 @@ const Simulations: React.FC<SimulationsProperties> = (
         stateInteractionTheme,
         stateSimulations,
         // #endregion state
+
+        // #region dispatch
+        dispatchRemoveDataEntity,
+        // #endregion dispatch
     } = properties;
     // #endregion properties
 
@@ -110,7 +120,12 @@ const Simulations: React.FC<SimulationsProperties> = (
         id: string,
     ) => {
         try {
-            graphqlClient.mutate({
+            dispatchRemoveDataEntity({
+                type: 'simulations',
+                id,
+            });
+
+            await graphqlClient.mutate({
                 mutation: BETSE_MUTATIONS.REMOVE_BETSE_SIMULATION,
                 variables: {
                     input: id,
@@ -224,6 +239,11 @@ const mapStateToProperties = (
 const mapDispatchToProperties = (
     dispatch: ThunkDispatch<{}, {}, AnyAction>,
 ): SimulationsDispatchProperties => ({
+    dispatchRemoveDataEntity: (
+        payload,
+    ) => dispatch(
+        actions.data.removeDataEntity(payload),
+    ),
 });
 
 

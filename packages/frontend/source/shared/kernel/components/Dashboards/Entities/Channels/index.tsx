@@ -11,9 +11,14 @@
     } from '@reduxjs/toolkit';
     import { connect } from 'react-redux';
 
+
     import {
         Theme,
     } from '@plurid/plurid-themes';
+
+    import {
+        DispatchAction,
+    } from '@plurid/plurid-ui-state-react';
     // #endregion libraries
 
 
@@ -53,7 +58,7 @@
     import { AppState } from '~kernel-services/state/store';
     import StateContext from '~kernel-services/state/context';
     import selectors from '~kernel-services/state/selectors';
-    // import actions from '~kernel-services/state/actions';
+    import actions from '~kernel-services/state/actions';
     // #endregion external
 
 
@@ -74,6 +79,7 @@ export interface ChannelsStateProperties {
 }
 
 export interface ChannelsDispatchProperties {
+    dispatchRemoveDataEntity: DispatchAction<typeof actions.data.removeDataEntity>;
 }
 
 export type ChannelsProperties =
@@ -97,6 +103,10 @@ const Channels: React.FC<ChannelsProperties> = (
         stateInteractionTheme,
         stateChannels,
         // #endregion state
+
+        // #region dispatch
+        dispatchRemoveDataEntity,
+        // #endregion dispatch
     } = properties;
     // #endregion properties
 
@@ -111,7 +121,12 @@ const Channels: React.FC<ChannelsProperties> = (
         id: string,
     ) => {
         try {
-            graphqlClient.mutate({
+            dispatchRemoveDataEntity({
+                type: 'channels',
+                id,
+            });
+
+            await graphqlClient.mutate({
                 mutation: BETSE_MUTATIONS.REMOVE_BETSE_CHANNEL,
                 variables: {
                     input: id,
@@ -207,6 +222,11 @@ const mapStateToProperties = (
 const mapDispatchToProperties = (
     dispatch: ThunkDispatch<{}, {}, AnyAction>,
 ): ChannelsDispatchProperties => ({
+    dispatchRemoveDataEntity: (
+        payload,
+    ) => dispatch(
+        actions.data.removeDataEntity(payload),
+    ),
 });
 
 

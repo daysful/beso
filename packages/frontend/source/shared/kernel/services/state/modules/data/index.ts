@@ -69,6 +69,11 @@ export interface SetDataFieldPayload<T = any> {
     value: T;
 }
 
+export interface RemoveDataEntityPayload {
+    type: keyof DataState;
+    id: string;
+}
+
 
 export const data = createSlice({
     name: 'data',
@@ -101,6 +106,17 @@ export const data = createSlice({
             } = action.payload;
 
             state[field] = value;
+        },
+        removeDataEntity: (
+            state,
+            action: PayloadAction<RemoveDataEntityPayload>,
+        ) => {
+            const {
+                id,
+                type,
+            } = action.payload;
+
+            (state as any)[type] = state[type].filter((entity: any) => entity.id !== id);
         },
     },
 });
