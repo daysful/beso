@@ -16,17 +16,17 @@ from source.graphql.model.betse import \
     modelBetseTransporter, \
     modelBetseModulator
 from source.graphql.types.betse import \
-    InputBetseSimulation, BetseSimulation, \
-    InputBetseWorld, BetseWorld, \
-    InputBetseTissue, BetseTissue, \
-    InputBetseIntervention, BetseIntervention, \
-    InputBetseFunction, BetseFunction, \
-    InputBetseNetwork, BetseNetwork, \
-    InputBetseBiomolecule, BetseBiomolecule, \
-    InputBetseReaction, BetseReaction, \
-    InputBetseChannel, BetseChannel, \
-    InputBetseTransporter, BetseTransporter, \
-    InputBetseModulator, BetseModulator
+    InputAddBetseSimulation, InputEditBetseSimulation, BetseSimulation, \
+    InputAddBetseWorld, InputEditBetseWorld, BetseWorld, \
+    InputAddBetseTissue, InputEditBetseTissue, BetseTissue, \
+    InputAddBetseIntervention, InputEditBetseIntervention, BetseIntervention, \
+    InputAddBetseFunction, InputEditBetseFunction, BetseFunction, \
+    InputAddBetseNetwork, InputEditBetseNetwork, BetseNetwork, \
+    InputAddBetseBiomolecule, InputEditBetseBiomolecule, BetseBiomolecule, \
+    InputAddBetseReaction, InputEditBetseReaction, BetseReaction, \
+    InputAddBetseChannel, InputEditBetseChannel, BetseChannel, \
+    InputAddBetseTransporter, InputEditBetseTransporter, BetseTransporter, \
+    InputAddBetseModulator, InputEditBetseModulator, BetseModulator
 
 from source.composer import compose_simulation
 
@@ -84,7 +84,7 @@ mutation_data = {
 }
 
 
-def addBetseSimulation(input: InputBetseSimulation, info: Info) -> BetseSimulation | None:
+def addBetseSimulation(input: InputAddBetseSimulation, info: Info) -> BetseSimulation | None:
     def hook(entity):
         if not entity:
             return
@@ -92,69 +92,69 @@ def addBetseSimulation(input: InputBetseSimulation, info: Info) -> BetseSimulati
 
     return mutation_entity_adder_factory(mutation_data['simulation'], hook)(input, info)
 
-def addBetseWorld(input: InputBetseWorld, info: Info) -> BetseWorld | None:
+def addBetseWorld(input: InputAddBetseWorld, info: Info) -> BetseWorld | None:
     return mutation_entity_adder_factory(mutation_data['world'])(input, info)
 
-def addBetseTissue(input: InputBetseTissue, info: Info) -> BetseTissue | None:
+def addBetseTissue(input: InputAddBetseTissue, info: Info) -> BetseTissue | None:
     return mutation_entity_adder_factory(mutation_data['tissue'])(input, info)
 
-def addBetseIntervention(input: InputBetseIntervention, info: Info) -> BetseIntervention | None:
+def addBetseIntervention(input: InputAddBetseIntervention, info: Info) -> BetseIntervention | None:
     return mutation_entity_adder_factory(mutation_data['intervention'])(input, info)
 
-def addBetseFunction(input: InputBetseFunction, info: Info) -> BetseFunction | None:
+def addBetseFunction(input: InputAddBetseFunction, info: Info) -> BetseFunction | None:
     return mutation_entity_adder_factory(mutation_data['function'])(input, info)
 
-def addBetseNetwork(input: InputBetseNetwork, info: Info) -> BetseNetwork | None:
+def addBetseNetwork(input: InputAddBetseNetwork, info: Info) -> BetseNetwork | None:
     return mutation_entity_adder_factory(mutation_data['network'])(input, info)
 
-def addBetseBiomolecule(input: InputBetseBiomolecule, info: Info) -> BetseBiomolecule | None:
+def addBetseBiomolecule(input: InputAddBetseBiomolecule, info: Info) -> BetseBiomolecule | None:
     return mutation_entity_adder_factory(mutation_data['biomolecule'])(input, info)
 
-def addBetseReaction(input: InputBetseReaction, info: Info) -> BetseReaction | None:
+def addBetseReaction(input: InputAddBetseReaction, info: Info) -> BetseReaction | None:
     return mutation_entity_adder_factory(mutation_data['reaction'])(input, info)
 
-def addBetseChannel(input: InputBetseChannel, info: Info) -> BetseChannel | None:
+def addBetseChannel(input: InputAddBetseChannel, info: Info) -> BetseChannel | None:
     return mutation_entity_adder_factory(mutation_data['channel'])(input, info)
 
-def addBetseTransporter(input: InputBetseTransporter, info: Info) -> BetseTransporter | None:
+def addBetseTransporter(input: InputAddBetseTransporter, info: Info) -> BetseTransporter | None:
     return mutation_entity_adder_factory(mutation_data['transporter'])(input, info)
 
-def addBetseModulator(input: InputBetseModulator, info: Info) -> BetseModulator | None:
+def addBetseModulator(input: InputAddBetseModulator, info: Info) -> BetseModulator | None:
     return mutation_entity_adder_factory(mutation_data['modulator'])(input, info)
 
 
 
-def editBetseSimulation(input: InputBetseSimulation, info: Info) -> BetseSimulation | None:
+def editBetseSimulation(input: InputEditBetseSimulation, info: Info) -> BetseSimulation | None:
     return mutation_entity_updater_factory(mutation_data['simulation'])(input, info)
 
-def editBetseWorld(input: InputBetseWorld, info: Info) -> BetseWorld | None:
+def editBetseWorld(input: InputEditBetseWorld, info: Info) -> BetseWorld | None:
     return mutation_entity_updater_factory(mutation_data['world'])(input, info)
 
-def editBetseTissue(input: InputBetseTissue, info: Info) -> BetseTissue | None:
+def editBetseTissue(input: InputEditBetseTissue, info: Info) -> BetseTissue | None:
     return mutation_entity_updater_factory(mutation_data['tissue'])(input, info)
 
-def editBetseIntervention(input: InputBetseIntervention, info: Info) -> BetseIntervention | None:
+def editBetseIntervention(input: InputEditBetseIntervention, info: Info) -> BetseIntervention | None:
     return mutation_entity_updater_factory(mutation_data['intervention'])(input, info)
 
-def editBetseFunction(input: InputBetseFunction, info: Info) -> BetseFunction | None:
+def editBetseFunction(input: InputEditBetseFunction, info: Info) -> BetseFunction | None:
     return mutation_entity_updater_factory(mutation_data['function'])(input, info)
 
-def editBetseNetwork(input: InputBetseNetwork, info: Info) -> BetseNetwork | None:
+def editBetseNetwork(input: InputEditBetseNetwork, info: Info) -> BetseNetwork | None:
     return mutation_entity_updater_factory(mutation_data['network'])(input, info)
 
-def editBetseBiomolecule(input: InputBetseBiomolecule, info: Info) -> BetseBiomolecule | None:
+def editBetseBiomolecule(input: InputEditBetseBiomolecule, info: Info) -> BetseBiomolecule | None:
     return mutation_entity_updater_factory(mutation_data['biomolecule'])(input, info)
 
-def editBetseReaction(input: InputBetseReaction, info: Info) -> BetseReaction | None:
+def editBetseReaction(input: InputEditBetseReaction, info: Info) -> BetseReaction | None:
     return mutation_entity_updater_factory(mutation_data['reaction'])(input, info)
 
-def editBetseChannel(input: InputBetseChannel, info: Info) -> BetseChannel | None:
+def editBetseChannel(input: InputEditBetseChannel, info: Info) -> BetseChannel | None:
     return mutation_entity_updater_factory(mutation_data['channel'])(input, info)
 
-def editBetseTransporter(input: InputBetseTransporter, info: Info) -> BetseTransporter | None:
+def editBetseTransporter(input: InputEditBetseTransporter, info: Info) -> BetseTransporter | None:
     return mutation_entity_updater_factory(mutation_data['transporter'])(input, info)
 
-def editBetseModulator(input: InputBetseModulator, info: Info) -> BetseModulator | None:
+def editBetseModulator(input: InputEditBetseModulator, info: Info) -> BetseModulator | None:
     return mutation_entity_updater_factory(mutation_data['modulator'])(input, info)
 
 

@@ -114,7 +114,13 @@ class InputBetseSimulationData:
     channels: list[str]
 
 @strawberry.input
-class InputBetseSimulation:
+class InputAddBetseSimulation:
+    name: str
+    data: InputBetseSimulationData
+
+@strawberry.input
+class InputEditBetseSimulation:
+    id: str
     name: str
     data: InputBetseSimulationData
 # endregion input BetseSimulation
@@ -260,7 +266,13 @@ class InputBetseWorldData:
     use_centers: bool
 
 @strawberry.input
-class InputBetseWorld:
+class InputAddBetseWorld:
+    name: str
+    data: InputBetseWorldData
+
+@strawberry.input
+class InputEditBetseWorld:
+    id: str
     name: str
     data: InputBetseWorldData
 # endregion input BetseWorld
@@ -331,7 +343,13 @@ class InputBetseTissueData:
     cell_targets: InputBetseTissueCellTargets
 
 @strawberry.input
-class InputBetseTissue:
+class InputAddBetseTissue:
+    name: str
+    data: InputBetseTissueData
+
+@strawberry.input
+class InputEditBetseTissue:
+    id: str
     name: str
     data: InputBetseTissueData
 # endregion input BetseTissue
@@ -376,7 +394,14 @@ class BetseTissue:
 # region BetseIntervention
 # region input BetseIntervention
 @strawberry.input
-class InputBetseIntervention:
+class InputAddBetseIntervention:
+    name: str
+    type: str # 'targeted' | 'global'
+    data: str
+
+@strawberry.input
+class InputEditBetseIntervention:
+    id: str
     name: str
     type: str # 'targeted' | 'global'
     data: str
@@ -397,7 +422,7 @@ class BetseIntervention:
 
 
 
-# region BetseFunction
+# region BetseFunctions
 # region input BetseFunction
 @strawberry.input
 class InputBetseFunctionGradientX:
@@ -450,7 +475,13 @@ class InputBetseFunctionData:
     single_cell: InputBetseFunctionSingleCell
 
 @strawberry.input
-class InputBetseFunction:
+class InputAddBetseFunction:
+    name: str
+    data: InputBetseFunctionData
+
+@strawberry.input
+class InputEditBetseFunction:
+    id: str
     name: str
     data: InputBetseFunctionData
 # endregion input BetseFunction
@@ -551,7 +582,13 @@ class InputBetseNetworkData:
     recalculate_fluid: bool
 
 @strawberry.input
-class InputBetseNetwork:
+class InputAddBetseNetwork:
+    name: str
+    data: InputBetseNetworkData
+
+@strawberry.input
+class InputEditBetseNetwork:
+    id: str
     name: str
     data: InputBetseNetworkData
 # endregion input BetseNetwork
@@ -679,7 +716,13 @@ class InputBetseBiomoleculeData:
     plotting: InputBetseBiomoleculePlotting
 
 @strawberry.input
-class InputBetseBiomolecule:
+class InputAddBetseBiomolecule:
+    name: str
+    data: InputBetseBiomoleculeData
+
+@strawberry.input
+class InputEditBetseBiomolecule:
+    id: str
     name: str
     data: InputBetseBiomoleculeData
 # endregion input BetseBiomolecule
@@ -818,7 +861,13 @@ class InputBetseReactionData:
     inhibitor_zone: GraphqlAny
 
 @strawberry.input
-class InputBetseReaction:
+class InputAddBetseReaction:
+    name: str
+    data: InputBetseReactionData
+
+@strawberry.input
+class InputEditBetseReaction:
+    id: str
     name: str
     data: InputBetseReactionData
 # endregion input BetseReaction
@@ -887,7 +936,13 @@ class InputBetseChannelData:
     inhibitor_max: float
 
 @strawberry.input
-class InputBetseChannel:
+class InputAddBetseChannel:
+    name: str
+    data: InputBetseChannelData
+
+@strawberry.input
+class InputEditBetseChannel:
+    id: str
     name: str
     data: InputBetseChannelData
 # endregion input BetseChannel
@@ -949,7 +1004,13 @@ class InputBetseTransporterData:
     inhibitor_n: str
 
 @strawberry.input
-class InputBetseTransporter:
+class InputAddBetseTransporter:
+    name: str
+    data: InputBetseTransporterData
+
+@strawberry.input
+class InputEditBetseTransporter:
+    id: str
     name: str
     data: InputBetseTransporterData
 # endregion input BetseTransporter
@@ -1007,7 +1068,13 @@ class InputBetseModulatorData:
     inhibitor_zone: list[str]
 
 @strawberry.input
-class InputBetseModulator:
+class InputAddBetseModulator:
+    name: str
+    data: InputBetseModulatorData
+
+@strawberry.input
+class InputEditBetseModulator:
+    id: str
     name: str
     data: InputBetseModulatorData
 # endregion input BetseModulator
