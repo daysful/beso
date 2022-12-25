@@ -128,6 +128,7 @@ const World: React.FC<WorldProperties> = (
                     value['import_from_svg']['cells_from_svg'] = '';
 
                     const input = {
+                        id: world.id,
                         name,
                         data: {
                             ...value,
