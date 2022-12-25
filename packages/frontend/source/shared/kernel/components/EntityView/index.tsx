@@ -235,6 +235,7 @@ const EntityView: React.ForwardRefExoticComponent<EntityViewType> = forwardRef((
             ),
         );
     }, [
+        entities.length,
         JSON.stringify(entities),
     ]);
 
