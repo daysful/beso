@@ -3,12 +3,14 @@ from source.constants import database_type
 from .mongo import \
     generate_mongo_connection, \
     mongo_insert, \
+    mongo_update, \
     mongo_get, \
     mongo_get_all, \
     mongo_remove
 from .sqlite import \
     generate_sqlite_connection, \
     sqlite_insert, \
+    sqlite_update, \
     sqlite_get, \
     sqlite_get_all, \
     sqlite_remove
@@ -48,6 +50,27 @@ def insert(
             database,
             name,
             value,
+        )
+
+
+def update(
+    name: str,
+    id: str,
+    data: dict[str, any],
+):
+    if database_type == 'mongo':
+        return mongo_update(
+            database,
+            name,
+            id,
+            data,
+        )
+    else:
+        return sqlite_update(
+            database,
+            name,
+            id,
+            data,
         )
 
 

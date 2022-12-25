@@ -2,7 +2,7 @@ from typing import TypeVar, Type
 import copy
 
 from source.utilities.general import now, generate_id
-from source.database.main import insert, get, remove
+from source.database.main import insert, update, get, remove
 from source.graphql.context import Info
 from source.graphql.types.general import User
 
@@ -71,12 +71,18 @@ def update_entity(
     collection: str,
     model: callable,
 ):
+    stored_entity = get(collection, entity['id'])
+    if not stored_entity:
+        return
+
+    if stored_entity['generated_by'] != user.id:
+        return
+
     entity = make_dict(input)
-    entity_data = make_entity_data(entity, user)
 
-    # edit(collection, entity_data)
+    update(collection, entity['id'], entity['data'])
 
-    model_data = make_model_data(entity_data)
+    model_data = make_model_data(entity)
 
     return model(
         model_data,

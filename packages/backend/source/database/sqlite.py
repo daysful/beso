@@ -110,6 +110,21 @@ def sqlite_insert(
         return True
 
 
+def sqlite_update(
+    connection: sqlite3.Connection,
+    name: str,
+    id: str,
+    data: dict[str, any],
+):
+    sql = f'''
+        UPDATE {name} SET DATA = ? WHERE ID = ?
+        '''
+
+    cursor = connection.cursor()
+    cursor.execute(sql, (json.dumps(data), id))
+    connection.commit()
+
+
 def sqlite_get(
     connection: sqlite3.Connection,
     name: str,

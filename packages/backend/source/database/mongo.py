@@ -22,6 +22,24 @@ def mongo_insert(
     return True
 
 
+def mongo_update(
+    database: MongoClient,
+    name: str,
+    id: str,
+    data: dict[str, any],
+):
+    collection = database[database_name][name]
+    collection.update_one(
+        {
+            "id": id,
+        },
+        {
+            "data": data,
+        },
+    )
+    return True
+
+
 def mongo_get(
     database: MongoClient,
     name: str,
