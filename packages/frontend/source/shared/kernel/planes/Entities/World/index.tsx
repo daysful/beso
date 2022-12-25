@@ -117,7 +117,10 @@ const World: React.FC<WorldProperties> = (
 
             <EditEntityComponent
                 title={`'${world.name}' world`}
-                fields={mergeDataIntoFields(world['data'], fields)}
+                fields={mergeDataIntoFields({
+                    name: world.name,
+                    ...world['data'],
+                }, fields)}
                 kind="World"
 
                 onEdit={(state) => {
