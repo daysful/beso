@@ -225,6 +225,20 @@ const EntityView: React.ForwardRefExoticComponent<EntityViewType> = forwardRef((
 
     // #region effects
     useEffect(() => {
+        setFilteredRows(
+            entities.map(
+                entity => abstractRowRenderer(
+                    rowRenderFields || [],
+                    entity,
+                    rowRenderMethods || {},
+                ),
+            ),
+        );
+    }, [
+        JSON.stringify(entities),
+    ]);
+
+    useEffect(() => {
         if (refreshClicked) {
             setTimeout(() => {
                 setRefreshClicked(false);
