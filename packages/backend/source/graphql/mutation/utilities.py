@@ -80,7 +80,14 @@ def update_entity(
 
     entity = make_dict(input)
 
-    update(collection, entity['id'], entity['data'])
+    update(
+        collection,
+        entity['id'],
+        {
+            'name': entity['name'],
+            'data': entity['data']
+        },
+    )
 
     model_data = make_model_data(entity)
 
