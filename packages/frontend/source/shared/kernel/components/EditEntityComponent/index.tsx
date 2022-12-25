@@ -47,7 +47,7 @@ export interface NewEntityComponentOwnProperties {
     kind: string;
 
     onEdit: (state: NewEntityField[]) => void;
-    onCancel: () => void;
+    onCancel?: () => void;
 }
 
 export interface NewEntityComponentStateProperties {
@@ -146,7 +146,10 @@ const NewEntityComponent: React.FC<NewEntityComponentProperties> = (
                         <PluridLinkButton
                             text="cancel"
                             atClick={() => {
-                                onCancel();
+                                if (onCancel) {
+                                    onCancel();
+                                }
+
                                 setEdit(false);
                             }}
                             theme={stateGeneralTheme}

@@ -34,6 +34,16 @@
         mergeDataIntoFields,
     } from '~kernel-services/logic/betse';
 
+    import {
+        extractState,
+    } from '~kernel-services/logic/betse';
+
+    import graphqlClient from '~kernel-services/graphql/client';
+
+    import {
+        BETSE_MUTATIONS,
+    } from '~kernel-services/graphql/mutate/betse';
+
     import { AppState } from '~kernel-services/state/store';
     import StateContext from '~kernel-services/state/context';
     import selectors from '~kernel-services/state/selectors';
@@ -111,8 +121,25 @@ const World: React.FC<WorldProperties> = (
                 kind="World"
 
                 onEdit={(state) => {
-                }}
-                onCancel={() => {
+                    const value = extractState(state);
+                    const name = value['name'];
+                    delete value['name'];
+
+                    value['import_from_svg']['cells_from_svg'] = '';
+
+                    const input = {
+                        name,
+                        data: {
+                            ...value,
+                        },
+                    };
+
+                    graphqlClient.mutate({
+                        mutation: BETSE_MUTATIONS.EDIT_BETSE_WORLD,
+                        variables: {
+                            input,
+                        },
+                    });
                 }}
             />
         </StyledWorld>
