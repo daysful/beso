@@ -6,6 +6,14 @@
         DocumentNode,
     } from 'graphql';
     // #endregion libraries
+
+
+    // #region external
+    import {
+        FRAGMENTS,
+        FieldsNames,
+    } from '../query/fragments';
+    // #endregion external
 // #endregion imports
 
 
@@ -34,10 +42,15 @@ const computeMutations = () => {
     const betseMutations = {};
 
     for (const mutationType of mutationTypes) {
+        const FRAGMENT = FRAGMENTS[mutationType];
+        const FieldsName = FieldsNames[mutationType];
+
         const ADD_MUTATION = gql`
+            ${FRAGMENT}
+
             mutation AddBetse${mutationType}($input: InputAddBetse${mutationType}!) {
                 addBetse${mutationType}(input: $input) {
-                    id
+                    ...${FieldsName}
                 }
             }
         `;

@@ -8,9 +8,14 @@
     } from '@reduxjs/toolkit';
     import { connect } from 'react-redux';
 
+
     import {
         Theme,
     } from '@plurid/plurid-themes';
+
+    import {
+        DispatchAction,
+    } from '@plurid/plurid-ui-state-react';
     // #endregion libraries
 
 
@@ -31,7 +36,6 @@
 
     import {
         extractState,
-        fetchBetseData,
     } from '~kernel-services/logic/betse';
 
     import graphqlClient from '~kernel-services/graphql/client';
@@ -43,7 +47,7 @@
     import { AppState } from '~kernel-services/state/store';
     import StateContext from '~kernel-services/state/context';
     import selectors from '~kernel-services/state/selectors';
-    // import actions from '~kernel-services/state/actions';
+    import actions from '~kernel-services/state/actions';
     // #endregion external
 // #endregion imports
 
@@ -59,7 +63,7 @@ export interface NewWorldStateProperties {
 }
 
 export interface NewWorldDispatchProperties {
-    dispatch: ThunkDispatch<{}, {}, AnyAction>;
+    dispatchAddDataEntity: DispatchAction<typeof actions.data.addDataEntity>;
 }
 
 export type NewWorldProperties =
@@ -84,7 +88,7 @@ const NewWorld: React.FC<NewWorldProperties> = (
         // #endregion state
 
         // #region dispatch
-        dispatch,
+        dispatchAddDataEntity,
         // #endregion dispatch
     } = properties;
     // #endregion properties
@@ -134,30 +138,39 @@ const NewWorld: React.FC<NewWorldProperties> = (
             )}
 
             onAdd={async (state) => {
-                const value = extractState(state);
-                const name = value['name'];
-                delete value['name'];
+                try {
 
-                value['import_from_svg']['cells_from_svg'] = '';
+                    const value = extractState(state);
+                    const name = value['name'];
+                    delete value['name'];
 
-                const input = {
-                    name,
-                    data: {
-                        ...value,
-                    },
-                };
+                    value['import_from_svg']['cells_from_svg'] = '';
 
-                setRenderView('worlds');
-                setFullRenderArea(false);
+                    const input = {
+                        name,
+                        data: {
+                            ...value,
+                        },
+                    };
 
-                await graphqlClient.mutate({
-                    mutation: BETSE_MUTATIONS.ADD_BETSE_WORLD,
-                    variables: {
-                        input,
-                    },
-                });
+                    setRenderView('worlds');
+                    setFullRenderArea(false);
 
-                fetchBetseData(dispatch);
+                    const response = await graphqlClient.mutate({
+                        mutation: BETSE_MUTATIONS.ADD_BETSE_WORLD,
+                        variables: {
+                            input,
+                        },
+                    });
+                    const addedWorld = response.data.addBetseWorld;
+
+                    dispatchAddDataEntity({
+                        type: 'worlds',
+                        data: addedWorld,
+                    });
+                } catch (error) {
+                    return;
+                }
             }}
         />
     );
@@ -176,7 +189,11 @@ const mapStateToProperties = (
 const mapDispatchToProperties = (
     dispatch: ThunkDispatch<{}, {}, AnyAction>,
 ): NewWorldDispatchProperties => ({
-    dispatch,
+    dispatchAddDataEntity: (
+        payload,
+    ) => dispatch(
+        actions.data.addDataEntity(payload),
+    ),
 });
 
 

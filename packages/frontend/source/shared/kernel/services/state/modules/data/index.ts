@@ -74,6 +74,11 @@ export interface RemoveDataEntityPayload {
     id: string;
 }
 
+export interface AddDataEntityPayload {
+    type: keyof DataState;
+    data: any;
+}
+
 
 export const data = createSlice({
     name: 'data',
@@ -117,6 +122,20 @@ export const data = createSlice({
             } = action.payload;
 
             (state as any)[type] = state[type].filter((entity: any) => entity.id !== id);
+        },
+        addDataEntity: (
+            state,
+            action: PayloadAction<AddDataEntityPayload>,
+        ) => {
+            const {
+                type,
+                data,
+            } = action.payload;
+
+            (state as any)[type] = [
+                ...state[type],
+                data,
+            ];
         },
     },
 });

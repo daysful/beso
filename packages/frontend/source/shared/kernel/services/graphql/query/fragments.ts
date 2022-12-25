@@ -406,4 +406,33 @@ export const BETSE_MODULATOR_FRAGMENT = gql`
         }
     }
 `;
+
+
+export const FRAGMENTS = {
+    'Simulation': BETSE_SIMULATION_FRAGMENT,
+    'World': BETSE_WORLD_FRAGMENT,
+    'Tissue': BETSE_TISSUE_FRAGMENT,
+    'Intervention': BETSE_INTERVENTION_FRAGMENT,
+    'Function': BETSE_FUNCTION_FRAGMENT,
+    'Network': BETSE_NETWORK_FRAGMENT,
+    'Biomolecule': BETSE_BIOMOLECULE_FRAGMENT,
+    'Reaction': BETSE_REACTION_FRAGMENT,
+    'Channel': BETSE_CHANNEL_FRAGMENT,
+    'Transporter': BETSE_TRANSPORTER_FRAGMENT,
+    'Modulator': BETSE_MODULATOR_FRAGMENT,
+};
+
+export const FieldsNames = {
+    'Simulation': 'BetseSimulationFields',
+    'World': 'BetseWorldFields',
+    'Tissue': 'BetseTissueFields',
+    'Intervention': 'BetseInterventionFields',
+    'Function': 'BetseFunctionFields',
+    'Network': 'BetseNetworkFields',
+    'Biomolecule': 'BetseBiomoleculeFields',
+    'Reaction': 'BetseReactionFields',
+    'Channel': 'BetseChannelFields',
+    'Transporter': 'BetseTransporterFields',
+    'Modulator': 'BetseModulatorFields',
+};
 // #endregion module
