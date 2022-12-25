@@ -35,7 +35,7 @@ const computeMutations = () => {
 
     for (const mutationType of mutationTypes) {
         const ADD_MUTATION = gql`
-            mutation AddBetse${mutationType}($input: InputBetse${mutationType}!) {
+            mutation AddBetse${mutationType}($input: InputAddBetse${mutationType}!) {
                 addBetse${mutationType}(input: $input) {
                     id
                 }
@@ -43,7 +43,7 @@ const computeMutations = () => {
         `;
 
         const EDIT_MUTATION = gql`
-            mutation EditBetse${mutationType}($input: InputBetse${mutationType}!) {
+            mutation EditBetse${mutationType}($input: InputEditBetse${mutationType}!) {
                 editBetse${mutationType}(input: $input) {
                     id
                 }
