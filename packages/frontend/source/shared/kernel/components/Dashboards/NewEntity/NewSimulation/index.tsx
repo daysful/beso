@@ -18,6 +18,10 @@
     } from '@plurid/plurid-themes';
 
     import {
+        DispatchAction,
+    } from '@plurid/plurid-ui-state-react';
+
+    import {
         PluridUIEntityPillData,
         PluridUIDropdownSelectable,
     } from '@plurid/plurid-ui-components-react';
@@ -59,7 +63,7 @@
     import { AppState } from '~kernel-services/state/store';
     import StateContext from '~kernel-services/state/context';
     import selectors from '~kernel-services/state/selectors';
-    // import actions from '~kernel-services/state/actions';
+    import actions from '~kernel-services/state/actions';
     // #endregion external
 // #endregion imports
 
@@ -76,6 +80,7 @@ export interface NewSimulationStateProperties {
 }
 
 export interface NewSimulationDispatchProperties {
+    dispatchAddDataEntity: DispatchAction<typeof actions.data.addDataEntity>;
 }
 
 export type NewSimulationProperties =
@@ -99,6 +104,10 @@ const NewSimulation: React.FC<NewSimulationProperties> = (
         // stateInteractionTheme,
         stateData,
         // #endregion state
+
+        // #region dispatch
+        dispatchAddDataEntity,
+        // #endregion dispatch
     } = properties;
     // #endregion properties
 
@@ -608,6 +617,11 @@ const mapStateToProperties = (
 const mapDispatchToProperties = (
     dispatch: ThunkDispatch<{}, {}, AnyAction>,
 ): NewSimulationDispatchProperties => ({
+    dispatchAddDataEntity: (
+        payload,
+    ) => dispatch(
+        actions.data.addDataEntity(payload),
+    ),
 });
 
 

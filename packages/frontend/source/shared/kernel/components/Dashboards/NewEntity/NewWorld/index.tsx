@@ -139,7 +139,6 @@ const NewWorld: React.FC<NewWorldProperties> = (
 
             onAdd={async (state) => {
                 try {
-
                     const value = extractState(state);
                     const name = value['name'];
                     delete value['name'];

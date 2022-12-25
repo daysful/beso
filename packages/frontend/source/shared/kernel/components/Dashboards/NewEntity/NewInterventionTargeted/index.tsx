@@ -8,9 +8,14 @@
     } from '@reduxjs/toolkit';
     import { connect } from 'react-redux';
 
+
     import {
         Theme,
     } from '@plurid/plurid-themes';
+
+    import {
+        DispatchAction,
+    } from '@plurid/plurid-ui-state-react';
     // #endregion libraries
 
 
@@ -42,7 +47,7 @@
     import { AppState } from '~kernel-services/state/store';
     import StateContext from '~kernel-services/state/context';
     import selectors from '~kernel-services/state/selectors';
-    // import actions from '~kernel-services/state/actions';
+    import actions from '~kernel-services/state/actions';
     // #endregion external
 // #endregion imports
 
@@ -58,6 +63,7 @@ export interface NewInterventionTargetedStateProperties {
 }
 
 export interface NewInterventionTargetedDispatchProperties {
+    dispatchAddDataEntity: DispatchAction<typeof actions.data.addDataEntity>;
 }
 
 export type NewInterventionTargetedProperties =
@@ -80,6 +86,10 @@ const NewInterventionTargeted: React.FC<NewInterventionTargetedProperties> = (
         stateGeneralTheme,
         // stateInteractionTheme,
         // #endregion state
+
+        // #region dispatch
+        dispatchAddDataEntity,
+        // #endregion dispatch
     } = properties;
     // #endregion properties
 
@@ -112,27 +122,31 @@ const NewInterventionTargeted: React.FC<NewInterventionTargetedProperties> = (
                 />
             )}
 
-            onAdd={(state) => {
-                const value = extractState(state);
-                const name = value['name'];
-                delete value['name'];
+            onAdd={async (state) => {
+                try {
+                    const value = extractState(state);
+                    const name = value['name'];
+                    delete value['name'];
 
-                const input = {
-                    name,
-                    data: {
-                        ...value,
-                    },
-                };
+                    const input = {
+                        name,
+                        data: {
+                            ...value,
+                        },
+                    };
 
-                graphqlClient.mutate({
-                    mutation: BETSE_MUTATIONS.ADD_BETSE_INTERVENTION,
-                    variables: {
-                        input,
-                    },
-                });
+                    setRenderView('interventionsTargeted');
+                    setFullRenderArea(false);
 
-                setRenderView('interventionsTargeted');
-                setFullRenderArea(false);
+                    const response = await graphqlClient.mutate({
+                        mutation: BETSE_MUTATIONS.ADD_BETSE_INTERVENTION,
+                        variables: {
+                            input,
+                        },
+                    });
+                } catch (error) {
+                    return;
+                }
             }}
         />
     );
@@ -151,6 +165,11 @@ const mapStateToProperties = (
 const mapDispatchToProperties = (
     dispatch: ThunkDispatch<{}, {}, AnyAction>,
 ): NewInterventionTargetedDispatchProperties => ({
+    dispatchAddDataEntity: (
+        payload,
+    ) => dispatch(
+        actions.data.addDataEntity(payload),
+    ),
 });
 
 

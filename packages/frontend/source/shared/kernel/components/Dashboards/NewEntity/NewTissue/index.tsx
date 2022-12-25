@@ -8,9 +8,14 @@
     } from '@reduxjs/toolkit';
     import { connect } from 'react-redux';
 
+
     import {
         Theme,
     } from '@plurid/plurid-themes';
+
+    import {
+        DispatchAction,
+    } from '@plurid/plurid-ui-state-react';
     // #endregion libraries
 
 
@@ -42,7 +47,7 @@
     import { AppState } from '~kernel-services/state/store';
     import StateContext from '~kernel-services/state/context';
     import selectors from '~kernel-services/state/selectors';
-    // import actions from '~kernel-services/state/actions';
+    import actions from '~kernel-services/state/actions';
     // #endregion external
 // #endregion imports
 
@@ -58,6 +63,7 @@ export interface NewTissueStateProperties {
 }
 
 export interface NewTissueDispatchProperties {
+    dispatchAddDataEntity: DispatchAction<typeof actions.data.addDataEntity>;
 }
 
 export type NewTissueProperties =
@@ -80,6 +86,10 @@ const NewTissue: React.FC<NewTissueProperties> = (
         stateGeneralTheme,
         // stateInteractionTheme,
         // #endregion state
+
+        // #region dispatch
+        dispatchAddDataEntity,
+        // #endregion dispatch
     } = properties;
     // #endregion properties
 
@@ -112,29 +122,39 @@ const NewTissue: React.FC<NewTissueProperties> = (
                 />
             )}
 
-            onAdd={(state) => {
-                const value = extractState(state);
-                const name = value['name'];
-                delete value['name'];
+            onAdd={async (state) => {
+                try {
+                    const value = extractState(state);
+                    const name = value['name'];
+                    delete value['name'];
 
-                value['cell_targets']['image'] = '';
+                    value['cell_targets']['image'] = '';
 
-                const input = {
-                    name,
-                    data: {
-                        ...value,
-                    },
-                };
+                    const input = {
+                        name,
+                        data: {
+                            ...value,
+                        },
+                    };
 
-                graphqlClient.mutate({
-                    mutation: BETSE_MUTATIONS.ADD_BETSE_TISSUE,
-                    variables: {
-                        input,
-                    },
-                });
+                    setRenderView('tissues');
+                    setFullRenderArea(false);
 
-                setRenderView('tissues');
-                setFullRenderArea(false);
+                    const response = await graphqlClient.mutate({
+                        mutation: BETSE_MUTATIONS.ADD_BETSE_TISSUE,
+                        variables: {
+                            input,
+                        },
+                    });
+                    const addedTissue = response.data.addBetseTissue;
+
+                    dispatchAddDataEntity({
+                        type: 'tissues',
+                        data: addedTissue,
+                    });
+                } catch (error) {
+                    return;
+                }
             }}
         />
     );
@@ -153,6 +173,11 @@ const mapStateToProperties = (
 const mapDispatchToProperties = (
     dispatch: ThunkDispatch<{}, {}, AnyAction>,
 ): NewTissueDispatchProperties => ({
+    dispatchAddDataEntity: (
+        payload,
+    ) => dispatch(
+        actions.data.addDataEntity(payload),
+    ),
 });
 
 
