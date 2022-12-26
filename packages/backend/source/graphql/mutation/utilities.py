@@ -36,6 +36,17 @@ def make_entity_data(
     return entity_data
 
 
+def make_entity_fork(
+    entity: any,
+    user: User,
+):
+    forked_entity = copy.deepcopy(entity)
+    forked_entity['id'] = generate_id()
+    forked_entity['generated_by'] = user.id
+
+    return forked_entity
+
+
 def make_model_data(
     data: dict,
 ):

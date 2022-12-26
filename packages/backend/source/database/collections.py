@@ -16,6 +16,21 @@ class Collections(StrEnum):
     betseTransporters = 'betseTransporters',
     betseModulators = 'betseModulators'
 
+
+class BetseCollections(StrEnum):
+    simulation = Collections.betseSimulations,
+    world = Collections.betseWorlds,
+    tissue = Collections.betseTissues,
+    intervention = Collections.betseInterventions,
+    function = Collections.betseFunctions,
+    network = Collections.betseNetworks,
+    biomolecule = Collections.betseBiomolecules,
+    reaction = Collections.betseReactions,
+    channel = Collections.betseChannels,
+    transporter = Collections.betseTransporters,
+    modulator = Collections.betseModulators,
+
+
 tables = [
     Collections.betseSimulations,
     Collections.betseWorlds,
