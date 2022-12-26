@@ -1,6 +1,6 @@
 from strawberry.tools import merge_types
 
-# from .general import MutationGeneral
+from .general import MutationGeneral
 from .user import MutationUser
 from .betse import MutationBetseWorld
 from .simulation import MutationSimulation
@@ -10,7 +10,7 @@ from .simulation import MutationSimulation
 Mutation = merge_types(
     'Mutation',
     (
-        # MutationGeneral,
+        MutationGeneral,
         MutationUser,
         MutationBetseWorld,
         MutationSimulation,

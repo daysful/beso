@@ -12,3 +12,9 @@ class UserWithToken:
     id: str
     name: str
     token: str
+
+
+@strawberry.input
+class InputForkResource:
+    type: str
+    id: str
