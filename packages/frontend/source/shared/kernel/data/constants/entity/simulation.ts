@@ -11,24 +11,31 @@
 // #region module
 export const fields: NewEntityField[] = [
     {
-        label: 'solver type',
-        type: 'string',
-        state: 'solver_type',
-        value: 'full',
-        required: true,
-        help: `
-        type of solver to enable for this simulation, as any following string:
-        * "full", a complete but slower solver producing publication-quality results
-          by comprehensively simulating all possible bioelectrical phenomena.
-        * "fast", an incomplete but faster solver producing draft-quality results
-          by the well-known equivalent circuit formalism analogizing biological
-          systems to electronic circuits. While integrated with gene regulatory
-          networks (GRNs), this solver *CANNOT* simulate:
-          * Bioelectric fields or currents.
-          * Extracellular voltages or voltage polarities.
-          * Ion concentrations.
-          These phenomena are silently ignored when this solver is enabled.
-        `,
+        label: 'solver options',
+        type: 'group',
+        state: 'solver_options',
+        value: [
+            {
+                label: 'type',
+                type: 'string',
+                state: 'type',
+                value: 'full',
+                required: true,
+                help: `
+                type of solver to enable for this simulation, as any following string:
+                * "full", a complete but slower solver producing publication-quality results
+                  by comprehensively simulating all possible bioelectrical phenomena.
+                * "fast", an incomplete but faster solver producing draft-quality results
+                  by the well-known equivalent circuit formalism analogizing biological
+                  systems to electronic circuits. While integrated with gene regulatory
+                  networks (GRNs), this solver *CANNOT* simulate:
+                  * Bioelectric fields or currents.
+                  * Extracellular voltages or voltage polarities.
+                  * Ion concentrations.
+                  These phenomena are silently ignored when this solver is enabled.
+                `,
+            },
+        ],
     },
     {
         label: 'init time settings',
