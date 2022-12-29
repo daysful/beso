@@ -42,6 +42,7 @@ def make_entity_fork(
 ):
     forked_entity = copy.deepcopy(entity)
     forked_entity['id'] = generate_id()
+    forked_entity['forked_from'] = entity['generated_by']
     forked_entity['generated_by'] = user.id
 
     return forked_entity

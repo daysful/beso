@@ -28,6 +28,7 @@ def generate_tables(
                 ID              VARCHAR(255) PRIMARY KEY     NOT NULL,
                 GENERATED_BY    TEXT                         NOT NULL,
                 GENERATED_AT    INT                          NOT NULL,
+                FORKED_FROM     TEXT                         NULL,
                 DATA            JSON                         NOT NULL
             );
             '''
@@ -69,8 +70,8 @@ def sqlite_insert(
 ):
     if value.get('is_json'):
         sql = f'''
-            INSERT INTO {name}(ID, GENERATED_BY, GENERATED_AT, DATA)
-            VALUES(?, ?, ?, ?)
+            INSERT INTO {name}(ID, GENERATED_BY, GENERATED_AT, FORKED_FROM, DATA)
+            VALUES(?, ?, ?, ?, ?)
             '''
 
         data = value['data'].copy()
@@ -82,6 +83,7 @@ def sqlite_insert(
                 value['id'],
                 value['generated_by'],
                 value['generated_at'],
+                value.get('forked_from'),
                 json.dumps(data),
             ),
         )
