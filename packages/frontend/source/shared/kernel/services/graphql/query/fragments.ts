@@ -68,7 +68,7 @@ export const BETSE_SIMULATION_FRAGMENT = gql`
                     gj_minimum
                 }
                 tight_junction_scaling
-                tight_junction_elative_diffusion {
+                tight_junction_relative_diffusion {
                     Na
                     K
                     Cl
@@ -77,7 +77,7 @@ export const BETSE_SIMULATION_FRAGMENT = gql`
                     P
                 }
                 adherens_junction_scaling
-                use_goldman_calculator
+                use_Goldman_calculator
             }
             world
             tissues

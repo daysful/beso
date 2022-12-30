@@ -159,7 +159,7 @@ export const fields: NewEntityField[] = [
                     {
                         label: 'extracellular Na+ concentration',
                         type: 'number',
-                        state: 'extracellular_Na_Concentration',
+                        state: 'extracellular_Na_concentration',
                         value: 145.0,
                         format: 'float',
                         required: true,
@@ -169,7 +169,7 @@ export const fields: NewEntityField[] = [
                     {
                         label: 'extracellular K+ concentration',
                         type: 'number',
-                        state: 'extracellular_K_Concentration',
+                        state: 'extracellular_K_concentration',
                         value: 5.0,
                         format: 'float',
                         required: true,
@@ -179,7 +179,7 @@ export const fields: NewEntityField[] = [
                     {
                         label: 'extracellular Cl- concentration',
                         type: 'number',
-                        state: 'extracellular_Cl_Concentration',
+                        state: 'extracellular_Cl_concentration',
                         value: 115.0,
                         format: 'float',
                         required: true,
@@ -189,7 +189,7 @@ export const fields: NewEntityField[] = [
                     {
                         label: 'extracellular Ca2+ concentration',
                         type: 'number',
-                        state: 'extracellular_Ca2_Concentration',
+                        state: 'extracellular_Ca2_concentration',
                         value: 2.0,
                         format: 'float',
                         required: true,
@@ -199,7 +199,7 @@ export const fields: NewEntityField[] = [
                     {
                         label: 'extracellular protein- concentration',
                         type: 'number',
-                        state: 'extracellular_Protein_Concentration',
+                        state: 'extracellular_protein_concentration',
                         value: 10.0,
                         format: 'float',
                         required: true,
@@ -210,7 +210,7 @@ export const fields: NewEntityField[] = [
                     {
                         label: 'cytosolic Na+ concentration',
                         type: 'number',
-                        state: 'cytosolic_Na_Concentration',
+                        state: 'cytosolic_Na_concentration',
                         value: 12.0,
                         format: 'float',
                         required: true,
@@ -220,7 +220,7 @@ export const fields: NewEntityField[] = [
                     {
                         label: 'cytosolic K+ concentration',
                         type: 'number',
-                        state: 'cytosolic_K_Concentration',
+                        state: 'cytosolic_K_concentration',
                         value: 139.0,
                         format: 'float',
                         required: true,
@@ -230,7 +230,7 @@ export const fields: NewEntityField[] = [
                     {
                         label: 'cytosolic Cl- concentration',
                         type: 'number',
-                        state: 'cytosolic_Cl_Concentration',
+                        state: 'cytosolic_Cl_concentration',
                         value: 4.0,
                         format: 'float',
                         required: true,
@@ -240,7 +240,7 @@ export const fields: NewEntityField[] = [
                     {
                         label: 'cytosolic Ca2+ concentration',
                         type: 'number',
-                        state: 'cytosolic_Ca2_Concentration',
+                        state: 'cytosolic_Ca2_concentration',
                         value: 2.0e-5,
                         format: 'scientific',
                         required: true,
@@ -250,7 +250,7 @@ export const fields: NewEntityField[] = [
                     {
                         label: 'cytosolic protein- concentration',
                         type: 'number',
-                        state: 'cytosolic_Protein_Concentration',
+                        state: 'cytosolic_protein_concentration',
                         value: 135.0,
                         format: 'float',
                         required: true,
@@ -422,7 +422,7 @@ export const fields: NewEntityField[] = [
             {
                 label: 'gap junctions',
                 type: 'group',
-                state: 'gapJunctions',
+                state: 'gap_junctions',
                 value: [
                     {
                         label: 'gap junction surface area',
