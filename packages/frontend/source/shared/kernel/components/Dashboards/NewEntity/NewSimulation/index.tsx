@@ -220,6 +220,45 @@ const NewSimulation: React.FC<NewSimulationProperties> = (
             }
         }
     }
+
+    const addNewSimulation = async () => {
+        try {
+            const value = extractState(state);
+
+            const input = {
+                name,
+                data: {
+                    ...value,
+                    world,
+                    tissues,
+                    interventions,
+                    modulators,
+                    networks,
+                    biomolecules,
+                    reactions,
+                    channels,
+                },
+            };
+
+            setRenderView('simulations');
+            setFullRenderArea(false);
+
+            const response = await graphqlClient.mutate({
+                mutation: BETSE_MUTATIONS.ADD_BETSE_SIMULATION,
+                variables: {
+                    input,
+                },
+            });
+            const addedSimulation = response.data.addBetseSimulation;
+
+            dispatchAddDataEntity({
+                type: 'simulations',
+                data: addedSimulation,
+            });
+        } catch (error) {
+            return;
+        }
+    }
     // #endregion handlers
 
 
@@ -227,14 +266,14 @@ const NewSimulation: React.FC<NewSimulationProperties> = (
     useEffect(() => {
         if (
             name
-            && world
-            && tissues.length > 0
-            && interventions.length > 0
-            && modulators.length > 0
-            && networks.length > 0
-            && biomolecules.length > 0
-            && reactions.length > 0
-            && channels.length > 0
+            // && world
+            // && tissues.length > 0
+            // && interventions.length > 0
+            // && modulators.length > 0
+            // && networks.length > 0
+            // && biomolecules.length > 0
+            // && reactions.length > 0
+            // && channels.length > 0
         ) {
             setIsValid(true);
         } else {
@@ -556,6 +595,7 @@ const NewSimulation: React.FC<NewSimulationProperties> = (
                 <PluridPureButton
                     text="Add New Simulation"
                     atClick={() => {
+                        addNewSimulation();
                     }}
                     theme={stateGeneralTheme}
                     level={2}
