@@ -17,6 +17,10 @@ GraphqlAny = strawberry.scalar(
 # region BetseSimulation
 # region input BetseSimulation
 @strawberry.input
+class InputBetseSimulationSolverOptions:
+    type: str
+
+@strawberry.input
 class InputBetseSimulationInitTimeSettings:
     time_step: float
     total_time: float
@@ -99,11 +103,40 @@ class InputBetseSimulationVariableSettings:
     use_Goldman_calculator: bool
 
 @strawberry.input
+class InputBetseSimulationResultsOptions:
+    show_cells: bool
+    enumerate_cells: bool
+
+@strawberry.input
+class InputBetseSimulationInternalParameters:
+    Do_Na: float
+    Do_K: float
+    Do_Cl: float
+    Do_Ca: float
+    Do_M: float
+    Do_P: float
+    alpha_NaK: float
+    alpha_Ca: float
+    substances_affect_Vmem: bool
+    environment_volume_multiplier: float
+    membrane_capacitance: float
+    cell_polarizability: float
+    dielectric_constant: float
+    fast_update_ECM: bool
+    sharpness_env: float
+    sharpness_cell: float
+    true_cell_size: float
+
+@strawberry.input
 class InputBetseSimulationData:
+    solver_options: InputBetseSimulationSolverOptions
     init_time_settings: InputBetseSimulationInitTimeSettings
     sim_time_settings: InputBetseSimulationSimTimeSettings
     general_options: InputBetseSimulationGeneralOptions
     variable_settings: InputBetseSimulationVariableSettings
+    results_options: InputBetseSimulationResultsOptions
+    internal_parameters: InputBetseSimulationInternalParameters
+    version: str
     world: str
     tissues: list[str]
     interventions: list[str]
@@ -126,6 +159,10 @@ class InputEditBetseSimulation:
 # endregion input BetseSimulation
 
 # region type BetseSimulation
+@strawberry.type
+class BetseSimulationSolverOptions:
+    type: str
+
 @strawberry.type
 class BetseSimulationInitTimeSettings:
     time_step: float
@@ -209,11 +246,40 @@ class BetseSimulationVariableSettings:
     use_Goldman_calculator: bool
 
 @strawberry.type
+class BetseSimulationResultsOptions:
+    show_cells: bool
+    enumerate_cells: bool
+
+@strawberry.type
+class BetseSimulationInternalParameters:
+    Do_Na: float
+    Do_K: float
+    Do_Cl: float
+    Do_Ca: float
+    Do_M: float
+    Do_P: float
+    alpha_NaK: float
+    alpha_Ca: float
+    substances_affect_Vmem: bool
+    environment_volume_multiplier: float
+    membrane_capacitance: float
+    cell_polarizability: float
+    dielectric_constant: float
+    fast_update_ECM: bool
+    sharpness_env: float
+    sharpness_cell: float
+    true_cell_size: float
+
+@strawberry.type
 class BetseSimulationData:
+    solver_options: BetseSimulationSolverOptions
     init_time_settings: BetseSimulationInitTimeSettings
     sim_time_settings: BetseSimulationSimTimeSettings
     general_options: BetseSimulationGeneralOptions
     variable_settings: BetseSimulationVariableSettings
+    results_options: BetseSimulationResultsOptions
+    internal_parameters: BetseSimulationInternalParameters
+    version: str
     world: str
     tissues: list[str]
     interventions: list[str]
