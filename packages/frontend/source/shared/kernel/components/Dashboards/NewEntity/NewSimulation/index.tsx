@@ -65,6 +65,11 @@
     import selectors from '~kernel-services/state/selectors';
     import actions from '~kernel-services/state/actions';
     // #endregion external
+
+
+    // #region internal
+    import Selectable from './components/Selectable';
+    // #endregion internal
 // #endregion imports
 
 
@@ -294,26 +299,6 @@ const NewSimulation: React.FC<NewSimulationProperties> = (
 
 
     // #region render
-    const worldRender = (
-        <PluridFormLeftRight>
-            <div>
-                world
-            </div>
-
-            <PluridDropdown
-                selected={world || 'select'}
-                selectables={[
-                    'add new world',
-                    ...makeSelectables(stateData.worlds),
-                ]}
-                atSelect={(selection) => {
-                    handleSelection(selection, 'world');
-                }}
-                theme={stateGeneralTheme}
-                width={130}
-            />
-        </PluridFormLeftRight>
-    );
 
     const tissuesRender = (
         <>
@@ -587,6 +572,15 @@ const NewSimulation: React.FC<NewSimulationProperties> = (
         </>
     );
 
+    const selectables = [
+        {
+            type: 'world',
+            single: true,
+            selected: world,
+            data: stateData.worlds,
+        },
+    ];
+
     return (
         <StyledDashboardContainer
             theme={stateGeneralTheme}
@@ -628,7 +622,27 @@ const NewSimulation: React.FC<NewSimulationProperties> = (
                     }}
                 />
 
-                {worldRender}
+                {selectables.map(selectable => {
+                    const {
+                        type,
+                        single,
+                        selected,
+                        data,
+                    } = selectable;
+
+                    return (
+                        <Selectable
+                            key={Math.random() + ''}
+                            type={type}
+                            single={single}
+                            selected={selected}
+                            data={data}
+
+                            handleSelection={handleSelection}
+                        />
+                    );
+                })}
+
                 {tissuesRender}
                 {interventionsRender}
                 {functionsRender}
