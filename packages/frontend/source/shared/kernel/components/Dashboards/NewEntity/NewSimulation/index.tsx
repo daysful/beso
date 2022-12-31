@@ -148,32 +148,42 @@ const NewSimulation: React.FC<NewSimulationProperties> = (
     const [
         interventions,
         setInterventions,
-    ] = useState<string[]>([]);
+    ] = useState<PluridUIEntityPillData[]>([]);
 
     const [
-        modulators,
-        setModulators,
-    ] = useState<string[]>([]);
+        modulatorFunctions,
+        setModulatorFunctions,
+    ] = useState<PluridUIEntityPillData[]>([]);
 
     const [
         networks,
         setNetworks,
-    ] = useState<string[]>([]);
+    ] = useState<PluridUIEntityPillData[]>([]);
 
     const [
         biomolecules,
         setBiomolecules,
-    ] = useState<string[]>([]);
+    ] = useState<PluridUIEntityPillData[]>([]);
 
     const [
         reactions,
         setReactions,
-    ] = useState<string[]>([]);
+    ] = useState<PluridUIEntityPillData[]>([]);
 
     const [
         channels,
         setChannels,
-    ] = useState<string[]>([]);
+    ] = useState<PluridUIEntityPillData[]>([]);
+
+    const [
+        transporters,
+        setTransporters,
+    ] = useState<PluridUIEntityPillData[]>([]);
+
+    const [
+        modulators,
+        setModulators,
+    ] = useState<PluridUIEntityPillData[]>([]);
 
     const [
         isValid,
@@ -183,13 +193,6 @@ const NewSimulation: React.FC<NewSimulationProperties> = (
 
 
     // #region handlers
-    const makeSelectables = (
-        data: any[],
-    ) => data.map(item => ({
-        id: item.id,
-        value: item.name,
-    }));
-
     const handleSelection = (
         selection: string | PluridUIDropdownSelectable,
         type: string,
@@ -230,13 +233,33 @@ const NewSimulation: React.FC<NewSimulationProperties> = (
         id: string,
         type: string,
     ) => {
-        switch (type) {
-            case 'tissue':
-                setTissues(
-                    tissues.filter(tissue => tissue.id !== id),
-                );
-                break;
-        }
+        const data = {
+            tissue: tissues,
+            intervention: interventions,
+            function: modulatorFunctions,
+            network: networks,
+            biomolecule: biomolecules,
+            reaction: reactions,
+            channel: channels,
+            transporter: transporters,
+            modulator: modulators,
+        };
+
+        const functions = {
+            tissue: setTissues,
+            intervention: setInterventions,
+            function: setModulatorFunctions,
+            network: setNetworks,
+            biomolecule: setBiomolecules,
+            reaction: setReactions,
+            channel: setChannels,
+            transporter: setTransporters,
+            modulator: setModulators,
+        };
+
+        functions[type](
+            data[type].filter((item: any) => item.id !== id),
+        );
     }
 
     const addNewSimulation = async () => {
@@ -312,243 +335,6 @@ const NewSimulation: React.FC<NewSimulationProperties> = (
 
 
     // #region render
-    const interventionsRender = (
-        <>
-            <PluridFormLeftRight>
-                <div>
-                    interventions
-                </div>
-
-                <PluridDropdown
-                    selected={'select'}
-                    selectables={[
-                        'new intervention',
-                    ]}
-                    atSelect={(selection) => {}}
-                    theme={stateGeneralTheme}
-                    width={130}
-                />
-            </PluridFormLeftRight>
-
-            <PluridEntityPillGroup
-                entities={[
-                ]}
-                remove={() => {}}
-                theme={stateGeneralTheme}
-            />
-        </>
-    );
-
-    const functionsRender = (
-        <>
-            <PluridFormLeftRight>
-                <div>
-                    functions
-                </div>
-
-                <PluridDropdown
-                    selected={'select'}
-                    selectables={[
-                        'add new function',
-                        ...makeSelectables(stateData.modulatorFunctions),
-                    ]}
-                    atSelect={(selection) => {
-                        handleSelection(selection, 'function');
-                    }}
-                    theme={stateGeneralTheme}
-                    width={130}
-                />
-            </PluridFormLeftRight>
-
-            <PluridEntityPillGroup
-                entities={[
-                ]}
-                remove={() => {}}
-                theme={stateGeneralTheme}
-            />
-        </>
-    );
-
-    const networksRender = (
-        <>
-            <PluridFormLeftRight>
-                <div>
-                    networks
-                </div>
-
-                <PluridDropdown
-                    selected={'select'}
-                    selectables={[
-                        'add new network',
-                        ...makeSelectables(stateData.networks),
-                    ]}
-                    atSelect={(selection) => {
-                        handleSelection(selection, 'network');
-                    }}
-                    theme={stateGeneralTheme}
-                    width={130}
-                />
-            </PluridFormLeftRight>
-
-            <PluridEntityPillGroup
-                entities={[
-                ]}
-                remove={() => {}}
-                theme={stateGeneralTheme}
-            />
-        </>
-    );
-
-    const biomoleculesRender = (
-        <>
-            <PluridFormLeftRight>
-                <div>
-                    biomolecules
-                </div>
-
-                <PluridDropdown
-                    selected={'select'}
-                    selectables={[
-                        'add new biomolecule',
-                        ...makeSelectables(stateData.biomolecules),
-                    ]}
-                    atSelect={(selection) => {
-                        handleSelection(selection, 'biomolecule');
-                    }}
-                    theme={stateGeneralTheme}
-                    width={130}
-                />
-            </PluridFormLeftRight>
-
-            <PluridEntityPillGroup
-                entities={[
-                ]}
-                remove={() => {}}
-                theme={stateGeneralTheme}
-            />
-        </>
-    );
-
-    const reactionsRender = (
-        <>
-            <PluridFormLeftRight>
-                <div>
-                    reactions
-                </div>
-
-                <PluridDropdown
-                    selected={'select'}
-                    selectables={[
-                        'add new reaction',
-                        ...makeSelectables(stateData.reactions),
-                    ]}
-                    atSelect={(selection) => {
-                        handleSelection(selection, 'reaction');
-                    }}
-                    theme={stateGeneralTheme}
-                    width={130}
-                />
-            </PluridFormLeftRight>
-
-            <PluridEntityPillGroup
-                entities={[
-                ]}
-                remove={() => {}}
-                theme={stateGeneralTheme}
-            />
-        </>
-    );
-
-    const channelsRender = (
-        <>
-            <PluridFormLeftRight>
-                <div>
-                    channels
-                </div>
-
-                <PluridDropdown
-                    selected={'select'}
-                    selectables={[
-                        'add new channel',
-                        ...makeSelectables(stateData.channels),
-                    ]}
-                    atSelect={(selection) => {
-                        handleSelection(selection, 'channel');
-                    }}
-                    theme={stateGeneralTheme}
-                    width={130}
-                />
-            </PluridFormLeftRight>
-
-            <PluridEntityPillGroup
-                entities={[
-                ]}
-                remove={() => {}}
-                theme={stateGeneralTheme}
-            />
-        </>
-    );
-
-    const transportersRender = (
-        <>
-            <PluridFormLeftRight>
-                <div>
-                    transporters
-                </div>
-
-                <PluridDropdown
-                    selected={'select'}
-                    selectables={[
-                        'add new function',
-                        ...makeSelectables(stateData.transporters),
-                    ]}
-                    atSelect={(selection) => {
-                        handleSelection(selection, 'transporter');
-                    }}
-                    theme={stateGeneralTheme}
-                    width={130}
-                />
-            </PluridFormLeftRight>
-
-            <PluridEntityPillGroup
-                entities={[
-                ]}
-                remove={() => {}}
-                theme={stateGeneralTheme}
-            />
-        </>
-    );
-
-    const modulatorsRender = (
-        <>
-            <PluridFormLeftRight>
-                <div>
-                    modulators
-                </div>
-
-                <PluridDropdown
-                    selected={'select'}
-                    selectables={[
-                        'add new modulator',
-                        ...makeSelectables(stateData.modulators),
-                    ]}
-                    atSelect={(selection) => {
-                        handleSelection(selection, 'modulator');
-                    }}
-                    theme={stateGeneralTheme}
-                    width={130}
-                />
-            </PluridFormLeftRight>
-
-            <PluridEntityPillGroup
-                entities={[
-                ]}
-                remove={() => {}}
-                theme={stateGeneralTheme}
-            />
-        </>
-    );
-
     const selectables = [
         {
             type: 'world',
@@ -560,6 +346,49 @@ const NewSimulation: React.FC<NewSimulationProperties> = (
             type: 'tissue',
             selected: tissues,
             data: stateData.tissues,
+        },
+        {
+            type: 'intervention',
+            selected: interventions,
+            data: [
+                ...stateData.globalInterventions,
+                ...stateData.targetedInterventions,
+            ],
+        },
+        {
+            type: 'function',
+            selected: modulatorFunctions,
+            data: stateData.modulatorFunctions,
+        },
+        {
+            type: 'network',
+            selected: networks,
+            data: stateData.networks,
+        },
+        {
+            type: 'biomolecule',
+            selected: biomolecules,
+            data: stateData.biomolecules,
+        },
+        {
+            type: 'reaction',
+            selected: reactions,
+            data: stateData.reactions,
+        },
+        {
+            type: 'channel',
+            selected: channels,
+            data: stateData.channels,
+        },
+        {
+            type: 'transporter',
+            selected: transporters,
+            data: stateData.transporters,
+        },
+        {
+            type: 'modulator',
+            selected: modulators,
+            data: stateData.modulators,
         },
     ];
 
@@ -625,15 +454,6 @@ const NewSimulation: React.FC<NewSimulationProperties> = (
                         />
                     );
                 })}
-
-                {interventionsRender}
-                {functionsRender}
-                {networksRender}
-                {biomoleculesRender}
-                {reactionsRender}
-                {channelsRender}
-                {transportersRender}
-                {modulatorsRender}
             </StyledEntity>
         </StyledDashboardContainer>
     );
