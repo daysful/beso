@@ -44,10 +44,7 @@
         StyledEntity,
         PluridInputLine,
         PluridPureButton,
-        PluridDropdown,
-        PluridEntityPillGroup,
         PluridLinkButton,
-        PluridFormLeftRight,
     } from '~kernel-services/styled';
 
     import {
@@ -138,7 +135,7 @@ const NewSimulation: React.FC<NewSimulationProperties> = (
     const [
         world,
         setWorld,
-    ] = useState<any>();
+    ] = useState<PluridUIDropdownSelectable>();
 
     const [
         tissues,
@@ -266,18 +263,22 @@ const NewSimulation: React.FC<NewSimulationProperties> = (
         try {
             const value = extractState(state);
 
+            const extractPillsIDs = (
+                data: PluridUIEntityPillData[],
+            ) => data.map(item => item.id);
+
             const input = {
                 name,
                 data: {
                     ...value,
-                    world,
-                    tissues,
-                    interventions,
-                    modulators,
-                    networks,
-                    biomolecules,
-                    reactions,
-                    channels,
+                    world: world?.id,
+                    tissues: extractPillsIDs(tissues),
+                    interventions: extractPillsIDs(interventions),
+                    modulators: extractPillsIDs(modulators),
+                    networks: extractPillsIDs(networks),
+                    biomolecules: extractPillsIDs(biomolecules),
+                    reactions: extractPillsIDs(reactions),
+                    channels: extractPillsIDs(channels),
                 },
             };
 
