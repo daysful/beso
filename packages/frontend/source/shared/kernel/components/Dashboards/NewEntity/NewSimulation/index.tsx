@@ -226,6 +226,19 @@ const NewSimulation: React.FC<NewSimulationProperties> = (
         }
     }
 
+    const removeSelected = (
+        id: string,
+        type: string,
+    ) => {
+        switch (type) {
+            case 'tissue':
+                setTissues(
+                    tissues.filter(tissue => tissue.id !== id),
+                );
+                break;
+        }
+    }
+
     const addNewSimulation = async () => {
         try {
             const value = extractState(state);
@@ -299,42 +312,6 @@ const NewSimulation: React.FC<NewSimulationProperties> = (
 
 
     // #region render
-
-    const tissuesRender = (
-        <>
-            <PluridFormLeftRight>
-                <div>
-                    tissues
-                </div>
-
-                <PluridDropdown
-                    selected={'select'}
-                    selectables={[
-                        'add new tissue',
-                        ...makeSelectables(stateData.tissues.filter(
-                            tissue => !tissues.find(added => added.id === tissue.id),
-                        )),
-                    ]}
-                    atSelect={(selection) => {
-                        handleSelection(selection, 'tissue');
-                    }}
-                    theme={stateGeneralTheme}
-                    width={130}
-                />
-            </PluridFormLeftRight>
-
-            <PluridEntityPillGroup
-                entities={tissues}
-                remove={(id) => {
-                    setTissues(
-                        tissues.filter(tissue => tissue.id !== id),
-                    );
-                }}
-                theme={stateGeneralTheme}
-            />
-        </>
-    );
-
     const interventionsRender = (
         <>
             <PluridFormLeftRight>
@@ -579,6 +556,11 @@ const NewSimulation: React.FC<NewSimulationProperties> = (
             selected: world,
             data: stateData.worlds,
         },
+        {
+            type: 'tissue',
+            selected: tissues,
+            data: stateData.tissues,
+        },
     ];
 
     return (
@@ -639,11 +621,11 @@ const NewSimulation: React.FC<NewSimulationProperties> = (
                             data={data}
 
                             handleSelection={handleSelection}
+                            removeSelected={(id) => removeSelected(id, type)}
                         />
                     );
                 })}
 
-                {tissuesRender}
                 {interventionsRender}
                 {functionsRender}
                 {networksRender}

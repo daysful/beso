@@ -48,7 +48,7 @@ const makeSelectables = (
 
 export interface SelectableOwnProperties {
     type: string;
-    single: boolean;
+    single?: boolean;
     selected: any;
     data: any;
 
@@ -94,47 +94,47 @@ const Selectable: React.FC<SelectableProperties> = (
 
 
     // #region render
-    const dropdown = (
-        <PluridDropdown
-            selected={single ? selected || 'select' : 'select'}
-            selectables={[
-                `add new ${type}`,
-                ...makeSelectables(data),
-            ]}
-            atSelect={(selection) => {
-                handleSelection(selection, 'world');
-            }}
-            theme={stateGeneralTheme}
-            width={130}
-        />
-    );
+    const selectables = single
+        ? [...makeSelectables(data)]
+        : [...makeSelectables(
+            data.filter(
+                (item: any) => !selected.find((added: any) => added.id === item.id),
+            ),
+        )];
 
     return (
-        <PluridFormLeftRight>
-            <div>
-                {type}
-            </div>
+        <StyledSelectable>
+            <PluridFormLeftRight>
+                <div>
+                    {single ? type : type + 's'}
+                </div>
 
-            {single ? (
-                <>
-                    {dropdown}
-                </>
-            ) : (
-                <>
-                    {dropdown}
+                <PluridDropdown
+                    selected={single ? selected || 'select' : 'select'}
+                    selectables={[
+                        `add new ${type}`,
+                        ...selectables,
+                    ]}
+                    atSelect={(selection) => {
+                        handleSelection(selection, type);
+                    }}
+                    theme={stateGeneralTheme}
+                    width={130}
+                />
+            </PluridFormLeftRight>
 
-                    <PluridEntityPillGroup
-                        entities={selected}
-                        remove={(id) => {
-                            if (removeSelected) {
-                                removeSelected(id);
-                            }
-                        }}
-                        theme={stateGeneralTheme}
-                    />
-                </>
+            {!single && (
+                <PluridEntityPillGroup
+                    entities={selected}
+                    remove={(id) => {
+                        if (removeSelected) {
+                            removeSelected(id);
+                        }
+                    }}
+                    theme={stateGeneralTheme}
+                />
             )}
-        </PluridFormLeftRight>
+        </StyledSelectable>
     );
     // #endregion render
 }
