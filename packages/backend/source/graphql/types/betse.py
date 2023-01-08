@@ -488,6 +488,344 @@ class BetseIntervention:
 
 
 
+# region BetseGlobalIntervention
+# region input BetseGlobalIntervention
+@strawberry.input
+class InputBetseGlobalInterventionChangeKEnv:
+    event_happens: bool
+    change_start: float
+    change_finish: float
+    change_rate: float
+    multiplier: float
+
+@strawberry.input
+class InputBetseGlobalInterventionChangeClEnv:
+    event_happens: bool
+    change_start: float
+    change_finish: float
+    change_rate: float
+    multiplier: float
+
+@strawberry.input
+class InputBetseGlobalInterventionChangeNaEnv:
+    event_happens: bool
+    change_start: float
+    change_finish: float
+    change_rate: float
+    multiplier: float
+
+@strawberry.input
+class InputBetseGlobalInterventionChangeTemperature:
+    event_happens: bool
+    change_start: float
+    change_finish: float
+    change_rate: float
+    multiplier: float
+
+@strawberry.input
+class InputBetseGlobalInterventionBlockGapJunctions:
+    event_happens: bool
+    change_start: float
+    change_finish: float
+    change_rate: float
+    random_fraction: float
+
+@strawberry.input
+class InputBetseGlobalInterventionBlockNaKATPPump:
+    event_happens: bool
+    change_start: float
+    change_finish: float
+    change_rate: float
+
+@strawberry.input
+class InputBetseGlobalInterventionData:
+    change_K_env: InputBetseGlobalInterventionChangeKEnv
+    change_Cl_env: InputBetseGlobalInterventionChangeClEnv
+    change_Na_env: InputBetseGlobalInterventionChangeNaEnv
+    change_temperature: InputBetseGlobalInterventionChangeTemperature
+    block_gap_junctions: InputBetseGlobalInterventionBlockGapJunctions
+    block_NaKATP_pump: InputBetseGlobalInterventionBlockNaKATPPump
+
+@strawberry.input
+class InputBetseGlobalIntervention:
+    id: str
+    name: str
+    generated_at: float
+    generated_by: str
+    forked_from: str | None
+    data: InputBetseGlobalInterventionData
+# endregion input BetseGlobalIntervention
+
+# region type BetseGlobalIntervention
+@strawberry.type
+class BetseGlobalInterventionChangeKEnv:
+    event_happens: bool
+    change_start: float
+    change_finish: float
+    change_rate: float
+    multiplier: float
+
+@strawberry.type
+class BetseGlobalInterventionChangeClEnv:
+    event_happens: bool
+    change_start: float
+    change_finish: float
+    change_rate: float
+    multiplier: float
+
+@strawberry.type
+class BetseGlobalInterventionChangeNaEnv:
+    event_happens: bool
+    change_start: float
+    change_finish: float
+    change_rate: float
+    multiplier: float
+
+@strawberry.type
+class BetseGlobalInterventionChangeTemperature:
+    event_happens: bool
+    change_start: float
+    change_finish: float
+    change_rate: float
+    multiplier: float
+
+@strawberry.type
+class BetseGlobalInterventionBlockGapJunctions:
+    event_happens: bool
+    change_start: float
+    change_finish: float
+    change_rate: float
+    random_fraction: float
+
+@strawberry.type
+class BetseGlobalInterventionBlockNaKATPPump:
+    event_happens: bool
+    change_start: float
+    change_finish: float
+    change_rate: float
+
+@strawberry.type
+class BetseGlobalInterventionData:
+    change_K_env: BetseGlobalInterventionChangeKEnv
+    change_Cl_env: BetseGlobalInterventionChangeClEnv
+    change_Na_env: BetseGlobalInterventionChangeNaEnv
+    change_temperature: BetseGlobalInterventionChangeTemperature
+    block_gap_junctions: BetseGlobalInterventionBlockGapJunctions
+    block_NaKATP_pump: BetseGlobalInterventionBlockNaKATPPump
+
+@strawberry.type
+class BetseGlobalIntervention:
+    id: str
+    name: str
+    generated_at: float
+    generated_by: str
+    forked_from: str | None
+    data: BetseGlobalInterventionData
+# endregion type BetseGlobalIntervention
+# endregion BetseGlobalIntervention
+
+
+
+# region BetseTargetedIntervention
+# region input BetseTargetedIntervention
+@strawberry.input
+class InputBetseTargetedInterventionChangeNaMem:
+    event_happens: bool
+    change_start: float
+    change_finish: float
+    change_rate: float
+    multiplier: float
+    modulator_function: str
+    apply_to: list[str]
+
+@strawberry.input
+class InputBetseTargetedInterventionChangeKMem:
+    event_happens: bool
+    change_start: float
+    change_finish: float
+    change_rate: float
+    multiplier: float
+    modulator_function: str
+    apply_to: list[str]
+
+@strawberry.input
+class InputBetseTargetedInterventionChangeClMem:
+    event_happens: bool
+    change_start: float
+    change_finish: float
+    change_rate: float
+    multiplier: float
+    modulator_function: str
+    apply_to: list[str]
+
+@strawberry.input
+class InputBetseTargetedInterventionChangeCaMem:
+    event_happens: bool
+    change_start: float
+    change_finish: float
+    change_rate: float
+    multiplier: float
+    modulator_function: str
+    apply_to: list[str]
+
+@strawberry.input
+class InputBetseTargetedInterventionApplyPressure:
+    event_happens: bool
+    change_start: float
+    change_finish: float
+    change_rate: float
+    multiplier: float
+    modulator_function: str
+    apply_to: list[str]
+
+@strawberry.input
+class InputBetseTargetedInterventionApplyExternalVoltage:
+    event_happens: bool
+    change_start: float
+    change_finish: float
+    change_rate: float
+    peak_voltage: float
+    positive_voltage_boundary: str
+    negative_voltage_boundary: str
+
+@strawberry.input
+class InputBetseTargetedInterventionBreakEcmJunctions:
+    event_happens: bool
+    change_start: float
+    change_finish: float
+    change_rate: float
+    multiplier: float
+    apply_to: list[str]
+
+@strawberry.input
+class InputBetseTargetedInterventionCuttingEvent:
+    event_happens: bool
+    apply_to: list[str]
+    break_TJ: bool
+    wound_TJ: float
+
+@strawberry.input
+class InputBetseTargetedInterventionData:
+    change_Na_mem: InputBetseTargetedInterventionChangeNaMem
+    change_K_mem: InputBetseTargetedInterventionChangeKMem
+    change_Cl_mem: InputBetseTargetedInterventionChangeClMem
+    change_Ca_mem: InputBetseTargetedInterventionChangeCaMem
+    apply_pressure: InputBetseTargetedInterventionApplyPressure
+    apply_external_voltage: InputBetseTargetedInterventionApplyExternalVoltage
+    break_ecm_junctions: InputBetseTargetedInterventionBreakEcmJunctions
+    cutting_event: InputBetseTargetedInterventionCuttingEvent
+
+@strawberry.input
+class InputBetseTargetedIntervention:
+    id: str
+    name: str
+    generated_at: float
+    generated_by: str
+    forked_from: str | None
+    data: InputBetseTargetedInterventionData
+# endregion input BetseTargetedIntervention
+
+# region type BetseTargetedIntervention
+@strawberry.type
+class BetseTargetedInterventionChangeNaMem:
+    event_happens: bool
+    change_start: float
+    change_finish: float
+    change_rate: float
+    multiplier: float
+    modulator_function: str
+    apply_to: list[str]
+
+@strawberry.type
+class BetseTargetedInterventionChangeKMem:
+    event_happens: bool
+    change_start: float
+    change_finish: float
+    change_rate: float
+    multiplier: float
+    modulator_function: str
+    apply_to: list[str]
+
+@strawberry.type
+class BetseTargetedInterventionChangeClMem:
+    event_happens: bool
+    change_start: float
+    change_finish: float
+    change_rate: float
+    multiplier: float
+    modulator_function: str
+    apply_to: list[str]
+
+@strawberry.type
+class BetseTargetedInterventionChangeCaMem:
+    event_happens: bool
+    change_start: float
+    change_finish: float
+    change_rate: float
+    multiplier: float
+    modulator_function: str
+    apply_to: list[str]
+
+@strawberry.type
+class BetseTargetedInterventionApplyPressure:
+    event_happens: bool
+    change_start: float
+    change_finish: float
+    change_rate: float
+    multiplier: float
+    modulator_function: str
+    apply_to: list[str]
+
+@strawberry.type
+class BetseTargetedInterventionApplyExternalVoltage:
+    event_happens: bool
+    change_start: float
+    change_finish: float
+    change_rate: float
+    peak_voltage: float
+    positive_voltage_boundary: str
+    negative_voltage_boundary: str
+
+@strawberry.type
+class BetseTargetedInterventionBreakEcmJunctions:
+    event_happens: bool
+    change_start: float
+    change_finish: float
+    change_rate: float
+    multiplier: float
+    apply_to: list[str]
+
+@strawberry.type
+class BetseTargetedInterventionCuttingEvent:
+    event_happens: bool
+    apply_to: list[str]
+    break_TJ: bool
+    wound_TJ: float
+
+@strawberry.type
+class BetseTargetedInterventionData:
+    change_Na_mem: BetseTargetedInterventionChangeNaMem
+    change_K_mem: BetseTargetedInterventionChangeKMem
+    change_Cl_mem: BetseTargetedInterventionChangeClMem
+    change_Ca_mem: BetseTargetedInterventionChangeCaMem
+    apply_pressure: BetseTargetedInterventionApplyPressure
+    apply_external_voltage: BetseTargetedInterventionApplyExternalVoltage
+    break_ecm_junctions: BetseTargetedInterventionBreakEcmJunctions
+    cutting_event: BetseTargetedInterventionCuttingEvent
+
+@strawberry.type
+class BetseTargetedIntervention:
+    id: str
+    name: str
+    generated_at: float
+    generated_by: str
+    forked_from: str | None
+    data: BetseTargetedInterventionData
+# endregion type BetseTargetedIntervention
+# endregion BetseTargetedIntervention
+
+
+
 # region BetseFunctions
 # region input BetseFunction
 @strawberry.input
