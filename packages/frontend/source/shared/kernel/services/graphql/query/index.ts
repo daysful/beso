@@ -36,6 +36,7 @@ export const USER = gql`
 
 
 export const BETSE_USER = gql`
+    ${BETSE_SIMULATION_FRAGMENT}
     ${BETSE_WORLD_FRAGMENT}
     ${BETSE_TISSUE_FRAGMENT}
     ${BETSE_GLOBAL_INTERVENTION_FRAGMENT}
@@ -55,6 +56,9 @@ export const BETSE_USER = gql`
         }
         allowUserRegistration
         betse {
+            simulations {
+                ...BetseSimulationFields
+            }
             worlds {
                 ...BetseWorldFields
             }
