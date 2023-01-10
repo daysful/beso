@@ -235,7 +235,6 @@ export const fields: NewEntityField[] = [
                 ...eventRecords.multiplier,
                 value: 0.0,
             } as NumberField,
-            eventRecords.modulatorFunction,
             eventRecords.applyTo,
         ],
         help: `break extracellular junctions between cells`,
