@@ -143,8 +143,13 @@ const NewSimulation: React.FC<NewSimulationProperties> = (
     ] = useState<PluridUIEntityPillData[]>([]);
 
     const [
-        interventions,
-        setInterventions,
+        globalInterventions,
+        setGlobalInterventions,
+    ] = useState<PluridUIEntityPillData[]>([]);
+
+    const [
+        targetedInterventions,
+        setTargetedInterventions,
     ] = useState<PluridUIEntityPillData[]>([]);
 
     const [
@@ -200,29 +205,80 @@ const NewSimulation: React.FC<NewSimulationProperties> = (
                     return;
                 case 'add new tissue':
                     return;
+                case 'add new global intervention':
+                    return;
+                case 'add new targeted intervention':
+                    return;
+                case 'add new function':
+                    return;
+                case 'add new network':
+                    return;
+                case 'add new biomolecule':
+                    return;
+                case 'add new reaction':
+                    return;
+                case 'add new channel':
+                    return;
+                case 'add new transporter':
+                    return;
+                case 'add new modulator':
+                    return;
             }
 
             return;
+        }
+
+        const addEntityPillLogic = (
+            data: PluridUIEntityPillData[],
+            setter: any,
+        ) => {
+            const itemAdded = data.find(item => item.id === selection.id);
+
+            if (!itemAdded) {
+                setter([
+                    ...data,
+                    {
+                        id: selection.id,
+                        text: selection.value,
+                    },
+                ]);
+            }
         }
 
         switch (type) {
             case 'world':
                 setWorld(selection);
                 return;
-            case 'tissue': {
-                const tissueAdded = tissues.find(tissue => tissue.id === selection.id);
-
-                if (!tissueAdded) {
-                    setTissues([
-                        ...tissues,
-                        {
-                            id: selection.id,
-                            text: selection.value,
-                        },
-                    ]);
-                }
+            case 'tissue':
+                addEntityPillLogic(tissues, setTissues);
                 return;
-            }
+            case 'global intervention':
+                addEntityPillLogic(globalInterventions, setGlobalInterventions);
+                return;
+            case 'targeted intervention':
+                addEntityPillLogic(targetedInterventions, setTargetedInterventions);
+                return;
+            case 'function':
+                addEntityPillLogic(modulatorFunctions, setModulatorFunctions);
+                return;
+            case 'network':
+                addEntityPillLogic(networks, setNetworks);
+                return;
+            case 'biomolecule':
+                addEntityPillLogic(biomolecules, setBiomolecules);
+                return;
+            case 'reaction':
+                addEntityPillLogic(reactions, setReactions);
+                return;
+            case 'channel':
+                addEntityPillLogic(channels, setChannels);
+                return;
+            case 'transporter':
+                addEntityPillLogic(transporters, setTransporters);
+                return;
+            case 'modulator':
+                addEntityPillLogic(modulators, setModulators);
+                return;
         }
     }
 
@@ -232,7 +288,8 @@ const NewSimulation: React.FC<NewSimulationProperties> = (
     ) => {
         const data = {
             tissue: tissues,
-            intervention: interventions,
+            globalIntervention: globalInterventions,
+            targetedIntervention: targetedInterventions,
             function: modulatorFunctions,
             network: networks,
             biomolecule: biomolecules,
@@ -244,7 +301,8 @@ const NewSimulation: React.FC<NewSimulationProperties> = (
 
         const functions = {
             tissue: setTissues,
-            intervention: setInterventions,
+            globalIntervention: setGlobalInterventions,
+            targetedIntervention: setTargetedInterventions,
             function: setModulatorFunctions,
             network: setNetworks,
             biomolecule: setBiomolecules,
@@ -273,7 +331,8 @@ const NewSimulation: React.FC<NewSimulationProperties> = (
                     ...value,
                     world: world?.id,
                     tissues: extractPillsIDs(tissues),
-                    interventions: extractPillsIDs(interventions),
+                    globalInterventions: extractPillsIDs(globalInterventions),
+                    targetedInterventions: extractPillsIDs(targetedInterventions),
                     modulators: extractPillsIDs(modulators),
                     networks: extractPillsIDs(networks),
                     biomolecules: extractPillsIDs(biomolecules),
@@ -310,7 +369,8 @@ const NewSimulation: React.FC<NewSimulationProperties> = (
             name
             // && world
             // && tissues.length > 0
-            // && interventions.length > 0
+            // && globalInterventions.length > 0
+            // && targetedInterventions.length > 0
             // && modulators.length > 0
             // && networks.length > 0
             // && biomolecules.length > 0
@@ -325,7 +385,8 @@ const NewSimulation: React.FC<NewSimulationProperties> = (
         name,
         world,
         tissues,
-        interventions,
+        globalInterventions,
+        targetedInterventions,
         modulators,
         networks,
         biomolecules,
@@ -349,12 +410,14 @@ const NewSimulation: React.FC<NewSimulationProperties> = (
             data: stateData.tissues,
         },
         {
-            type: 'intervention',
-            selected: interventions,
-            data: [
-                ...stateData.globalInterventions,
-                ...stateData.targetedInterventions,
-            ],
+            type: 'global intervention',
+            selected: globalInterventions,
+            data: stateData.globalInterventions,
+        },
+        {
+            type: 'targeted intervention',
+            selected: targetedInterventions,
+            data: stateData.targetedInterventions,
         },
         {
             type: 'function',
