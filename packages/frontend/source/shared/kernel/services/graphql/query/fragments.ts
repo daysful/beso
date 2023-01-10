@@ -81,12 +81,15 @@ export const BETSE_SIMULATION_FRAGMENT = gql`
             }
             world
             tissues
-            interventions
-            modulators
-            networks
+            global_intervention
+            targeted_intervention
+            network
+            modulator_function
             biomolecules
             reactions
             channels
+            transporters
+            modulators
         }
     }
 `;
