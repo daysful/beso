@@ -2,7 +2,7 @@ import json
 import copy
 
 from source.graphql.types.betse import \
-    BetseSimulation, \
+    BetseSimulation, BetseSimulationSolverOptions, BetseSimulationInitTimeSettings, BetseSimulationSimTimeSettings, BetseSimulationGeneralOptionsCustomizedIonProfile, BetseSimulationGeneralOptions, BetseSimulationVariableSettingsDeformation, BetseSimulationVariableSettingsPressures, BetseSimulationVariableSettingsNoise, BetseSimulationVariableSettingsGapJunctions, BetseSimulationVariableSettingsTightJunctionRelativeDiffusion, BetseSimulationVariableSettings, BetseSimulationResultsOptions, BetseSimulationInternalParameters, BetseSimulationData, \
     BetseWorld, BetseWorldData, BetseWorldMeshRefinement, BetseWorldImportFromSVG, \
     BetseTissue, BetseTissueData, BetseTissueDiffusionConstants, BetseTissueCellTargets, \
     BetseGlobalIntervention, BetseGlobalInterventionChangeKEnv, BetseGlobalInterventionChangeClEnv, BetseGlobalInterventionChangeNaEnv, BetseGlobalInterventionChangeTemperature, BetseGlobalInterventionBlockGapJunctions, BetseGlobalInterventionBlockNaKATPPump, BetseGlobalInterventionData, \
@@ -48,6 +48,23 @@ def modelBetseSimulation(
     load_json: bool = True,
 ):
     model = model_base(data, load_json)
+    model['data']['solver_options'] = BetseSimulationSolverOptions(**model['data']['solver_options'])
+    model['data']['init_time_settings'] = BetseSimulationInitTimeSettings(**model['data']['init_time_settings'])
+    model['data']['sim_time_settings'] = BetseSimulationSimTimeSettings(**model['data']['sim_time_settings'])
+
+    model['data']['general_options']['customized_ion_profile'] = BetseSimulationGeneralOptionsCustomizedIonProfile(**model['data']['general_options']['customized_ion_profile'])
+    model['data']['general_options'] = BetseSimulationGeneralOptions(**model['data']['general_options'])
+
+    model['data']['variable_settings']['deformation'] = BetseSimulationVariableSettingsDeformation(**model['data']['variable_settings']['deformation'])
+    model['data']['variable_settings']['pressures'] = BetseSimulationVariableSettingsPressures(**model['data']['variable_settings']['pressures'])
+    model['data']['variable_settings']['noise'] = BetseSimulationVariableSettingsNoise(**model['data']['variable_settings']['noise'])
+    model['data']['variable_settings']['gap_junctions'] = BetseSimulationVariableSettingsGapJunctions(**model['data']['variable_settings']['gap_junctions'])
+    model['data']['variable_settings']['tight_junction_relative_diffusion'] = BetseSimulationVariableSettingsTightJunctionRelativeDiffusion(**model['data']['variable_settings']['tight_junction_relative_diffusion'])
+    model['data']['variable_settings'] = BetseSimulationVariableSettings(**model['data']['variable_settings'])
+
+    model['data']['results_options'] = BetseSimulationResultsOptions(**model['data']['results_options'])
+    model['data']['internal_parameters'] = BetseSimulationInternalParameters(**model['data']['internal_parameters'])
+    model['data'] = BetseSimulationData(**model['data'])
 
     return BetseSimulation(**model)
 
