@@ -10,9 +10,14 @@
     } from '@reduxjs/toolkit';
     import { connect } from 'react-redux';
 
+
     import {
         Theme,
     } from '@plurid/plurid-themes';
+
+    import {
+        PluridPlaneComponentProperty,
+    } from '@plurid/plurid-react';
     // #endregion libraries
 
 
@@ -57,12 +62,14 @@
 
 // #region module
 export interface SimulationOwnProperties {
+    plurid: PluridPlaneComponentProperty;
 }
 
 export interface SimulationStateProperties {
     stateGeneralTheme: Theme;
     stateInteractionTheme: Theme;
     stateIdentonym: string;
+    stateSimulations: any[];
 }
 
 export interface SimulationDispatchProperties {
@@ -79,94 +86,45 @@ const Simulation: React.FC<SimulationProperties> = (
 ) => {
     // #region properties
     const {
+        // #region own
+        plurid,
+        // #endregion own
+
         // #region state
         stateGeneralTheme,
         // stateInteractionTheme,
         stateIdentonym,
+        stateSimulations,
         // #endregion state
     } = properties;
+
+    const {
+        id,
+    } = plurid.plane.parameters;
+
+    const simulation = stateSimulations.find(simulation => simulation.id === id);
     // #endregion properties
 
 
-    // #region state
-    const [
-        loading,
-        setLoading,
-    ] = useState(false);
-
-    const [
-        name,
-        setName,
-    ] = useState('');
-
-    const [
-        betse,
-        setBetse,
-    ] = useState(true);
-
-    const [
-        simulationID,
-        setSimulationID,
-    ] = useState('');
-    // #endregion state
-
-
     // #region render
-    if (simulationID) {
-        return (
-            <StyledSimulation>
-                <PluridPureButton
-                    text={`Start Simulation '${name}'`}
-                    atClick={async () => {
-                        await startSimulation(simulationID);
-                    }}
-                />
-            </StyledSimulation>
-        );
+    if (!simulation) {
+        return (<></>);
     }
 
     return (
         <StyledSimulation>
-            <h1>
-                beso
-            </h1>
+            <Head />
 
-            <h2>
-                BioElectric Simulation Orchestrator
-            </h2>
+            {/* <EditEntityComponent
+                title={`'${simulation.name}' simulation`}
+                fields={mergeDataIntoFields(simulation['data'], fields)}
+                kind="Simulation"
 
-            <PluridInputLine
-                name="new simulation name"
-                text={name}
-                atChange={(event) => setName(event.target.value)}
-            />
-
-            <PluridInputSwitch
-                name="use BETSE"
-                checked={betse}
-                atChange={() => setBetse(value => !value)}
-            />
-
-            <PluridPureButton
-                text="New Simulation"
-                atClick={async () => {
-                    const id = await newSimulation(
-                        name,
-                        betse,
-                        stateIdentonym,
-                    );
-                    if (id) {
-                        setSimulationID(id);
-
-                        if (!name) {
-                            setName(id);
-                        }
-                    }
+                onEdit={(state) => {
                 }}
-                style={{
-                    marginTop: '2rem',
+                onCancel={() => {
                 }}
-            />
+            /> */}
         </StyledSimulation>
     );
     // #endregion render
@@ -179,6 +137,7 @@ const mapStateToProperties = (
     stateGeneralTheme: selectors.themes.getGeneralTheme(state),
     stateInteractionTheme: selectors.themes.getInteractionTheme(state),
     stateIdentonym: selectors.general.getGeneral(state).identonym,
+    stateSimulations: selectors.data.getData(state).simulations,
 });
 
 
