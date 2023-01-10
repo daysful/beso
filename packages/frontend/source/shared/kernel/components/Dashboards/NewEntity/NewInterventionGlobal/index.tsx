@@ -145,6 +145,12 @@ const NewInterventionGlobal: React.FC<NewInterventionGlobalProperties> = (
                             input,
                         },
                     });
+                    const addedGlobalIntervention = response.data.addBetseGlobalIntervention;
+
+                    dispatchAddDataEntity({
+                        type: 'globalInterventions',
+                        data: addedGlobalIntervention,
+                    });
                 } catch (error) {
                     return;
                 }

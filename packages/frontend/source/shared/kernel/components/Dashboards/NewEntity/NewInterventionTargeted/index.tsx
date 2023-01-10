@@ -144,6 +144,12 @@ const NewInterventionTargeted: React.FC<NewInterventionTargetedProperties> = (
                             input,
                         },
                     });
+                    const addedTargetedIntervention = response.data.addBetseTargetedIntervention;
+
+                    dispatchAddDataEntity({
+                        type: 'targetedInterventions',
+                        data: addedTargetedIntervention,
+                    });
                 } catch (error) {
                     return;
                 }
