@@ -139,12 +139,15 @@ class InputBetseSimulationData:
     version: str
     world: str
     tissues: list[str]
-    interventions: list[str]
-    modulators: list[str]
+    globalIntervention: str
+    targetedIntervention: str
+    modulatorFunction: str
     networks: list[str]
     biomolecules: list[str]
     reactions: list[str]
     channels: list[str]
+    transporters: list[str]
+    modulators: list[str]
 
 @strawberry.input
 class InputAddBetseSimulation:
@@ -282,12 +285,15 @@ class BetseSimulationData:
     version: str
     world: str
     tissues: list[str]
-    interventions: list[str]
-    modulators: list[str]
+    globalIntervention: str
+    targetedIntervention: str
+    modulatorFunction: str
     networks: list[str]
     biomolecules: list[str]
     reactions: list[str]
     channels: list[str]
+    transporters: list[str]
+    modulators: list[str]
 
 @strawberry.type
 class BetseSimulation:
