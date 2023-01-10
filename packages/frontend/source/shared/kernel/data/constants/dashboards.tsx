@@ -28,6 +28,6 @@ export const rowsHeader = (
 export const rowTemplate = '20px 0.5fr 0.5fr 60px 60px';
 
 export const rowRenderFields = [
-    'link', 'name', 'generatedAt', `pluridlink`, 'obliterate',
+    'link', 'name', 'generatedAt', 'pluridlink', 'obliterate',
 ];
 // #endregion module

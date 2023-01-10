@@ -169,6 +169,8 @@ const Simulations: React.FC<SimulationsProperties> = (
     // #region render
     const rowsHeader = (
         <>
+            <div />
+
             <div>
                 name
             </div>
