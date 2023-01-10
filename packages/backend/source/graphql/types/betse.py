@@ -518,9 +518,6 @@ class InputBetseGlobalInterventionData:
 @strawberry.input
 class InputAddBetseGlobalIntervention:
     name: str
-    generated_at: float
-    generated_by: str
-    forked_from: str | None
     data: InputBetseGlobalInterventionData
 
 @strawberry.input
@@ -692,9 +689,6 @@ class InputBetseTargetedInterventionData:
 @strawberry.input
 class InputAddBetseTargetedIntervention:
     name: str
-    generated_at: float
-    generated_by: str
-    forked_from: str | None
     data: InputBetseTargetedInterventionData
 
 @strawberry.input
