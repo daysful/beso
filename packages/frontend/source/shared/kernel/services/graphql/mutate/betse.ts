@@ -45,28 +45,29 @@ const computeMutations = () => {
     for (const mutationType of mutationTypes) {
         const FRAGMENT = FRAGMENTS[mutationType];
         const FieldsName = FieldsNames[mutationType];
+        const mutationTypeName = mutationType.replace(/_/, '');
 
         const ADD_MUTATION = gql`
             ${FRAGMENT}
 
-            mutation AddBetse${mutationType}($input: InputAddBetse${mutationType}!) {
-                addBetse${mutationType}(input: $input) {
+            mutation AddBetse${mutationTypeName}($input: InputAddBetse${mutationTypeName}!) {
+                addBetse${mutationTypeName}(input: $input) {
                     ...${FieldsName}
                 }
             }
         `;
 
         const EDIT_MUTATION = gql`
-            mutation EditBetse${mutationType}($input: InputEditBetse${mutationType}!) {
-                editBetse${mutationType}(input: $input) {
+            mutation EditBetse${mutationTypeName}($input: InputEditBetse${mutationTypeName}!) {
+                editBetse${mutationTypeName}(input: $input) {
                     id
                 }
             }
         `;
 
         const REMOVE_MUTATION = gql`
-            mutation RemoveBetse${mutationType}($input: String!) {
-                removeBetse${mutationType}(id: $input)
+            mutation RemoveBetse${mutationTypeName}($input: String!) {
+                removeBetse${mutationTypeName}(id: $input)
             }
         `;
 
