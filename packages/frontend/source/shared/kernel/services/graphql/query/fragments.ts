@@ -158,6 +158,137 @@ export const BETSE_INTERVENTION_FRAGMENT = gql`
 `;
 
 
+export const BETSE_GLOBAL_INTERVENTION_FRAGMENT = gql`
+    fragment BetseGlobalInterventionFields on BetseGlobalIntervention {
+        id
+        name
+        generated_at
+        data {
+            change_K_env {
+                event_happens
+                change_start
+                change_finish
+                change_rate
+                multiplier
+            }
+            change_Cl_env {
+                event_happens
+                change_start
+                change_finish
+                change_rate
+                multiplier
+            }
+            change_Na_env {
+                event_happens
+                change_start
+                change_finish
+                change_rate
+                multiplier
+            }
+            change_temperature {
+                event_happens
+                change_start
+                change_finish
+                change_rate
+                multiplier
+            }
+            block_gap_junctions {
+                event_happens
+                change_start
+                change_finish
+                change_rate
+                random_fraction
+            }
+            block_NaKATP_pump {
+                event_happens
+                change_start
+                change_finish
+                change_rate
+            }
+        }
+    }
+`;
+
+
+export const BETSE_TARGETED_INTERVENTION_FRAGMENT = gql`
+    fragment BetseTargetedInterventionFields on BetseTargetedIntervention {
+        id
+        name
+        generated_at
+        data {
+            change_Na_mem {
+                event_happens
+                change_start
+                change_finish
+                change_rate
+                multiplier
+                modulator_function
+                apply_to
+            }
+            change_K_mem {
+                event_happens
+                change_start
+                change_finish
+                change_rate
+                multiplier
+                modulator_function
+                apply_to
+            }
+            change_Cl_mem {
+                event_happens
+                change_start
+                change_finish
+                change_rate
+                multiplier
+                modulator_function
+                apply_to
+            }
+            change_Ca_mem {
+                event_happens
+                change_start
+                change_finish
+                change_rate
+                multiplier
+                modulator_function
+                apply_to
+            }
+            apply_pressure {
+                event_happens
+                change_start
+                change_finish
+                change_rate
+                multiplier
+                modulator_function
+                apply_to
+            }
+            apply_external_voltage {
+                event_happens
+                change_start
+                change_finish
+                change_rate
+                peak_voltage
+                positive_voltage_boundary
+                negative_voltage_boundary
+            }
+            break_ecm_junctions {
+                event_happens
+                change_start
+                change_finish
+                change_rate
+                multiplier
+                apply_to
+            }
+            cutting_event {
+                event_happens
+                apply_to
+                break_TJ
+                wound_TJ
+            }
+        }
+    }
+`;
+
+
 export const BETSE_FUNCTION_FRAGMENT = gql`
     fragment BetseFunctionFields on BetseFunction {
         id
