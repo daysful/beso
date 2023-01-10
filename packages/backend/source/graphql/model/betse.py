@@ -5,7 +5,8 @@ from source.graphql.types.betse import \
     BetseSimulation, \
     BetseWorld, BetseWorldData, BetseWorldMeshRefinement, BetseWorldImportFromSVG, \
     BetseTissue, BetseTissueData, BetseTissueDiffusionConstants, BetseTissueCellTargets, \
-    BetseGlobalIntervention, BetseTargetedIntervention, \
+    BetseGlobalIntervention, BetseGlobalInterventionChangeKEnv, BetseGlobalInterventionChangeClEnv, BetseGlobalInterventionChangeNaEnv, BetseGlobalInterventionChangeTemperature, BetseGlobalInterventionBlockGapJunctions, BetseGlobalInterventionBlockNaKATPPump, BetseGlobalInterventionData, \
+    BetseTargetedIntervention, BetseTargetedInterventionChangeNaMem, BetseTargetedInterventionChangeKMem, BetseTargetedInterventionChangeClMem, BetseTargetedInterventionChangeCaMem, BetseTargetedInterventionApplyPressure, BetseTargetedInterventionApplyExternalVoltage, BetseTargetedInterventionBreakEcmJunctions, BetseTargetedInterventionCuttingEvent, BetseTargetedInterventionData, \
     BetseFunction, BetseFunctionData, BetseFunctionGradientX, BetseFunctionGradientY, BetseFunctionGradientR, BetseFunctionPeriodic, BetseFunctionFSweep, BetseFunctionGradientBitmap, BetseFunctionSingleCell, \
     BetseNetwork, BetseNetworkData, BetseNetworkOptimization, \
     BetseBiomolecule, BetseBiomoleculeData, BetseBiomoleculeGrowthAndDecay, BetseBiomoleculeIonChannelGating, BetseBiomoleculeActivePumping, BetseBiomoleculeChangeAtBounds, BetseBiomoleculePlotting, \
@@ -80,6 +81,13 @@ def modelBetseGlobalIntervention(
     load_json: bool = True,
 ):
     model = model_base(data, load_json)
+    model['data']['change_K_env'] = BetseGlobalInterventionChangeKEnv(**model['data']['change_K_env'])
+    model['data']['change_Cl_env'] = BetseGlobalInterventionChangeClEnv(**model['data']['change_Cl_env'])
+    model['data']['change_Na_env'] = BetseGlobalInterventionChangeNaEnv(**model['data']['change_Na_env'])
+    model['data']['change_temperature'] = BetseGlobalInterventionChangeTemperature(**model['data']['change_temperature'])
+    model['data']['block_gap_junctions'] = BetseGlobalInterventionBlockGapJunctions(**model['data']['block_gap_junctions'])
+    model['data']['block_NaKATP_pump'] = BetseGlobalInterventionBlockNaKATPPump(**model['data']['block_NaKATP_pump'])
+    model['data'] = BetseGlobalInterventionData(**model['data'])
 
     return BetseGlobalIntervention(**model)
 
@@ -89,6 +97,15 @@ def modelBetseTargetedIntervention(
     load_json: bool = True,
 ):
     model = model_base(data, load_json)
+    model['data']['change_Na_mem'] = BetseTargetedInterventionChangeNaMem(**model['data']['change_Na_mem'])
+    model['data']['change_K_mem'] = BetseTargetedInterventionChangeKMem(**model['data']['change_K_mem'])
+    model['data']['change_Cl_mem'] = BetseTargetedInterventionChangeClMem(**model['data']['change_Cl_mem'])
+    model['data']['change_Ca_mem'] = BetseTargetedInterventionChangeCaMem(**model['data']['change_Ca_mem'])
+    model['data']['apply_pressure'] = BetseTargetedInterventionApplyPressure(**model['data']['apply_pressure'])
+    model['data']['apply_external_voltage'] = BetseTargetedInterventionApplyExternalVoltage(**model['data']['apply_external_voltage'])
+    model['data']['break_ecm_junctions'] = BetseTargetedInterventionBreakEcmJunctions(**model['data']['break_ecm_junctions'])
+    model['data']['cutting_event'] = BetseTargetedInterventionCuttingEvent(**model['data']['cutting_event'])
+    model['data'] = BetseTargetedInterventionData(**model['data'])
 
     return BetseTargetedIntervention(**model)
 
