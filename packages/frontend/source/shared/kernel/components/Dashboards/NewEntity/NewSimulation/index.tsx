@@ -143,24 +143,24 @@ const NewSimulation: React.FC<NewSimulationProperties> = (
     ] = useState<PluridUIEntityPillData[]>([]);
 
     const [
-        globalInterventions,
-        setGlobalInterventions,
-    ] = useState<PluridUIEntityPillData[]>([]);
+        globalIntervention,
+        setGlobalIntervention,
+    ] = useState<PluridUIDropdownSelectable>();
 
     const [
-        targetedInterventions,
-        setTargetedInterventions,
-    ] = useState<PluridUIEntityPillData[]>([]);
+        targetedIntervention,
+        setTargetedIntervention,
+    ] = useState<PluridUIDropdownSelectable>();
 
     const [
-        modulatorFunctions,
-        setModulatorFunctions,
-    ] = useState<PluridUIEntityPillData[]>([]);
+        modulatorFunction,
+        setModulatorFunction,
+    ] = useState<PluridUIDropdownSelectable>();
 
     const [
-        networks,
-        setNetworks,
-    ] = useState<PluridUIEntityPillData[]>([]);
+        network,
+        setNetwork,
+    ] = useState<PluridUIDropdownSelectable>();
 
     const [
         biomolecules,
@@ -253,16 +253,16 @@ const NewSimulation: React.FC<NewSimulationProperties> = (
                 addEntityPillLogic(tissues, setTissues);
                 return;
             case 'global intervention':
-                addEntityPillLogic(globalInterventions, setGlobalInterventions);
+                setGlobalIntervention(selection);
                 return;
             case 'targeted intervention':
-                addEntityPillLogic(targetedInterventions, setTargetedInterventions);
+                setTargetedIntervention(selection);
                 return;
             case 'function':
-                addEntityPillLogic(modulatorFunctions, setModulatorFunctions);
+                setModulatorFunction(selection);
                 return;
             case 'network':
-                addEntityPillLogic(networks, setNetworks);
+                setNetwork(selection);
                 return;
             case 'biomolecule':
                 addEntityPillLogic(biomolecules, setBiomolecules);
@@ -288,10 +288,6 @@ const NewSimulation: React.FC<NewSimulationProperties> = (
     ) => {
         const data = {
             tissue: tissues,
-            globalIntervention: globalInterventions,
-            targetedIntervention: targetedInterventions,
-            function: modulatorFunctions,
-            network: networks,
             biomolecule: biomolecules,
             reaction: reactions,
             channel: channels,
@@ -301,10 +297,6 @@ const NewSimulation: React.FC<NewSimulationProperties> = (
 
         const functions = {
             tissue: setTissues,
-            globalIntervention: setGlobalInterventions,
-            targetedIntervention: setTargetedInterventions,
-            function: setModulatorFunctions,
-            network: setNetworks,
             biomolecule: setBiomolecules,
             reaction: setReactions,
             channel: setChannels,
@@ -331,13 +323,15 @@ const NewSimulation: React.FC<NewSimulationProperties> = (
                     ...value,
                     world: world?.id,
                     tissues: extractPillsIDs(tissues),
-                    globalInterventions: extractPillsIDs(globalInterventions),
-                    targetedInterventions: extractPillsIDs(targetedInterventions),
-                    modulators: extractPillsIDs(modulators),
-                    networks: extractPillsIDs(networks),
+                    global_intervention: globalIntervention?.id,
+                    targeted_intervention: targetedIntervention?.id,
+                    modulator_function: modulatorFunction?.id,
+                    network: network?.id,
                     biomolecules: extractPillsIDs(biomolecules),
                     reactions: extractPillsIDs(reactions),
                     channels: extractPillsIDs(channels),
+                    transporters: extractPillsIDs(transporters),
+                    modulators: extractPillsIDs(modulators),
                 },
             };
 
@@ -369,13 +363,15 @@ const NewSimulation: React.FC<NewSimulationProperties> = (
             name
             // && world
             // && tissues.length > 0
-            // && globalInterventions.length > 0
-            // && targetedInterventions.length > 0
-            // && modulators.length > 0
-            // && networks.length > 0
+            // && globalIntervention
+            // && targetedIntervention
+            // && modulatorFunction
+            // && network
             // && biomolecules.length > 0
             // && reactions.length > 0
             // && channels.length > 0
+            // && transporters.length > 0
+            // && modulators.length > 0
         ) {
             setIsValid(true);
         } else {
@@ -385,13 +381,15 @@ const NewSimulation: React.FC<NewSimulationProperties> = (
         name,
         world,
         tissues,
-        globalInterventions,
-        targetedInterventions,
-        modulators,
-        networks,
+        globalIntervention,
+        targetedIntervention,
+        modulatorFunction,
+        network,
         biomolecules,
         reactions,
         channels,
+        transporters,
+        modulators,
     ]);
     // #endregion effects
 
@@ -411,22 +409,26 @@ const NewSimulation: React.FC<NewSimulationProperties> = (
         },
         {
             type: 'global intervention',
-            selected: globalInterventions,
+            single: true,
+            selected: globalIntervention,
             data: stateData.globalInterventions,
         },
         {
             type: 'targeted intervention',
-            selected: targetedInterventions,
+            single: true,
+            selected: targetedIntervention,
             data: stateData.targetedInterventions,
         },
         {
             type: 'function',
-            selected: modulatorFunctions,
+            single: true,
+            selected: modulatorFunction,
             data: stateData.modulatorFunctions,
         },
         {
             type: 'network',
-            selected: networks,
+            single: true,
+            selected: network,
             data: stateData.networks,
         },
         {

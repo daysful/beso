@@ -119,7 +119,7 @@ const Selectable: React.FC<SelectableProperties> = (
                         handleSelection(selection, type);
                     }}
                     theme={stateGeneralTheme}
-                    width={130}
+                    width={210}
                 />
             </PluridFormLeftRight>
 
