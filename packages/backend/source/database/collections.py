@@ -5,6 +5,7 @@ from enum import StrEnum
 class Collections(StrEnum):
     users = 'users',
     betseSimulations = 'betseSimulations',
+    betseSimulationRuns = 'betseSimulationRuns',
     betseWorlds = 'betseWorlds',
     betseTissues = 'betseTissues',
     betseGlobalInterventions = 'betseGlobalInterventions',
@@ -20,6 +21,7 @@ class Collections(StrEnum):
 
 class BetseCollections(StrEnum):
     simulation = Collections.betseSimulations,
+    simulationRun = Collections.betseSimulationRuns,
     world = Collections.betseWorlds,
     tissue = Collections.betseTissues,
     globalIntervention = Collections.betseGlobalInterventions,

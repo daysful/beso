@@ -20,6 +20,18 @@ def generate_tables(
         '''
     connection.execute(sql_create_table_users)
 
+    sql_create_table_simulation_runs = \
+        f'''
+        CREATE TABLE IF NOT EXISTS simulationRuns
+        (
+            ID              VARCHAR(255) PRIMARY KEY     NOT NULL,
+            SIMULATION_ID   VARCHAR(255)                 NOT NULL,
+            RAN_BY          TEXT                         NOT NULL,
+            RAN_AT          INT                          NOT NULL
+        );
+        '''
+    connection.execute(sql_create_table_simulation_runs)
+
     for table in tables:
         sql_create_table = \
             f'''
