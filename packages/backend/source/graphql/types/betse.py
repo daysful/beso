@@ -139,10 +139,10 @@ class InputBetseSimulationData:
     version: str
     world: str
     tissues: list[str]
-    globalIntervention: str
-    targetedIntervention: str
-    modulatorFunction: str
-    networks: list[str]
+    global_intervention: str
+    targeted_intervention: str
+    modulator_function: str
+    network: str
     biomolecules: list[str]
     reactions: list[str]
     channels: list[str]
@@ -285,10 +285,10 @@ class BetseSimulationData:
     version: str
     world: str
     tissues: list[str]
-    globalIntervention: str
-    targetedIntervention: str
-    modulatorFunction: str
-    networks: list[str]
+    global_intervention: str
+    targeted_intervention: str
+    modulator_function: str
+    network: str
     biomolecules: list[str]
     reactions: list[str]
     channels: list[str]
