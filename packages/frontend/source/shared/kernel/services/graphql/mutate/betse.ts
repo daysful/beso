@@ -19,11 +19,12 @@
 
 
 // #region module
-const mutationTypes = [
+export const mutationTypes = [
     'Simulation',
     'World',
     'Tissue',
-    'Intervention',
+    'Global_Intervention',
+    'Targeted_Intervention',
     'Function',
     'Network',
     'Biomolecule',
@@ -33,7 +34,7 @@ const mutationTypes = [
     'Modulator',
 ] as const;
 
-type MutationNames =
+export type MutationNames =
     | `ADD_BETSE_${Uppercase<typeof mutationTypes[number]>}`
     | `EDIT_BETSE_${Uppercase<typeof mutationTypes[number]>}`
     | `REMOVE_BETSE_${Uppercase<typeof mutationTypes[number]>}`;

@@ -38,6 +38,8 @@ export const USER = gql`
 export const BETSE_USER = gql`
     ${BETSE_WORLD_FRAGMENT}
     ${BETSE_TISSUE_FRAGMENT}
+    ${BETSE_GLOBAL_INTERVENTION_FRAGMENT}
+    ${BETSE_TARGETED_INTERVENTION_FRAGMENT}
     ${BETSE_FUNCTION_FRAGMENT}
     ${BETSE_NETWORK_FRAGMENT}
     ${BETSE_BIOMOLECULE_FRAGMENT}
@@ -58,6 +60,12 @@ export const BETSE_USER = gql`
             }
             tissues {
                 ...BetseTissueFields
+            }
+            globalInterventions {
+                ...BetseGlobalInterventionFields
+            }
+            targetedInterventions {
+                ...BetseTargetedInterventionFields
             }
             functions {
                 ...BetseFunctionFields

@@ -149,15 +149,6 @@ export const BETSE_TISSUE_FRAGMENT = gql`
 `;
 
 
-export const BETSE_INTERVENTION_FRAGMENT = gql`
-    fragment BetseInterventionFields on BetseIntervention {
-        id
-        name
-        generated_at
-    }
-`;
-
-
 export const BETSE_GLOBAL_INTERVENTION_FRAGMENT = gql`
     fragment BetseGlobalInterventionFields on BetseGlobalIntervention {
         id
@@ -543,7 +534,8 @@ export const FRAGMENTS = {
     'Simulation': BETSE_SIMULATION_FRAGMENT,
     'World': BETSE_WORLD_FRAGMENT,
     'Tissue': BETSE_TISSUE_FRAGMENT,
-    'Intervention': BETSE_INTERVENTION_FRAGMENT,
+    'Global_Intervention': BETSE_GLOBAL_INTERVENTION_FRAGMENT,
+    'Targeted_Intervention': BETSE_TARGETED_INTERVENTION_FRAGMENT,
     'Function': BETSE_FUNCTION_FRAGMENT,
     'Network': BETSE_NETWORK_FRAGMENT,
     'Biomolecule': BETSE_BIOMOLECULE_FRAGMENT,
@@ -557,7 +549,8 @@ export const FieldsNames = {
     'Simulation': 'BetseSimulationFields',
     'World': 'BetseWorldFields',
     'Tissue': 'BetseTissueFields',
-    'Intervention': 'BetseInterventionFields',
+    'Global_Intervention': 'BetseGlobalInterventionFields',
+    'Targeted_Intervention': 'BetseTargetedInterventionFields',
     'Function': 'BetseFunctionFields',
     'Network': 'BetseNetworkFields',
     'Biomolecule': 'BetseBiomoleculeFields',
