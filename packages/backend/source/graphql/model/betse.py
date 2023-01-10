@@ -5,7 +5,7 @@ from source.graphql.types.betse import \
     BetseSimulation, \
     BetseWorld, BetseWorldData, BetseWorldMeshRefinement, BetseWorldImportFromSVG, \
     BetseTissue, BetseTissueData, BetseTissueDiffusionConstants, BetseTissueCellTargets, \
-    BetseIntervention, \
+    BetseGlobalIntervention, BetseTargetedIntervention, \
     BetseFunction, BetseFunctionData, BetseFunctionGradientX, BetseFunctionGradientY, BetseFunctionGradientR, BetseFunctionPeriodic, BetseFunctionFSweep, BetseFunctionGradientBitmap, BetseFunctionSingleCell, \
     BetseNetwork, BetseNetworkData, BetseNetworkOptimization, \
     BetseBiomolecule, BetseBiomoleculeData, BetseBiomoleculeGrowthAndDecay, BetseBiomoleculeIonChannelGating, BetseBiomoleculeActivePumping, BetseBiomoleculeChangeAtBounds, BetseBiomoleculePlotting, \
@@ -75,13 +75,22 @@ def modelBetseTissue(
     return BetseTissue(**model)
 
 
-def modelBetseIntervention(
+def modelBetseGlobalIntervention(
     data: any,
     load_json: bool = True,
 ):
     model = model_base(data, load_json)
 
-    return BetseIntervention(**model)
+    return BetseGlobalIntervention(**model)
+
+
+def modelBetseTargetedIntervention(
+    data: any,
+    load_json: bool = True,
+):
+    model = model_base(data, load_json)
+
+    return BetseTargetedIntervention(**model)
 
 
 def modelBetseFunction(

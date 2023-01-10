@@ -27,7 +27,7 @@ simulation_entities = [
     },
     {
         "type": "interventions",
-        "collection": Collections.betseInterventions,
+        "collection": Collections.betseGlobalInterventions,
     },
     {
         "type": "functions",

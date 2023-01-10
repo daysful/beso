@@ -10,7 +10,8 @@ from source.graphql.model.betse import \
     modelBetseSimulation, \
     modelBetseWorld, \
     modelBetseTissue, \
-    modelBetseIntervention, \
+    modelBetseGlobalIntervention, \
+    modelBetseTargetedIntervention, \
     modelBetseFunction, \
     modelBetseNetwork, \
     modelBetseBiomolecule, \
@@ -56,9 +57,13 @@ class QueryUser:
             get_all(Collections.betseTissues, user.id, 'generated_by') or [],
             modelBetseTissue,
         )
-        interventions=modeler(
-            get_all(Collections.betseInterventions, user.id, 'generated_by') or [],
-            modelBetseIntervention,
+        globalInterventions=modeler(
+            get_all(Collections.betseGlobalInterventions, user.id, 'generated_by') or [],
+            modelBetseGlobalIntervention,
+        )
+        targetedInterventions=modeler(
+            get_all(Collections.betseTargetedInterventions, user.id, 'generated_by') or [],
+            modelBetseTargetedIntervention,
         )
         functions=modeler(
             get_all(Collections.betseFunctions, user.id, 'generated_by') or [],
@@ -93,7 +98,8 @@ class QueryUser:
             simulations=simulations,
             worlds=worlds,
             tissues=tissues,
-            interventions=interventions,
+            globalInterventions=globalInterventions,
+            targetedInterventions=targetedInterventions,
             functions=functions,
             networks=networks,
             biomolecules=biomolecules,

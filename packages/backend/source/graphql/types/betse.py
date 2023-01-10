@@ -457,37 +457,6 @@ class BetseTissue:
 
 
 
-# region BetseIntervention
-# region input BetseIntervention
-@strawberry.input
-class InputAddBetseIntervention:
-    name: str
-    type: str # 'targeted' | 'global'
-    data: str
-
-@strawberry.input
-class InputEditBetseIntervention:
-    id: str
-    name: str
-    type: str # 'targeted' | 'global'
-    data: str
-# endregion input BetseIntervention
-
-# region type BetseIntervention
-@strawberry.type
-class BetseIntervention:
-    id: str
-    name: str
-    generated_at: float
-    generated_by: str
-    forked_from: str | None
-    type: str # 'targeted' | 'global'
-    data: str
-# endregion type BetseIntervention
-# endregion BetseIntervention
-
-
-
 # region BetseGlobalIntervention
 # region input BetseGlobalIntervention
 @strawberry.input
@@ -547,12 +516,17 @@ class InputBetseGlobalInterventionData:
     block_NaKATP_pump: InputBetseGlobalInterventionBlockNaKATPPump
 
 @strawberry.input
-class InputBetseGlobalIntervention:
-    id: str
+class InputAddBetseGlobalIntervention:
     name: str
     generated_at: float
     generated_by: str
     forked_from: str | None
+    data: InputBetseGlobalInterventionData
+
+@strawberry.input
+class InputEditBetseGlobalIntervention:
+    id: str
+    name: str
     data: InputBetseGlobalInterventionData
 # endregion input BetseGlobalIntervention
 
@@ -716,12 +690,17 @@ class InputBetseTargetedInterventionData:
     cutting_event: InputBetseTargetedInterventionCuttingEvent
 
 @strawberry.input
-class InputBetseTargetedIntervention:
-    id: str
+class InputAddBetseTargetedIntervention:
     name: str
     generated_at: float
     generated_by: str
     forked_from: str | None
+    data: InputBetseTargetedInterventionData
+
+@strawberry.input
+class InputEditBetseTargetedIntervention:
+    id: str
+    name: str
     data: InputBetseTargetedInterventionData
 # endregion input BetseTargetedIntervention
 
@@ -1516,7 +1495,8 @@ class Betse:
     simulations: list[BetseSimulation]
     worlds: list[BetseWorld]
     tissues: list[BetseTissue]
-    interventions: list[BetseIntervention]
+    globalInterventions: list[BetseGlobalIntervention]
+    targetedInterventions: list[BetseTargetedIntervention]
     functions: list[BetseFunction]
     networks: list[BetseNetwork]
     biomolecules: list[BetseBiomolecule]

@@ -7,7 +7,8 @@ from source.graphql.model.betse import \
     modelBetseSimulation, \
     modelBetseWorld, \
     modelBetseTissue, \
-    modelBetseIntervention, \
+    modelBetseGlobalIntervention, \
+    modelBetseTargetedIntervention, \
     modelBetseFunction, \
     modelBetseNetwork, \
     modelBetseBiomolecule, \
@@ -19,7 +20,8 @@ from source.graphql.types.betse import \
     InputAddBetseSimulation, InputEditBetseSimulation, BetseSimulation, \
     InputAddBetseWorld, InputEditBetseWorld, BetseWorld, \
     InputAddBetseTissue, InputEditBetseTissue, BetseTissue, \
-    InputAddBetseIntervention, InputEditBetseIntervention, BetseIntervention, \
+    InputAddBetseGlobalIntervention, InputEditBetseGlobalIntervention, BetseGlobalIntervention, \
+    InputAddBetseTargetedIntervention, InputEditBetseTargetedIntervention, BetseTargetedIntervention, \
     InputAddBetseFunction, InputEditBetseFunction, BetseFunction, \
     InputAddBetseNetwork, InputEditBetseNetwork, BetseNetwork, \
     InputAddBetseBiomolecule, InputEditBetseBiomolecule, BetseBiomolecule, \
@@ -49,9 +51,13 @@ mutation_data = {
         "collection": Collections.betseTissues,
         "model": modelBetseTissue,
     },
-    "intervention": {
-        "collection": Collections.betseInterventions,
-        "model": modelBetseIntervention,
+    "globalIntervention": {
+        "collection": Collections.betseGlobalInterventions,
+        "model": modelBetseGlobalIntervention,
+    },
+    "targetedIntervention": {
+        "collection": Collections.betseTargetedInterventions,
+        "model": modelBetseTargetedIntervention,
     },
     "function": {
         "collection": Collections.betseFunctions,
@@ -98,8 +104,11 @@ def addBetseWorld(input: InputAddBetseWorld, info: Info) -> BetseWorld | None:
 def addBetseTissue(input: InputAddBetseTissue, info: Info) -> BetseTissue | None:
     return mutation_entity_adder_factory(mutation_data['tissue'])(input, info)
 
-def addBetseIntervention(input: InputAddBetseIntervention, info: Info) -> BetseIntervention | None:
-    return mutation_entity_adder_factory(mutation_data['intervention'])(input, info)
+def addBetseGlobalIntervention(input: InputAddBetseGlobalIntervention, info: Info) -> BetseGlobalIntervention | None:
+    return mutation_entity_adder_factory(mutation_data['globalIntervention'])(input, info)
+
+def addBetseTargetedIntervention(input: InputAddBetseTargetedIntervention, info: Info) -> BetseTargetedIntervention | None:
+    return mutation_entity_adder_factory(mutation_data['targetedIntervention'])(input, info)
 
 def addBetseFunction(input: InputAddBetseFunction, info: Info) -> BetseFunction | None:
     return mutation_entity_adder_factory(mutation_data['function'])(input, info)
@@ -133,8 +142,11 @@ def editBetseWorld(input: InputEditBetseWorld, info: Info) -> BetseWorld | None:
 def editBetseTissue(input: InputEditBetseTissue, info: Info) -> BetseTissue | None:
     return mutation_entity_updater_factory(mutation_data['tissue'])(input, info)
 
-def editBetseIntervention(input: InputEditBetseIntervention, info: Info) -> BetseIntervention | None:
-    return mutation_entity_updater_factory(mutation_data['intervention'])(input, info)
+def editBetseGlobalIntervention(input: InputEditBetseGlobalIntervention, info: Info) -> BetseGlobalIntervention | None:
+    return mutation_entity_updater_factory(mutation_data['globalIntervention'])(input, info)
+
+def editBetseTargetedIntervention(input: InputEditBetseTargetedIntervention, info: Info) -> BetseTargetedIntervention | None:
+    return mutation_entity_updater_factory(mutation_data['targetedIntervention'])(input, info)
 
 def editBetseFunction(input: InputEditBetseFunction, info: Info) -> BetseFunction | None:
     return mutation_entity_updater_factory(mutation_data['function'])(input, info)
@@ -180,10 +192,17 @@ def removeBetseTissue(id: str, info: Info) -> bool | None:
         id,
     )
 
-def removeBetseIntervention(id: str, info: Info) -> bool | None:
+def removeBetseGlobalIntervention(id: str, info: Info) -> bool | None:
     return mutation_entity_remove(
         info,
-        Collections.betseInterventions,
+        Collections.betseGlobalInterventions,
+        id,
+    )
+
+def removeBetseTargetedIntervention(id: str, info: Info) -> bool | None:
+    return mutation_entity_remove(
+        info,
+        Collections.betseTargetedInterventions,
         id,
     )
 
@@ -242,7 +261,8 @@ mutations = [
     addBetseSimulation,
     addBetseWorld,
     addBetseTissue,
-    addBetseIntervention,
+    addBetseGlobalIntervention,
+    addBetseTargetedIntervention,
     addBetseFunction,
     addBetseNetwork,
     addBetseBiomolecule,
@@ -254,7 +274,8 @@ mutations = [
     editBetseSimulation,
     editBetseWorld,
     editBetseTissue,
-    editBetseIntervention,
+    editBetseGlobalIntervention,
+    editBetseTargetedIntervention,
     editBetseFunction,
     editBetseNetwork,
     editBetseBiomolecule,
@@ -266,7 +287,8 @@ mutations = [
     removeBetseSimulation,
     removeBetseWorld,
     removeBetseTissue,
-    removeBetseIntervention,
+    removeBetseGlobalIntervention,
+    removeBetseTargetedIntervention,
     removeBetseFunction,
     removeBetseNetwork,
     removeBetseBiomolecule,
