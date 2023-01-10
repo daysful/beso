@@ -140,7 +140,7 @@ const NewInterventionGlobal: React.FC<NewInterventionGlobalProperties> = (
                     setFullRenderArea(false);
 
                     const response = await graphqlClient.mutate({
-                        mutation: BETSE_MUTATIONS.ADD_BETSE_INTERVENTION,
+                        mutation: BETSE_MUTATIONS.ADD_BETSE_GLOBAL_INTERVENTION,
                         variables: {
                             input,
                         },

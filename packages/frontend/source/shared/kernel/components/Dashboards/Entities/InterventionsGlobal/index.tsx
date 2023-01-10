@@ -130,7 +130,7 @@ const InterventionsGlobal: React.FC<InterventionsGlobalProperties> = (
             });
 
             await graphqlClient.mutate({
-                mutation: BETSE_MUTATIONS.REMOVE_BETSE_INTERVENTION,
+                mutation: BETSE_MUTATIONS.REMOVE_BETSE_GLOBAL_INTERVENTION,
                 variables: {
                     input: id,
                 },

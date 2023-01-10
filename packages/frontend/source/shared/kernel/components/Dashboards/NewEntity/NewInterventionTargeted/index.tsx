@@ -139,7 +139,7 @@ const NewInterventionTargeted: React.FC<NewInterventionTargetedProperties> = (
                     setFullRenderArea(false);
 
                     const response = await graphqlClient.mutate({
-                        mutation: BETSE_MUTATIONS.ADD_BETSE_INTERVENTION,
+                        mutation: BETSE_MUTATIONS.ADD_BETSE_TARGETED_INTERVENTION,
                         variables: {
                             input,
                         },

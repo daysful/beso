@@ -130,7 +130,7 @@ const InterventionsTargeted: React.FC<InterventionsTargetedProperties> = (
             });
 
             await graphqlClient.mutate({
-                mutation: BETSE_MUTATIONS.REMOVE_BETSE_INTERVENTION,
+                mutation: BETSE_MUTATIONS.REMOVE_BETSE_TARGETED_INTERVENTION,
                 variables: {
                     input: id,
                 },
