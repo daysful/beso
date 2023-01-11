@@ -719,7 +719,7 @@ export const fields: NewEntityField[] = [
             {
                 label: 'fast update ecm',
                 type: 'boolean',
-                state: 'fast_update_ECM',
+                state: 'fast_update_ecm',
                 value: false,
                 required: true,
                 help: `use a coarse (fast) or fine (slow) method to update between env and cell grids`,
