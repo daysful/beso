@@ -115,16 +115,19 @@ const Simulation: React.FC<SimulationProperties> = (
         <StyledSimulation>
             <Head />
 
-            {/* <EditEntityComponent
+            <EditEntityComponent
                 title={`'${simulation.name}' simulation`}
-                fields={mergeDataIntoFields(simulation['data'], fields)}
+                fields={mergeDataIntoFields({
+                    name: simulation.name,
+                    ...simulation['data'],
+                }, fields)}
                 kind="Simulation"
 
                 onEdit={(state) => {
                 }}
                 onCancel={() => {
                 }}
-            /> */}
+            />
         </StyledSimulation>
     );
     // #endregion render

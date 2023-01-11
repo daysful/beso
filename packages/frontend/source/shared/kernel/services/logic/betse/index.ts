@@ -55,15 +55,19 @@ export const mergeDataIntoFields = (
     const _fields = JSON.parse(JSON.stringify(fields));
 
     for (const field of _fields) {
-        if (field.type !== 'group') {
-            field.value = data[field.state];
+        try {
+            if (field.type !== 'group') {
+                field.value = data[field.state];
+                continue;
+            }
+
+            field.value = mergeDataIntoFields(
+                data[field.state],
+                field.value,
+            );
+        } catch (error) {
             continue;
         }
-
-        field.value = mergeDataIntoFields(
-            data[field.state],
-            field.value,
-        );
     }
 
     return _fields;
