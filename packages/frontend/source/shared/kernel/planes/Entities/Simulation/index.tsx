@@ -1,8 +1,6 @@
 // #region imports
     // #region libraries
-    import React, {
-        useState,
-    } from 'react';
+    import React from 'react';
 
     import {
         AnyAction,
@@ -24,14 +22,7 @@
     // #region external
     import {
         PluridPureButton,
-        PluridInputLine,
-        PluridInputSwitch,
     } from '~kernel-services/styled';
-
-    import {
-        newSimulation,
-        startSimulation,
-    } from '~kernel-services/logic/requests';
 
     import {
         fields,
@@ -43,6 +34,12 @@
     import {
         mergeDataIntoFields,
     } from '~kernel-services/logic/betse';
+
+    import graphqlClient from '~kernel-services/graphql/client';
+
+    import {
+        BETSE_RUN_SIMULATION,
+    } from '~kernel-services/graphql/mutate/betse';
 
     import { AppState } from '~kernel-services/state/store';
     import StateContext from '~kernel-services/state/context';
@@ -114,6 +111,27 @@ const Simulation: React.FC<SimulationProperties> = (
     return (
         <StyledSimulation>
             <Head />
+
+            <PluridPureButton
+                text="Run Simulation"
+                atClick={() => {
+                    try {
+                        const input = {
+                            id: simulation.id,
+                        };
+
+                        graphqlClient.mutate({
+                            mutation: BETSE_RUN_SIMULATION,
+                            variables: {
+                                input,
+                            },
+                        });
+                    } catch (error) {
+                    }
+                }}
+                theme={stateGeneralTheme}
+                level={2}
+            />
 
             <EditEntityComponent
                 title={`'${simulation.name}' simulation`}

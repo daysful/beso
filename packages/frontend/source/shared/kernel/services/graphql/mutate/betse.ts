@@ -80,4 +80,13 @@ const computeMutations = () => {
 }
 
 export const BETSE_MUTATIONS = computeMutations();
+
+
+export const BETSE_RUN_SIMULATION = gql`
+    mutation BetseRunSimulation($input: InputBetseRunSimulation!) {
+        betseRunSimulation(input: $input) {
+            status
+        }
+    }
+`;
 // #endregion module
