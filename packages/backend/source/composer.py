@@ -2,6 +2,8 @@ import copy
 import json
 import yaml
 
+from source.utilities.general import generate_id
+
 from source.database.collections import Collections
 from source.database.main import get
 
@@ -76,7 +78,7 @@ fields_mapping = {
     'extracellular_Na_concentration': 'extracellular Na+ concentration',
     'extracellular_K_concentration': 'extracellular K+ concentration',
     'extracellular_Cl_concentration': 'extracellular Cl- concentration',
-    'extracellular Ca2_concentration': 'extracellular Ca2+ concentration',
+    'extracellular_Ca2_concentration': 'extracellular Ca2+ concentration',
     'extracellular_protein_concentration': 'extracellular protein- concentration',
     'cytosolic_Na_concentration': 'cytosolic Na+ concentration',
     'cytosolic_K_concentration': 'cytosolic K+ concentration',
@@ -167,11 +169,13 @@ def compose_simulation(
                 parse(data),
             )
 
+    simulation_run_id = generate_id()
     simulation_path = betse_copy_data(id)
+
 
     sim_config = {
         # SOLVER SETTINGS
-        'solver options': simulation_data['solver_options'],
+        'solver options': map_to_fields(simulation_data['solver_options']),
 
         # FILE HANDLING
         'init file saving': {
@@ -190,16 +194,16 @@ def compose_simulation(
 
         # INITIALIZATION SETTINGS
         'automatically run initialization': True,
-        'init time settings': simulation_data['init_time_settings'],
+        'init time settings': map_to_fields(simulation_data['init_time_settings']),
 
         # SIMULATION SETTINGS
-        'sim time settings': simulation_data['sim_time_settings'],
+        'sim time settings': map_to_fields(simulation_data['sim_time_settings']),
 
         # GENERAL OPTIONS
-        'general options': simulation_data['general_options'],
+        'general options': map_to_fields(simulation_data['general_options']),
 
         # WORLD OPTIONS
-        'world options': world_data,
+        'world options': map_to_fields(world_data),
 
         # TISSUE PROFILE DESIGNATION
         'tissue profile definition': {},
@@ -215,10 +219,10 @@ def compose_simulation(
         # GENE REGULATORY NETWORK
 
         # VARIABLE SETTINGS
-        'variable settings': simulation_data['variable_settings'],
+        'variable settings': map_to_fields(simulation_data['variable_settings']),
 
         # RESULTS
-        'results options': simulation_data['results_options'],
+        'results options': map_to_fields(simulation_data['results_options']),
 
         # INTERNAL USE ONLY
         'internal parameters': map_to_fields(simulation_data['internal_parameters']),
@@ -226,7 +230,7 @@ def compose_simulation(
         'version': simulation_data['version'],
     }
 
-    sim_config_yaml = yaml.dump(sim_config)
+    sim_config_yaml = yaml.dump(sim_config, sort_keys=False)
 
     f = open(f'{simulation_path}/sim_config.yaml', 'w')
     f.write(sim_config_yaml)
