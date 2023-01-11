@@ -52,6 +52,17 @@ export const createSearchTerms = (
 ));
 
 
+export const renderDate = (
+    value: any,
+) => {
+    if (!value) {
+        return '';
+    }
+
+    return new Date(value * 1_000).toLocaleString();
+}
+
+
 export const abstractRowRenderer = (
     columns: string[],
     data: Record<string, any>,
@@ -60,11 +71,13 @@ export const abstractRowRenderer = (
     const renderColumns: JSX.Element[] = [];
 
     for (const column of columns) {
+        const key = Math.random() + '';
+
         switch (column) {
             case 'link':
                 renderColumns.push(
                     <PluridCopyableLine
-                        key={Math.random() + ''}
+                        key={key}
                         data={data.link}
                         viewData=" "
                         copyMessage=" "
@@ -74,7 +87,7 @@ export const abstractRowRenderer = (
             case 'name':
                 renderColumns.push(
                     <div
-                        key={Math.random() + ''}
+                        key={key}
                     >
                         {data.name}
                     </div>
@@ -83,25 +96,25 @@ export const abstractRowRenderer = (
             case 'generatedAt':
                 renderColumns.push(
                     <div
-                        key={Math.random() + ''}
+                        key={key}
                     >
-                        {new Date(data.generated_at * 1_000).toLocaleString()}
+                        {renderDate(data.generated_at)}
                     </div>
                 );
                 break;
             case 'lastRun':
                 renderColumns.push(
                     <div
-                        key={Math.random() + ''}
+                        key={key}
                     >
-                        {new Date(data.last_run).toLocaleString()}
+                        {renderDate(data.last_run)}
                     </div>
                 );
                 break;
             case 'pluridlink':
                 renderColumns.push(
                     <PluridLink
-                        key={Math.random() + ''}
+                        key={key}
                         route={data.pluridlink}
                         devisible={true}
                         style={{
@@ -118,7 +131,7 @@ export const abstractRowRenderer = (
             case 'obliterate':
                 renderColumns.push(
                     <PluridIconDelete
-                        key={Math.random() + ''}
+                        key={key}
                         atClick={() => methods.handleObliterate(data.id)}
                     />
                 );

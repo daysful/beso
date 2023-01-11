@@ -28,11 +28,6 @@
     } from '~kernel-data/interfaces';
 
     import {
-        rowTemplate,
-        rowRenderFields,
-    } from '~kernel-data/constants';
-
-    import {
         DashboardRenderProperties,
     } from '~kernel-components/DashboardsRenderer/data';
 
@@ -59,10 +54,6 @@
     import selectors from '~kernel-services/state/selectors';
     import actions from '~kernel-services/state/actions';
     // #endregion external
-
-
-    // #region internal
-    // #endregion internal
 // #endregion imports
 
 
@@ -186,6 +177,11 @@ const Simulations: React.FC<SimulationsProperties> = (
             <div />
         </>
     );
+
+    const rowTemplate = '20px 0.5fr 0.5fr 0.5fr 60px 60px';
+    const rowRenderFields = [
+        'link', 'name', 'generatedAt', 'lastRun', 'pluridlink', 'obliterate',
+    ];
 
     return (
         <StyledDashboardContainer
