@@ -64,6 +64,85 @@ simulation_entities = [
 ]
 
 
+fields_mapping = {
+    'time_step': 'time step',
+    'total_time': 'total time',
+    'sampling_rate': 'sampling rate',
+
+    'comp_grid_size': 'comp grid size',
+    'simulate_extracellular_spaces': 'simulate extracellular spaces',
+    'ion_profile': 'ion profile',
+    'customized_ion_profile': 'customized ion profile',
+    'extracellular_Na_concentration': 'extracellular Na+ concentration',
+    'extracellular_K_concentration': 'extracellular K+ concentration',
+    'extracellular_Cl_concentration': 'extracellular Cl- concentration',
+    'extracellular Ca2_concentration': 'extracellular Ca2+ concentration',
+    'extracellular_protein_concentration': 'extracellular protein- concentration',
+    'cytosolic_Na_concentration': 'cytosolic Na+ concentration',
+    'cytosolic_K_concentration': 'cytosolic K+ concentration',
+    'cytosolic_Cl_concentration': 'cytosolic Cl- concentration',
+    'cytosolic_Ca2_concentration': 'cytosolic Ca2+ concentration',
+    'cytosolic_protein_concentration': 'cytosolic protein- concentration',
+
+    'world_size': 'world size',
+    'cell_radius': 'cell radius',
+    'cell_height': 'cell height',
+    'cell_spacing': 'cell spacing',
+    'simulate_single_cell': 'simulate single cell',
+    'lattice_type': 'lattice type',
+    'lattice_disorder': 'lattice disorder',
+    'mesh_refinement': 'mesh refinement',
+    'refine_mesh': 'refine mesh',
+    'maximum_steps': 'maximum steps',
+    'convergence_threshold': 'convergence threshold',
+    'import_from_svg': 'import from svg',
+    'svg_override': 'svg override',
+    'cells_from_svg': 'cells from svg',
+    'svg_size': 'svg size',
+    'alpha_shape': 'alpha shape',
+    'use_centers': 'use centers',
+
+    'Do_Na': 'Do_Na',
+    'Do_K': 'Do_K',
+    'Do_Cl': 'Do_Cl',
+    'Do_Ca': 'Do_Ca',
+    'Do_M': 'Do_M',
+    'Do_P': 'Do_P',
+    'alpha_NaK': 'alpha_NaK',
+    'alpha_Ca': 'alpha_Ca',
+    'substances_affect_Vmem': 'substances affect Vmem',
+    'environment_volume_multiplier': 'environment volume multiplier',
+    'membrane_capacitance': 'membrane capacitance',
+    'cell_polarizability': 'cell polarizability',
+    'dielectric_constant': 'dielectric constant',
+    'fast_update_ecm': 'fast update ecm',
+    'sharpness_env': 'sharpness env',
+    'sharpness_cell': 'sharpness cell',
+    'true_cell_size': 'true cell size',
+}
+
+
+def map_to_fields(
+    data: dict,
+):
+    mapped = {}
+
+    for item in data:
+        mapped_field = fields_mapping.get(item)
+
+        if isinstance(data[item], dict):
+            item_data = map_to_fields(data[item])
+        else:
+            item_data = data[item]
+
+        if mapped_field:
+            mapped[mapped_field] = item_data
+        else:
+            mapped[item] = item_data
+
+    return mapped
+
+
 def compose_simulation(
     simulation_id: str,
 ):
@@ -142,7 +221,7 @@ def compose_simulation(
         'results options': simulation_data['results_options'],
 
         # INTERNAL USE ONLY
-        'internal parameters': simulation_data['internal_parameters'],
+        'internal parameters': map_to_fields(simulation_data['internal_parameters']),
 
         'version': simulation_data['version'],
     }

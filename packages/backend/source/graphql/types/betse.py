@@ -273,7 +273,7 @@ class BetseSimulationInternalParameters:
     membrane_capacitance: float
     cell_polarizability: float
     dielectric_constant: float
-    fast_update_ECM: bool
+    fast_update_ecm: bool
     sharpness_env: float
     sharpness_cell: float
     true_cell_size: float
