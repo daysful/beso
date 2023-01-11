@@ -26,15 +26,19 @@ simulation_entities = [
         "collection": Collections.betseTissues,
     },
     {
-        "type": "interventions",
+        "type": "global_intervention",
         "collection": Collections.betseGlobalInterventions,
     },
     {
-        "type": "functions",
+        "type": "targeted_intervention",
+        "collection": Collections.betseTargetedInterventions,
+    },
+    {
+        "type": "modulator_function",
         "collection": Collections.betseFunctions,
     },
     {
-        "type": "networks",
+        "type": "network",
         "collection": Collections.betseNetworks,
     },
     {
@@ -66,15 +70,19 @@ def compose_simulation(
     simulation = parse(get(Collections.betseSimulations, simulation_id))
     if not simulation:
         return
+    simulation_data = simulation['data']['data']
 
-    world = get(Collections.betseWorlds, simulation['world'])
+    world = parse(get(Collections.betseWorlds, simulation_data['world']))
+    if not world:
+        return
+    world_data = world['data']['data']
 
     entities = {}
 
     for entity in simulation_entities:
         type = entity['type']
         entities[type] = []
-        for id in simulation[type]:
+        for id in simulation_data[type]:
             data = get(entity['collection'], id)
             entities[type].append(
                 parse(data),
@@ -83,12 +91,12 @@ def compose_simulation(
     simulation_path = betse_copy_data(id)
 
     sim_config = {
-        'init time settings': simulation['data']['init_time_settings'],
-        'sim time settings': simulation['data']['sim_time_settings'],
-        'general options': simulation['data']['general_options'],
-        'world options': world['data'],
+        'init time settings': simulation_data['init_time_settings'],
+        'sim time settings': simulation_data['sim_time_settings'],
+        'general options': simulation_data['general_options'],
+        'world options': world_data,
         'tissue profile definition': {},
-        'internal parameters': simulation['data']['internal_parameters'],
+        'internal parameters': simulation_data['internal_parameters'],
     }
 
     sim_config_yaml = yaml.dump(sim_config)

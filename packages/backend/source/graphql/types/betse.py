@@ -17,6 +17,11 @@ GraphqlAny = strawberry.scalar(
 # region BetseSimulation
 # region input BetseSimulation
 @strawberry.input
+class InputBetseRunSimulation:
+    id: str
+
+
+@strawberry.input
 class InputBetseSimulationSolverOptions:
     type: str
 

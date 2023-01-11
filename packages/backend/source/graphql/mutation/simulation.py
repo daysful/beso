@@ -2,10 +2,14 @@ import strawberry
 from strawberry.tools import create_type
 
 from source.graphql.context import Info
+from source.graphql.types.betse import InputBetseRunSimulation
+from source.composer import compose_simulation
 
 
 
-def startSimulation(info: Info) -> bool:
+def betseRunSimulation(input: InputBetseRunSimulation, info: Info) -> bool:
+    compose_simulation(input.id)
+
     return True
 
 
@@ -13,6 +17,6 @@ def startSimulation(info: Info) -> bool:
 MutationSimulation = create_type(
     'MutationSimulation',
     [
-        strawberry.mutation(startSimulation),
+        strawberry.mutation(betseRunSimulation),
     ],
 )
