@@ -2,7 +2,7 @@ import json
 import copy
 
 from source.graphql.types.betse import \
-    BetseSimulation, BetseSimulationSolverOptions, BetseSimulationInitTimeSettings, BetseSimulationSimTimeSettings, BetseSimulationGeneralOptionsCustomizedIonProfile, BetseSimulationGeneralOptions, BetseSimulationVariableSettingsDeformation, BetseSimulationVariableSettingsPressures, BetseSimulationVariableSettingsNoise, BetseSimulationVariableSettingsGapJunctions, BetseSimulationVariableSettingsTightJunctionRelativeDiffusion, BetseSimulationVariableSettings, BetseSimulationResultsOptions, BetseSimulationInternalParameters, BetseSimulationData, \
+    BetseSimulation, BetseSimulationSolverOptions, BetseSimulationInitTimeSettings, BetseSimulationSimTimeSettings, BetseSimulationGeneralOptionsCustomizedIonProfile, BetseSimulationGeneralOptions, BetseSimulationVariableSettingsDeformation, BetseSimulationVariableSettingsPressures, BetseSimulationVariableSettingsNoise, BetseSimulationVariableSettingsGapJunctions, BetseSimulationVariableSettingsTightJunctionRelativeDiffusion, BetseSimulationVariableSettings, BetseSimulationResultsOptionsVisualsCellIndices, BetseSimulationResultsOptionsVisuals, BetseSimulationResultsOptionsWhileSolvingAnimationsColorbar, BetseSimulationResultsOptionsWhileSolvingAnimations, BetseSimulationResultsOptionsWhileSolving, BetseSimulationResultsOptionsAfterSolvingCsvsPipeline, BetseSimulationResultsOptionsAfterSolvingCsvs, BetseSimulationResultsOptionsAfterSolvingPlotsSingleCellPipeline, BetseSimulationResultsOptionsAfterSolvingPlotsCellClusterPipelineColorbar, BetseSimulationResultsOptionsAfterSolvingPlotsCellClusterPipeline, BetseSimulationResultsOptionsAfterSolvingPlots, BetseSimulationResultsOptionsAfterSolvingAnimationsPipelineColorbar, BetseSimulationResultsOptionsAfterSolvingAnimationsPipeline, BetseSimulationResultsOptionsAfterSolvingAnimations, BetseSimulationResultsOptionsAfterSolving, BetseSimulationResultsOptionsSaveCsvs, BetseSimulationResultsOptionsSavePlots, BetseSimulationResultsOptionsSaveAnimationsImages, BetseSimulationResultsOptionsSaveAnimationsVideoMetadata, BetseSimulationResultsOptionsSaveAnimationsVideo, BetseSimulationResultsOptionsSaveAnimations, BetseSimulationResultsOptionsSave, BetseSimulationResultsOptions, BetseSimulationInternalParameters, BetseSimulationData, \
     BetseWorld, BetseWorldData, BetseWorldMeshRefinement, BetseWorldImportFromSVG, \
     BetseTissue, BetseTissueData, BetseTissueDiffusionConstants, BetseTissueCellTargets, \
     BetseGlobalIntervention, BetseGlobalInterventionChangeKEnv, BetseGlobalInterventionChangeClEnv, BetseGlobalInterventionChangeNaEnv, BetseGlobalInterventionChangeTemperature, BetseGlobalInterventionBlockGapJunctions, BetseGlobalInterventionBlockNaKATPPump, BetseGlobalInterventionData, \
@@ -62,7 +62,31 @@ def modelBetseSimulation(
     model['data']['variable_settings']['tight_junction_relative_diffusion'] = BetseSimulationVariableSettingsTightJunctionRelativeDiffusion(**model['data']['variable_settings']['tight_junction_relative_diffusion'])
     model['data']['variable_settings'] = BetseSimulationVariableSettings(**model['data']['variable_settings'])
 
+
+    model['data']['results_options']['visuals']['cell_indices'] = BetseSimulationResultsOptionsVisualsCellIndices(**model['data']['results_options']['visuals']['cell_indices'])
+    model['data']['results_options']['visuals'] = BetseSimulationResultsOptionsVisuals(**model['data']['results_options']['visuals'])
+    model['data']['results_options']['while_solving']['animations']['colorbar'] = BetseSimulationResultsOptionsWhileSolvingAnimationsColorbar(**model['data']['results_options']['while_solving']['animations']['colorbar'])
+    model['data']['results_options']['while_solving']['animations'] = BetseSimulationResultsOptionsWhileSolvingAnimations(**['data']['results_options']['while_solving']['animations'])
+    model['data']['results_options']['while_solving'] = BetseSimulationResultsOptionsWhileSolving(**model['data']['results_options']['while_solving'])
+    model['data']['results_options']['after_solving']['csvs']['pipeline'] = BetseSimulationResultsOptionsAfterSolvingCsvsPipeline(**model['data']['results_options']['after_solving']['csvs']['pipeline'])
+    model['data']['results_options']['after_solving']['csvs'] = BetseSimulationResultsOptionsAfterSolvingCsvs(**model['data']['results_options']['after_solving']['csvs'])
+    model['data']['results_options']['after_solving']['plots']['single_cell_pipeline'] = BetseSimulationResultsOptionsAfterSolvingPlotsSingleCellPipeline(**model['data']['results_options']['after_solving']['plots']['single_cell_pipeline'])
+    model['data']['results_options']['after_solving']['plots']['cell_cluster_pipeline']['colorbar'] = BetseSimulationResultsOptionsAfterSolvingPlotsCellClusterPipelineColorbar(**model['data']['results_options']['after_solving']['plots']['cell_cluster_pipeline']['colorbar'])
+    model['data']['results_options']['after_solving']['plots']['cell_cluster_pipeline'] = BetseSimulationResultsOptionsAfterSolvingPlotsCellClusterPipeline(**model['data']['results_options']['after_solving']['plots']['cell_cluster_pipeline'])
+    model['data']['results_options']['after_solving']['plots'] = BetseSimulationResultsOptionsAfterSolvingPlots(**model['data']['results_options']['after_solving']['plots'])
+    model['data']['results_options']['after_solving']['animations']['pipeline']['colobar'] = BetseSimulationResultsOptionsAfterSolvingAnimationsPipelineColorbar(**model['data']['results_options']['after_solving']['animations']['pipeline']['colobar'])
+    model['data']['results_options']['after_solving']['animations']['pipeline'] = BetseSimulationResultsOptionsAfterSolvingAnimationsPipeline(**model['data']['results_options']['after_solving']['animations']['pipeline'])
+    model['data']['results_options']['after_solving']['animations'] = BetseSimulationResultsOptionsAfterSolvingAnimations(**model['data']['results_options']['after_solving']['animations'])
+    model['data']['results_options']['after_solving'] = BetseSimulationResultsOptionsAfterSolving(**model['data']['results_options']['after_solving'])
+    model['data']['results_options']['save'] = BetseSimulationResultsOptionsSaveCsvs(**model['data']['result_options'][''])
+    model['data']['results_options']['save'] = BetseSimulationResultsOptionsSavePlots(**model['data']['result_options'][''])
+    model['data']['results_options']['save'] = BetseSimulationResultsOptionsSaveAnimationsImages(**model['data']['result_options'][''])
+    model['data']['results_options']['save'] = BetseSimulationResultsOptionsSaveAnimationsVideoMetadata(**model['data']['result_options'][''])
+    model['data']['results_options']['save'] = BetseSimulationResultsOptionsSaveAnimationsVideo(**model['data']['result_options'][''])
+    model['data']['results_options']['save'] = BetseSimulationResultsOptionsSaveAnimations(**model['data']['result_options'][''])
+    model['data']['results_options']['save'] = BetseSimulationResultsOptionsSave(**model['data']['results_options']['save'])
     model['data']['results_options'] = BetseSimulationResultsOptions(**model['data']['results_options'])
+
     model['data']['internal_parameters'] = BetseSimulationInternalParameters(**model['data']['internal_parameters'])
     model['data'] = BetseSimulationData(**model['data'])
 
