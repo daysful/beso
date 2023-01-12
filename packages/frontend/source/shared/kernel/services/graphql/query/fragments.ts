@@ -13,6 +13,9 @@ export const BETSE_SIMULATION_FRAGMENT = gql`
         name
         generated_at
         data {
+            solver_options {
+                type
+            }
             init_time_settings {
                 time_step
                 total_time
@@ -78,6 +81,133 @@ export const BETSE_SIMULATION_FRAGMENT = gql`
                 }
                 adherens_junction_scaling
                 use_Goldman_calculator
+            }
+            results_options {
+                show_cells
+                overlay_currents
+                streamline_density
+                plot_total_current
+                plot_cutlines
+                plot_masked_geometry
+                default_colormap
+                background_colormap
+                network_colormap
+                gj_colormap
+                vector_and_stream_color
+                plot_networks
+                plot_networks_single_cell
+                visuals {
+                    cell_indices {
+                        show
+                        single_cell
+                    }
+                }
+                while_solving {
+                    animations {
+                        show
+                        save
+                        colorbar {
+                            colormap
+                            autoscale
+                            minimum
+                            maximum
+                        }
+                    }
+                }
+                after_solving {
+                    csvs {
+                        save
+                        pipeline {
+                            name
+                            type
+                            enabled
+                        }
+                    }
+                    plots {
+                        show
+                        save
+                        single_cell_pipeline {
+                            name
+                            type
+                            enabled
+                        }
+                        cell_cluster_pipeline {
+                            name
+                            type
+                            enabled
+                            colorbar {
+                                autoscale
+                                minimum
+                                maximum
+                            }
+                        }
+                    }
+                    animations {
+                        show
+                        save
+                        pipeline {
+                            name
+                            type
+                            enabled
+                            colorbar {
+                                autoscale
+                                minimum
+                                maximum
+                            }
+                        }
+                    }
+                }
+                save {
+                    csvs {
+                        filetype
+                    }
+                    plots {
+                        filetype
+                        dpi
+                    }
+                    animations {
+                        images {
+                            enabled
+                            filetype
+                            dpi
+                        }
+                        videos {
+                            enabled
+                            filetype
+                            dpi
+                            bitrate
+                            framerate
+                            metadata {
+                                artist
+                                genre
+                                subject
+                                comment
+                            }
+                            writers
+                            codecs
+                        }
+                    }
+                }
+                plot_cluster_mask
+            }
+            internal_parameters {
+                Do_Na
+                Do_K
+                Do_Cl
+                Do_Ca
+                Do_M
+                Do_P
+                alpha_NaK
+                alpha_Ca
+                substances_affect_Vmem
+                environment_volume_multiplier
+                membrane_capacitance
+                cell_polarizability
+                dielectric_constant
+                fast_update_ecm
+                sharpness_env
+                sharpness_cell
+                true_cell_size
             }
             world
             tissues
