@@ -104,6 +104,22 @@ fields_mapping = {
     'alpha_shape': 'alpha shape',
     'use_centers': 'use centers',
 
+    'name': 'name',
+    'insular': 'insular',
+    'diffusion_constants': 'diffusion constants',
+    'Dm_Na': 'Dm_Na',
+    'Dm_K': 'Dm_K',
+    'Dm_Cl': 'Dm_Cl',
+    'Dm_Ca': 'Dm_Ca',
+    'Dm_M': 'Dm_M',
+    'Dm_P': 'Dm_P',
+    'cell_targets': 'cell targets',
+    'type': 'type',
+    'color': 'color',
+    'image': 'image',
+    'indices': 'indices',
+    'percent': 'percent',
+
     'change_Na_mem': 'change Na mem',
     'event_happens': 'event happens',
     'change_start': 'change start',
@@ -148,6 +164,43 @@ fields_mapping = {
     'gradient_bitmap': 'gradient_bitmap',
     'file': 'file',
     'single_cell': 'single_cell',
+
+    'name': 'name',
+    'Dm': 'Dm',
+    'Do': 'Do',
+    'Dgj': 'Dgj',
+    'z': 'z',
+    'env_conc': 'env conc',
+    'cell_conc': 'cell conc',
+    'scale_factor': 'scale factor',
+    'update_intracellular': 'update intracellular',
+    'use_time_dilation': 'use time dilation',
+    'transmem': 'transmem',
+    'initial_asymmetry': 'initial asymmetry',
+    'TJ_permeable': 'TJ permeable',
+    'GJ_impermeable': 'GJ impermeable',
+    'TJ_factor': 'TJ factor',
+    'growth_and_decay': 'growth and decay',
+    'production_rate': 'production rate',
+    'decay_rate': 'decay rate',
+    'apply_to': 'apply to',
+    'modulator_function': 'modulator function',
+    'plotting': 'plotting',
+    'plot_2D': 'plot 2D',
+    'animate': 'animate',
+    'autoscale_colorbar': 'autoscale colorbar',
+    'max_val': 'max val',
+    'min_val': 'min val',
+
+    'channel_class': 'channel class',
+    'channel_type': 'channel type',
+    'max_Dm': 'max Dm',
+    'apply_to': 'apply to',
+    'init_active': 'init active',
+    'channel_inhibitors': 'channel inhibitors',
+    'inhibitor_Km': 'inhibitor Km',
+    'inhibitor_n': 'inhibitor n',
+    'inhibitor_zone': 'inhibitor zone',
 
     'env_boundary_concentrations': 'env boundary concentrations',
     'temperature': 'temperature',
@@ -258,8 +311,6 @@ def compose_simulation(
                     entity_data,
                 )
 
-    print(entities)
-
     simulation_run_id = generate_id()
     simulation_path = betse_copy_data(id)
 
@@ -299,6 +350,23 @@ def compose_simulation(
         # TISSUE PROFILE DESIGNATION
         'tissue profile definition': {
             'profiles enabled': True,
+            'tissue': {
+                'default': {
+                    'name': 'Base',
+                    'image': '',
+                    'diffusion constants': {
+                        'Dm_Na': 2.0e-18,
+                        'Dm_K':  1.0e-18,
+                        'Dm_Cl': 1.0e-18,
+                        'Dm_Ca': 1.0e-18,
+                        'Dm_M':  1.0e-18,
+                        'Dm_P':  0.0,
+                    },
+                },
+                'profiles': [
+                    map_to_fields(tissue) for tissue in entities['tissues']
+                ],
+            },
         },
 
         # TARGETED INTERVENTIONS
@@ -311,8 +379,35 @@ def compose_simulation(
         **map_to_fields(entities['global_intervention']),
 
         # GENERAL NETWORK
+        'general network': {
+            'implement network': True,
+            'expression data file': '',
+            'biomolecules': [
+                map_to_fields(biomolecule) for biomolecule in entities['biomolecules']
+            ],
+            'reactions': [],
+            'transporters': [],
+            'channels': [
+                map_to_fields(channel) for channel in entities['channels']
+            ],
+            'modulators': [],
+        },
 
         # GENE REGULATORY NETWORK
+        'gene regulatory network settings': {
+            'gene regulatory network simulated': False,
+            'gene regulatory network config': '',
+            'sim-grn settings': {
+                'run as sim': False,
+                'run network on': 'seed',
+                'save to directory': 'RESULTS/GRN',
+                'save to file': 'GRN_1.betse.gz',
+                'load from': '',
+                'time step': 0.1,
+                'total time': 1.8e2,
+                'sampling rate': 1.8e1,
+            },
+        },
 
         # VARIABLE SETTINGS
         'variable settings': map_to_fields(simulation_data['variable_settings']),
@@ -326,7 +421,11 @@ def compose_simulation(
         'version': simulation_data['version'],
     }
 
-    sim_config_yaml = yaml.dump(sim_config, sort_keys=False)
+    sim_config_yaml = yaml.dump(
+        sim_config,
+        default_flow_style=False,
+        sort_keys=False,
+    )
 
     f = open(f'{simulation_path}/sim_config.yaml', 'w')
     f.write(sim_config_yaml)
