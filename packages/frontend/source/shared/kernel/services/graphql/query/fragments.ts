@@ -171,7 +171,7 @@ export const BETSE_SIMULATION_FRAGMENT = gql`
                             filetype
                             dpi
                         }
-                        videos {
+                        video {
                             enabled
                             filetype
                             dpi
