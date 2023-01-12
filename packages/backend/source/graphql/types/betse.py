@@ -106,11 +106,158 @@ class InputBetseSimulationVariableSettings:
     tight_junction_relative_diffusion: InputBetseSimulationVariableSettingsTightJunctionRelativeDiffusion
     adherens_junction_scaling: float
     use_Goldman_calculator: bool
+@strawberry.input
+class InputBetseSimulationResultsOptionsVisualsCellIndices:
+    show: bool
+    single_cell: int
+
+@strawberry.input
+class InputBetseSimulationResultsOptionsVisuals:
+    cell_indices: InputBetseSimulationResultsOptionsVisualsCellIndices
+
+@strawberry.input
+class InputBetseSimulationResultsOptionsWhileSolvingAnimationsColorbar:
+    colormap: str
+    autoscale: bool
+    minimum: float
+    maximum: float
+
+@strawberry.input
+class InputBetseSimulationResultsOptionsWhileSolvingAnimations:
+    show: bool
+    save: bool
+    colorbar: InputBetseSimulationResultsOptionsWhileSolvingAnimationsColorbar
+
+@strawberry.input
+class InputBetseSimulationResultsOptionsWhileSolving:
+    animations: InputBetseSimulationResultsOptionsWhileSolvingAnimations
+
+@strawberry.input
+class InputBetseSimulationResultsOptionsAfterSolvingCsvsPipeline:
+    name: str
+    type: str
+    enabled: bool
+
+@strawberry.input
+class InputBetseSimulationResultsOptionsAfterSolvingCsvs:
+    save: bool
+    pipeline: list[InputBetseSimulationResultsOptionsAfterSolvingCsvsPipeline]
+
+@strawberry.input
+class InputBetseSimulationResultsOptionsAfterSolvingPlotsSingleCellPipeline:
+    name: str
+    type: str
+    enabled: bool
+
+@strawberry.input
+class InputBetseSimulationResultsOptionsAfterSolvingPlotsCellClusterPipelineColorbar:
+    autoscale: bool
+    minimum: float
+    maximum: float
+
+@strawberry.input
+class InputBetseSimulationResultsOptionsAfterSolvingPlotsCellClusterPipeline:
+    name: str
+    type: str
+    enabled: bool
+    colorbar: InputBetseSimulationResultsOptionsAfterSolvingPlotsCellClusterPipelineColorbar
+
+@strawberry.input
+class InputBetseSimulationResultsOptionsAfterSolvingPlots:
+    show: bool
+    save: bool
+    single_cell_pipeline: list[InputBetseSimulationResultsOptionsAfterSolvingPlotsSingleCellPipeline]
+    cell_cluster_pipeline: list[InputBetseSimulationResultsOptionsAfterSolvingPlotsCellClusterPipeline]
+
+@strawberry.input
+class InputBetseSimulationResultsOptionsAfterSolvingAnimationsPipelineColorbar:
+    autoscale: bool
+    minimum: float
+    maximum: float
+
+@strawberry.input
+class InputBetseSimulationResultsOptionsAfterSolvingAnimationsPipeline:
+    name: str
+    type: str
+    enabled: bool
+    colorbar: InputBetseSimulationResultsOptionsAfterSolvingAnimationsPipelineColorbar
+
+@strawberry.input
+class InputBetseSimulationResultsOptionsAfterSolvingAnimations:
+    show: bool
+    save: bool
+    pipeline: list[InputBetseSimulationResultsOptionsAfterSolvingAnimationsPipeline]
+
+@strawberry.input
+class InputBetseSimulationResultsOptionsAfterSolving:
+    csvs: InputBetseSimulationResultsOptionsAfterSolvingCsvs
+    plots: InputBetseSimulationResultsOptionsAfterSolvingPlots
+    animations: InputBetseSimulationResultsOptionsAfterSolvingAnimations
+
+@strawberry.input
+class InputBetseSimulationResultsOptionsSaveCsvs:
+    filetype: str
+
+@strawberry.input
+class InputBetseSimulationResultsOptionsSavePlots:
+    filetype: str
+    dpi: int
+
+@strawberry.input
+class InputBetseSimulationResultsOptionsSaveAnimationsImages:
+    enabled: bool
+    filetype: str
+    dpi: int
+
+@strawberry.input
+class InputBetseSimulationResultsOptionsSaveAnimationsVideoMetadata:
+    artist: str
+    genre: str
+    subject: str
+    comment: str
+
+@strawberry.input
+class InputBetseSimulationResultsOptionsSaveAnimationsVideo:
+    enabled: bool
+    filetype: str
+    dpi: int
+    bitrate: int
+    framerate: int
+    metadata: InputBetseSimulationResultsOptionsSaveAnimationsVideoMetadata
+    writers: list[str]
+    codecs: list[str]
+
+@strawberry.input
+class InputBetseSimulationResultsOptionsSaveAnimations:
+    images: InputBetseSimulationResultsOptionsSaveAnimationsImages
+    video: InputBetseSimulationResultsOptionsSaveAnimationsVideo
+
+@strawberry.input
+class InputBetseSimulationResultsOptionsSave:
+    csvs: InputBetseSimulationResultsOptionsSaveCsvs
+    plots: InputBetseSimulationResultsOptionsSavePlots
+    animations: InputBetseSimulationResultsOptionsSaveAnimations
 
 @strawberry.input
 class InputBetseSimulationResultsOptions:
     show_cells: bool
-    enumerate_cells: bool
+    overlay_currents: bool
+    streamline_density: float
+    plot_total_current: bool
+    plot_cutlines: bool
+    plot_masked_geometry: bool
+    default_colormap: str
+    background_colormap: str
+    network_colormap: str
+    gj_colormap: str
+    vector_and_stream_color: str
+    plot_networks: bool
+    plot_networks_single_cell: bool
+    visuals: InputBetseSimulationResultsOptionsVisuals
+    while_solving: InputBetseSimulationResultsOptionsWhileSolving
+    after_solving: InputBetseSimulationResultsOptionsAfterSolving
+    save: InputBetseSimulationResultsOptionsSave
+    plot_cluster_mask: bool
 
 @strawberry.input
 class InputBetseSimulationInternalParameters:
@@ -254,9 +401,157 @@ class BetseSimulationVariableSettings:
     use_Goldman_calculator: bool
 
 @strawberry.type
+class BetseSimulationResultsOptionsVisualsCellIndices:
+    show: bool
+    single_cell: int
+
+@strawberry.type
+class BetseSimulationResultsOptionsVisuals:
+    cell_indices: BetseSimulationResultsOptionsVisualsCellIndices
+
+@strawberry.type
+class BetseSimulationResultsOptionsWhileSolvingAnimationsColorbar:
+    colormap: str
+    autoscale: bool
+    minimum: float
+    maximum: float
+
+@strawberry.type
+class BetseSimulationResultsOptionsWhileSolvingAnimations:
+    show: bool
+    save: bool
+    colorbar: BetseSimulationResultsOptionsWhileSolvingAnimationsColorbar
+
+@strawberry.type
+class BetseSimulationResultsOptionsWhileSolving:
+    animations: BetseSimulationResultsOptionsWhileSolvingAnimations
+
+@strawberry.type
+class BetseSimulationResultsOptionsAfterSolvingCsvsPipeline:
+    name: str
+    type: str
+    enabled: bool
+
+@strawberry.type
+class BetseSimulationResultsOptionsAfterSolvingCsvs:
+    save: bool
+    pipeline: list[BetseSimulationResultsOptionsAfterSolvingCsvsPipeline]
+
+@strawberry.type
+class BetseSimulationResultsOptionsAfterSolvingPlotsSingleCellPipeline:
+    name: str
+    type: str
+    enabled: bool
+
+@strawberry.type
+class BetseSimulationResultsOptionsAfterSolvingPlotsCellClusterPipelineColorbar:
+    autoscale: bool
+    minimum: float
+    maximum: float
+
+@strawberry.type
+class BetseSimulationResultsOptionsAfterSolvingPlotsCellClusterPipeline:
+    name: str
+    type: str
+    enabled: bool
+    colorbar: BetseSimulationResultsOptionsAfterSolvingPlotsCellClusterPipelineColorbar
+
+@strawberry.type
+class BetseSimulationResultsOptionsAfterSolvingPlots:
+    show: bool
+    save: bool
+    single_cell_pipeline: list[BetseSimulationResultsOptionsAfterSolvingPlotsSingleCellPipeline]
+    cell_cluster_pipeline: list[BetseSimulationResultsOptionsAfterSolvingPlotsCellClusterPipeline]
+
+@strawberry.type
+class BetseSimulationResultsOptionsAfterSolvingAnimationsPipelineColorbar:
+    autoscale: bool
+    minimum: float
+    maximum: float
+
+@strawberry.type
+class BetseSimulationResultsOptionsAfterSolvingAnimationsPipeline:
+    name: str
+    type: str
+    enabled: bool
+    colorbar: BetseSimulationResultsOptionsAfterSolvingAnimationsPipelineColorbar
+
+@strawberry.type
+class BetseSimulationResultsOptionsAfterSolvingAnimations:
+    show: bool
+    save: bool
+    pipeline: list[BetseSimulationResultsOptionsAfterSolvingAnimationsPipeline]
+
+@strawberry.type
+class BetseSimulationResultsOptionsAfterSolving:
+    csvs: BetseSimulationResultsOptionsAfterSolvingCsvs
+    plots: BetseSimulationResultsOptionsAfterSolvingPlots
+    animations: BetseSimulationResultsOptionsAfterSolvingAnimations
+
+@strawberry.type
+class BetseSimulationResultsOptionsSaveCsvs:
+    filetype: str
+
+@strawberry.type
+class BetseSimulationResultsOptionsSavePlots:
+    filetype: str
+    dpi: int
+
+@strawberry.type
+class BetseSimulationResultsOptionsSaveAnimationsImages:
+    enabled: bool
+    filetype: str
+    dpi: int
+
+@strawberry.type
+class BetseSimulationResultsOptionsSaveAnimationsVideoMetadata:
+    artist: str
+    genre: str
+    subject: str
+    comment: str
+
+@strawberry.type
+class BetseSimulationResultsOptionsSaveAnimationsVideo:
+    enabled: bool
+    filetype: str
+    dpi: int
+    bitrate: int
+    framerate: int
+    metadata: BetseSimulationResultsOptionsSaveAnimationsVideoMetadata
+    writers: list[str]
+    codecs: list[str]
+
+@strawberry.type
+class BetseSimulationResultsOptionsSaveAnimations:
+    images: BetseSimulationResultsOptionsSaveAnimationsImages
+    video: BetseSimulationResultsOptionsSaveAnimationsVideo
+
+@strawberry.type
+class BetseSimulationResultsOptionsSave:
+    csvs: BetseSimulationResultsOptionsSaveCsvs
+    plots: BetseSimulationResultsOptionsSavePlots
+    animations: BetseSimulationResultsOptionsSaveAnimations
+
+@strawberry.type
 class BetseSimulationResultsOptions:
     show_cells: bool
-    enumerate_cells: bool
+    overlay_currents: bool
+    streamline_density: float
+    plot_total_current: bool
+    plot_cutlines: bool
+    plot_masked_geometry: bool
+    default_colormap: str
+    background_colormap: str
+    network_colormap: str
+    gj_colormap: str
+    vector_and_stream_color: str
+    plot_networks: bool
+    plot_networks_single_cell: bool
+    visuals: BetseSimulationResultsOptionsVisuals
+    while_solving: BetseSimulationResultsOptionsWhileSolving
+    after_solving: BetseSimulationResultsOptionsAfterSolving
+    save: BetseSimulationResultsOptionsSave
+    plot_cluster_mask: bool
 
 @strawberry.type
 class BetseSimulationInternalParameters:
