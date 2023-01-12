@@ -104,6 +104,51 @@ fields_mapping = {
     'alpha_shape': 'alpha shape',
     'use_centers': 'use centers',
 
+    'change_Na_mem': 'change Na mem',
+    'event_happens': 'event happens',
+    'change_start': 'change start',
+    'change_finish': 'change finish',
+    'change_rate': 'change rate',
+    'multiplier': 'multiplier',
+    'modulator_function': 'modulator function',
+    'apply_to': 'apply to',
+    'change_K_mem': 'change K mem',
+    'change_Cl_mem': 'change Cl mem',
+    'change_Ca_mem': 'change Ca mem',
+    'apply_pressure': 'apply pressure',
+    'apply_external_voltage': 'apply external voltage',
+    'peak_voltage': 'peak voltage',
+    'positive_voltage_boundary': 'positive voltage boundary',
+    'negative_voltage_boundary': 'negative voltage boundary',
+    'break_ecm_junctions': 'break ecm junctions',
+    'cutting_event': 'cutting event',
+    'break_TJ': 'break TJ',
+    'wound_TJ': 'wound TJ',
+    'change_K_env': 'change K env',
+    'change_Cl_env': 'change Cl env',
+    'change_Na_env': 'change Na env',
+    'change_temperature': 'change temperature',
+    'block_gap_junctions': 'block gap junctions',
+    'random_fraction': 'random fraction',
+    'block_NaKATP_pump': 'block NaKATP pump',
+
+    'gradient_x': 'gradient_x',
+    'slope': 'slope',
+    'x_offset': 'x-offset',
+    'z_offset': 'z-offset',
+    'exponent': 'exponent',
+    'gradient_y': 'gradient_y',
+    'gradient_r': 'gradient_r',
+    'periodic': 'periodic',
+    'frequency': 'frequency',
+    'phase': 'phase',
+    'f_sweep': 'f_sweep',
+    'start_frequency': 'start frequency',
+    'end_frequency': 'end frequency',
+    'gradient_bitmap': 'gradient_bitmap',
+    'file': 'file',
+    'single_cell': 'single_cell',
+
     'env_boundary_concentrations': 'env boundary concentrations',
     'temperature': 'temperature',
     'deformation': 'deformation',
@@ -193,13 +238,27 @@ def compose_simulation(
     entities = {}
 
     for entity in simulation_entities:
-        type = entity['type']
-        entities[type] = []
-        for id in simulation_data[type]:
-            data = get(entity['collection'], id)
-            entities[type].append(
-                parse(data),
-            )
+        entity_type = entity['type']
+        simulation_entity = simulation_data[entity_type]
+
+        if type(simulation_entity) == str:
+            data = parse(get(entity['collection'], simulation_entity))
+            if not data:
+                return
+            entity_data = data['data']['data']
+            entities[entity_type] = entity_data
+        else:
+            entities[entity_type] = []
+            for id in simulation_entity:
+                data = parse(get(entity['collection'], id))
+                if not data:
+                    return
+                entity_data = data['data']['data']
+                entities[entity_type].append(
+                    entity_data,
+                )
+
+    print(entities)
 
     simulation_run_id = generate_id()
     simulation_path = betse_copy_data(id)
@@ -238,13 +297,18 @@ def compose_simulation(
         'world options': map_to_fields(world_data),
 
         # TISSUE PROFILE DESIGNATION
-        'tissue profile definition': {},
+        'tissue profile definition': {
+            'profiles enabled': True,
+        },
 
         # TARGETED INTERVENTIONS
+        **map_to_fields(entities['targeted_intervention']),
 
         # MODULATOR FUNCTION PROPERTIES
+        'modulator function properties': map_to_fields(entities['modulator_function']),
 
         # GLOBAL INTERVENTIONS
+        **map_to_fields(entities['global_intervention']),
 
         # GENERAL NETWORK
 
