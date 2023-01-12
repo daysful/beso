@@ -690,9 +690,10 @@ export const fields: NewEntityField[] = [
                             },
                             {
                                 label: 'single cell',
-                                type: 'boolean',
+                                type: 'number',
                                 state: 'single_cell',
-                                value: true,
+                                value: 1,
+                                format: 'integer',
                                 required: true,
                                 help: 'index of cell to be visualized for all single cell visuals',
                             },
@@ -802,10 +803,9 @@ export const fields: NewEntityField[] = [
                             },
                             {
                                 label: 'pipeline',
-                                type: 'group',
+                                type: 'list',
                                 state: 'pipeline',
-                                value: [
-                                ],
+                                value: [],
                                 required: true,
                                 help: 'list of all CSV files. Ignored if "save" is False',
                             },
@@ -836,19 +836,17 @@ export const fields: NewEntityField[] = [
                             },
                             {
                                 label: 'single cell pipeline',
-                                type: 'group',
+                                type: 'list',
                                 state: 'single_cell_pipeline',
-                                value: [
-                                ],
+                                value: [],
                                 required: true,
                                 help: 'list of all single-cell plots for the cell selected by the "plot cell index" setting for all time steps. Ignored if "show" and "save" are False',
                             },
                             {
                                 label: 'cell cluster pipeline',
-                                type: 'group',
+                                type: 'list',
                                 state: 'cell_cluster_pipeline',
-                                value: [
-                                ],
+                                value: [],
                                 required: true,
                                 help: 'list of all cell cluster plots for all cells at the last time step. Ignored if "show" and "save" are False',
                             },
@@ -879,10 +877,9 @@ export const fields: NewEntityField[] = [
                             },
                             {
                                 label: 'pipeline',
-                                type: 'group',
+                                type: 'list',
                                 state: 'pipeline',
-                                value: [
-                                ],
+                                value: [],
                                 required: true,
                                 help: 'list of all animations. Ignored if "show" and "save" are False',
                             },
