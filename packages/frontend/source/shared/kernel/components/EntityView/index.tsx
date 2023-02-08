@@ -48,7 +48,6 @@
 
     import {
         createSearchTerms,
-        abstractRowRenderer,
     } from './logic';
     // #endregion internal
 // #endregion imports
@@ -72,6 +71,11 @@ export interface EntityViewProperties {
         // #endregion values
 
         // #region methods
+        abstractRowRenderer: (
+            columns: string[],
+            data: Record<string, any>,
+            methods: Record<string, any>,
+        ) => JSX.Element,
         // #endregion methods
     // #endregion required
 
@@ -130,6 +134,7 @@ const EntityView: React.ForwardRefExoticComponent<EntityViewType> = forwardRef((
             // #endregion values
 
             // #region methods
+            abstractRowRenderer,
             // #endregion methods
         // #endregion required
 
@@ -294,7 +299,7 @@ const EntityView: React.ForwardRefExoticComponent<EntityViewType> = forwardRef((
         () => ({
             resetFilterValue() {
                 clearFilterValue();
-            }
+            },
         }),
     );
     // #endregion effects

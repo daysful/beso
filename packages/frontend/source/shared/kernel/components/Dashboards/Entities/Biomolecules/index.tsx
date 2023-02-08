@@ -47,6 +47,7 @@
 
     import {
         makeEntitiesData,
+        abstractRowRenderer,
     } from '~kernel-services/logic/entities';
 
     import graphqlClient from '~kernel-services/graphql/client';
@@ -185,6 +186,7 @@ const Biomolecules: React.FC<BiomoleculesProperties> = (
                 rowsHeader={rowsHeader}
                 noRows="no biomolecules"
 
+                abstractRowRenderer={abstractRowRenderer}
                 rowRenderFields={rowRenderFields}
                 rowRenderMethods={{
                     handleObliterate,

@@ -47,6 +47,7 @@
 
     import {
         makeEntitiesData,
+        abstractRowRenderer,
     } from '~kernel-services/logic/entities';
 
     import graphqlClient from '~kernel-services/graphql/client';
@@ -185,6 +186,7 @@ const Worlds: React.FC<WorldsProperties> = (
                 rowsHeader={rowsHeader}
                 noRows="no worlds"
 
+                abstractRowRenderer={abstractRowRenderer}
                 rowRenderFields={rowRenderFields}
                 rowRenderMethods={{
                     handleObliterate,

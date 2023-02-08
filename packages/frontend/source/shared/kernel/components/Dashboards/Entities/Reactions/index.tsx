@@ -47,6 +47,7 @@
 
     import {
         makeEntitiesData,
+        abstractRowRenderer,
     } from '~kernel-services/logic/entities';
 
     import graphqlClient from '~kernel-services/graphql/client';
@@ -185,6 +186,7 @@ const Reactions: React.FC<ReactionsProperties> = (
                 rowsHeader={rowsHeader}
                 noRows="no reactions"
 
+                abstractRowRenderer={abstractRowRenderer}
                 rowRenderFields={rowRenderFields}
                 rowRenderMethods={{
                     handleObliterate,

@@ -41,6 +41,7 @@
 
     import {
         makeEntitiesData,
+        abstractRowRenderer,
     } from '~kernel-services/logic/entities';
 
     import graphqlClient from '~kernel-services/graphql/client';
@@ -200,6 +201,7 @@ const Simulations: React.FC<SimulationsProperties> = (
                 rowsHeader={rowsHeader}
                 noRows="no simulations"
 
+                abstractRowRenderer={abstractRowRenderer}
                 rowRenderFields={rowRenderFields}
                 rowRenderMethods={{
                     handleObliterate,
