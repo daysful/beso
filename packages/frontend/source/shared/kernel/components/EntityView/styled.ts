@@ -22,8 +22,11 @@ export const StyledEntityView = styled.div<IStyledEntityView>`
     height: 100%;
 
     button {
-        font-family: 'Ubuntu', -apple-system, BlinkMacSystemFont, 'Segoe UI',
-            'Open Sans', 'Helvetica Neue', sans-serif;
+        font-family: ${
+            ({
+                theme,
+            }: IStyledEntityView) => theme.fontFamilySansSerif
+        };
     }
 `;
 

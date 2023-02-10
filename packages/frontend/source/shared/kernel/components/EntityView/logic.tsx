@@ -1,4 +1,9 @@
 // #region module
+export interface SearchTerm {
+    id: string,
+    data: string[],
+}
+
 export const createSearchTerms = (
     rows: any[],
     fields: string[],

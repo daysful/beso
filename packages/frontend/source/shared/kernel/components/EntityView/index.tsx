@@ -47,6 +47,7 @@
     } from './styled';
 
     import {
+        SearchTerm,
         createSearchTerms,
     } from './logic';
     // #endregion internal
@@ -82,6 +83,8 @@ export interface EntityViewProperties {
     // #region optional
         // #region values
         actionButtonText?: string;
+        placeholderText?: string;
+        scrollThrottleTime?: number;
         loading?: number;
 
         rowRenderFields?: string[];
@@ -109,6 +112,7 @@ export interface EntityViewProperties {
 }
 
 export interface EntityViewRefAttributes {
+    getSearchTerms: () => SearchTerm[];
     resetFilterValue: () => void;
 }
 
@@ -141,6 +145,8 @@ const EntityView: React.ForwardRefExoticComponent<EntityViewType> = forwardRef((
         // #region optional
             // #region values.
             actionButtonText,
+            placeholderText,
+            scrollThrottleTime: scrollThrottleTimeProperty,
             loading,
 
             rowRenderFields,
@@ -156,8 +162,8 @@ const EntityView: React.ForwardRefExoticComponent<EntityViewType> = forwardRef((
         // #endregion optional
     } = properties;
 
-    const placeholder = 'search';
-    const scrollThrottleTime = 1_000;
+    const placeholder = placeholderText || 'search';
+    const scrollThrottleTime = scrollThrottleTimeProperty ?? 1_000;
     // #endregion properties
 
 
@@ -171,7 +177,7 @@ const EntityView: React.ForwardRefExoticComponent<EntityViewType> = forwardRef((
     const [
         searchTerms,
         setSearchTerms,
-    ] = useState(
+    ] = useState<SearchTerm[]>(
         createSearchTerms(entities, searchFields),
     );
 
@@ -239,6 +245,10 @@ const EntityView: React.ForwardRefExoticComponent<EntityViewType> = forwardRef((
                 ),
             ),
         );
+
+        setSearchTerms(
+            createSearchTerms(entities, searchFields),
+        );
     }, [
         entities.length,
         JSON.stringify(entities),
@@ -300,7 +310,13 @@ const EntityView: React.ForwardRefExoticComponent<EntityViewType> = forwardRef((
             resetFilterValue() {
                 clearFilterValue();
             },
+            getSearchTerms() {
+                return searchTerms;
+            },
         }),
+        [
+            JSON.stringify(searchTerms),
+        ],
     );
     // #endregion effects
 
